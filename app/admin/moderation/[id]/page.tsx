@@ -1,3 +1,4 @@
+// app/admin/moderation/[id]/page.tsx
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import {
@@ -16,6 +17,46 @@ import { ReportActions } from '@/components/admin/moderation/report-actions'
 
 type Params = Promise<{ id: string }>
 
+// ============================================
+// STATUS CONFIG (semua enum ReportStatus)
+// ============================================
+
+const STATUS_CONFIG: Record<
+  string,
+  {
+    icon: React.ComponentType<{ className?: string }>
+    label: string
+    color: string
+  }
+> = {
+  pending: {
+    icon: Clock,
+    label: 'Menunggu Review',
+    color: 'bg-amber-100 text-amber-700 border-amber-200',
+  },
+  reviewed: {
+    icon: AlertCircle,
+    label: 'Sedang Ditinjau',
+    color: 'bg-blue-100 text-blue-700 border-blue-200',
+  },
+  resolved: {
+    icon: CheckCircle2,
+    label: 'Diselesaikan',
+    color: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+  },
+  dismissed: {
+    icon: XCircle,
+    label: 'Diabaikan',
+    color: 'bg-gray-100 text-gray-700 border-gray-200',
+  },
+}
+
+const FALLBACK_CONFIG = {
+  icon: AlertCircle,
+  label: 'Status Tidak Diketahui',
+  color: 'bg-gray-100 text-gray-700 border-gray-200',
+}
+
 export default async function ModerationDetailPage({
   params,
 }: {
@@ -26,26 +67,9 @@ export default async function ModerationDetailPage({
 
   if (!report) notFound()
 
-  const statusConfig = {
-    pending: {
-      icon: Clock,
-      label: 'Menunggu Review',
-      color: 'bg-amber-100 text-amber-700 border-amber-200',
-    },
-    resolved: {
-      icon: CheckCircle2,
-      label: 'Diselesaikan',
-      color: 'bg-emerald-100 text-emerald-700 border-emerald-200',
-    },
-    dismissed: {
-      icon: XCircle,
-      label: 'Diabaikan',
-      color: 'bg-gray-100 text-gray-700 border-gray-200',
-    },
-  }[report.status] || {
-    icon: AlertCircle,
+  const statusConfig = STATUS_CONFIG[report.status] || {
+    ...FALLBACK_CONFIG,
     label: report.status,
-    color: 'bg-gray-100 text-gray-700 border-gray-200',
   }
 
   const StatusIcon = statusConfig.icon
