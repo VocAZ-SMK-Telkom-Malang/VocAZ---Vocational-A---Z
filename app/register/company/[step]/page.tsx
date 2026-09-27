@@ -1,3 +1,4 @@
+// app/register/company/[step]/page.tsx
 import { notFound } from 'next/navigation'
 import { Step1Account } from '../_components/step-1-account'
 import { Step2Data } from '../_components/step-2-data'

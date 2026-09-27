@@ -29,11 +29,17 @@ export type AggregateShowcaseVideo = {
 export type ShowcaseVideoAvgAggregateOutputType = {
   durationSec: number | null
   viewCount: number | null
+  likeCount: number | null
+  commentCount: number | null
+  shareCount: number | null
 }
 
 export type ShowcaseVideoSumAggregateOutputType = {
   durationSec: number | null
   viewCount: bigint | null
+  likeCount: number | null
+  commentCount: number | null
+  shareCount: number | null
 }
 
 export type ShowcaseVideoMinAggregateOutputType = {
@@ -43,11 +49,15 @@ export type ShowcaseVideoMinAggregateOutputType = {
   description: string | null
   videoUrl: string | null
   videoKey: string | null
+  videoSource: $Enums.VideoSource | null
   thumbnailUrl: string | null
   thumbnailKey: string | null
   durationSec: number | null
   category: string | null
   viewCount: bigint | null
+  likeCount: number | null
+  commentCount: number | null
+  shareCount: number | null
   status: $Enums.ShowcaseStatus | null
   publishedAt: Date | null
   createdAt: Date | null
@@ -61,11 +71,15 @@ export type ShowcaseVideoMaxAggregateOutputType = {
   description: string | null
   videoUrl: string | null
   videoKey: string | null
+  videoSource: $Enums.VideoSource | null
   thumbnailUrl: string | null
   thumbnailKey: string | null
   durationSec: number | null
   category: string | null
   viewCount: bigint | null
+  likeCount: number | null
+  commentCount: number | null
+  shareCount: number | null
   status: $Enums.ShowcaseStatus | null
   publishedAt: Date | null
   createdAt: Date | null
@@ -79,12 +93,16 @@ export type ShowcaseVideoCountAggregateOutputType = {
   description: number
   videoUrl: number
   videoKey: number
+  videoSource: number
   thumbnailUrl: number
   thumbnailKey: number
   durationSec: number
   category: number
   skillTags: number
   viewCount: number
+  likeCount: number
+  commentCount: number
+  shareCount: number
   status: number
   publishedAt: number
   createdAt: number
@@ -96,11 +114,17 @@ export type ShowcaseVideoCountAggregateOutputType = {
 export type ShowcaseVideoAvgAggregateInputType = {
   durationSec?: true
   viewCount?: true
+  likeCount?: true
+  commentCount?: true
+  shareCount?: true
 }
 
 export type ShowcaseVideoSumAggregateInputType = {
   durationSec?: true
   viewCount?: true
+  likeCount?: true
+  commentCount?: true
+  shareCount?: true
 }
 
 export type ShowcaseVideoMinAggregateInputType = {
@@ -110,11 +134,15 @@ export type ShowcaseVideoMinAggregateInputType = {
   description?: true
   videoUrl?: true
   videoKey?: true
+  videoSource?: true
   thumbnailUrl?: true
   thumbnailKey?: true
   durationSec?: true
   category?: true
   viewCount?: true
+  likeCount?: true
+  commentCount?: true
+  shareCount?: true
   status?: true
   publishedAt?: true
   createdAt?: true
@@ -128,11 +156,15 @@ export type ShowcaseVideoMaxAggregateInputType = {
   description?: true
   videoUrl?: true
   videoKey?: true
+  videoSource?: true
   thumbnailUrl?: true
   thumbnailKey?: true
   durationSec?: true
   category?: true
   viewCount?: true
+  likeCount?: true
+  commentCount?: true
+  shareCount?: true
   status?: true
   publishedAt?: true
   createdAt?: true
@@ -146,12 +178,16 @@ export type ShowcaseVideoCountAggregateInputType = {
   description?: true
   videoUrl?: true
   videoKey?: true
+  videoSource?: true
   thumbnailUrl?: true
   thumbnailKey?: true
   durationSec?: true
   category?: true
   skillTags?: true
   viewCount?: true
+  likeCount?: true
+  commentCount?: true
+  shareCount?: true
   status?: true
   publishedAt?: true
   createdAt?: true
@@ -251,13 +287,17 @@ export type ShowcaseVideoGroupByOutputType = {
   title: string
   description: string | null
   videoUrl: string
-  videoKey: string
+  videoKey: string | null
+  videoSource: $Enums.VideoSource
   thumbnailUrl: string | null
   thumbnailKey: string | null
   durationSec: number | null
   category: string | null
   skillTags: string[]
   viewCount: bigint
+  likeCount: number
+  commentCount: number
+  shareCount: number
   status: $Enums.ShowcaseStatus
   publishedAt: Date | null
   createdAt: Date
@@ -293,18 +333,24 @@ export type ShowcaseVideoWhereInput = {
   title?: Prisma.StringFilter<"ShowcaseVideo"> | string
   description?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   videoUrl?: Prisma.StringFilter<"ShowcaseVideo"> | string
-  videoKey?: Prisma.StringFilter<"ShowcaseVideo"> | string
+  videoKey?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
+  videoSource?: Prisma.EnumVideoSourceFilter<"ShowcaseVideo"> | $Enums.VideoSource
   thumbnailUrl?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   thumbnailKey?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   durationSec?: Prisma.IntNullableFilter<"ShowcaseVideo"> | number | null
   category?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   skillTags?: Prisma.StringNullableListFilter<"ShowcaseVideo">
   viewCount?: Prisma.BigIntFilter<"ShowcaseVideo"> | bigint | number
+  likeCount?: Prisma.IntFilter<"ShowcaseVideo"> | number
+  commentCount?: Prisma.IntFilter<"ShowcaseVideo"> | number
+  shareCount?: Prisma.IntFilter<"ShowcaseVideo"> | number
   status?: Prisma.EnumShowcaseStatusFilter<"ShowcaseVideo"> | $Enums.ShowcaseStatus
   publishedAt?: Prisma.DateTimeNullableFilter<"ShowcaseVideo"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ShowcaseVideo"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShowcaseVideo"> | Date | string
   student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
+  likes?: Prisma.ShowcaseLikeListRelationFilter
+  comments?: Prisma.ShowcaseCommentListRelationFilter
 }
 
 export type ShowcaseVideoOrderByWithRelationInput = {
@@ -313,18 +359,24 @@ export type ShowcaseVideoOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   videoUrl?: Prisma.SortOrder
-  videoKey?: Prisma.SortOrder
+  videoKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  videoSource?: Prisma.SortOrder
   thumbnailUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   thumbnailKey?: Prisma.SortOrderInput | Prisma.SortOrder
   durationSec?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
   skillTags?: Prisma.SortOrder
   viewCount?: Prisma.SortOrder
+  likeCount?: Prisma.SortOrder
+  commentCount?: Prisma.SortOrder
+  shareCount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   student?: Prisma.StudentProfileOrderByWithRelationInput
+  likes?: Prisma.ShowcaseLikeOrderByRelationAggregateInput
+  comments?: Prisma.ShowcaseCommentOrderByRelationAggregateInput
 }
 
 export type ShowcaseVideoWhereUniqueInput = Prisma.AtLeast<{
@@ -336,18 +388,24 @@ export type ShowcaseVideoWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"ShowcaseVideo"> | string
   description?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   videoUrl?: Prisma.StringFilter<"ShowcaseVideo"> | string
-  videoKey?: Prisma.StringFilter<"ShowcaseVideo"> | string
+  videoKey?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
+  videoSource?: Prisma.EnumVideoSourceFilter<"ShowcaseVideo"> | $Enums.VideoSource
   thumbnailUrl?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   thumbnailKey?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   durationSec?: Prisma.IntNullableFilter<"ShowcaseVideo"> | number | null
   category?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   skillTags?: Prisma.StringNullableListFilter<"ShowcaseVideo">
   viewCount?: Prisma.BigIntFilter<"ShowcaseVideo"> | bigint | number
+  likeCount?: Prisma.IntFilter<"ShowcaseVideo"> | number
+  commentCount?: Prisma.IntFilter<"ShowcaseVideo"> | number
+  shareCount?: Prisma.IntFilter<"ShowcaseVideo"> | number
   status?: Prisma.EnumShowcaseStatusFilter<"ShowcaseVideo"> | $Enums.ShowcaseStatus
   publishedAt?: Prisma.DateTimeNullableFilter<"ShowcaseVideo"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ShowcaseVideo"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShowcaseVideo"> | Date | string
   student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
+  likes?: Prisma.ShowcaseLikeListRelationFilter
+  comments?: Prisma.ShowcaseCommentListRelationFilter
 }, "id">
 
 export type ShowcaseVideoOrderByWithAggregationInput = {
@@ -356,13 +414,17 @@ export type ShowcaseVideoOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   videoUrl?: Prisma.SortOrder
-  videoKey?: Prisma.SortOrder
+  videoKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  videoSource?: Prisma.SortOrder
   thumbnailUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   thumbnailKey?: Prisma.SortOrderInput | Prisma.SortOrder
   durationSec?: Prisma.SortOrderInput | Prisma.SortOrder
   category?: Prisma.SortOrderInput | Prisma.SortOrder
   skillTags?: Prisma.SortOrder
   viewCount?: Prisma.SortOrder
+  likeCount?: Prisma.SortOrder
+  commentCount?: Prisma.SortOrder
+  shareCount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -383,13 +445,17 @@ export type ShowcaseVideoScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"ShowcaseVideo"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"ShowcaseVideo"> | string | null
   videoUrl?: Prisma.StringWithAggregatesFilter<"ShowcaseVideo"> | string
-  videoKey?: Prisma.StringWithAggregatesFilter<"ShowcaseVideo"> | string
+  videoKey?: Prisma.StringNullableWithAggregatesFilter<"ShowcaseVideo"> | string | null
+  videoSource?: Prisma.EnumVideoSourceWithAggregatesFilter<"ShowcaseVideo"> | $Enums.VideoSource
   thumbnailUrl?: Prisma.StringNullableWithAggregatesFilter<"ShowcaseVideo"> | string | null
   thumbnailKey?: Prisma.StringNullableWithAggregatesFilter<"ShowcaseVideo"> | string | null
   durationSec?: Prisma.IntNullableWithAggregatesFilter<"ShowcaseVideo"> | number | null
   category?: Prisma.StringNullableWithAggregatesFilter<"ShowcaseVideo"> | string | null
   skillTags?: Prisma.StringNullableListFilter<"ShowcaseVideo">
   viewCount?: Prisma.BigIntWithAggregatesFilter<"ShowcaseVideo"> | bigint | number
+  likeCount?: Prisma.IntWithAggregatesFilter<"ShowcaseVideo"> | number
+  commentCount?: Prisma.IntWithAggregatesFilter<"ShowcaseVideo"> | number
+  shareCount?: Prisma.IntWithAggregatesFilter<"ShowcaseVideo"> | number
   status?: Prisma.EnumShowcaseStatusWithAggregatesFilter<"ShowcaseVideo"> | $Enums.ShowcaseStatus
   publishedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"ShowcaseVideo"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ShowcaseVideo"> | Date | string
@@ -401,18 +467,24 @@ export type ShowcaseVideoCreateInput = {
   title: string
   description?: string | null
   videoUrl: string
-  videoKey: string
+  videoKey?: string | null
+  videoSource?: $Enums.VideoSource
   thumbnailUrl?: string | null
   thumbnailKey?: string | null
   durationSec?: number | null
   category?: string | null
   skillTags?: Prisma.ShowcaseVideoCreateskillTagsInput | string[]
   viewCount?: bigint | number
+  likeCount?: number
+  commentCount?: number
+  shareCount?: number
   status?: $Enums.ShowcaseStatus
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   student: Prisma.StudentProfileCreateNestedOneWithoutShowcaseVideosInput
+  likes?: Prisma.ShowcaseLikeCreateNestedManyWithoutVideoInput
+  comments?: Prisma.ShowcaseCommentCreateNestedManyWithoutVideoInput
 }
 
 export type ShowcaseVideoUncheckedCreateInput = {
@@ -421,17 +493,23 @@ export type ShowcaseVideoUncheckedCreateInput = {
   title: string
   description?: string | null
   videoUrl: string
-  videoKey: string
+  videoKey?: string | null
+  videoSource?: $Enums.VideoSource
   thumbnailUrl?: string | null
   thumbnailKey?: string | null
   durationSec?: number | null
   category?: string | null
   skillTags?: Prisma.ShowcaseVideoCreateskillTagsInput | string[]
   viewCount?: bigint | number
+  likeCount?: number
+  commentCount?: number
+  shareCount?: number
   status?: $Enums.ShowcaseStatus
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  likes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutVideoInput
+  comments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutVideoInput
 }
 
 export type ShowcaseVideoUpdateInput = {
@@ -439,18 +517,24 @@ export type ShowcaseVideoUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  videoKey?: Prisma.StringFieldUpdateOperationsInput | string
+  videoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoSource?: Prisma.EnumVideoSourceFieldUpdateOperationsInput | $Enums.VideoSource
   thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnailKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationSec?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skillTags?: Prisma.ShowcaseVideoUpdateskillTagsInput | string[]
   viewCount?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  likeCount?: Prisma.IntFieldUpdateOperationsInput | number
+  commentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  shareCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShowcaseStatusFieldUpdateOperationsInput | $Enums.ShowcaseStatus
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   student?: Prisma.StudentProfileUpdateOneRequiredWithoutShowcaseVideosNestedInput
+  likes?: Prisma.ShowcaseLikeUpdateManyWithoutVideoNestedInput
+  comments?: Prisma.ShowcaseCommentUpdateManyWithoutVideoNestedInput
 }
 
 export type ShowcaseVideoUncheckedUpdateInput = {
@@ -459,17 +543,23 @@ export type ShowcaseVideoUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  videoKey?: Prisma.StringFieldUpdateOperationsInput | string
+  videoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoSource?: Prisma.EnumVideoSourceFieldUpdateOperationsInput | $Enums.VideoSource
   thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnailKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationSec?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skillTags?: Prisma.ShowcaseVideoUpdateskillTagsInput | string[]
   viewCount?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  likeCount?: Prisma.IntFieldUpdateOperationsInput | number
+  commentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  shareCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShowcaseStatusFieldUpdateOperationsInput | $Enums.ShowcaseStatus
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutVideoNestedInput
+  comments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutVideoNestedInput
 }
 
 export type ShowcaseVideoCreateManyInput = {
@@ -478,13 +568,17 @@ export type ShowcaseVideoCreateManyInput = {
   title: string
   description?: string | null
   videoUrl: string
-  videoKey: string
+  videoKey?: string | null
+  videoSource?: $Enums.VideoSource
   thumbnailUrl?: string | null
   thumbnailKey?: string | null
   durationSec?: number | null
   category?: string | null
   skillTags?: Prisma.ShowcaseVideoCreateskillTagsInput | string[]
   viewCount?: bigint | number
+  likeCount?: number
+  commentCount?: number
+  shareCount?: number
   status?: $Enums.ShowcaseStatus
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -496,13 +590,17 @@ export type ShowcaseVideoUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  videoKey?: Prisma.StringFieldUpdateOperationsInput | string
+  videoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoSource?: Prisma.EnumVideoSourceFieldUpdateOperationsInput | $Enums.VideoSource
   thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnailKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationSec?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skillTags?: Prisma.ShowcaseVideoUpdateskillTagsInput | string[]
   viewCount?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  likeCount?: Prisma.IntFieldUpdateOperationsInput | number
+  commentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  shareCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShowcaseStatusFieldUpdateOperationsInput | $Enums.ShowcaseStatus
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -515,13 +613,17 @@ export type ShowcaseVideoUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  videoKey?: Prisma.StringFieldUpdateOperationsInput | string
+  videoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoSource?: Prisma.EnumVideoSourceFieldUpdateOperationsInput | $Enums.VideoSource
   thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnailKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationSec?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skillTags?: Prisma.ShowcaseVideoUpdateskillTagsInput | string[]
   viewCount?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  likeCount?: Prisma.IntFieldUpdateOperationsInput | number
+  commentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  shareCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShowcaseStatusFieldUpdateOperationsInput | $Enums.ShowcaseStatus
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -553,12 +655,16 @@ export type ShowcaseVideoCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   videoUrl?: Prisma.SortOrder
   videoKey?: Prisma.SortOrder
+  videoSource?: Prisma.SortOrder
   thumbnailUrl?: Prisma.SortOrder
   thumbnailKey?: Prisma.SortOrder
   durationSec?: Prisma.SortOrder
   category?: Prisma.SortOrder
   skillTags?: Prisma.SortOrder
   viewCount?: Prisma.SortOrder
+  likeCount?: Prisma.SortOrder
+  commentCount?: Prisma.SortOrder
+  shareCount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -568,6 +674,9 @@ export type ShowcaseVideoCountOrderByAggregateInput = {
 export type ShowcaseVideoAvgOrderByAggregateInput = {
   durationSec?: Prisma.SortOrder
   viewCount?: Prisma.SortOrder
+  likeCount?: Prisma.SortOrder
+  commentCount?: Prisma.SortOrder
+  shareCount?: Prisma.SortOrder
 }
 
 export type ShowcaseVideoMaxOrderByAggregateInput = {
@@ -577,11 +686,15 @@ export type ShowcaseVideoMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   videoUrl?: Prisma.SortOrder
   videoKey?: Prisma.SortOrder
+  videoSource?: Prisma.SortOrder
   thumbnailUrl?: Prisma.SortOrder
   thumbnailKey?: Prisma.SortOrder
   durationSec?: Prisma.SortOrder
   category?: Prisma.SortOrder
   viewCount?: Prisma.SortOrder
+  likeCount?: Prisma.SortOrder
+  commentCount?: Prisma.SortOrder
+  shareCount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -595,11 +708,15 @@ export type ShowcaseVideoMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   videoUrl?: Prisma.SortOrder
   videoKey?: Prisma.SortOrder
+  videoSource?: Prisma.SortOrder
   thumbnailUrl?: Prisma.SortOrder
   thumbnailKey?: Prisma.SortOrder
   durationSec?: Prisma.SortOrder
   category?: Prisma.SortOrder
   viewCount?: Prisma.SortOrder
+  likeCount?: Prisma.SortOrder
+  commentCount?: Prisma.SortOrder
+  shareCount?: Prisma.SortOrder
   status?: Prisma.SortOrder
   publishedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -609,6 +726,14 @@ export type ShowcaseVideoMinOrderByAggregateInput = {
 export type ShowcaseVideoSumOrderByAggregateInput = {
   durationSec?: Prisma.SortOrder
   viewCount?: Prisma.SortOrder
+  likeCount?: Prisma.SortOrder
+  commentCount?: Prisma.SortOrder
+  shareCount?: Prisma.SortOrder
+}
+
+export type ShowcaseVideoScalarRelationFilter = {
+  is?: Prisma.ShowcaseVideoWhereInput
+  isNot?: Prisma.ShowcaseVideoWhereInput
 }
 
 export type ShowcaseVideoCreateNestedManyWithoutStudentInput = {
@@ -657,6 +782,10 @@ export type ShowcaseVideoCreateskillTagsInput = {
   set: string[]
 }
 
+export type EnumVideoSourceFieldUpdateOperationsInput = {
+  set?: $Enums.VideoSource
+}
+
 export type ShowcaseVideoUpdateskillTagsInput = {
   set?: string[]
   push?: string | string[]
@@ -674,22 +803,56 @@ export type EnumShowcaseStatusFieldUpdateOperationsInput = {
   set?: $Enums.ShowcaseStatus
 }
 
+export type ShowcaseVideoCreateNestedOneWithoutLikesInput = {
+  create?: Prisma.XOR<Prisma.ShowcaseVideoCreateWithoutLikesInput, Prisma.ShowcaseVideoUncheckedCreateWithoutLikesInput>
+  connectOrCreate?: Prisma.ShowcaseVideoCreateOrConnectWithoutLikesInput
+  connect?: Prisma.ShowcaseVideoWhereUniqueInput
+}
+
+export type ShowcaseVideoUpdateOneRequiredWithoutLikesNestedInput = {
+  create?: Prisma.XOR<Prisma.ShowcaseVideoCreateWithoutLikesInput, Prisma.ShowcaseVideoUncheckedCreateWithoutLikesInput>
+  connectOrCreate?: Prisma.ShowcaseVideoCreateOrConnectWithoutLikesInput
+  upsert?: Prisma.ShowcaseVideoUpsertWithoutLikesInput
+  connect?: Prisma.ShowcaseVideoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ShowcaseVideoUpdateToOneWithWhereWithoutLikesInput, Prisma.ShowcaseVideoUpdateWithoutLikesInput>, Prisma.ShowcaseVideoUncheckedUpdateWithoutLikesInput>
+}
+
+export type ShowcaseVideoCreateNestedOneWithoutCommentsInput = {
+  create?: Prisma.XOR<Prisma.ShowcaseVideoCreateWithoutCommentsInput, Prisma.ShowcaseVideoUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.ShowcaseVideoCreateOrConnectWithoutCommentsInput
+  connect?: Prisma.ShowcaseVideoWhereUniqueInput
+}
+
+export type ShowcaseVideoUpdateOneRequiredWithoutCommentsNestedInput = {
+  create?: Prisma.XOR<Prisma.ShowcaseVideoCreateWithoutCommentsInput, Prisma.ShowcaseVideoUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.ShowcaseVideoCreateOrConnectWithoutCommentsInput
+  upsert?: Prisma.ShowcaseVideoUpsertWithoutCommentsInput
+  connect?: Prisma.ShowcaseVideoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ShowcaseVideoUpdateToOneWithWhereWithoutCommentsInput, Prisma.ShowcaseVideoUpdateWithoutCommentsInput>, Prisma.ShowcaseVideoUncheckedUpdateWithoutCommentsInput>
+}
+
 export type ShowcaseVideoCreateWithoutStudentInput = {
   id?: string
   title: string
   description?: string | null
   videoUrl: string
-  videoKey: string
+  videoKey?: string | null
+  videoSource?: $Enums.VideoSource
   thumbnailUrl?: string | null
   thumbnailKey?: string | null
   durationSec?: number | null
   category?: string | null
   skillTags?: Prisma.ShowcaseVideoCreateskillTagsInput | string[]
   viewCount?: bigint | number
+  likeCount?: number
+  commentCount?: number
+  shareCount?: number
   status?: $Enums.ShowcaseStatus
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  likes?: Prisma.ShowcaseLikeCreateNestedManyWithoutVideoInput
+  comments?: Prisma.ShowcaseCommentCreateNestedManyWithoutVideoInput
 }
 
 export type ShowcaseVideoUncheckedCreateWithoutStudentInput = {
@@ -697,17 +860,23 @@ export type ShowcaseVideoUncheckedCreateWithoutStudentInput = {
   title: string
   description?: string | null
   videoUrl: string
-  videoKey: string
+  videoKey?: string | null
+  videoSource?: $Enums.VideoSource
   thumbnailUrl?: string | null
   thumbnailKey?: string | null
   durationSec?: number | null
   category?: string | null
   skillTags?: Prisma.ShowcaseVideoCreateskillTagsInput | string[]
   viewCount?: bigint | number
+  likeCount?: number
+  commentCount?: number
+  shareCount?: number
   status?: $Enums.ShowcaseStatus
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  likes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutVideoInput
+  comments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutVideoInput
 }
 
 export type ShowcaseVideoCreateOrConnectWithoutStudentInput = {
@@ -745,17 +914,245 @@ export type ShowcaseVideoScalarWhereInput = {
   title?: Prisma.StringFilter<"ShowcaseVideo"> | string
   description?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   videoUrl?: Prisma.StringFilter<"ShowcaseVideo"> | string
-  videoKey?: Prisma.StringFilter<"ShowcaseVideo"> | string
+  videoKey?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
+  videoSource?: Prisma.EnumVideoSourceFilter<"ShowcaseVideo"> | $Enums.VideoSource
   thumbnailUrl?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   thumbnailKey?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   durationSec?: Prisma.IntNullableFilter<"ShowcaseVideo"> | number | null
   category?: Prisma.StringNullableFilter<"ShowcaseVideo"> | string | null
   skillTags?: Prisma.StringNullableListFilter<"ShowcaseVideo">
   viewCount?: Prisma.BigIntFilter<"ShowcaseVideo"> | bigint | number
+  likeCount?: Prisma.IntFilter<"ShowcaseVideo"> | number
+  commentCount?: Prisma.IntFilter<"ShowcaseVideo"> | number
+  shareCount?: Prisma.IntFilter<"ShowcaseVideo"> | number
   status?: Prisma.EnumShowcaseStatusFilter<"ShowcaseVideo"> | $Enums.ShowcaseStatus
   publishedAt?: Prisma.DateTimeNullableFilter<"ShowcaseVideo"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ShowcaseVideo"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShowcaseVideo"> | Date | string
+}
+
+export type ShowcaseVideoCreateWithoutLikesInput = {
+  id?: string
+  title: string
+  description?: string | null
+  videoUrl: string
+  videoKey?: string | null
+  videoSource?: $Enums.VideoSource
+  thumbnailUrl?: string | null
+  thumbnailKey?: string | null
+  durationSec?: number | null
+  category?: string | null
+  skillTags?: Prisma.ShowcaseVideoCreateskillTagsInput | string[]
+  viewCount?: bigint | number
+  likeCount?: number
+  commentCount?: number
+  shareCount?: number
+  status?: $Enums.ShowcaseStatus
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  student: Prisma.StudentProfileCreateNestedOneWithoutShowcaseVideosInput
+  comments?: Prisma.ShowcaseCommentCreateNestedManyWithoutVideoInput
+}
+
+export type ShowcaseVideoUncheckedCreateWithoutLikesInput = {
+  id?: string
+  studentId: string
+  title: string
+  description?: string | null
+  videoUrl: string
+  videoKey?: string | null
+  videoSource?: $Enums.VideoSource
+  thumbnailUrl?: string | null
+  thumbnailKey?: string | null
+  durationSec?: number | null
+  category?: string | null
+  skillTags?: Prisma.ShowcaseVideoCreateskillTagsInput | string[]
+  viewCount?: bigint | number
+  likeCount?: number
+  commentCount?: number
+  shareCount?: number
+  status?: $Enums.ShowcaseStatus
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  comments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutVideoInput
+}
+
+export type ShowcaseVideoCreateOrConnectWithoutLikesInput = {
+  where: Prisma.ShowcaseVideoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ShowcaseVideoCreateWithoutLikesInput, Prisma.ShowcaseVideoUncheckedCreateWithoutLikesInput>
+}
+
+export type ShowcaseVideoUpsertWithoutLikesInput = {
+  update: Prisma.XOR<Prisma.ShowcaseVideoUpdateWithoutLikesInput, Prisma.ShowcaseVideoUncheckedUpdateWithoutLikesInput>
+  create: Prisma.XOR<Prisma.ShowcaseVideoCreateWithoutLikesInput, Prisma.ShowcaseVideoUncheckedCreateWithoutLikesInput>
+  where?: Prisma.ShowcaseVideoWhereInput
+}
+
+export type ShowcaseVideoUpdateToOneWithWhereWithoutLikesInput = {
+  where?: Prisma.ShowcaseVideoWhereInput
+  data: Prisma.XOR<Prisma.ShowcaseVideoUpdateWithoutLikesInput, Prisma.ShowcaseVideoUncheckedUpdateWithoutLikesInput>
+}
+
+export type ShowcaseVideoUpdateWithoutLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  videoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoSource?: Prisma.EnumVideoSourceFieldUpdateOperationsInput | $Enums.VideoSource
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durationSec?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skillTags?: Prisma.ShowcaseVideoUpdateskillTagsInput | string[]
+  viewCount?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  likeCount?: Prisma.IntFieldUpdateOperationsInput | number
+  commentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  shareCount?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumShowcaseStatusFieldUpdateOperationsInput | $Enums.ShowcaseStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutShowcaseVideosNestedInput
+  comments?: Prisma.ShowcaseCommentUpdateManyWithoutVideoNestedInput
+}
+
+export type ShowcaseVideoUncheckedUpdateWithoutLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  videoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoSource?: Prisma.EnumVideoSourceFieldUpdateOperationsInput | $Enums.VideoSource
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durationSec?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skillTags?: Prisma.ShowcaseVideoUpdateskillTagsInput | string[]
+  viewCount?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  likeCount?: Prisma.IntFieldUpdateOperationsInput | number
+  commentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  shareCount?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumShowcaseStatusFieldUpdateOperationsInput | $Enums.ShowcaseStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutVideoNestedInput
+}
+
+export type ShowcaseVideoCreateWithoutCommentsInput = {
+  id?: string
+  title: string
+  description?: string | null
+  videoUrl: string
+  videoKey?: string | null
+  videoSource?: $Enums.VideoSource
+  thumbnailUrl?: string | null
+  thumbnailKey?: string | null
+  durationSec?: number | null
+  category?: string | null
+  skillTags?: Prisma.ShowcaseVideoCreateskillTagsInput | string[]
+  viewCount?: bigint | number
+  likeCount?: number
+  commentCount?: number
+  shareCount?: number
+  status?: $Enums.ShowcaseStatus
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  student: Prisma.StudentProfileCreateNestedOneWithoutShowcaseVideosInput
+  likes?: Prisma.ShowcaseLikeCreateNestedManyWithoutVideoInput
+}
+
+export type ShowcaseVideoUncheckedCreateWithoutCommentsInput = {
+  id?: string
+  studentId: string
+  title: string
+  description?: string | null
+  videoUrl: string
+  videoKey?: string | null
+  videoSource?: $Enums.VideoSource
+  thumbnailUrl?: string | null
+  thumbnailKey?: string | null
+  durationSec?: number | null
+  category?: string | null
+  skillTags?: Prisma.ShowcaseVideoCreateskillTagsInput | string[]
+  viewCount?: bigint | number
+  likeCount?: number
+  commentCount?: number
+  shareCount?: number
+  status?: $Enums.ShowcaseStatus
+  publishedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  likes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutVideoInput
+}
+
+export type ShowcaseVideoCreateOrConnectWithoutCommentsInput = {
+  where: Prisma.ShowcaseVideoWhereUniqueInput
+  create: Prisma.XOR<Prisma.ShowcaseVideoCreateWithoutCommentsInput, Prisma.ShowcaseVideoUncheckedCreateWithoutCommentsInput>
+}
+
+export type ShowcaseVideoUpsertWithoutCommentsInput = {
+  update: Prisma.XOR<Prisma.ShowcaseVideoUpdateWithoutCommentsInput, Prisma.ShowcaseVideoUncheckedUpdateWithoutCommentsInput>
+  create: Prisma.XOR<Prisma.ShowcaseVideoCreateWithoutCommentsInput, Prisma.ShowcaseVideoUncheckedCreateWithoutCommentsInput>
+  where?: Prisma.ShowcaseVideoWhereInput
+}
+
+export type ShowcaseVideoUpdateToOneWithWhereWithoutCommentsInput = {
+  where?: Prisma.ShowcaseVideoWhereInput
+  data: Prisma.XOR<Prisma.ShowcaseVideoUpdateWithoutCommentsInput, Prisma.ShowcaseVideoUncheckedUpdateWithoutCommentsInput>
+}
+
+export type ShowcaseVideoUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  videoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoSource?: Prisma.EnumVideoSourceFieldUpdateOperationsInput | $Enums.VideoSource
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durationSec?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skillTags?: Prisma.ShowcaseVideoUpdateskillTagsInput | string[]
+  viewCount?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  likeCount?: Prisma.IntFieldUpdateOperationsInput | number
+  commentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  shareCount?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumShowcaseStatusFieldUpdateOperationsInput | $Enums.ShowcaseStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutShowcaseVideosNestedInput
+  likes?: Prisma.ShowcaseLikeUpdateManyWithoutVideoNestedInput
+}
+
+export type ShowcaseVideoUncheckedUpdateWithoutCommentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  videoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoSource?: Prisma.EnumVideoSourceFieldUpdateOperationsInput | $Enums.VideoSource
+  thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  thumbnailKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  durationSec?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  skillTags?: Prisma.ShowcaseVideoUpdateskillTagsInput | string[]
+  viewCount?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  likeCount?: Prisma.IntFieldUpdateOperationsInput | number
+  commentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  shareCount?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumShowcaseStatusFieldUpdateOperationsInput | $Enums.ShowcaseStatus
+  publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutVideoNestedInput
 }
 
 export type ShowcaseVideoCreateManyStudentInput = {
@@ -763,13 +1160,17 @@ export type ShowcaseVideoCreateManyStudentInput = {
   title: string
   description?: string | null
   videoUrl: string
-  videoKey: string
+  videoKey?: string | null
+  videoSource?: $Enums.VideoSource
   thumbnailUrl?: string | null
   thumbnailKey?: string | null
   durationSec?: number | null
   category?: string | null
   skillTags?: Prisma.ShowcaseVideoCreateskillTagsInput | string[]
   viewCount?: bigint | number
+  likeCount?: number
+  commentCount?: number
+  shareCount?: number
   status?: $Enums.ShowcaseStatus
   publishedAt?: Date | string | null
   createdAt?: Date | string
@@ -781,17 +1182,23 @@ export type ShowcaseVideoUpdateWithoutStudentInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  videoKey?: Prisma.StringFieldUpdateOperationsInput | string
+  videoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoSource?: Prisma.EnumVideoSourceFieldUpdateOperationsInput | $Enums.VideoSource
   thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnailKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationSec?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skillTags?: Prisma.ShowcaseVideoUpdateskillTagsInput | string[]
   viewCount?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  likeCount?: Prisma.IntFieldUpdateOperationsInput | number
+  commentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  shareCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShowcaseStatusFieldUpdateOperationsInput | $Enums.ShowcaseStatus
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.ShowcaseLikeUpdateManyWithoutVideoNestedInput
+  comments?: Prisma.ShowcaseCommentUpdateManyWithoutVideoNestedInput
 }
 
 export type ShowcaseVideoUncheckedUpdateWithoutStudentInput = {
@@ -799,17 +1206,23 @@ export type ShowcaseVideoUncheckedUpdateWithoutStudentInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  videoKey?: Prisma.StringFieldUpdateOperationsInput | string
+  videoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoSource?: Prisma.EnumVideoSourceFieldUpdateOperationsInput | $Enums.VideoSource
   thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnailKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationSec?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skillTags?: Prisma.ShowcaseVideoUpdateskillTagsInput | string[]
   viewCount?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  likeCount?: Prisma.IntFieldUpdateOperationsInput | number
+  commentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  shareCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShowcaseStatusFieldUpdateOperationsInput | $Enums.ShowcaseStatus
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  likes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutVideoNestedInput
+  comments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutVideoNestedInput
 }
 
 export type ShowcaseVideoUncheckedUpdateManyWithoutStudentInput = {
@@ -817,19 +1230,61 @@ export type ShowcaseVideoUncheckedUpdateManyWithoutStudentInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  videoKey?: Prisma.StringFieldUpdateOperationsInput | string
+  videoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoSource?: Prisma.EnumVideoSourceFieldUpdateOperationsInput | $Enums.VideoSource
   thumbnailUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   thumbnailKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   durationSec?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   category?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   skillTags?: Prisma.ShowcaseVideoUpdateskillTagsInput | string[]
   viewCount?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  likeCount?: Prisma.IntFieldUpdateOperationsInput | number
+  commentCount?: Prisma.IntFieldUpdateOperationsInput | number
+  shareCount?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.EnumShowcaseStatusFieldUpdateOperationsInput | $Enums.ShowcaseStatus
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type ShowcaseVideoCountOutputType
+ */
+
+export type ShowcaseVideoCountOutputType = {
+  likes: number
+  comments: number
+}
+
+export type ShowcaseVideoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  likes?: boolean | ShowcaseVideoCountOutputTypeCountLikesArgs
+  comments?: boolean | ShowcaseVideoCountOutputTypeCountCommentsArgs
+}
+
+/**
+ * ShowcaseVideoCountOutputType without action
+ */
+export type ShowcaseVideoCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShowcaseVideoCountOutputType
+   */
+  select?: Prisma.ShowcaseVideoCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ShowcaseVideoCountOutputType without action
+ */
+export type ShowcaseVideoCountOutputTypeCountLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShowcaseLikeWhereInput
+}
+
+/**
+ * ShowcaseVideoCountOutputType without action
+ */
+export type ShowcaseVideoCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShowcaseCommentWhereInput
+}
 
 
 export type ShowcaseVideoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -839,17 +1294,24 @@ export type ShowcaseVideoSelect<ExtArgs extends runtime.Types.Extensions.Interna
   description?: boolean
   videoUrl?: boolean
   videoKey?: boolean
+  videoSource?: boolean
   thumbnailUrl?: boolean
   thumbnailKey?: boolean
   durationSec?: boolean
   category?: boolean
   skillTags?: boolean
   viewCount?: boolean
+  likeCount?: boolean
+  commentCount?: boolean
+  shareCount?: boolean
   status?: boolean
   publishedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
+  likes?: boolean | Prisma.ShowcaseVideo$likesArgs<ExtArgs>
+  comments?: boolean | Prisma.ShowcaseVideo$commentsArgs<ExtArgs>
+  _count?: boolean | Prisma.ShowcaseVideoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["showcaseVideo"]>
 
 export type ShowcaseVideoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -859,12 +1321,16 @@ export type ShowcaseVideoSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   description?: boolean
   videoUrl?: boolean
   videoKey?: boolean
+  videoSource?: boolean
   thumbnailUrl?: boolean
   thumbnailKey?: boolean
   durationSec?: boolean
   category?: boolean
   skillTags?: boolean
   viewCount?: boolean
+  likeCount?: boolean
+  commentCount?: boolean
+  shareCount?: boolean
   status?: boolean
   publishedAt?: boolean
   createdAt?: boolean
@@ -879,12 +1345,16 @@ export type ShowcaseVideoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   description?: boolean
   videoUrl?: boolean
   videoKey?: boolean
+  videoSource?: boolean
   thumbnailUrl?: boolean
   thumbnailKey?: boolean
   durationSec?: boolean
   category?: boolean
   skillTags?: boolean
   viewCount?: boolean
+  likeCount?: boolean
+  commentCount?: boolean
+  shareCount?: boolean
   status?: boolean
   publishedAt?: boolean
   createdAt?: boolean
@@ -899,21 +1369,28 @@ export type ShowcaseVideoSelectScalar = {
   description?: boolean
   videoUrl?: boolean
   videoKey?: boolean
+  videoSource?: boolean
   thumbnailUrl?: boolean
   thumbnailKey?: boolean
   durationSec?: boolean
   category?: boolean
   skillTags?: boolean
   viewCount?: boolean
+  likeCount?: boolean
+  commentCount?: boolean
+  shareCount?: boolean
   status?: boolean
   publishedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ShowcaseVideoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "title" | "description" | "videoUrl" | "videoKey" | "thumbnailUrl" | "thumbnailKey" | "durationSec" | "category" | "skillTags" | "viewCount" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["showcaseVideo"]>
+export type ShowcaseVideoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "title" | "description" | "videoUrl" | "videoKey" | "videoSource" | "thumbnailUrl" | "thumbnailKey" | "durationSec" | "category" | "skillTags" | "viewCount" | "likeCount" | "commentCount" | "shareCount" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["showcaseVideo"]>
 export type ShowcaseVideoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
+  likes?: boolean | Prisma.ShowcaseVideo$likesArgs<ExtArgs>
+  comments?: boolean | Prisma.ShowcaseVideo$commentsArgs<ExtArgs>
+  _count?: boolean | Prisma.ShowcaseVideoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ShowcaseVideoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
@@ -926,6 +1403,8 @@ export type $ShowcaseVideoPayload<ExtArgs extends runtime.Types.Extensions.Inter
   name: "ShowcaseVideo"
   objects: {
     student: Prisma.$StudentProfilePayload<ExtArgs>
+    likes: Prisma.$ShowcaseLikePayload<ExtArgs>[]
+    comments: Prisma.$ShowcaseCommentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -933,13 +1412,17 @@ export type $ShowcaseVideoPayload<ExtArgs extends runtime.Types.Extensions.Inter
     title: string
     description: string | null
     videoUrl: string
-    videoKey: string
+    videoKey: string | null
+    videoSource: $Enums.VideoSource
     thumbnailUrl: string | null
     thumbnailKey: string | null
     durationSec: number | null
     category: string | null
     skillTags: string[]
     viewCount: bigint
+    likeCount: number
+    commentCount: number
+    shareCount: number
     status: $Enums.ShowcaseStatus
     publishedAt: Date | null
     createdAt: Date
@@ -1339,6 +1822,8 @@ readonly fields: ShowcaseVideoFieldRefs;
 export interface Prisma__ShowcaseVideoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  likes<T extends Prisma.ShowcaseVideo$likesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShowcaseVideo$likesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  comments<T extends Prisma.ShowcaseVideo$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShowcaseVideo$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1374,12 +1859,16 @@ export interface ShowcaseVideoFieldRefs {
   readonly description: Prisma.FieldRef<"ShowcaseVideo", 'String'>
   readonly videoUrl: Prisma.FieldRef<"ShowcaseVideo", 'String'>
   readonly videoKey: Prisma.FieldRef<"ShowcaseVideo", 'String'>
+  readonly videoSource: Prisma.FieldRef<"ShowcaseVideo", 'VideoSource'>
   readonly thumbnailUrl: Prisma.FieldRef<"ShowcaseVideo", 'String'>
   readonly thumbnailKey: Prisma.FieldRef<"ShowcaseVideo", 'String'>
   readonly durationSec: Prisma.FieldRef<"ShowcaseVideo", 'Int'>
   readonly category: Prisma.FieldRef<"ShowcaseVideo", 'String'>
   readonly skillTags: Prisma.FieldRef<"ShowcaseVideo", 'String[]'>
   readonly viewCount: Prisma.FieldRef<"ShowcaseVideo", 'BigInt'>
+  readonly likeCount: Prisma.FieldRef<"ShowcaseVideo", 'Int'>
+  readonly commentCount: Prisma.FieldRef<"ShowcaseVideo", 'Int'>
+  readonly shareCount: Prisma.FieldRef<"ShowcaseVideo", 'Int'>
   readonly status: Prisma.FieldRef<"ShowcaseVideo", 'ShowcaseStatus'>
   readonly publishedAt: Prisma.FieldRef<"ShowcaseVideo", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"ShowcaseVideo", 'DateTime'>
@@ -1782,6 +2271,54 @@ export type ShowcaseVideoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many ShowcaseVideos to delete.
    */
   limit?: number
+}
+
+/**
+ * ShowcaseVideo.likes
+ */
+export type ShowcaseVideo$likesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShowcaseLike
+   */
+  select?: Prisma.ShowcaseLikeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShowcaseLike
+   */
+  omit?: Prisma.ShowcaseLikeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShowcaseLikeInclude<ExtArgs> | null
+  where?: Prisma.ShowcaseLikeWhereInput
+  orderBy?: Prisma.ShowcaseLikeOrderByWithRelationInput | Prisma.ShowcaseLikeOrderByWithRelationInput[]
+  cursor?: Prisma.ShowcaseLikeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShowcaseLikeScalarFieldEnum | Prisma.ShowcaseLikeScalarFieldEnum[]
+}
+
+/**
+ * ShowcaseVideo.comments
+ */
+export type ShowcaseVideo$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShowcaseComment
+   */
+  select?: Prisma.ShowcaseCommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShowcaseComment
+   */
+  omit?: Prisma.ShowcaseCommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShowcaseCommentInclude<ExtArgs> | null
+  where?: Prisma.ShowcaseCommentWhereInput
+  orderBy?: Prisma.ShowcaseCommentOrderByWithRelationInput | Prisma.ShowcaseCommentOrderByWithRelationInput[]
+  cursor?: Prisma.ShowcaseCommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShowcaseCommentScalarFieldEnum | Prisma.ShowcaseCommentScalarFieldEnum[]
 }
 
 /**

@@ -1,3 +1,4 @@
+// components/register/register-stepper.tsx
 import { Check } from 'lucide-react'
 import type { Step } from '@/lib/register/steps'
 
@@ -16,18 +17,15 @@ export function RegisterStepper({ steps, currentStep }: Props) {
           const isLast = index === steps.length - 1
 
           return (
-            <li
-              key={step.key}
-              className="flex items-center flex-1 last:flex-none"
-            >
+            <li key={step.key} className="flex items-center flex-1 last:flex-none">
               <div className="flex flex-col items-center gap-2 shrink-0">
                 <div
                   className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-display font-bold text-sm transition-all duration-300 ${
                     isCompleted
                       ? 'bg-primary text-white'
                       : isActive
-                      ? 'bg-primary text-white ring-4 ring-primary/20'
-                      : 'bg-surface-container text-on-surface-variant'
+                        ? 'bg-primary text-white ring-4 ring-primary/20'
+                        : 'bg-surface-container text-on-surface-variant'
                   }`}
                 >
                   {isCompleted ? (
@@ -50,9 +48,7 @@ export function RegisterStepper({ steps, currentStep }: Props) {
               {!isLast && (
                 <div
                   className={`flex-1 h-0.5 mx-2 sm:mx-3 transition-colors duration-300 ${
-                    currentStep > step.number
-                      ? 'bg-primary'
-                      : 'bg-surface-container'
+                    currentStep > step.number ? 'bg-primary' : 'bg-surface-container'
                   }`}
                 />
               )}

@@ -85,7 +85,13 @@ export const ModelName = {
   ContentReport: 'ContentReport',
   AuditLog: 'AuditLog',
   SystemSetting: 'SystemSetting',
-  PlatformStatistic: 'PlatformStatistic'
+  PlatformStatistic: 'PlatformStatistic',
+  Industry: 'Industry',
+  Province: 'Province',
+  City: 'City',
+  ShowcaseLike: 'ShowcaseLike',
+  ShowcaseComment: 'ShowcaseComment',
+  StudentFollow: 'StudentFollow'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -139,6 +145,8 @@ export const StudentProfileScalarFieldEnum = {
   careerReadiness: 'careerReadiness',
   isOpenToWork: 'isOpenToWork',
   isPublic: 'isPublic',
+  followerCount: 'followerCount',
+  followingCount: 'followingCount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -253,12 +261,16 @@ export const ShowcaseVideoScalarFieldEnum = {
   description: 'description',
   videoUrl: 'videoUrl',
   videoKey: 'videoKey',
+  videoSource: 'videoSource',
   thumbnailUrl: 'thumbnailUrl',
   thumbnailKey: 'thumbnailKey',
   durationSec: 'durationSec',
   category: 'category',
   skillTags: 'skillTags',
   viewCount: 'viewCount',
+  likeCount: 'likeCount',
+  commentCount: 'commentCount',
+  shareCount: 'shareCount',
   status: 'status',
   publishedAt: 'publishedAt',
   createdAt: 'createdAt',
@@ -357,6 +369,7 @@ export const JobScalarFieldEnum = {
   experienceLevel: 'experienceLevel',
   location: 'location',
   city: 'city',
+  province: 'province',
   salaryMin: 'salaryMin',
   salaryMax: 'salaryMax',
   salaryCurrency: 'salaryCurrency',
@@ -670,6 +683,76 @@ export const PlatformStatisticScalarFieldEnum = {
 } as const
 
 export type PlatformStatisticScalarFieldEnum = (typeof PlatformStatisticScalarFieldEnum)[keyof typeof PlatformStatisticScalarFieldEnum]
+
+
+export const IndustryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  icon: 'icon',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type IndustryScalarFieldEnum = (typeof IndustryScalarFieldEnum)[keyof typeof IndustryScalarFieldEnum]
+
+
+export const ProvinceScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProvinceScalarFieldEnum = (typeof ProvinceScalarFieldEnum)[keyof typeof ProvinceScalarFieldEnum]
+
+
+export const CityScalarFieldEnum = {
+  id: 'id',
+  provinceId: 'provinceId',
+  name: 'name',
+  type: 'type',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CityScalarFieldEnum = (typeof CityScalarFieldEnum)[keyof typeof CityScalarFieldEnum]
+
+
+export const ShowcaseLikeScalarFieldEnum = {
+  id: 'id',
+  videoId: 'videoId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type ShowcaseLikeScalarFieldEnum = (typeof ShowcaseLikeScalarFieldEnum)[keyof typeof ShowcaseLikeScalarFieldEnum]
+
+
+export const ShowcaseCommentScalarFieldEnum = {
+  id: 'id',
+  videoId: 'videoId',
+  userId: 'userId',
+  body: 'body',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ShowcaseCommentScalarFieldEnum = (typeof ShowcaseCommentScalarFieldEnum)[keyof typeof ShowcaseCommentScalarFieldEnum]
+
+
+export const StudentFollowScalarFieldEnum = {
+  id: 'id',
+  followerId: 'followerId',
+  followingId: 'followingId',
+  createdAt: 'createdAt'
+} as const
+
+export type StudentFollowScalarFieldEnum = (typeof StudentFollowScalarFieldEnum)[keyof typeof StudentFollowScalarFieldEnum]
 
 
 export const SortOrder = {

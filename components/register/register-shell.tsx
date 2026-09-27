@@ -1,3 +1,4 @@
+// components/register/register-shell.tsx
 import Link from 'next/link'
 import { ArrowLeft, LifeBuoy } from 'lucide-react'
 import { RegisterStepper } from './register-stepper'

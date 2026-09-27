@@ -213,13 +213,26 @@ enum ReportStatus {
   dismissed
 }
 
+enum VideoSource {
+  upload
+  youtube
+  tiktok
+  gdrive
+  instagram
+}
+
+enum ShowcaseLikeStatus {
+  active
+  removed
+}
+
 // =====================================================
 // USERS (sync dengan Neon Auth)
 // =====================================================
 
 model User {
-  id             String   @id @default(uuid()) @db.Uuid
-  neonAuthUserId String   @unique @map("neon_auth_user_id")
+  id             String    @id @default(uuid()) @db.Uuid
+  neonAuthUserId String    @unique @map("neon_auth_user_id") @db.Uuid
   email          String    @unique
   role           Role
   fullName       String?   @map("full_name")
@@ -242,6 +255,9 @@ model User {
   notifications     Notification[]
   auditLogs         AuditLog[]
   reports           ContentReport[]           @relation("Reporter")
+  showcaseLikes     ShowcaseLike[] // ← BARU
+  showcaseComments  ShowcaseComment[]
+  following         StudentFollow[]           @relation("Follower")
 
   @@index([role])
   @@map("users")
@@ -267,6 +283,8 @@ model StudentProfile {
   careerReadiness   Int       @default(0) @map("career_readiness")
   isOpenToWork      Boolean   @default(true) @map("is_open_to_work")
   isPublic          Boolean   @default(true) @map("is_public")
+  followerCount     Int       @default(0) @map("follower_count") // ← BARU
+  followingCount    Int       @default(0) @map("following_count") // ← BARU
   createdAt         DateTime  @default(now()) @map("created_at")
   updatedAt         DateTime  @updatedAt @map("updated_at")
 
@@ -284,6 +302,7 @@ model StudentProfile {
   certificates      Certificate[]
   schoolEnrollments SchoolStudent[]
   careerMonitorings CareerMonitoring[]
+  followers         StudentFollow[]      @relation("Following") // ← BARU (yang follow saya)
 
   @@map("student_profiles")
 }
@@ -410,22 +429,29 @@ model ShowcaseVideo {
   title        String
   description  String?        @db.Text
   videoUrl     String         @map("video_url")
-  videoKey     String         @map("video_key")
+  videoKey     String?        @map("video_key")
+  videoSource  VideoSource    @default(upload) @map("video_source")
   thumbnailUrl String?        @map("thumbnail_url")
   thumbnailKey String?        @map("thumbnail_key")
   durationSec  Int?           @map("duration_sec")
   category     String?
   skillTags    String[]       @map("skill_tags")
   viewCount    BigInt         @default(0) @map("view_count")
+  likeCount    Int            @default(0) @map("like_count")
+  commentCount Int            @default(0) @map("comment_count")
+  shareCount   Int            @default(0) @map("share_count")
   status       ShowcaseStatus @default(draft)
   publishedAt  DateTime?      @map("published_at")
   createdAt    DateTime       @default(now()) @map("created_at")
   updatedAt    DateTime       @updatedAt @map("updated_at")
 
-  student StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  student  StudentProfile    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  likes    ShowcaseLike[]
+  comments ShowcaseComment[]
 
   @@index([status])
   @@index([studentId])
+  @@index([publishedAt])
   @@map("showcase_videos")
 }
 
@@ -541,6 +567,7 @@ model Job {
   experienceLevel  ExperienceLevel? @map("experience_level")
   location         String?
   city             String?
+  province         String? // ← TAMBAH INI
   salaryMin        BigInt?          @map("salary_min")
   salaryMax        BigInt?          @map("salary_max")
   salaryCurrency   String           @default("IDR") @map("salary_currency")
@@ -932,4 +959,98 @@ model PlatformStatistic {
   createdAt             DateTime @default(now()) @map("created_at")
 
   @@map("platform_statistics")
+}
+
+// =====================================================
+// MASTER DATA
+// =====================================================
+
+model Industry {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  slug      String   @unique
+  icon      String?
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("industries")
+}
+
+model Province {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  code      String?  @unique
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  cities City[]
+
+  @@map("provinces")
+}
+
+model City {
+  id         String   @id @default(uuid()) @db.Uuid
+  provinceId String   @map("province_id") @db.Uuid
+  name       String
+  type       String? // "kota" | "kabupaten"
+  isActive   Boolean  @default(true) @map("is_active")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  province Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
+
+  @@unique([provinceId, name])
+  @@map("cities")
+}
+
+// =====================================================
+// SHOWCASE INTERACTIONS
+// =====================================================
+
+model ShowcaseLike {
+  id        String   @id @default(uuid()) @db.Uuid
+  videoId   String   @map("video_id") @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at")
+
+  video ShowcaseVideo @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  user  User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([videoId, userId])
+  @@index([videoId])
+  @@index([userId])
+  @@map("showcase_likes")
+}
+
+model ShowcaseComment {
+  id        String   @id @default(uuid()) @db.Uuid
+  videoId   String   @map("video_id") @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
+  body      String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  video ShowcaseVideo @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  user  User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([videoId, createdAt])
+  @@index([userId])
+  @@map("showcase_comments")
+}
+
+model StudentFollow {
+  id          String   @id @default(uuid()) @db.Uuid
+  followerId  String   @map("follower_id") @db.Uuid // yang follow
+  followingId String   @map("following_id") @db.Uuid // yang di-follow (student)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  follower  User           @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade)
+  following StudentProfile @relation("Following", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@unique([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
+  @@map("student_follows")
 }

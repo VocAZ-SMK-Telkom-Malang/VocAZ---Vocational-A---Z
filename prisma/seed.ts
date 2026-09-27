@@ -165,7 +165,7 @@ const systemSettings = [
 ]
 
 // =====================================================
-// SCHOOL PROGRAMS (contoh program keahlian SMK)
+// SCHOOL PROGRAMS
 // =====================================================
 
 const schoolPrograms = [
@@ -185,6 +185,56 @@ const schoolPrograms = [
   { name: 'Tata Boga', code: 'TB' },
   { name: 'Tata Busana', code: 'TBS' },
   { name: 'Agribisnis Tanaman Pangan dan Hortikultura', code: 'ATPH' },
+]
+
+// =====================================================
+// INDUSTRIES
+// =====================================================
+
+const industries = [
+  { name: 'Manufacturing', slug: 'manufacturing', icon: 'factory' },
+  { name: 'Technology', slug: 'technology', icon: 'cpu' },
+  { name: 'Automotive', slug: 'automotive', icon: 'car' },
+  { name: 'Construction', slug: 'construction', icon: 'hard-hat' },
+  { name: 'Retail', slug: 'retail', icon: 'shopping-bag' },
+  { name: 'Hospitality', slug: 'hospitality', icon: 'hotel' },
+  { name: 'Healthcare', slug: 'healthcare', icon: 'heart-pulse' },
+  { name: 'Education', slug: 'education', icon: 'graduation-cap' },
+  { name: 'Finance', slug: 'finance', icon: 'banknote' },
+  { name: 'Agriculture', slug: 'agriculture', icon: 'sprout' },
+  { name: 'Logistics', slug: 'logistics', icon: 'truck' },
+  { name: 'Energy', slug: 'energy', icon: 'zap' },
+  { name: 'Telecommunications', slug: 'telecommunications', icon: 'radio' },
+  { name: 'Creative & Design', slug: 'creative-design', icon: 'palette' },
+  { name: 'Food & Beverage', slug: 'food-beverage', icon: 'utensils' },
+  { name: 'Other', slug: 'other', icon: 'briefcase' },
+]
+
+// =====================================================
+// PROVINCES
+// =====================================================
+
+const provinces = [
+  { name: 'DKI Jakarta', code: 'JK' },
+  { name: 'Jawa Barat', code: 'JB' },
+  { name: 'Jawa Tengah', code: 'JT' },
+  { name: 'Jawa Timur', code: 'JI' },
+  { name: 'Banten', code: 'BT' },
+  { name: 'DI Yogyakarta', code: 'YO' },
+  { name: 'Bali', code: 'BA' },
+  { name: 'Sumatera Utara', code: 'SU' },
+  { name: 'Sumatera Barat', code: 'SB' },
+  { name: 'Sumatera Selatan', code: 'SS' },
+  { name: 'Riau', code: 'RI' },
+  { name: 'Kalimantan Timur', code: 'KI' },
+  { name: 'Kalimantan Selatan', code: 'KS' },
+  { name: 'Kalimantan Barat', code: 'KB' },
+  { name: 'Sulawesi Selatan', code: 'SN' },
+  { name: 'Sulawesi Utara', code: 'SA' },
+  { name: 'Nusa Tenggara Barat', code: 'NB' },
+  { name: 'Nusa Tenggara Timur', code: 'NT' },
+  { name: 'Papua', code: 'PA' },
+  { name: 'Aceh', code: 'AC' },
 ]
 
 // =====================================================
@@ -223,7 +273,7 @@ async function main() {
   }
   console.log(`   ✅ ${settingCount} settings`)
 
-  // 3. School programs (sebagai SystemSetting juga, karena belum ada tabel master)
+  // 3. School programs (sebagai SystemSetting)
   console.log('🏫 Seeding school programs...')
   await prisma.systemSetting.upsert({
     where: { key: 'master.school_programs' },
@@ -239,6 +289,32 @@ async function main() {
   })
   console.log(`   ✅ ${schoolPrograms.length} program keahlian`)
 
+  // 4. Industries
+  console.log('🏢 Seeding industries...')
+  let industryCount = 0
+  for (const ind of industries) {
+    await prisma.industry.upsert({
+      where: { slug: ind.slug },
+      update: { name: ind.name, icon: ind.icon },
+      create: ind,
+    })
+    industryCount++
+  }
+  console.log(`   ✅ ${industryCount} industries`)
+
+  // 5. Provinces
+  console.log('🗺️  Seeding provinces...')
+  let provinceCount = 0
+  for (const prov of provinces) {
+    await prisma.province.upsert({
+      where: { name: prov.name },
+      update: { code: prov.code },
+      create: prov,
+    })
+    provinceCount++
+  }
+  console.log(`   ✅ ${provinceCount} provinces`)
+
   console.log('')
   console.log('🎉 Seeding selesai!')
   console.log('')
@@ -246,6 +322,8 @@ async function main() {
   console.log(`  - Skills       : ${skillCount}`)
   console.log(`  - Settings     : ${settingCount + 1}`)
   console.log(`  - Programs     : ${schoolPrograms.length}`)
+  console.log(`  - Industries   : ${industryCount}`)
+  console.log(`  - Provinces    : ${provinceCount}`)
 }
 
 main()

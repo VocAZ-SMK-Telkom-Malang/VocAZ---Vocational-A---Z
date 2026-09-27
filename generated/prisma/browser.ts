@@ -192,3 +192,33 @@ export type SystemSetting = Prisma.SystemSettingModel
  * 
  */
 export type PlatformStatistic = Prisma.PlatformStatisticModel
+/**
+ * Model Industry
+ * 
+ */
+export type Industry = Prisma.IndustryModel
+/**
+ * Model Province
+ * 
+ */
+export type Province = Prisma.ProvinceModel
+/**
+ * Model City
+ * 
+ */
+export type City = Prisma.CityModel
+/**
+ * Model ShowcaseLike
+ * 
+ */
+export type ShowcaseLike = Prisma.ShowcaseLikeModel
+/**
+ * Model ShowcaseComment
+ * 
+ */
+export type ShowcaseComment = Prisma.ShowcaseCommentModel
+/**
+ * Model StudentFollow
+ * 
+ */
+export type StudentFollow = Prisma.StudentFollowModel

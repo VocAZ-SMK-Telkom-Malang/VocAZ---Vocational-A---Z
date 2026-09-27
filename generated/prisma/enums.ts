@@ -293,3 +293,22 @@ export const ReportStatus = {
 } as const
 
 export type ReportStatus = (typeof ReportStatus)[keyof typeof ReportStatus]
+
+
+export const VideoSource = {
+  upload: 'upload',
+  youtube: 'youtube',
+  tiktok: 'tiktok',
+  gdrive: 'gdrive',
+  instagram: 'instagram'
+} as const
+
+export type VideoSource = (typeof VideoSource)[keyof typeof VideoSource]
+
+
+export const ShowcaseLikeStatus = {
+  active: 'active',
+  removed: 'removed'
+} as const
+
+export type ShowcaseLikeStatus = (typeof ShowcaseLikeStatus)[keyof typeof ShowcaseLikeStatus]

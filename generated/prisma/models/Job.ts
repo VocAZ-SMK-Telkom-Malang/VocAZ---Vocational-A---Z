@@ -54,6 +54,7 @@ export type JobMinAggregateOutputType = {
   experienceLevel: $Enums.ExperienceLevel | null
   location: string | null
   city: string | null
+  province: string | null
   salaryMin: bigint | null
   salaryMax: bigint | null
   salaryCurrency: string | null
@@ -82,6 +83,7 @@ export type JobMaxAggregateOutputType = {
   experienceLevel: $Enums.ExperienceLevel | null
   location: string | null
   city: string | null
+  province: string | null
   salaryMin: bigint | null
   salaryMax: bigint | null
   salaryCurrency: string | null
@@ -110,6 +112,7 @@ export type JobCountAggregateOutputType = {
   experienceLevel: number
   location: number
   city: number
+  province: number
   salaryMin: number
   salaryMax: number
   salaryCurrency: number
@@ -154,6 +157,7 @@ export type JobMinAggregateInputType = {
   experienceLevel?: true
   location?: true
   city?: true
+  province?: true
   salaryMin?: true
   salaryMax?: true
   salaryCurrency?: true
@@ -182,6 +186,7 @@ export type JobMaxAggregateInputType = {
   experienceLevel?: true
   location?: true
   city?: true
+  province?: true
   salaryMin?: true
   salaryMax?: true
   salaryCurrency?: true
@@ -210,6 +215,7 @@ export type JobCountAggregateInputType = {
   experienceLevel?: true
   location?: true
   city?: true
+  province?: true
   salaryMin?: true
   salaryMax?: true
   salaryCurrency?: true
@@ -325,6 +331,7 @@ export type JobGroupByOutputType = {
   experienceLevel: $Enums.ExperienceLevel | null
   location: string | null
   city: string | null
+  province: string | null
   salaryMin: bigint | null
   salaryMax: bigint | null
   salaryCurrency: string
@@ -376,6 +383,7 @@ export type JobWhereInput = {
   experienceLevel?: Prisma.EnumExperienceLevelNullableFilter<"Job"> | $Enums.ExperienceLevel | null
   location?: Prisma.StringNullableFilter<"Job"> | string | null
   city?: Prisma.StringNullableFilter<"Job"> | string | null
+  province?: Prisma.StringNullableFilter<"Job"> | string | null
   salaryMin?: Prisma.BigIntNullableFilter<"Job"> | bigint | number | null
   salaryMax?: Prisma.BigIntNullableFilter<"Job"> | bigint | number | null
   salaryCurrency?: Prisma.StringFilter<"Job"> | string
@@ -409,6 +417,7 @@ export type JobOrderByWithRelationInput = {
   experienceLevel?: Prisma.SortOrderInput | Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   city?: Prisma.SortOrderInput | Prisma.SortOrder
+  province?: Prisma.SortOrderInput | Prisma.SortOrder
   salaryMin?: Prisma.SortOrderInput | Prisma.SortOrder
   salaryMax?: Prisma.SortOrderInput | Prisma.SortOrder
   salaryCurrency?: Prisma.SortOrder
@@ -445,6 +454,7 @@ export type JobWhereUniqueInput = Prisma.AtLeast<{
   experienceLevel?: Prisma.EnumExperienceLevelNullableFilter<"Job"> | $Enums.ExperienceLevel | null
   location?: Prisma.StringNullableFilter<"Job"> | string | null
   city?: Prisma.StringNullableFilter<"Job"> | string | null
+  province?: Prisma.StringNullableFilter<"Job"> | string | null
   salaryMin?: Prisma.BigIntNullableFilter<"Job"> | bigint | number | null
   salaryMax?: Prisma.BigIntNullableFilter<"Job"> | bigint | number | null
   salaryCurrency?: Prisma.StringFilter<"Job"> | string
@@ -478,6 +488,7 @@ export type JobOrderByWithAggregationInput = {
   experienceLevel?: Prisma.SortOrderInput | Prisma.SortOrder
   location?: Prisma.SortOrderInput | Prisma.SortOrder
   city?: Prisma.SortOrderInput | Prisma.SortOrder
+  province?: Prisma.SortOrderInput | Prisma.SortOrder
   salaryMin?: Prisma.SortOrderInput | Prisma.SortOrder
   salaryMax?: Prisma.SortOrderInput | Prisma.SortOrder
   salaryCurrency?: Prisma.SortOrder
@@ -514,6 +525,7 @@ export type JobScalarWhereWithAggregatesInput = {
   experienceLevel?: Prisma.EnumExperienceLevelNullableWithAggregatesFilter<"Job"> | $Enums.ExperienceLevel | null
   location?: Prisma.StringNullableWithAggregatesFilter<"Job"> | string | null
   city?: Prisma.StringNullableWithAggregatesFilter<"Job"> | string | null
+  province?: Prisma.StringNullableWithAggregatesFilter<"Job"> | string | null
   salaryMin?: Prisma.BigIntNullableWithAggregatesFilter<"Job"> | bigint | number | null
   salaryMax?: Prisma.BigIntNullableWithAggregatesFilter<"Job"> | bigint | number | null
   salaryCurrency?: Prisma.StringWithAggregatesFilter<"Job"> | string
@@ -541,6 +553,7 @@ export type JobCreateInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -574,6 +587,7 @@ export type JobUncheckedCreateInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -605,6 +619,7 @@ export type JobUpdateInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -638,6 +653,7 @@ export type JobUncheckedUpdateInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -670,6 +686,7 @@ export type JobCreateManyInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -697,6 +714,7 @@ export type JobUpdateManyMutationInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -725,6 +743,7 @@ export type JobUncheckedUpdateManyInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -763,6 +782,7 @@ export type JobCountOrderByAggregateInput = {
   experienceLevel?: Prisma.SortOrder
   location?: Prisma.SortOrder
   city?: Prisma.SortOrder
+  province?: Prisma.SortOrder
   salaryMin?: Prisma.SortOrder
   salaryMax?: Prisma.SortOrder
   salaryCurrency?: Prisma.SortOrder
@@ -798,6 +818,7 @@ export type JobMaxOrderByAggregateInput = {
   experienceLevel?: Prisma.SortOrder
   location?: Prisma.SortOrder
   city?: Prisma.SortOrder
+  province?: Prisma.SortOrder
   salaryMin?: Prisma.SortOrder
   salaryMax?: Prisma.SortOrder
   salaryCurrency?: Prisma.SortOrder
@@ -826,6 +847,7 @@ export type JobMinOrderByAggregateInput = {
   experienceLevel?: Prisma.SortOrder
   location?: Prisma.SortOrder
   city?: Prisma.SortOrder
+  province?: Prisma.SortOrder
   salaryMin?: Prisma.SortOrder
   salaryMax?: Prisma.SortOrder
   salaryCurrency?: Prisma.SortOrder
@@ -986,6 +1008,7 @@ export type JobCreateWithoutCompanyInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -1017,6 +1040,7 @@ export type JobUncheckedCreateWithoutCompanyInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -1078,6 +1102,7 @@ export type JobScalarWhereInput = {
   experienceLevel?: Prisma.EnumExperienceLevelNullableFilter<"Job"> | $Enums.ExperienceLevel | null
   location?: Prisma.StringNullableFilter<"Job"> | string | null
   city?: Prisma.StringNullableFilter<"Job"> | string | null
+  province?: Prisma.StringNullableFilter<"Job"> | string | null
   salaryMin?: Prisma.BigIntNullableFilter<"Job"> | bigint | number | null
   salaryMax?: Prisma.BigIntNullableFilter<"Job"> | bigint | number | null
   salaryCurrency?: Prisma.StringFilter<"Job"> | string
@@ -1105,6 +1130,7 @@ export type JobCreateWithoutSkillsInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -1137,6 +1163,7 @@ export type JobUncheckedCreateWithoutSkillsInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -1183,6 +1210,7 @@ export type JobUpdateWithoutSkillsInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1215,6 +1243,7 @@ export type JobUncheckedUpdateWithoutSkillsInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1245,6 +1274,7 @@ export type JobCreateWithoutApplicationsInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -1277,6 +1307,7 @@ export type JobUncheckedCreateWithoutApplicationsInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -1323,6 +1354,7 @@ export type JobUpdateWithoutApplicationsInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1355,6 +1387,7 @@ export type JobUncheckedUpdateWithoutApplicationsInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1385,6 +1418,7 @@ export type JobCreateWithoutSavedByInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -1417,6 +1451,7 @@ export type JobUncheckedCreateWithoutSavedByInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -1463,6 +1498,7 @@ export type JobUpdateWithoutSavedByInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1495,6 +1531,7 @@ export type JobUncheckedUpdateWithoutSavedByInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1525,6 +1562,7 @@ export type JobCreateWithoutCareerMonitoringsInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -1557,6 +1595,7 @@ export type JobUncheckedCreateWithoutCareerMonitoringsInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -1603,6 +1642,7 @@ export type JobUpdateWithoutCareerMonitoringsInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1635,6 +1675,7 @@ export type JobUncheckedUpdateWithoutCareerMonitoringsInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1665,6 +1706,7 @@ export type JobCreateManyCompanyInput = {
   experienceLevel?: $Enums.ExperienceLevel | null
   location?: string | null
   city?: string | null
+  province?: string | null
   salaryMin?: bigint | number | null
   salaryMax?: bigint | number | null
   salaryCurrency?: string
@@ -1692,6 +1734,7 @@ export type JobUpdateWithoutCompanyInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1723,6 +1766,7 @@ export type JobUncheckedUpdateWithoutCompanyInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1754,6 +1798,7 @@ export type JobUncheckedUpdateManyWithoutCompanyInput = {
   experienceLevel?: Prisma.NullableEnumExperienceLevelFieldUpdateOperationsInput | $Enums.ExperienceLevel | null
   location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   salaryMin?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryMax?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   salaryCurrency?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1840,6 +1885,7 @@ export type JobSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   experienceLevel?: boolean
   location?: boolean
   city?: boolean
+  province?: boolean
   salaryMin?: boolean
   salaryMax?: boolean
   salaryCurrency?: boolean
@@ -1874,6 +1920,7 @@ export type JobSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extension
   experienceLevel?: boolean
   location?: boolean
   city?: boolean
+  province?: boolean
   salaryMin?: boolean
   salaryMax?: boolean
   salaryCurrency?: boolean
@@ -1903,6 +1950,7 @@ export type JobSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extension
   experienceLevel?: boolean
   location?: boolean
   city?: boolean
+  province?: boolean
   salaryMin?: boolean
   salaryMax?: boolean
   salaryCurrency?: boolean
@@ -1932,6 +1980,7 @@ export type JobSelectScalar = {
   experienceLevel?: boolean
   location?: boolean
   city?: boolean
+  province?: boolean
   salaryMin?: boolean
   salaryMax?: boolean
   salaryCurrency?: boolean
@@ -1946,7 +1995,7 @@ export type JobSelectScalar = {
   deletedAt?: boolean
 }
 
-export type JobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "createdBy" | "title" | "slug" | "description" | "requirements" | "responsibilities" | "employmentType" | "workMode" | "experienceLevel" | "location" | "city" | "salaryMin" | "salaryMax" | "salaryCurrency" | "isSalaryVisible" | "quota" | "status" | "publishedAt" | "expiredAt" | "viewCount" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["job"]>
+export type JobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "createdBy" | "title" | "slug" | "description" | "requirements" | "responsibilities" | "employmentType" | "workMode" | "experienceLevel" | "location" | "city" | "province" | "salaryMin" | "salaryMax" | "salaryCurrency" | "isSalaryVisible" | "quota" | "status" | "publishedAt" | "expiredAt" | "viewCount" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["job"]>
 export type JobInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   skills?: boolean | Prisma.Job$skillsArgs<ExtArgs>
@@ -1985,6 +2034,7 @@ export type $JobPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     experienceLevel: $Enums.ExperienceLevel | null
     location: string | null
     city: string | null
+    province: string | null
     salaryMin: bigint | null
     salaryMax: bigint | null
     salaryCurrency: string
@@ -2438,6 +2488,7 @@ export interface JobFieldRefs {
   readonly experienceLevel: Prisma.FieldRef<"Job", 'ExperienceLevel'>
   readonly location: Prisma.FieldRef<"Job", 'String'>
   readonly city: Prisma.FieldRef<"Job", 'String'>
+  readonly province: Prisma.FieldRef<"Job", 'String'>
   readonly salaryMin: Prisma.FieldRef<"Job", 'BigInt'>
   readonly salaryMax: Prisma.FieldRef<"Job", 'BigInt'>
   readonly salaryCurrency: Prisma.FieldRef<"Job", 'String'>

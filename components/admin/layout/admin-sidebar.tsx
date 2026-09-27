@@ -9,6 +9,7 @@ import {
   Flag,
   BarChart3,
   Settings,
+  Database,
   X,
 } from 'lucide-react'
 
@@ -18,6 +19,7 @@ const menuItems = [
   { href: '/admin/verifications', label: 'Verifikasi', icon: BadgeCheck },
   { href: '/admin/moderation', label: 'Moderation', icon: Flag },
   { href: '/admin/monitoring', label: 'Monitoring', icon: BarChart3 },
+  { href: '/admin/master-data', label: 'Master Data', icon: Database },
   { href: '/admin/settings', label: 'Settings', icon: Settings },
 ]
 

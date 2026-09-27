@@ -29,11 +29,15 @@ export type AggregateStudentProfile = {
 export type StudentProfileAvgAggregateOutputType = {
   profileCompletion: number | null
   careerReadiness: number | null
+  followerCount: number | null
+  followingCount: number | null
 }
 
 export type StudentProfileSumAggregateOutputType = {
   profileCompletion: number | null
   careerReadiness: number | null
+  followerCount: number | null
+  followingCount: number | null
 }
 
 export type StudentProfileMinAggregateOutputType = {
@@ -52,6 +56,8 @@ export type StudentProfileMinAggregateOutputType = {
   careerReadiness: number | null
   isOpenToWork: boolean | null
   isPublic: boolean | null
+  followerCount: number | null
+  followingCount: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -72,6 +78,8 @@ export type StudentProfileMaxAggregateOutputType = {
   careerReadiness: number | null
   isOpenToWork: boolean | null
   isPublic: boolean | null
+  followerCount: number | null
+  followingCount: number | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -92,6 +100,8 @@ export type StudentProfileCountAggregateOutputType = {
   careerReadiness: number
   isOpenToWork: number
   isPublic: number
+  followerCount: number
+  followingCount: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -101,11 +111,15 @@ export type StudentProfileCountAggregateOutputType = {
 export type StudentProfileAvgAggregateInputType = {
   profileCompletion?: true
   careerReadiness?: true
+  followerCount?: true
+  followingCount?: true
 }
 
 export type StudentProfileSumAggregateInputType = {
   profileCompletion?: true
   careerReadiness?: true
+  followerCount?: true
+  followingCount?: true
 }
 
 export type StudentProfileMinAggregateInputType = {
@@ -124,6 +138,8 @@ export type StudentProfileMinAggregateInputType = {
   careerReadiness?: true
   isOpenToWork?: true
   isPublic?: true
+  followerCount?: true
+  followingCount?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -144,6 +160,8 @@ export type StudentProfileMaxAggregateInputType = {
   careerReadiness?: true
   isOpenToWork?: true
   isPublic?: true
+  followerCount?: true
+  followingCount?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -164,6 +182,8 @@ export type StudentProfileCountAggregateInputType = {
   careerReadiness?: true
   isOpenToWork?: true
   isPublic?: true
+  followerCount?: true
+  followingCount?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -271,6 +291,8 @@ export type StudentProfileGroupByOutputType = {
   careerReadiness: number
   isOpenToWork: boolean
   isPublic: boolean
+  followerCount: number
+  followingCount: number
   createdAt: Date
   updatedAt: Date
   _count: StudentProfileCountAggregateOutputType | null
@@ -314,6 +336,8 @@ export type StudentProfileWhereInput = {
   careerReadiness?: Prisma.IntFilter<"StudentProfile"> | number
   isOpenToWork?: Prisma.BoolFilter<"StudentProfile"> | boolean
   isPublic?: Prisma.BoolFilter<"StudentProfile"> | boolean
+  followerCount?: Prisma.IntFilter<"StudentProfile"> | number
+  followingCount?: Prisma.IntFilter<"StudentProfile"> | number
   createdAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -329,6 +353,7 @@ export type StudentProfileWhereInput = {
   certificates?: Prisma.CertificateListRelationFilter
   schoolEnrollments?: Prisma.SchoolStudentListRelationFilter
   careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
+  followers?: Prisma.StudentFollowListRelationFilter
 }
 
 export type StudentProfileOrderByWithRelationInput = {
@@ -347,6 +372,8 @@ export type StudentProfileOrderByWithRelationInput = {
   careerReadiness?: Prisma.SortOrder
   isOpenToWork?: Prisma.SortOrder
   isPublic?: Prisma.SortOrder
+  followerCount?: Prisma.SortOrder
+  followingCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -362,6 +389,7 @@ export type StudentProfileOrderByWithRelationInput = {
   certificates?: Prisma.CertificateOrderByRelationAggregateInput
   schoolEnrollments?: Prisma.SchoolStudentOrderByRelationAggregateInput
   careerMonitorings?: Prisma.CareerMonitoringOrderByRelationAggregateInput
+  followers?: Prisma.StudentFollowOrderByRelationAggregateInput
 }
 
 export type StudentProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -383,6 +411,8 @@ export type StudentProfileWhereUniqueInput = Prisma.AtLeast<{
   careerReadiness?: Prisma.IntFilter<"StudentProfile"> | number
   isOpenToWork?: Prisma.BoolFilter<"StudentProfile"> | boolean
   isPublic?: Prisma.BoolFilter<"StudentProfile"> | boolean
+  followerCount?: Prisma.IntFilter<"StudentProfile"> | number
+  followingCount?: Prisma.IntFilter<"StudentProfile"> | number
   createdAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -398,6 +428,7 @@ export type StudentProfileWhereUniqueInput = Prisma.AtLeast<{
   certificates?: Prisma.CertificateListRelationFilter
   schoolEnrollments?: Prisma.SchoolStudentListRelationFilter
   careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
+  followers?: Prisma.StudentFollowListRelationFilter
 }, "id" | "userId">
 
 export type StudentProfileOrderByWithAggregationInput = {
@@ -416,6 +447,8 @@ export type StudentProfileOrderByWithAggregationInput = {
   careerReadiness?: Prisma.SortOrder
   isOpenToWork?: Prisma.SortOrder
   isPublic?: Prisma.SortOrder
+  followerCount?: Prisma.SortOrder
+  followingCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.StudentProfileCountOrderByAggregateInput
@@ -444,6 +477,8 @@ export type StudentProfileScalarWhereWithAggregatesInput = {
   careerReadiness?: Prisma.IntWithAggregatesFilter<"StudentProfile"> | number
   isOpenToWork?: Prisma.BoolWithAggregatesFilter<"StudentProfile"> | boolean
   isPublic?: Prisma.BoolWithAggregatesFilter<"StudentProfile"> | boolean
+  followerCount?: Prisma.IntWithAggregatesFilter<"StudentProfile"> | number
+  followingCount?: Prisma.IntWithAggregatesFilter<"StudentProfile"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"StudentProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"StudentProfile"> | Date | string
 }
@@ -462,6 +497,8 @@ export type StudentProfileCreateInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -477,6 +514,7 @@ export type StudentProfileCreateInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateInput = {
@@ -495,6 +533,8 @@ export type StudentProfileUncheckedCreateInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -508,6 +548,7 @@ export type StudentProfileUncheckedCreateInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUpdateInput = {
@@ -524,6 +565,8 @@ export type StudentProfileUpdateInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -539,6 +582,7 @@ export type StudentProfileUpdateInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateInput = {
@@ -557,6 +601,8 @@ export type StudentProfileUncheckedUpdateInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -570,6 +616,7 @@ export type StudentProfileUncheckedUpdateInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateManyInput = {
@@ -588,6 +635,8 @@ export type StudentProfileCreateManyInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -606,6 +655,8 @@ export type StudentProfileUpdateManyMutationInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -626,6 +677,8 @@ export type StudentProfileUncheckedUpdateManyInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -651,6 +704,8 @@ export type StudentProfileCountOrderByAggregateInput = {
   careerReadiness?: Prisma.SortOrder
   isOpenToWork?: Prisma.SortOrder
   isPublic?: Prisma.SortOrder
+  followerCount?: Prisma.SortOrder
+  followingCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -658,6 +713,8 @@ export type StudentProfileCountOrderByAggregateInput = {
 export type StudentProfileAvgOrderByAggregateInput = {
   profileCompletion?: Prisma.SortOrder
   careerReadiness?: Prisma.SortOrder
+  followerCount?: Prisma.SortOrder
+  followingCount?: Prisma.SortOrder
 }
 
 export type StudentProfileMaxOrderByAggregateInput = {
@@ -676,6 +733,8 @@ export type StudentProfileMaxOrderByAggregateInput = {
   careerReadiness?: Prisma.SortOrder
   isOpenToWork?: Prisma.SortOrder
   isPublic?: Prisma.SortOrder
+  followerCount?: Prisma.SortOrder
+  followingCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -696,6 +755,8 @@ export type StudentProfileMinOrderByAggregateInput = {
   careerReadiness?: Prisma.SortOrder
   isOpenToWork?: Prisma.SortOrder
   isPublic?: Prisma.SortOrder
+  followerCount?: Prisma.SortOrder
+  followingCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -703,6 +764,8 @@ export type StudentProfileMinOrderByAggregateInput = {
 export type StudentProfileSumOrderByAggregateInput = {
   profileCompletion?: Prisma.SortOrder
   careerReadiness?: Prisma.SortOrder
+  followerCount?: Prisma.SortOrder
+  followingCount?: Prisma.SortOrder
 }
 
 export type StudentProfileScalarRelationFilter = {
@@ -960,6 +1023,20 @@ export type StudentProfileUpdateOneRequiredWithoutCertificatesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StudentProfileUpdateToOneWithWhereWithoutCertificatesInput, Prisma.StudentProfileUpdateWithoutCertificatesInput>, Prisma.StudentProfileUncheckedUpdateWithoutCertificatesInput>
 }
 
+export type StudentProfileCreateNestedOneWithoutFollowersInput = {
+  create?: Prisma.XOR<Prisma.StudentProfileCreateWithoutFollowersInput, Prisma.StudentProfileUncheckedCreateWithoutFollowersInput>
+  connectOrCreate?: Prisma.StudentProfileCreateOrConnectWithoutFollowersInput
+  connect?: Prisma.StudentProfileWhereUniqueInput
+}
+
+export type StudentProfileUpdateOneRequiredWithoutFollowersNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentProfileCreateWithoutFollowersInput, Prisma.StudentProfileUncheckedCreateWithoutFollowersInput>
+  connectOrCreate?: Prisma.StudentProfileCreateOrConnectWithoutFollowersInput
+  upsert?: Prisma.StudentProfileUpsertWithoutFollowersInput
+  connect?: Prisma.StudentProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentProfileUpdateToOneWithWhereWithoutFollowersInput, Prisma.StudentProfileUpdateWithoutFollowersInput>, Prisma.StudentProfileUncheckedUpdateWithoutFollowersInput>
+}
+
 export type StudentProfileCreateWithoutUserInput = {
   id?: string
   nisn?: string | null
@@ -974,6 +1051,8 @@ export type StudentProfileCreateWithoutUserInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
@@ -988,6 +1067,7 @@ export type StudentProfileCreateWithoutUserInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutUserInput = {
@@ -1005,6 +1085,8 @@ export type StudentProfileUncheckedCreateWithoutUserInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -1018,6 +1100,7 @@ export type StudentProfileUncheckedCreateWithoutUserInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutUserInput = {
@@ -1050,6 +1133,8 @@ export type StudentProfileUpdateWithoutUserInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
@@ -1064,6 +1149,7 @@ export type StudentProfileUpdateWithoutUserInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutUserInput = {
@@ -1081,6 +1167,8 @@ export type StudentProfileUncheckedUpdateWithoutUserInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -1094,6 +1182,7 @@ export type StudentProfileUncheckedUpdateWithoutUserInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateWithoutEducationsInput = {
@@ -1110,6 +1199,8 @@ export type StudentProfileCreateWithoutEducationsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -1124,6 +1215,7 @@ export type StudentProfileCreateWithoutEducationsInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutEducationsInput = {
@@ -1142,6 +1234,8 @@ export type StudentProfileUncheckedCreateWithoutEducationsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
@@ -1154,6 +1248,7 @@ export type StudentProfileUncheckedCreateWithoutEducationsInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutEducationsInput = {
@@ -1186,6 +1281,8 @@ export type StudentProfileUpdateWithoutEducationsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -1200,6 +1297,7 @@ export type StudentProfileUpdateWithoutEducationsInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutEducationsInput = {
@@ -1218,6 +1316,8 @@ export type StudentProfileUncheckedUpdateWithoutEducationsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
@@ -1230,6 +1330,7 @@ export type StudentProfileUncheckedUpdateWithoutEducationsInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateWithoutExperiencesInput = {
@@ -1246,6 +1347,8 @@ export type StudentProfileCreateWithoutExperiencesInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -1260,6 +1363,7 @@ export type StudentProfileCreateWithoutExperiencesInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutExperiencesInput = {
@@ -1278,6 +1382,8 @@ export type StudentProfileUncheckedCreateWithoutExperiencesInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -1290,6 +1396,7 @@ export type StudentProfileUncheckedCreateWithoutExperiencesInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutExperiencesInput = {
@@ -1322,6 +1429,8 @@ export type StudentProfileUpdateWithoutExperiencesInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -1336,6 +1445,7 @@ export type StudentProfileUpdateWithoutExperiencesInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutExperiencesInput = {
@@ -1354,6 +1464,8 @@ export type StudentProfileUncheckedUpdateWithoutExperiencesInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -1366,6 +1478,7 @@ export type StudentProfileUncheckedUpdateWithoutExperiencesInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateWithoutSkillsInput = {
@@ -1382,6 +1495,8 @@ export type StudentProfileCreateWithoutSkillsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -1396,6 +1511,7 @@ export type StudentProfileCreateWithoutSkillsInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutSkillsInput = {
@@ -1414,6 +1530,8 @@ export type StudentProfileUncheckedCreateWithoutSkillsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -1426,6 +1544,7 @@ export type StudentProfileUncheckedCreateWithoutSkillsInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutSkillsInput = {
@@ -1458,6 +1577,8 @@ export type StudentProfileUpdateWithoutSkillsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -1472,6 +1593,7 @@ export type StudentProfileUpdateWithoutSkillsInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutSkillsInput = {
@@ -1490,6 +1612,8 @@ export type StudentProfileUncheckedUpdateWithoutSkillsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -1502,6 +1626,7 @@ export type StudentProfileUncheckedUpdateWithoutSkillsInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateWithoutAchievementsInput = {
@@ -1518,6 +1643,8 @@ export type StudentProfileCreateWithoutAchievementsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -1532,6 +1659,7 @@ export type StudentProfileCreateWithoutAchievementsInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutAchievementsInput = {
@@ -1550,6 +1678,8 @@ export type StudentProfileUncheckedCreateWithoutAchievementsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -1562,6 +1692,7 @@ export type StudentProfileUncheckedCreateWithoutAchievementsInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutAchievementsInput = {
@@ -1594,6 +1725,8 @@ export type StudentProfileUpdateWithoutAchievementsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -1608,6 +1741,7 @@ export type StudentProfileUpdateWithoutAchievementsInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutAchievementsInput = {
@@ -1626,6 +1760,8 @@ export type StudentProfileUncheckedUpdateWithoutAchievementsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -1638,6 +1774,7 @@ export type StudentProfileUncheckedUpdateWithoutAchievementsInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateWithoutPortfoliosInput = {
@@ -1654,6 +1791,8 @@ export type StudentProfileCreateWithoutPortfoliosInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -1668,6 +1807,7 @@ export type StudentProfileCreateWithoutPortfoliosInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutPortfoliosInput = {
@@ -1686,6 +1826,8 @@ export type StudentProfileUncheckedCreateWithoutPortfoliosInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -1698,6 +1840,7 @@ export type StudentProfileUncheckedCreateWithoutPortfoliosInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutPortfoliosInput = {
@@ -1730,6 +1873,8 @@ export type StudentProfileUpdateWithoutPortfoliosInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -1744,6 +1889,7 @@ export type StudentProfileUpdateWithoutPortfoliosInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutPortfoliosInput = {
@@ -1762,6 +1908,8 @@ export type StudentProfileUncheckedUpdateWithoutPortfoliosInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -1774,6 +1922,7 @@ export type StudentProfileUncheckedUpdateWithoutPortfoliosInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateWithoutShowcaseVideosInput = {
@@ -1790,6 +1939,8 @@ export type StudentProfileCreateWithoutShowcaseVideosInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -1804,6 +1955,7 @@ export type StudentProfileCreateWithoutShowcaseVideosInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutShowcaseVideosInput = {
@@ -1822,6 +1974,8 @@ export type StudentProfileUncheckedCreateWithoutShowcaseVideosInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -1834,6 +1988,7 @@ export type StudentProfileUncheckedCreateWithoutShowcaseVideosInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutShowcaseVideosInput = {
@@ -1866,6 +2021,8 @@ export type StudentProfileUpdateWithoutShowcaseVideosInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -1880,6 +2037,7 @@ export type StudentProfileUpdateWithoutShowcaseVideosInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutShowcaseVideosInput = {
@@ -1898,6 +2056,8 @@ export type StudentProfileUncheckedUpdateWithoutShowcaseVideosInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -1910,6 +2070,7 @@ export type StudentProfileUncheckedUpdateWithoutShowcaseVideosInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateWithoutApplicationsInput = {
@@ -1926,6 +2087,8 @@ export type StudentProfileCreateWithoutApplicationsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -1940,6 +2103,7 @@ export type StudentProfileCreateWithoutApplicationsInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutApplicationsInput = {
@@ -1958,6 +2122,8 @@ export type StudentProfileUncheckedCreateWithoutApplicationsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -1970,6 +2136,7 @@ export type StudentProfileUncheckedCreateWithoutApplicationsInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutApplicationsInput = {
@@ -2002,6 +2169,8 @@ export type StudentProfileUpdateWithoutApplicationsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -2016,6 +2185,7 @@ export type StudentProfileUpdateWithoutApplicationsInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutApplicationsInput = {
@@ -2034,6 +2204,8 @@ export type StudentProfileUncheckedUpdateWithoutApplicationsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -2046,6 +2218,7 @@ export type StudentProfileUncheckedUpdateWithoutApplicationsInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateWithoutSavedJobsInput = {
@@ -2062,6 +2235,8 @@ export type StudentProfileCreateWithoutSavedJobsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -2076,6 +2251,7 @@ export type StudentProfileCreateWithoutSavedJobsInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutSavedJobsInput = {
@@ -2094,6 +2270,8 @@ export type StudentProfileUncheckedCreateWithoutSavedJobsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -2106,6 +2284,7 @@ export type StudentProfileUncheckedCreateWithoutSavedJobsInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutSavedJobsInput = {
@@ -2138,6 +2317,8 @@ export type StudentProfileUpdateWithoutSavedJobsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -2152,6 +2333,7 @@ export type StudentProfileUpdateWithoutSavedJobsInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutSavedJobsInput = {
@@ -2170,6 +2352,8 @@ export type StudentProfileUncheckedUpdateWithoutSavedJobsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -2182,6 +2366,7 @@ export type StudentProfileUncheckedUpdateWithoutSavedJobsInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateWithoutSchoolInput = {
@@ -2198,6 +2383,8 @@ export type StudentProfileCreateWithoutSchoolInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -2212,6 +2399,7 @@ export type StudentProfileCreateWithoutSchoolInput = {
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutSchoolInput = {
@@ -2229,6 +2417,8 @@ export type StudentProfileUncheckedCreateWithoutSchoolInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -2242,6 +2432,7 @@ export type StudentProfileUncheckedCreateWithoutSchoolInput = {
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutSchoolInput = {
@@ -2289,6 +2480,8 @@ export type StudentProfileScalarWhereInput = {
   careerReadiness?: Prisma.IntFilter<"StudentProfile"> | number
   isOpenToWork?: Prisma.BoolFilter<"StudentProfile"> | boolean
   isPublic?: Prisma.BoolFilter<"StudentProfile"> | boolean
+  followerCount?: Prisma.IntFilter<"StudentProfile"> | number
+  followingCount?: Prisma.IntFilter<"StudentProfile"> | number
   createdAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
 }
@@ -2307,6 +2500,8 @@ export type StudentProfileCreateWithoutSchoolEnrollmentsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -2321,6 +2516,7 @@ export type StudentProfileCreateWithoutSchoolEnrollmentsInput = {
   savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutSchoolEnrollmentsInput = {
@@ -2339,6 +2535,8 @@ export type StudentProfileUncheckedCreateWithoutSchoolEnrollmentsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -2351,6 +2549,7 @@ export type StudentProfileUncheckedCreateWithoutSchoolEnrollmentsInput = {
   savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutSchoolEnrollmentsInput = {
@@ -2383,6 +2582,8 @@ export type StudentProfileUpdateWithoutSchoolEnrollmentsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -2397,6 +2598,7 @@ export type StudentProfileUpdateWithoutSchoolEnrollmentsInput = {
   savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutSchoolEnrollmentsInput = {
@@ -2415,6 +2617,8 @@ export type StudentProfileUncheckedUpdateWithoutSchoolEnrollmentsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -2427,6 +2631,7 @@ export type StudentProfileUncheckedUpdateWithoutSchoolEnrollmentsInput = {
   savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateWithoutCareerMonitoringsInput = {
@@ -2443,6 +2648,8 @@ export type StudentProfileCreateWithoutCareerMonitoringsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -2457,6 +2664,7 @@ export type StudentProfileCreateWithoutCareerMonitoringsInput = {
   savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
   certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutCareerMonitoringsInput = {
@@ -2475,6 +2683,8 @@ export type StudentProfileUncheckedCreateWithoutCareerMonitoringsInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -2487,6 +2697,7 @@ export type StudentProfileUncheckedCreateWithoutCareerMonitoringsInput = {
   savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutCareerMonitoringsInput = {
@@ -2519,6 +2730,8 @@ export type StudentProfileUpdateWithoutCareerMonitoringsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -2533,6 +2746,7 @@ export type StudentProfileUpdateWithoutCareerMonitoringsInput = {
   savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutCareerMonitoringsInput = {
@@ -2551,6 +2765,8 @@ export type StudentProfileUncheckedUpdateWithoutCareerMonitoringsInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -2563,6 +2779,7 @@ export type StudentProfileUncheckedUpdateWithoutCareerMonitoringsInput = {
   savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileCreateWithoutCertificatesInput = {
@@ -2579,6 +2796,8 @@ export type StudentProfileCreateWithoutCertificatesInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
@@ -2593,6 +2812,7 @@ export type StudentProfileCreateWithoutCertificatesInput = {
   savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileUncheckedCreateWithoutCertificatesInput = {
@@ -2611,6 +2831,8 @@ export type StudentProfileUncheckedCreateWithoutCertificatesInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
@@ -2623,6 +2845,7 @@ export type StudentProfileUncheckedCreateWithoutCertificatesInput = {
   savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
 }
 
 export type StudentProfileCreateOrConnectWithoutCertificatesInput = {
@@ -2655,6 +2878,8 @@ export type StudentProfileUpdateWithoutCertificatesInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -2669,6 +2894,7 @@ export type StudentProfileUpdateWithoutCertificatesInput = {
   savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutCertificatesInput = {
@@ -2687,6 +2913,8 @@ export type StudentProfileUncheckedUpdateWithoutCertificatesInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -2697,6 +2925,155 @@ export type StudentProfileUncheckedUpdateWithoutCertificatesInput = {
   showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
   savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
+}
+
+export type StudentProfileCreateWithoutFollowersInput = {
+  id?: string
+  nisn?: string | null
+  headline?: string | null
+  bio?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  profileCompletion?: number
+  careerReadiness?: number
+  isOpenToWork?: boolean
+  isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
+  experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+}
+
+export type StudentProfileUncheckedCreateWithoutFollowersInput = {
+  id?: string
+  userId: string
+  schoolId?: string | null
+  nisn?: string | null
+  headline?: string | null
+  bio?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  profileCompletion?: number
+  careerReadiness?: number
+  isOpenToWork?: boolean
+  isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
+  experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentProfileCreateOrConnectWithoutFollowersInput = {
+  where: Prisma.StudentProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentProfileCreateWithoutFollowersInput, Prisma.StudentProfileUncheckedCreateWithoutFollowersInput>
+}
+
+export type StudentProfileUpsertWithoutFollowersInput = {
+  update: Prisma.XOR<Prisma.StudentProfileUpdateWithoutFollowersInput, Prisma.StudentProfileUncheckedUpdateWithoutFollowersInput>
+  create: Prisma.XOR<Prisma.StudentProfileCreateWithoutFollowersInput, Prisma.StudentProfileUncheckedCreateWithoutFollowersInput>
+  where?: Prisma.StudentProfileWhereInput
+}
+
+export type StudentProfileUpdateToOneWithWhereWithoutFollowersInput = {
+  where?: Prisma.StudentProfileWhereInput
+  data: Prisma.XOR<Prisma.StudentProfileUpdateWithoutFollowersInput, Prisma.StudentProfileUncheckedUpdateWithoutFollowersInput>
+}
+
+export type StudentProfileUpdateWithoutFollowersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nisn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletion?: Prisma.IntFieldUpdateOperationsInput | number
+  careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
+  isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
+  experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentProfileUncheckedUpdateWithoutFollowersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nisn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletion?: Prisma.IntFieldUpdateOperationsInput | number
+  careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
+  isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
+  experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
 }
@@ -2716,6 +3093,8 @@ export type StudentProfileCreateManySchoolInput = {
   careerReadiness?: number
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -2734,6 +3113,8 @@ export type StudentProfileUpdateWithoutSchoolInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
@@ -2748,6 +3129,7 @@ export type StudentProfileUpdateWithoutSchoolInput = {
   certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutSchoolInput = {
@@ -2765,6 +3147,8 @@ export type StudentProfileUncheckedUpdateWithoutSchoolInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
@@ -2778,6 +3162,7 @@ export type StudentProfileUncheckedUpdateWithoutSchoolInput = {
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
 }
 
 export type StudentProfileUncheckedUpdateManyWithoutSchoolInput = {
@@ -2795,6 +3180,8 @@ export type StudentProfileUncheckedUpdateManyWithoutSchoolInput = {
   careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
   isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -2816,6 +3203,7 @@ export type StudentProfileCountOutputType = {
   certificates: number
   schoolEnrollments: number
   careerMonitorings: number
+  followers: number
 }
 
 export type StudentProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2830,6 +3218,7 @@ export type StudentProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Ex
   certificates?: boolean | StudentProfileCountOutputTypeCountCertificatesArgs
   schoolEnrollments?: boolean | StudentProfileCountOutputTypeCountSchoolEnrollmentsArgs
   careerMonitorings?: boolean | StudentProfileCountOutputTypeCountCareerMonitoringsArgs
+  followers?: boolean | StudentProfileCountOutputTypeCountFollowersArgs
 }
 
 /**
@@ -2919,6 +3308,13 @@ export type StudentProfileCountOutputTypeCountCareerMonitoringsArgs<ExtArgs exte
   where?: Prisma.CareerMonitoringWhereInput
 }
 
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountFollowersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StudentFollowWhereInput
+}
+
 
 export type StudentProfileSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2936,6 +3332,8 @@ export type StudentProfileSelect<ExtArgs extends runtime.Types.Extensions.Intern
   careerReadiness?: boolean
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: boolean
+  followingCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -2951,6 +3349,7 @@ export type StudentProfileSelect<ExtArgs extends runtime.Types.Extensions.Intern
   certificates?: boolean | Prisma.StudentProfile$certificatesArgs<ExtArgs>
   schoolEnrollments?: boolean | Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs>
   careerMonitorings?: boolean | Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs>
+  followers?: boolean | Prisma.StudentProfile$followersArgs<ExtArgs>
   _count?: boolean | Prisma.StudentProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentProfile"]>
 
@@ -2970,6 +3369,8 @@ export type StudentProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   careerReadiness?: boolean
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: boolean
+  followingCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -2992,6 +3393,8 @@ export type StudentProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   careerReadiness?: boolean
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: boolean
+  followingCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -3014,11 +3417,13 @@ export type StudentProfileSelectScalar = {
   careerReadiness?: boolean
   isOpenToWork?: boolean
   isPublic?: boolean
+  followerCount?: boolean
+  followingCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type StudentProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "schoolId" | "nisn" | "headline" | "bio" | "dateOfBirth" | "gender" | "address" | "city" | "province" | "profileCompletion" | "careerReadiness" | "isOpenToWork" | "isPublic" | "createdAt" | "updatedAt", ExtArgs["result"]["studentProfile"]>
+export type StudentProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "schoolId" | "nisn" | "headline" | "bio" | "dateOfBirth" | "gender" | "address" | "city" | "province" | "profileCompletion" | "careerReadiness" | "isOpenToWork" | "isPublic" | "followerCount" | "followingCount" | "createdAt" | "updatedAt", ExtArgs["result"]["studentProfile"]>
 export type StudentProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   school?: boolean | Prisma.StudentProfile$schoolArgs<ExtArgs>
@@ -3033,6 +3438,7 @@ export type StudentProfileInclude<ExtArgs extends runtime.Types.Extensions.Inter
   certificates?: boolean | Prisma.StudentProfile$certificatesArgs<ExtArgs>
   schoolEnrollments?: boolean | Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs>
   careerMonitorings?: boolean | Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs>
+  followers?: boolean | Prisma.StudentProfile$followersArgs<ExtArgs>
   _count?: boolean | Prisma.StudentProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StudentProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3060,6 +3466,7 @@ export type $StudentProfilePayload<ExtArgs extends runtime.Types.Extensions.Inte
     certificates: Prisma.$CertificatePayload<ExtArgs>[]
     schoolEnrollments: Prisma.$SchoolStudentPayload<ExtArgs>[]
     careerMonitorings: Prisma.$CareerMonitoringPayload<ExtArgs>[]
+    followers: Prisma.$StudentFollowPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3077,6 +3484,8 @@ export type $StudentProfilePayload<ExtArgs extends runtime.Types.Extensions.Inte
     careerReadiness: number
     isOpenToWork: boolean
     isPublic: boolean
+    followerCount: number
+    followingCount: number
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["studentProfile"]>
@@ -3486,6 +3895,7 @@ export interface Prisma__StudentProfileClient<T, Null = never, ExtArgs extends r
   certificates<T extends Prisma.StudentProfile$certificatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$certificatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CertificatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   schoolEnrollments<T extends Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchoolStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   careerMonitorings<T extends Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CareerMonitoringPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  followers<T extends Prisma.StudentProfile$followersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$followersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentFollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3530,6 +3940,8 @@ export interface StudentProfileFieldRefs {
   readonly careerReadiness: Prisma.FieldRef<"StudentProfile", 'Int'>
   readonly isOpenToWork: Prisma.FieldRef<"StudentProfile", 'Boolean'>
   readonly isPublic: Prisma.FieldRef<"StudentProfile", 'Boolean'>
+  readonly followerCount: Prisma.FieldRef<"StudentProfile", 'Int'>
+  readonly followingCount: Prisma.FieldRef<"StudentProfile", 'Int'>
   readonly createdAt: Prisma.FieldRef<"StudentProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"StudentProfile", 'DateTime'>
 }
@@ -4213,6 +4625,30 @@ export type StudentProfile$careerMonitoringsArgs<ExtArgs extends runtime.Types.E
   take?: number
   skip?: number
   distinct?: Prisma.CareerMonitoringScalarFieldEnum | Prisma.CareerMonitoringScalarFieldEnum[]
+}
+
+/**
+ * StudentProfile.followers
+ */
+export type StudentProfile$followersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StudentFollow
+   */
+  select?: Prisma.StudentFollowSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StudentFollow
+   */
+  omit?: Prisma.StudentFollowOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StudentFollowInclude<ExtArgs> | null
+  where?: Prisma.StudentFollowWhereInput
+  orderBy?: Prisma.StudentFollowOrderByWithRelationInput | Prisma.StudentFollowOrderByWithRelationInput[]
+  cursor?: Prisma.StudentFollowWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StudentFollowScalarFieldEnum | Prisma.StudentFollowScalarFieldEnum[]
 }
 
 /**

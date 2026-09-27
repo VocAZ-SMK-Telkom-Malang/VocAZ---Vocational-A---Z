@@ -1,3 +1,4 @@
+// lib/register/steps.ts
 export type Role = 'student' | 'company' | 'school' | 'certification'
 
 export type Step = {
