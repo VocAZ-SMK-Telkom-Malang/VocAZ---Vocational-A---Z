@@ -1,172 +1,181 @@
-'use client'
-
+// components/talenta/talent-card.tsx
+import Link from 'next/link'
 import {
-  Play,
   MapPin,
-  School,
-  CheckCircle2,
-  Lock,
-  ShieldCheck,
+  GraduationCap,
+  BadgeCheck,
+  Play,
+  Sparkles,
+  Video,
 } from 'lucide-react'
-
-type Talent = {
-  id: string
-  name: string
-  initials: string
-  headline: string
-  city: string | null
-  province: string | null
-  avatarUrl: string | null
-  school: string
-  major: string
-  graduationYear: number | null
-  isVerified: boolean
-  skills: string[]
-  video: {
-    id: string
-    title: string
-    category: string | null
-    duration: number | null
-    durationFormatted: string
-    thumbnailUrl: string | null
-    videoUrl: string
-  } | null
-}
+import type { PublicTalent } from '@/lib/talenta/queries'
 
 type Props = {
-  talent: Talent
-  onPreview: () => void
+  talent: PublicTalent
 }
 
-export function TalentCard({ talent, onPreview }: Props) {
+function Avatar({ talent }: { talent: PublicTalent }) {
+  if (talent.avatarUrl) {
+    return (
+      <img
+        src={talent.avatarUrl}
+        alt={talent.name}
+        className="w-full h-full object-cover"
+      />
+    )
+  }
   return (
-    <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-[0_10px_25px_-5px_rgba(220,38,38,0.06),0_4px_12px_-2px_rgba(20,27,43,0.04)] hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(220,38,38,0.12)] transition-all duration-300 group">
-      <div className="relative w-full h-48 overflow-hidden bg-[#293040]">
-        {talent.video?.thumbnailUrl ? (
-          <img
-            src={talent.video.thumbnailUrl}
-            alt={talent.video.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
+    <div className="w-full h-full bg-gradient-to-br from-primary-fixed to-tertiary-fixed flex items-center justify-center text-primary font-display font-extrabold text-2xl">
+      {talent.initials}
+    </div>
+  )
+}
+
+export function TalentCard({ talent }: Props) {
+  const hasVideo = !!talent.featuredVideo
+  const visibleSkills = talent.skills.slice(0, 3)
+  const extraSkills = talent.skills.length - 3
+
+  return (
+    <Link
+      href={`/talenta/${talent.id}`}
+      className="group bg-surface-container-lowest rounded-2xl shadow-[0_1px_3px_rgba(17,24,39,0.04)] hover:shadow-[0_16px_36px_-10px_rgba(220,38,38,0.12)] ring-1 ring-outline-variant/30 hover:ring-primary/30 hover:-translate-y-1 transition-all duration-300 flex flex-col overflow-hidden"
+    >
+      {/* Header — Video thumbnail atau avatar besar */}
+      <div className="relative aspect-video bg-gradient-to-br from-surface-container to-surface-container-high overflow-hidden">
+        {hasVideo && talent.featuredVideo?.thumbnailUrl ? (
+          <>
+            <img
+              src={talent.featuredVideo.thumbnailUrl}
+              alt={talent.featuredVideo.title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors" />
+
+            {/* Play overlay */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="w-14 h-14 rounded-full bg-primary/95 text-white flex items-center justify-center shadow-lg">
+                <Play className="w-6 h-6 fill-current ml-0.5" />
+              </div>
+            </div>
+
+            {/* Duration */}
+            {talent.featuredVideo.durationFormatted && (
+              <span className="absolute bottom-3 right-3 px-2 py-0.5 rounded-md bg-black/75 backdrop-blur-sm text-white font-mono text-[10px] font-bold">
+                {talent.featuredVideo.durationFormatted}
+              </span>
+            )}
+
+            {/* Video badge */}
+            <span className="absolute top-3 left-3 inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white font-mono text-[10px] font-bold uppercase tracking-wider">
+              <Video className="w-3 h-3" />
+              Showcase
+            </span>
+          </>
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-primary-container/30 via-[#293040] to-tertiary-container/30" />
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary-fixed/40 to-tertiary-fixed/40">
+            <div className="w-20 h-20 rounded-2xl overflow-hidden ring-4 ring-white/50 shadow-lg">
+              <Avatar talent={talent} />
+            </div>
+          </div>
         )}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#293040]/80 via-transparent to-black/30" />
-
-        {talent.video?.category && (
-          <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-on-surface font-mono text-[11px] font-bold">
-            {talent.video.category}
-          </span>
-        )}
-
-        <button
-          type="button"
-          onClick={onPreview}
-          className="absolute inset-0 m-auto w-12 h-12 rounded-full bg-primary-container text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform"
-        >
-          <Play className="w-6 h-6 ml-0.5" fill="currentColor" />
-        </button>
-
-        {talent.video && (
-          <span className="absolute bottom-3 right-3 px-2 py-0.5 rounded bg-[#293040]/90 text-white font-mono text-[11px]">
-            {talent.video.durationFormatted}
-          </span>
+        {/* Verified badge */}
+        {talent.isVerified && (
+          <div className="absolute top-3 right-3">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-tertiary-fixed/95 text-tertiary-container font-mono text-[10px] font-bold uppercase tracking-wider shadow-sm">
+              <BadgeCheck className="w-3 h-3 fill-current" />
+              BNSP
+            </span>
+          </div>
         )}
       </div>
 
-      <div className="p-5 flex flex-col flex-1 gap-4">
-        {talent.video && (
-          <p className="text-xs text-on-surface-variant italic truncate">
-            Proyek Unggulan: {talent.video.title}
-          </p>
-        )}
-
+      {/* Info */}
+      <div className="p-4 flex flex-col gap-3 flex-1">
+        {/* Name + Avatar kecil */}
         <div className="flex items-center gap-3">
-          <div className="relative shrink-0">
-            {talent.avatarUrl ? (
-              <img
-                src={talent.avatarUrl}
-                alt={talent.name}
-                className="w-12 h-12 rounded-full object-cover"
-              />
-            ) : (
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-fixed to-tertiary-fixed flex items-center justify-center text-primary font-bold">
-                {talent.initials}
-              </div>
-            )}
-            {talent.isVerified && (
-              <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-primary-container text-white flex items-center justify-center border-2 border-white">
-                <CheckCircle2 className="w-3 h-3" strokeWidth={3} />
-              </span>
-            )}
-          </div>
-          <div className="min-w-0">
-            <h3 className="font-display text-base font-bold text-on-surface truncate">
-              {talent.name}
-            </h3>
-            <p className="text-xs text-primary font-medium truncate">
-              {talent.headline}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-1.5 text-xs text-on-surface-variant">
-          <School className="w-4 h-4 text-secondary shrink-0" />
-          <span className="font-medium text-on-surface truncate">
-            {talent.school}
-          </span>
-          {talent.major && (
-            <>
-              <span className="text-outline-variant">•</span>
-              <span className="truncate">
-                {talent.major}
-                {talent.graduationYear &&
-                  ` '${String(talent.graduationYear).slice(-2)}`}
-              </span>
-            </>
+          {hasVideo && (
+            <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary/20 shrink-0">
+              <Avatar talent={talent} />
+            </div>
           )}
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-1">
+              <h3 className="font-display text-sm font-bold text-on-surface truncate group-hover:text-primary transition-colors">
+                {talent.name}
+              </h3>
+              {talent.isVerified && (
+                <BadgeCheck className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+              )}
+            </div>
+            {talent.headline && (
+              <p className="text-[11px] text-primary font-semibold truncate">
+                {talent.headline}
+              </p>
+            )}
+          </div>
         </div>
 
-        <div className="flex items-center justify-between gap-2 pt-1">
-          {talent.isVerified && (
-            <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-mono text-[10px] font-bold">
-              <ShieldCheck className="w-3.5 h-3.5" />
-              <span>LSP-BNSP Certified</span>
+        {/* School + Location */}
+        <div className="flex flex-col gap-1 text-[11px] text-on-surface-variant">
+          {talent.school && (
+            <div className="flex items-center gap-1.5">
+              <GraduationCap className="w-3 h-3 shrink-0 text-secondary" />
+              <span className="truncate">
+                {talent.school}
+                {talent.major && ` · ${talent.major}`}
+              </span>
             </div>
           )}
           {talent.city && (
-            <div className="flex items-center gap-1 text-xs text-on-surface-variant">
-              <MapPin className="w-3.5 h-3.5" />
-              <span className="text-[11px]">{talent.city}</span>
+            <div className="flex items-center gap-1.5">
+              <MapPin className="w-3 h-3 shrink-0" />
+              <span className="truncate">{talent.city}</span>
             </div>
           )}
         </div>
 
-        {talent.skills.length > 0 && (
+        {/* Skills */}
+        {visibleSkills.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
-            {talent.skills.map((skill) => (
+            {visibleSkills.map((skill) => (
               <span
                 key={skill}
-                className="px-2 py-0.5 rounded bg-surface-container-low text-on-surface-variant font-mono text-[10px]"
+                className="inline-flex items-center px-2 py-0.5 rounded-md bg-[#fff1ec] text-[#ad5d00] text-[10px] font-semibold"
               >
                 {skill}
               </span>
             ))}
+            {extraSkills > 0 && (
+              <span className="inline-flex items-center px-2 py-0.5 rounded-md bg-surface-container text-on-surface-variant text-[10px] font-semibold">
+                +{extraSkills}
+              </span>
+            )}
           </div>
         )}
 
-        <div className="mt-auto pt-2">
-          <button
-            type="button"
-            onClick={onPreview}
-            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-full bg-primary-container hover:bg-primary text-white text-sm font-bold shadow-sm transition-colors"
-          >
-            <span>Lihat Selengkapnya</span>
-            <Lock className="w-4 h-4" />
-          </button>
+        {/* Footer */}
+        <div className="flex items-center justify-between pt-3 mt-auto border-t border-outline-variant/20">
+          <div className="flex items-center gap-2">
+            {talent.isOpenToWork && (
+              <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Open to Work
+              </span>
+            )}
+            {talent.showcaseCount > 0 && (
+              <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-on-surface-variant">
+                <Video className="w-3 h-3" />
+                {talent.showcaseCount}
+              </span>
+            )}
+          </div>
+          <span className="inline-flex items-center gap-1 text-primary font-bold text-[11px] group-hover:translate-x-0.5 transition-transform">
+            Lihat Profil
+          </span>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
