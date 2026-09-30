@@ -13,17 +13,25 @@ export type PublicTalent = {
   headline: string | null
   bio: string | null
   avatarUrl: string | null
+  coverImageUrl: string | null
   city: string | null
   province: string | null
   school: string | null
   major: string | null
   graduationYear: number | null
   isVerified: boolean
+  certTier: 'lsp_bnsp' | 'industry' | 'training' | null
+  certCount: number
   isOpenToWork: boolean
   skills: string[]
   profileCompletion: number
   showcaseCount: number
-  // Featured video
+  portfolioCount: number
+  featuredPortfolio: {
+    id: string
+    title: string
+    thumbnailUrl: string | null
+  } | null
   featuredVideo: {
     id: string
     title: string
@@ -67,6 +75,19 @@ function formatDuration(sec: number | null): string | null {
 function mapTalent(p: any): PublicTalent {
   const name = p.user?.fullName || 'Anonim'
   const featured = p.showcaseVideos?.[0] || null
+  const featuredPortfolio = p.portfolios?.[0] || null
+
+  // Hitung cert tier tertinggi
+  const certs = p.certificates || []
+  const hasLspBnsp = certs.some((c: any) => c.institution?.type === 'lsp_bnsp')
+  const hasIndustry = certs.some((c: any) => c.institution?.type === 'industry')
+  const hasTraining = certs.some((c: any) => c.institution?.type === 'training')
+
+  let certTier: 'lsp_bnsp' | 'industry' | 'training' | null = null
+  const certCount = certs.length
+  if (hasLspBnsp) certTier = 'lsp_bnsp'
+  else if (hasIndustry) certTier = 'industry'
+  else if (hasTraining) certTier = 'training'
 
   return {
     id: p.id,
@@ -76,16 +97,27 @@ function mapTalent(p: any): PublicTalent {
     headline: p.headline,
     bio: p.bio,
     avatarUrl: p.user?.avatarUrl || null,
+    coverImageUrl: p.coverImageUrl || null,
     city: p.city,
     province: p.province,
     school: p.school?.name || null,
     major: p.schoolEnrollments?.[0]?.program?.name || null,
     graduationYear: p.schoolEnrollments?.[0]?.graduationYear || null,
-    isVerified: true, // semua profile dianggap verified untuk sekarang
+    isVerified: certCount > 0,
+    certTier,
+    certCount,
     isOpenToWork: p.isOpenToWork,
     skills: p.skills?.map((s: any) => s.skill?.name).filter(Boolean) || [],
     profileCompletion: p.profileCompletion || 0,
     showcaseCount: p._count?.showcaseVideos || 0,
+    portfolioCount: p._count?.portfolios || 0,
+    featuredPortfolio: featuredPortfolio
+      ? {
+          id: featuredPortfolio.id,
+          title: featuredPortfolio.title,
+          thumbnailUrl: featuredPortfolio.thumbnailUrl,
+        }
+      : null,
     featuredVideo: featured
       ? {
           id: featured.id,
@@ -113,9 +145,7 @@ export async function getPublicTalents(filters: TalentFilters = {}) {
     pageSize = 9,
   } = filters
 
-  const where: any = {
-    isPublic: true,
-  }
+  const where: any = { isPublic: true }
 
   if (status === 'open_to_work') {
     where.isOpenToWork = true
@@ -127,9 +157,7 @@ export async function getPublicTalents(filters: TalentFilters = {}) {
 
   if (major && major !== 'all') {
     where.schoolEnrollments = {
-      some: {
-        program: { name: major },
-      },
+      some: { program: { name: major } },
     }
   }
 
@@ -140,17 +168,18 @@ export async function getPublicTalents(filters: TalentFilters = {}) {
       { city: { contains: search, mode: 'insensitive' } },
       { user: { fullName: { contains: search, mode: 'insensitive' } } },
       { school: { name: { contains: search, mode: 'insensitive' } } },
-      { skills: { some: { skill: { name: { contains: search, mode: 'insensitive' } } } } },
+      {
+        skills: {
+          some: { skill: { name: { contains: search, mode: 'insensitive' } } },
+        },
+      },
     ]
   }
 
   const [profiles, total] = await Promise.all([
     prisma.studentProfile.findMany({
       where,
-      orderBy: [
-        { profileCompletion: 'desc' },
-        { updatedAt: 'desc' },
-      ],
+      orderBy: [{ profileCompletion: 'desc' }, { updatedAt: 'desc' }],
       skip: (page - 1) * pageSize,
       take: pageSize,
       include: {
@@ -170,6 +199,16 @@ export async function getPublicTalents(filters: TalentFilters = {}) {
           include: { skill: { select: { name: true } } },
           take: 8,
         },
+        portfolios: {
+          where: { isPublic: true },
+          orderBy: { createdAt: 'desc' },
+          take: 1,
+          select: {
+            id: true,
+            title: true,
+            thumbnailUrl: true,
+          },
+        },
         showcaseVideos: {
           where: { status: 'published' },
           orderBy: { viewCount: 'desc' },
@@ -183,10 +222,18 @@ export async function getPublicTalents(filters: TalentFilters = {}) {
             durationSec: true,
           },
         },
+        certificates: {
+          where: { verificationStatus: 'verified' },
+          include: {
+            institution: { select: { name: true, type: true } },
+          },
+          take: 5,
+        },
         _count: {
           select: {
             showcaseVideos: { where: { status: 'published' } },
-            certificates: true,
+            portfolios: { where: { isPublic: true } },
+            certificates: { where: { verificationStatus: 'verified' } },
           },
         },
       },
@@ -214,7 +261,10 @@ export async function getPublicTalentStats() {
     await Promise.all([
       prisma.studentProfile.count({ where: { isPublic: true } }),
       prisma.studentProfile.count({
-        where: { isPublic: true, certificates: { some: {} } },
+        where: {
+          isPublic: true,
+          certificates: { some: { verificationStatus: 'verified' } },
+        },
       }),
       prisma.studentProfile.count({
         where: { isPublic: true, isOpenToWork: true },
@@ -270,19 +320,28 @@ export async function getPublicTalentById(id: string) {
       },
       experiences: true,
       educations: true,
-      portfolios: { take: 6 },
+      achievements: true,
+      portfolios: { 
+        take: 6, 
+        orderBy: { createdAt: 'desc' },
+        include: { media: true } 
+      },
       showcaseVideos: {
         where: { status: 'published' },
         orderBy: { viewCount: 'desc' },
         take: 6,
       },
       certificates: {
+        where: { verificationStatus: 'verified' },
+        include: {
+          institution: { select: { name: true, type: true } },
+        },
         take: 6,
       },
       _count: {
         select: {
           showcaseVideos: { where: { status: 'published' } },
-          certificates: true,
+          certificates: { where: { verificationStatus: 'verified' } },
           portfolios: true,
         },
       },
@@ -293,6 +352,14 @@ export async function getPublicTalentById(id: string) {
 
   return {
     ...mapTalent(profile),
+    fullName: profile.user?.fullName || 'Anonim',
+    skills: profile.skills.map(s => ({
+      id: s.skillId,
+      name: s.skill.name,
+      category: s.skill.category,
+      proficiency: s.proficiency
+    })),
+    achievements: profile.achievements,
     experiences: profile.experiences,
     educations: profile.educations,
     portfolios: profile.portfolios,

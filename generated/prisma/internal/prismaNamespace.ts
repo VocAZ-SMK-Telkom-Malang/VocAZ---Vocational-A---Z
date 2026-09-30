@@ -416,6 +416,7 @@ export const ModelName = {
   Application: 'Application',
   ApplicationStatusHistory: 'ApplicationStatusHistory',
   SavedJob: 'SavedJob',
+  SavedCompany: 'SavedCompany',
   School: 'School',
   SchoolProgram: 'SchoolProgram',
   SchoolStudent: 'SchoolStudent',
@@ -430,6 +431,7 @@ export const ModelName = {
   Notification: 'Notification',
   ContentReport: 'ContentReport',
   AuditLog: 'AuditLog',
+  ProfileFeedback: 'ProfileFeedback',
   SystemSetting: 'SystemSetting',
   PlatformStatistic: 'PlatformStatistic',
   Industry: 'Industry',
@@ -453,7 +455,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "studentProfile" | "studentEducation" | "studentExperience" | "skill" | "studentSkill" | "studentAchievement" | "studentPortfolio" | "portfolioMedia" | "showcaseVideo" | "company" | "companyTeam" | "companyTalentPreference" | "companyVerification" | "job" | "jobSkill" | "application" | "applicationStatusHistory" | "savedJob" | "school" | "schoolProgram" | "schoolStudent" | "industryPartner" | "careerMonitoring" | "certificationInstitution" | "certificate" | "verificationRequest" | "conversation" | "conversationParticipant" | "message" | "notification" | "contentReport" | "auditLog" | "systemSetting" | "platformStatistic" | "industry" | "province" | "city" | "showcaseLike" | "showcaseComment" | "studentFollow"
+    modelProps: "user" | "studentProfile" | "studentEducation" | "studentExperience" | "skill" | "studentSkill" | "studentAchievement" | "studentPortfolio" | "portfolioMedia" | "showcaseVideo" | "company" | "companyTeam" | "companyTalentPreference" | "companyVerification" | "job" | "jobSkill" | "application" | "applicationStatusHistory" | "savedJob" | "savedCompany" | "school" | "schoolProgram" | "schoolStudent" | "industryPartner" | "careerMonitoring" | "certificationInstitution" | "certificate" | "verificationRequest" | "conversation" | "conversationParticipant" | "message" | "notification" | "contentReport" | "auditLog" | "profileFeedback" | "systemSetting" | "platformStatistic" | "industry" | "province" | "city" | "showcaseLike" | "showcaseComment" | "studentFollow"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1863,6 +1865,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    SavedCompany: {
+      payload: Prisma.$SavedCompanyPayload<ExtArgs>
+      fields: Prisma.SavedCompanyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SavedCompanyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SavedCompanyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SavedCompanyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SavedCompanyPayload>
+        }
+        findFirst: {
+          args: Prisma.SavedCompanyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SavedCompanyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SavedCompanyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SavedCompanyPayload>
+        }
+        findMany: {
+          args: Prisma.SavedCompanyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SavedCompanyPayload>[]
+        }
+        create: {
+          args: Prisma.SavedCompanyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SavedCompanyPayload>
+        }
+        createMany: {
+          args: Prisma.SavedCompanyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SavedCompanyCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SavedCompanyPayload>[]
+        }
+        delete: {
+          args: Prisma.SavedCompanyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SavedCompanyPayload>
+        }
+        update: {
+          args: Prisma.SavedCompanyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SavedCompanyPayload>
+        }
+        deleteMany: {
+          args: Prisma.SavedCompanyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SavedCompanyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SavedCompanyUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SavedCompanyPayload>[]
+        }
+        upsert: {
+          args: Prisma.SavedCompanyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SavedCompanyPayload>
+        }
+        aggregate: {
+          args: Prisma.SavedCompanyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSavedCompany>
+        }
+        groupBy: {
+          args: Prisma.SavedCompanyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SavedCompanyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SavedCompanyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SavedCompanyCountAggregateOutputType> | number
+        }
+      }
+    }
     School: {
       payload: Prisma.$SchoolPayload<ExtArgs>
       fields: Prisma.SchoolFieldRefs
@@ -2899,6 +2975,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ProfileFeedback: {
+      payload: Prisma.$ProfileFeedbackPayload<ExtArgs>
+      fields: Prisma.ProfileFeedbackFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProfileFeedbackFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileFeedbackPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProfileFeedbackFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileFeedbackPayload>
+        }
+        findFirst: {
+          args: Prisma.ProfileFeedbackFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileFeedbackPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProfileFeedbackFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileFeedbackPayload>
+        }
+        findMany: {
+          args: Prisma.ProfileFeedbackFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileFeedbackPayload>[]
+        }
+        create: {
+          args: Prisma.ProfileFeedbackCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileFeedbackPayload>
+        }
+        createMany: {
+          args: Prisma.ProfileFeedbackCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProfileFeedbackCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileFeedbackPayload>[]
+        }
+        delete: {
+          args: Prisma.ProfileFeedbackDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileFeedbackPayload>
+        }
+        update: {
+          args: Prisma.ProfileFeedbackUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileFeedbackPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProfileFeedbackDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProfileFeedbackUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProfileFeedbackUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileFeedbackPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProfileFeedbackUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProfileFeedbackPayload>
+        }
+        aggregate: {
+          args: Prisma.ProfileFeedbackAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProfileFeedback>
+        }
+        groupBy: {
+          args: Prisma.ProfileFeedbackGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProfileFeedbackGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProfileFeedbackCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProfileFeedbackCountAggregateOutputType> | number
+        }
+      }
+    }
     SystemSetting: {
       payload: Prisma.$SystemSettingPayload<ExtArgs>
       fields: Prisma.SystemSettingFieldRefs
@@ -3561,6 +3711,8 @@ export const StudentProfileScalarFieldEnum = {
   address: 'address',
   city: 'city',
   province: 'province',
+  coverImageUrl: 'coverImageUrl',
+  coverImageKey: 'coverImageKey',
   profileCompletion: 'profileCompletion',
   careerReadiness: 'careerReadiness',
   isOpenToWork: 'isOpenToWork',
@@ -3719,6 +3871,12 @@ export const CompanyScalarFieldEnum = {
   address: 'address',
   city: 'city',
   province: 'province',
+  featured: 'featured',
+  logoColor: 'logoColor',
+  tagline: 'tagline',
+  employeeRange: 'employeeRange',
+  rating: 'rating',
+  reviewCount: 'reviewCount',
   country: 'country',
   verificationStatus: 'verificationStatus',
   verifiedAt: 'verifiedAt',
@@ -3789,6 +3947,8 @@ export const JobScalarFieldEnum = {
   experienceLevel: 'experienceLevel',
   location: 'location',
   city: 'city',
+  benefits: 'benefits',
+  applicants: 'applicants',
   province: 'province',
   salaryMin: 'salaryMin',
   salaryMax: 'salaryMax',
@@ -3827,7 +3987,11 @@ export const ApplicationScalarFieldEnum = {
   status: 'status',
   matchScore: 'matchScore',
   appliedAt: 'appliedAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  nextStep: 'nextStep',
+  interviewDate: 'interviewDate',
+  recruiterName: 'recruiterName',
+  notes: 'notes'
 } as const
 
 export type ApplicationScalarFieldEnum = (typeof ApplicationScalarFieldEnum)[keyof typeof ApplicationScalarFieldEnum]
@@ -3855,6 +4019,16 @@ export const SavedJobScalarFieldEnum = {
 export type SavedJobScalarFieldEnum = (typeof SavedJobScalarFieldEnum)[keyof typeof SavedJobScalarFieldEnum]
 
 
+export const SavedCompanyScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  companyId: 'companyId',
+  savedAt: 'savedAt'
+} as const
+
+export type SavedCompanyScalarFieldEnum = (typeof SavedCompanyScalarFieldEnum)[keyof typeof SavedCompanyScalarFieldEnum]
+
+
 export const SchoolScalarFieldEnum = {
   id: 'id',
   ownerUserId: 'ownerUserId',
@@ -3876,6 +4050,17 @@ export const SchoolScalarFieldEnum = {
   bkkContact: 'bkkContact',
   bkkEmail: 'bkkEmail',
   bkkPhone: 'bkkPhone',
+  schoolCode: 'schoolCode',
+  activeStudentQuota: 'activeStudentQuota',
+  adminSeatQuota: 'adminSeatQuota',
+  subscriptionPlan: 'subscriptionPlan',
+  subscriptionStatus: 'subscriptionStatus',
+  subscriptionStartedAt: 'subscriptionStartedAt',
+  subscriptionExpiresAt: 'subscriptionExpiresAt',
+  subscriptionAmount: 'subscriptionAmount',
+  paymentMethod: 'paymentMethod',
+  paymentReference: 'paymentReference',
+  lastPaymentAt: 'lastPaymentAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -4074,6 +4259,22 @@ export const AuditLogScalarFieldEnum = {
 } as const
 
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+export const ProfileFeedbackScalarFieldEnum = {
+  id: 'id',
+  studentProfileId: 'studentProfileId',
+  giverUserId: 'giverUserId',
+  rating: 'rating',
+  message: 'message',
+  relationship: 'relationship',
+  isVerified: 'isVerified',
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProfileFeedbackScalarFieldEnum = (typeof ProfileFeedbackScalarFieldEnum)[keyof typeof ProfileFeedbackScalarFieldEnum]
 
 
 export const SystemSettingScalarFieldEnum = {
@@ -4426,6 +4627,20 @@ export type ListEnumCompanySizeFieldRefInput<$PrismaModel> = FieldRefInputType<$
 
 
 /**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
  * Reference to a field of type 'VerificationStatus'
  */
 export type EnumVerificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VerificationStatus'>
@@ -4718,20 +4933,6 @@ export type EnumReportStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
 export type ListEnumReportStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ReportStatus[]'>
     
 
-
-/**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -4902,6 +5103,7 @@ export type GlobalOmitConfig = {
   application?: Prisma.ApplicationOmit
   applicationStatusHistory?: Prisma.ApplicationStatusHistoryOmit
   savedJob?: Prisma.SavedJobOmit
+  savedCompany?: Prisma.SavedCompanyOmit
   school?: Prisma.SchoolOmit
   schoolProgram?: Prisma.SchoolProgramOmit
   schoolStudent?: Prisma.SchoolStudentOmit
@@ -4916,6 +5118,7 @@ export type GlobalOmitConfig = {
   notification?: Prisma.NotificationOmit
   contentReport?: Prisma.ContentReportOmit
   auditLog?: Prisma.AuditLogOmit
+  profileFeedback?: Prisma.ProfileFeedbackOmit
   systemSetting?: Prisma.SystemSettingOmit
   platformStatistic?: Prisma.PlatformStatisticOmit
   industry?: Prisma.IndustryOmit

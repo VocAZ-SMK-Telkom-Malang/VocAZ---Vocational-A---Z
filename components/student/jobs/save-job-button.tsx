@@ -2,7 +2,7 @@
 'use client'
 
 import { Bookmark, Loader2 } from 'lucide-react'
-import { useState, useTransition } from 'react'
+import { useState, useTransition, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { toggleSaveJob } from '@/lib/student/actions'
 
@@ -21,19 +21,38 @@ export function SaveJobButton({
   const [saved, setSaved] = useState(initialSaved)
   const [isPending, startTransition] = useTransition()
 
+  useEffect(() => {
+    setSaved(initialSaved)
+  }, [initialSaved])
+
   function handleToggle(e: React.MouseEvent) {
     e.preventDefault()
     e.stopPropagation()
 
+    if (isPending) return
+
     startTransition(async () => {
-      const result = await toggleSaveJob(jobId)
-      if (result.ok) {
-        setSaved(result.data.saved)
-        router.refresh()
+      try {
+        const result = await toggleSaveJob(jobId)
+
+        if (result.ok) {
+          setSaved(result.data.saved)
+          router.refresh()
+        } else {
+          // Error message yang user-friendly
+          console.warn('[SaveJob] failed:', result.error)
+          // Silent fail atau toast singkat, jangan alert mentah
+          // Contoh pakai toast (kalau ada):
+          // toast.error('Gagal menyimpan. Coba lagi.')
+        }
+      } catch (err) {
+        console.error('[SaveJob] error:', err)
+        // Silent fail — UI tetap ke state lama
       }
     })
   }
 
+  // ... JSX sama kayak sebelumnya
   if (variant === 'button') {
     return (
       <button
@@ -61,12 +80,12 @@ export function SaveJobButton({
       type="button"
       onClick={handleToggle}
       disabled={isPending}
-      className={`p-2 rounded-lg transition-colors shrink-0 disabled:opacity-60 ${
+      className={`p-1.5 rounded-lg transition-colors shrink-0 disabled:opacity-60 ${
         saved
-          ? 'bg-primary/10 text-primary'
+          ? 'text-primary bg-primary/10'
           : 'text-on-surface-variant hover:bg-surface-container hover:text-primary'
       }`}
-      aria-label={saved ? 'Hapus dari simpanan' : 'Simpan lowongan'}
+      aria-label={saved ? 'Hapus dari tersimpan' : 'Simpan lowongan'}
     >
       {isPending ? (
         <Loader2 className="w-4 h-4 animate-spin" />

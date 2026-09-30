@@ -113,6 +113,11 @@ export type ApplicationStatusHistory = Prisma.ApplicationStatusHistoryModel
  */
 export type SavedJob = Prisma.SavedJobModel
 /**
+ * Model SavedCompany
+ * 
+ */
+export type SavedCompany = Prisma.SavedCompanyModel
+/**
  * Model School
  * 
  */
@@ -182,6 +187,11 @@ export type ContentReport = Prisma.ContentReportModel
  * 
  */
 export type AuditLog = Prisma.AuditLogModel
+/**
+ * Model ProfileFeedback
+ * 
+ */
+export type ProfileFeedback = Prisma.ProfileFeedbackModel
 /**
  * Model SystemSetting
  * 

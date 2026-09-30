@@ -1,16 +1,8 @@
 // components/student/showcase/showcase-card.tsx
 import Link from 'next/link'
-import {
-  Eye,
-  Edit3,
-  Upload,
-  Heart,
-  MessageCircle,
-  Share2,
-} from 'lucide-react'
+import { Eye, Video, Upload, Edit3 } from 'lucide-react'
 import { ShowcaseActions } from './showcase-actions'
 import { ShowcaseVideoPlayer } from './showcase-video-player'
-import { FaYoutube, FaTiktok, FaGoogleDrive, FaInstagram } from 'react-icons/fa'
 
 type Video = {
   id: string
@@ -24,9 +16,6 @@ type Video = {
   category: string | null
   skillTags: string[]
   viewCount: bigint
-  likeCount: number
-  commentCount: number
-  shareCount: number
   status: string
   publishedAt: Date | null
   createdAt: Date
@@ -46,38 +35,6 @@ const STATUS_BADGE: Record<string, { label: string; className: string }> = {
   flagged: { label: 'Flagged', className: 'bg-red-100 text-red-700' },
 }
 
-const SOURCE_BADGE: Record<
-  string,
-  {
-    label: string
-    className: string
-    icon: React.ComponentType<{ className?: string }>
-  }
-> = {
-  upload: {
-    label: 'Upload',
-    className: 'bg-blue-600 text-white',
-    icon: Upload,
-  },
-  youtube: {
-    label: 'YouTube',
-    className: 'bg-red-600 text-white',
-    icon: FaYoutube,
-  },
-  tiktok: { label: 'TikTok', className: 'bg-black text-white', icon: FaTiktok },
-  gdrive: {
-    label: 'Drive',
-    className: 'bg-emerald-600 text-white',
-    icon: FaGoogleDrive,
-  },
-  instagram: {
-    label: 'Instagram',
-    className:
-      'bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white',
-    icon: FaInstagram,
-  },
-}
-
 function formatDuration(sec: number | null) {
   if (!sec) return null
   const m = Math.floor(sec / 60)
@@ -86,43 +43,48 @@ function formatDuration(sec: number | null) {
 }
 
 export function ShowcaseCard({ video }: Props) {
-  const statusBadge = STATUS_BADGE[video.status] || STATUS_BADGE.draft
-  const sourceBadge = SOURCE_BADGE[video.videoSource] || SOURCE_BADGE.upload
-  const SourceIcon = sourceBadge.icon
+  const badge = STATUS_BADGE[video.status] || STATUS_BADGE.draft
   const duration = formatDuration(video.durationSec)
+  const isExternal = video.videoSource !== 'upload'
 
   return (
-    <div className="group bg-white rounded-2xl ring-1 ring-outline-variant/30 overflow-hidden hover:ring-primary/30 hover:shadow-[0_8px_24px_rgba(183,0,17,0.06)] transition-all">
-      {/* Video Preview */}
+    <div className="group bg-surface-container-lowest rounded-2xl ring-1 ring-outline-variant/30 overflow-hidden hover:ring-primary/30 hover:shadow-[0_8px_24px_rgba(183,0,17,0.06)] transition-all">
+      {/* Video Player */}
       <div className="relative aspect-video bg-black overflow-hidden">
         <ShowcaseVideoPlayer
           videoUrl={video.videoUrl}
-          videoSource={video.videoSource}
+          videoSource={video.videoSource as any}
           thumbnailUrl={video.thumbnailUrl}
           className="absolute inset-0"
         />
 
-        {/* Status badge */}
+        {/* Status Badge */}
         <div className="absolute top-3 left-3 z-10 pointer-events-none">
           <span
-            className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${statusBadge.className}`}
+            className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${badge.className}`}
           >
-            {statusBadge.label}
+            {badge.label}
           </span>
         </div>
 
-        {/* Source badge */}
+        {/* Source Badge */}
         <div className="absolute top-3 right-3 z-10 pointer-events-none">
           <span
-            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${sourceBadge.className}`}
+            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+              isExternal ? 'bg-red-600 text-white' : 'bg-blue-600 text-white'
+            }`}
           >
-            <SourceIcon className="w-3 h-3" />
-            {sourceBadge.label}
+            {isExternal ? (
+              <Video className="w-3 h-3" />
+            ) : (
+              <Upload className="w-3 h-3" />
+            )}
+            {isExternal ? video.videoSource : 'Upload'}
           </span>
         </div>
 
-        {/* Duration (upload only) */}
-        {duration && video.videoSource === 'upload' && (
+        {/* Duration */}
+        {duration && !isExternal && (
           <div className="absolute bottom-3 right-3 z-10 px-2 py-0.5 rounded bg-black/70 backdrop-blur-sm text-white text-[10px] font-mono font-bold pointer-events-none">
             {duration}
           </div>
@@ -132,7 +94,7 @@ export function ShowcaseCard({ video }: Props) {
       {/* Info */}
       <div className="p-4">
         <div className="flex items-start justify-between gap-2 mb-2">
-          <h3 className="font-display text-sm font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors flex-1">
+          <h3 className="text-sm font-bold text-on-surface line-clamp-2 group-hover:text-primary transition-colors flex-1">
             {video.title}
           </h3>
           <ShowcaseActions videoId={video.id} />
@@ -154,51 +116,17 @@ export function ShowcaseCard({ video }: Props) {
                 {tag}
               </span>
             ))}
-            {video.skillTags.length > 3 && (
-              <span className="text-[10px] text-on-surface-variant font-semibold">
-                +{video.skillTags.length - 3}
-              </span>
-            )}
           </div>
         )}
 
-        {/* Stats + Edit */}
         <div className="flex items-center justify-between pt-2 border-t border-outline-variant/20 text-[11px] text-on-surface-variant">
-          {/* Stats — read only */}
-          <div className="flex items-center gap-2.5">
-            <span
-              className="inline-flex items-center gap-1"
-              title={`${video.likeCount} like`}
-            >
-              <Heart className="w-3 h-3" />
-              {video.likeCount}
-            </span>
-            <span
-              className="inline-flex items-center gap-1"
-              title={`${video.commentCount} komentar`}
-            >
-              <MessageCircle className="w-3 h-3" />
-              {video.commentCount}
-            </span>
-            <span
-              className="inline-flex items-center gap-1"
-              title={`${video.shareCount} dibagikan`}
-            >
-              <Share2 className="w-3 h-3" />
-              {video.shareCount}
-            </span>
-            <span
-              className="inline-flex items-center gap-1"
-              title={`${Number(video.viewCount)} dilihat`}
-            >
-              <Eye className="w-3 h-3" />
-              {Number(video.viewCount)}
-            </span>
-          </div>
-
+          <span className="inline-flex items-center gap-1">
+            <Eye className="w-3 h-3" />
+            {Number(video.viewCount)} views
+          </span>
           <Link
             href={`/student/showcase/my/${video.id}/edit`}
-            className="inline-flex items-center gap-1 font-semibold text-primary hover:underline shrink-0"
+            className="inline-flex items-center gap-1 font-semibold text-primary hover:underline"
           >
             <Edit3 className="w-3 h-3" />
             Edit

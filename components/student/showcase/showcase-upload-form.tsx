@@ -124,7 +124,14 @@ export function ShowcaseUploadForm({ studentProfileId, existing }: Props) {
   const [success, setSuccess] = useState<string | null>(null)
 
   // ===== Computed =====
-  const currentSource: 'upload' | 'youtube' | 'tiktok' | 'gdrive' | 'instagram' =
+  const currentSource:
+    | 'upload'
+    | 'youtube'
+    | 'tiktok'
+    | 'gdrive'
+    | 'instagram'
+    | 'vimeo'
+    | 'external' =
     mode === 'upload' ? 'upload' : parsedLink?.source || 'upload'
 
   const isInstagram = currentSource === 'instagram'

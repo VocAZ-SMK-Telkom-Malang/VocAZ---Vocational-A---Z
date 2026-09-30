@@ -8,13 +8,13 @@ import {
   BadgeCheck,
   Briefcase,
   Mail,
-  Video,
-  Award,
-  FolderOpen,
 } from 'lucide-react'
 import { LandingHeader } from '@/components/landing/header'
 import { LandingFooter } from '@/components/landing/footer'
 import { getPublicTalentById } from '@/lib/talenta/queries'
+import { TalentDetailContent } from '@/components/student/talents/talent-detail-content'
+
+export const dynamic = 'force-dynamic'
 
 type Props = {
   params: Promise<{ id: string }>
@@ -40,21 +40,33 @@ export default async function TalentDetailPage({ params }: Props) {
           </Link>
 
           {/* Header card */}
-          <div className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-sm ring-1 ring-outline-variant/30 mb-6">
-            <div className="flex flex-col sm:flex-row gap-6">
-              <div className="w-24 h-24 rounded-2xl overflow-hidden ring-4 ring-primary-fixed shrink-0 mx-auto sm:mx-0">
-                {talent.avatarUrl ? (
-                  <img
-                    src={talent.avatarUrl}
-                    alt={talent.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-primary-fixed to-tertiary-fixed flex items-center justify-center text-primary font-display font-extrabold text-2xl">
-                    {talent.initials}
-                  </div>
-                )}
+          <div className="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-sm ring-1 ring-outline-variant/30 mb-6 relative">
+            {talent.coverImageUrl ? (
+              <div className="w-full h-32 sm:h-48">
+                <img
+                  src={talent.coverImageUrl}
+                  alt="Cover"
+                  className="w-full h-full object-cover"
+                />
               </div>
+            ) : (
+              <div className="w-full h-32 sm:h-48 bg-gradient-to-r from-primary/10 to-tertiary/10" />
+            )}
+            <div className="p-6 sm:p-8 relative">
+              <div className="flex flex-col sm:flex-row gap-6 -mt-16 sm:-mt-20">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden ring-4 ring-white bg-white shrink-0 mx-auto sm:mx-0 shadow-sm relative z-10">
+                  {talent.avatarUrl ? (
+                    <img
+                      src={talent.avatarUrl}
+                      alt={talent.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-primary-fixed to-tertiary-fixed flex items-center justify-center text-primary font-display font-extrabold text-2xl sm:text-4xl">
+                      {talent.initials}
+                    </div>
+                  )}
+                </div>
 
               <div className="flex-1 text-center sm:text-left">
                 <div className="flex items-center justify-center sm:justify-start gap-2 mb-2 flex-wrap">
@@ -107,51 +119,13 @@ export default async function TalentDetailPage({ params }: Props) {
                 {talent.bio}
               </p>
             )}
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-3 mb-6">
-            <StatCard
-              icon={Video}
-              value={`${talent.counts.showcaseVideos}`}
-              label="Video Showcase"
-              color="text-primary"
-              bg="bg-primary/10"
-            />
-            <StatCard
-              icon={Award}
-              value={`${talent.counts.certificates}`}
-              label="Sertifikat"
-              color="text-tertiary"
-              bg="bg-tertiary-fixed/40"
-            />
-            <StatCard
-              icon={FolderOpen}
-              value={`${talent.counts.portfolios}`}
-              label="Portfolio"
-              color="text-secondary"
-              bg="bg-secondary-fixed/40"
-            />
-          </div>
-
-          {/* Skills */}
-          {talent.skills.length > 0 && (
-            <div className="bg-surface-container-lowest rounded-2xl p-6 ring-1 ring-outline-variant/30 mb-6">
-              <h2 className="font-display text-base font-bold text-on-surface mb-4">
-                Skills ({talent.skills.length})
-              </h2>
-              <div className="flex flex-wrap gap-2">
-                {talent.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1.5 rounded-lg bg-surface-container-low text-on-surface text-xs font-semibold"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
             </div>
-          )}
+          </div>
+
+          {/* Talent Detail Content */}
+          <div className="mb-6">
+            <TalentDetailContent talent={talent as any} />
+          </div>
 
           {/* CTA Login */}
           <div className="bg-gradient-to-r from-primary-container via-primary to-tertiary-container rounded-2xl p-6 text-white text-center">
@@ -185,35 +159,4 @@ export default async function TalentDetailPage({ params }: Props) {
     </>
   )
 }
-
-function StatCard({
-  icon: Icon,
-  value,
-  label,
-  color,
-  bg,
-}: {
-  icon: React.ComponentType<{ className?: string }>
-  value: string
-  label: string
-  color: string
-  bg: string
-}) {
-  return (
-    <div className="bg-surface-container-lowest rounded-xl p-4 ring-1 ring-outline-variant/30 flex items-center gap-3">
-      <div
-        className={`w-10 h-10 rounded-lg ${bg} ${color} flex items-center justify-center shrink-0`}
-      >
-        <Icon className="w-5 h-5" />
-      </div>
-      <div>
-        <div className="font-display text-lg font-extrabold text-on-surface leading-none">
-          {value}
-        </div>
-        <div className="text-[11px] text-on-surface-variant mt-0.5">
-          {label}
-        </div>
-      </div>
-    </div>
-  )
-}
+

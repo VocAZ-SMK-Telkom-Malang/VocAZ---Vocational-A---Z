@@ -1,30 +1,60 @@
-import { getTalents, getTalentStats } from '@/lib/queries/talenta'
+// app/(public)/talenta/page.tsx
+import type { Metadata } from 'next'
 import { TalentaClient } from './talenta-client'
+import {
+  getPublicTalents,
+  getPublicTalentStats,
+  getTalentFilterOptions,
+} from '@/lib/talenta/queries'
 
-type SearchParams = Promise<{
-  search?: string
-  program?: string
-  province?: string
-  page?: string
-}>
+export const dynamic = 'force-dynamic'
 
-export default async function TalentaPage({
-  searchParams,
-}: {
-  searchParams: SearchParams
-}) {
+export const metadata: Metadata = {
+  title: 'Talenta SMK — VocAZ',
+  description:
+    'Etalase talenta SMK terverifikasi BNSP & BKK. Setiap profil didukung portofolio nyata.',
+}
+
+type Props = {
+  searchParams: Promise<{
+    search?: string
+    city?: string
+    major?: string
+    status?: string
+    page?: string
+  }>
+}
+
+export default async function TalentaPage({ searchParams }: Props) {
   const params = await searchParams
-  const page = parseInt(params.page || '1')
 
-  const [result, stats] = await Promise.all([
-    getTalents({
-      search: params.search,
-      program: params.program,
-      province: params.province,
+  const search = params.search?.trim() || ''
+  const city = params.city || 'all'
+  const major = params.major || 'all'
+  const status =
+    (params.status as 'all' | 'open_to_work' | 'verified') || 'all'
+  const page = Number(params.page) || 1
+
+  const [result, stats, options] = await Promise.all([
+    getPublicTalents({
+      search,
+      city,
+      major,
+      status,
       page,
+      pageSize: 9,
     }),
-    getTalentStats(),
+    getPublicTalentStats(),
+    getTalentFilterOptions(),
   ])
 
-  return <TalentaClient result={result} stats={stats} />
+  return (
+    <TalentaClient
+      talents={result.talents}
+      stats={stats}
+      options={options}
+      pagination={result.pagination}
+      initialFilters={{ search, city, major, status }}
+    />
+  )
 }

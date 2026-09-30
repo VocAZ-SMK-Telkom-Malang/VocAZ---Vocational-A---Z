@@ -20,14 +20,17 @@ export const REGISTER_STEPS: Record<Role, Step[]> = {
     { number: 4, label: 'Selesai', key: 'done' },
   ],
   school: [
-    { number: 1, label: 'Akun', key: 'account' },
-    { number: 2, label: 'Data Sekolah', key: 'data' },
-    { number: 3, label: 'Selesai', key: 'done' },
+    { number: 1, label: 'Pilih Paket', key: 'plan' },
+    { number: 2, label: 'Pembayaran', key: 'payment' },
+    { number: 3, label: 'Akun', key: 'account' },
+    { number: 4, label: 'Data Sekolah', key: 'school' },
+    { number: 5, label: 'Selesai', key: 'done' },
   ],
   certification: [
-    { number: 1, label: 'Akun', key: 'account' },
-    { number: 2, label: 'Data Lembaga', key: 'data' },
-    { number: 3, label: 'Selesai', key: 'done' },
+    { number: 1, label: 'Tipe Lembaga', key: 'type' },
+    { number: 2, label: 'Akun', key: 'account' },
+    { number: 3, label: 'Data Lembaga', key: 'institution' },
+    { number: 4, label: 'Selesai', key: 'done' },
   ],
 }
 

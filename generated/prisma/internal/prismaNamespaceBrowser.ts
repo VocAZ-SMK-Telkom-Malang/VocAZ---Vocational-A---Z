@@ -70,6 +70,7 @@ export const ModelName = {
   Application: 'Application',
   ApplicationStatusHistory: 'ApplicationStatusHistory',
   SavedJob: 'SavedJob',
+  SavedCompany: 'SavedCompany',
   School: 'School',
   SchoolProgram: 'SchoolProgram',
   SchoolStudent: 'SchoolStudent',
@@ -84,6 +85,7 @@ export const ModelName = {
   Notification: 'Notification',
   ContentReport: 'ContentReport',
   AuditLog: 'AuditLog',
+  ProfileFeedback: 'ProfileFeedback',
   SystemSetting: 'SystemSetting',
   PlatformStatistic: 'PlatformStatistic',
   Industry: 'Industry',
@@ -141,6 +143,8 @@ export const StudentProfileScalarFieldEnum = {
   address: 'address',
   city: 'city',
   province: 'province',
+  coverImageUrl: 'coverImageUrl',
+  coverImageKey: 'coverImageKey',
   profileCompletion: 'profileCompletion',
   careerReadiness: 'careerReadiness',
   isOpenToWork: 'isOpenToWork',
@@ -299,6 +303,12 @@ export const CompanyScalarFieldEnum = {
   address: 'address',
   city: 'city',
   province: 'province',
+  featured: 'featured',
+  logoColor: 'logoColor',
+  tagline: 'tagline',
+  employeeRange: 'employeeRange',
+  rating: 'rating',
+  reviewCount: 'reviewCount',
   country: 'country',
   verificationStatus: 'verificationStatus',
   verifiedAt: 'verifiedAt',
@@ -369,6 +379,8 @@ export const JobScalarFieldEnum = {
   experienceLevel: 'experienceLevel',
   location: 'location',
   city: 'city',
+  benefits: 'benefits',
+  applicants: 'applicants',
   province: 'province',
   salaryMin: 'salaryMin',
   salaryMax: 'salaryMax',
@@ -407,7 +419,11 @@ export const ApplicationScalarFieldEnum = {
   status: 'status',
   matchScore: 'matchScore',
   appliedAt: 'appliedAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  nextStep: 'nextStep',
+  interviewDate: 'interviewDate',
+  recruiterName: 'recruiterName',
+  notes: 'notes'
 } as const
 
 export type ApplicationScalarFieldEnum = (typeof ApplicationScalarFieldEnum)[keyof typeof ApplicationScalarFieldEnum]
@@ -435,6 +451,16 @@ export const SavedJobScalarFieldEnum = {
 export type SavedJobScalarFieldEnum = (typeof SavedJobScalarFieldEnum)[keyof typeof SavedJobScalarFieldEnum]
 
 
+export const SavedCompanyScalarFieldEnum = {
+  id: 'id',
+  studentId: 'studentId',
+  companyId: 'companyId',
+  savedAt: 'savedAt'
+} as const
+
+export type SavedCompanyScalarFieldEnum = (typeof SavedCompanyScalarFieldEnum)[keyof typeof SavedCompanyScalarFieldEnum]
+
+
 export const SchoolScalarFieldEnum = {
   id: 'id',
   ownerUserId: 'ownerUserId',
@@ -456,6 +482,17 @@ export const SchoolScalarFieldEnum = {
   bkkContact: 'bkkContact',
   bkkEmail: 'bkkEmail',
   bkkPhone: 'bkkPhone',
+  schoolCode: 'schoolCode',
+  activeStudentQuota: 'activeStudentQuota',
+  adminSeatQuota: 'adminSeatQuota',
+  subscriptionPlan: 'subscriptionPlan',
+  subscriptionStatus: 'subscriptionStatus',
+  subscriptionStartedAt: 'subscriptionStartedAt',
+  subscriptionExpiresAt: 'subscriptionExpiresAt',
+  subscriptionAmount: 'subscriptionAmount',
+  paymentMethod: 'paymentMethod',
+  paymentReference: 'paymentReference',
+  lastPaymentAt: 'lastPaymentAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -654,6 +691,22 @@ export const AuditLogScalarFieldEnum = {
 } as const
 
 export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+export const ProfileFeedbackScalarFieldEnum = {
+  id: 'id',
+  studentProfileId: 'studentProfileId',
+  giverUserId: 'giverUserId',
+  rating: 'rating',
+  message: 'message',
+  relationship: 'relationship',
+  isVerified: 'isVerified',
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProfileFeedbackScalarFieldEnum = (typeof ProfileFeedbackScalarFieldEnum)[keyof typeof ProfileFeedbackScalarFieldEnum]
 
 
 export const SystemSettingScalarFieldEnum = {

@@ -259,6 +259,7 @@ export type UserWhereInput = {
   showcaseLikes?: Prisma.ShowcaseLikeListRelationFilter
   showcaseComments?: Prisma.ShowcaseCommentListRelationFilter
   following?: Prisma.StudentFollowListRelationFilter
+  feedbackGiven?: Prisma.ProfileFeedbackListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -288,6 +289,7 @@ export type UserOrderByWithRelationInput = {
   showcaseLikes?: Prisma.ShowcaseLikeOrderByRelationAggregateInput
   showcaseComments?: Prisma.ShowcaseCommentOrderByRelationAggregateInput
   following?: Prisma.StudentFollowOrderByRelationAggregateInput
+  feedbackGiven?: Prisma.ProfileFeedbackOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -320,6 +322,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   showcaseLikes?: Prisma.ShowcaseLikeListRelationFilter
   showcaseComments?: Prisma.ShowcaseCommentListRelationFilter
   following?: Prisma.StudentFollowListRelationFilter
+  feedbackGiven?: Prisma.ProfileFeedbackListRelationFilter
 }, "id" | "neonAuthUserId" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -387,6 +390,7 @@ export type UserCreateInput = {
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -416,6 +420,7 @@ export type UserUncheckedCreateInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserUpdateInput = {
@@ -445,6 +450,7 @@ export type UserUpdateInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -474,6 +480,7 @@ export type UserUncheckedUpdateInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -756,6 +763,20 @@ export type UserUpdateOneWithoutAuditLogsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAuditLogsInput, Prisma.UserUpdateWithoutAuditLogsInput>, Prisma.UserUncheckedUpdateWithoutAuditLogsInput>
 }
 
+export type UserCreateNestedOneWithoutFeedbackGivenInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFeedbackGivenInput, Prisma.UserUncheckedCreateWithoutFeedbackGivenInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFeedbackGivenInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFeedbackGivenNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFeedbackGivenInput, Prisma.UserUncheckedCreateWithoutFeedbackGivenInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFeedbackGivenInput
+  upsert?: Prisma.UserUpsertWithoutFeedbackGivenInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFeedbackGivenInput, Prisma.UserUpdateWithoutFeedbackGivenInput>, Prisma.UserUncheckedUpdateWithoutFeedbackGivenInput>
+}
+
 export type UserCreateNestedOneWithoutShowcaseLikesInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutShowcaseLikesInput, Prisma.UserUncheckedCreateWithoutShowcaseLikesInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutShowcaseLikesInput
@@ -824,6 +845,7 @@ export type UserCreateWithoutStudentProfileInput = {
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutStudentProfileInput = {
@@ -852,6 +874,7 @@ export type UserUncheckedCreateWithoutStudentProfileInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutStudentProfileInput = {
@@ -896,6 +919,7 @@ export type UserUpdateWithoutStudentProfileInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentProfileInput = {
@@ -924,6 +948,7 @@ export type UserUncheckedUpdateWithoutStudentProfileInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateWithoutCompanyInput = {
@@ -952,6 +977,7 @@ export type UserCreateWithoutCompanyInput = {
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutCompanyInput = {
@@ -980,6 +1006,7 @@ export type UserUncheckedCreateWithoutCompanyInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutCompanyInput = {
@@ -1024,6 +1051,7 @@ export type UserUpdateWithoutCompanyInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompanyInput = {
@@ -1052,6 +1080,7 @@ export type UserUncheckedUpdateWithoutCompanyInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateWithoutCompanyTeamsInput = {
@@ -1080,6 +1109,7 @@ export type UserCreateWithoutCompanyTeamsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutCompanyTeamsInput = {
@@ -1108,6 +1138,7 @@ export type UserUncheckedCreateWithoutCompanyTeamsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutCompanyTeamsInput = {
@@ -1152,6 +1183,7 @@ export type UserUpdateWithoutCompanyTeamsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCompanyTeamsInput = {
@@ -1180,6 +1212,7 @@ export type UserUncheckedUpdateWithoutCompanyTeamsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateWithoutSchoolInput = {
@@ -1208,6 +1241,7 @@ export type UserCreateWithoutSchoolInput = {
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutSchoolInput = {
@@ -1236,6 +1270,7 @@ export type UserUncheckedCreateWithoutSchoolInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutSchoolInput = {
@@ -1280,6 +1315,7 @@ export type UserUpdateWithoutSchoolInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSchoolInput = {
@@ -1308,6 +1344,7 @@ export type UserUncheckedUpdateWithoutSchoolInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateWithoutCertInstitutionInput = {
@@ -1336,6 +1373,7 @@ export type UserCreateWithoutCertInstitutionInput = {
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutCertInstitutionInput = {
@@ -1364,6 +1402,7 @@ export type UserUncheckedCreateWithoutCertInstitutionInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutCertInstitutionInput = {
@@ -1408,6 +1447,7 @@ export type UserUpdateWithoutCertInstitutionInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCertInstitutionInput = {
@@ -1436,6 +1476,7 @@ export type UserUncheckedUpdateWithoutCertInstitutionInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateWithoutConversationPartsInput = {
@@ -1464,6 +1505,7 @@ export type UserCreateWithoutConversationPartsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutConversationPartsInput = {
@@ -1492,6 +1534,7 @@ export type UserUncheckedCreateWithoutConversationPartsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutConversationPartsInput = {
@@ -1536,6 +1579,7 @@ export type UserUpdateWithoutConversationPartsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConversationPartsInput = {
@@ -1564,6 +1608,7 @@ export type UserUncheckedUpdateWithoutConversationPartsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateWithoutSentMessagesInput = {
@@ -1592,6 +1637,7 @@ export type UserCreateWithoutSentMessagesInput = {
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -1620,6 +1666,7 @@ export type UserUncheckedCreateWithoutSentMessagesInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -1664,6 +1711,7 @@ export type UserUpdateWithoutSentMessagesInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -1692,6 +1740,7 @@ export type UserUncheckedUpdateWithoutSentMessagesInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -1720,6 +1769,7 @@ export type UserCreateWithoutNotificationsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -1748,6 +1798,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -1792,6 +1843,7 @@ export type UserUpdateWithoutNotificationsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -1820,6 +1872,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateWithoutReportsInput = {
@@ -1848,6 +1901,7 @@ export type UserCreateWithoutReportsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutReportsInput = {
@@ -1876,6 +1930,7 @@ export type UserUncheckedCreateWithoutReportsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutReportsInput = {
@@ -1920,6 +1975,7 @@ export type UserUpdateWithoutReportsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReportsInput = {
@@ -1948,6 +2004,7 @@ export type UserUncheckedUpdateWithoutReportsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -1976,6 +2033,7 @@ export type UserCreateWithoutAuditLogsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -2004,6 +2062,7 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -2048,6 +2107,7 @@ export type UserUpdateWithoutAuditLogsInput = {
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -2072,6 +2132,139 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+}
+
+export type UserCreateWithoutFeedbackGivenInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
+  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
+  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+}
+
+export type UserUncheckedCreateWithoutFeedbackGivenInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
+  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
+  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+}
+
+export type UserCreateOrConnectWithoutFeedbackGivenInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFeedbackGivenInput, Prisma.UserUncheckedCreateWithoutFeedbackGivenInput>
+}
+
+export type UserUpsertWithoutFeedbackGivenInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFeedbackGivenInput, Prisma.UserUncheckedUpdateWithoutFeedbackGivenInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFeedbackGivenInput, Prisma.UserUncheckedCreateWithoutFeedbackGivenInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFeedbackGivenInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFeedbackGivenInput, Prisma.UserUncheckedUpdateWithoutFeedbackGivenInput>
+}
+
+export type UserUpdateWithoutFeedbackGivenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
+  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
+  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFeedbackGivenInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
+  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
+  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
@@ -2104,6 +2297,7 @@ export type UserCreateWithoutShowcaseLikesInput = {
   reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutShowcaseLikesInput = {
@@ -2132,6 +2326,7 @@ export type UserUncheckedCreateWithoutShowcaseLikesInput = {
   reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutShowcaseLikesInput = {
@@ -2176,6 +2371,7 @@ export type UserUpdateWithoutShowcaseLikesInput = {
   reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutShowcaseLikesInput = {
@@ -2204,6 +2400,7 @@ export type UserUncheckedUpdateWithoutShowcaseLikesInput = {
   reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateWithoutShowcaseCommentsInput = {
@@ -2232,6 +2429,7 @@ export type UserCreateWithoutShowcaseCommentsInput = {
   reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutShowcaseCommentsInput = {
@@ -2260,6 +2458,7 @@ export type UserUncheckedCreateWithoutShowcaseCommentsInput = {
   reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutShowcaseCommentsInput = {
@@ -2304,6 +2503,7 @@ export type UserUpdateWithoutShowcaseCommentsInput = {
   reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutShowcaseCommentsInput = {
@@ -2332,6 +2532,7 @@ export type UserUncheckedUpdateWithoutShowcaseCommentsInput = {
   reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 export type UserCreateWithoutFollowingInput = {
@@ -2360,6 +2561,7 @@ export type UserCreateWithoutFollowingInput = {
   reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
 }
 
 export type UserUncheckedCreateWithoutFollowingInput = {
@@ -2388,6 +2590,7 @@ export type UserUncheckedCreateWithoutFollowingInput = {
   reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
 }
 
 export type UserCreateOrConnectWithoutFollowingInput = {
@@ -2432,6 +2635,7 @@ export type UserUpdateWithoutFollowingInput = {
   reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFollowingInput = {
@@ -2460,6 +2664,7 @@ export type UserUncheckedUpdateWithoutFollowingInput = {
   reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
 }
 
 
@@ -2477,6 +2682,7 @@ export type UserCountOutputType = {
   showcaseLikes: number
   showcaseComments: number
   following: number
+  feedbackGiven: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2489,6 +2695,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   showcaseLikes?: boolean | UserCountOutputTypeCountShowcaseLikesArgs
   showcaseComments?: boolean | UserCountOutputTypeCountShowcaseCommentsArgs
   following?: boolean | UserCountOutputTypeCountFollowingArgs
+  feedbackGiven?: boolean | UserCountOutputTypeCountFeedbackGivenArgs
 }
 
 /**
@@ -2564,6 +2771,13 @@ export type UserCountOutputTypeCountFollowingArgs<ExtArgs extends runtime.Types.
   where?: Prisma.StudentFollowWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFeedbackGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProfileFeedbackWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -2592,6 +2806,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   showcaseLikes?: boolean | Prisma.User$showcaseLikesArgs<ExtArgs>
   showcaseComments?: boolean | Prisma.User$showcaseCommentsArgs<ExtArgs>
   following?: boolean | Prisma.User$followingArgs<ExtArgs>
+  feedbackGiven?: boolean | Prisma.User$feedbackGivenArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2658,6 +2873,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   showcaseLikes?: boolean | Prisma.User$showcaseLikesArgs<ExtArgs>
   showcaseComments?: boolean | Prisma.User$showcaseCommentsArgs<ExtArgs>
   following?: boolean | Prisma.User$followingArgs<ExtArgs>
+  feedbackGiven?: boolean | Prisma.User$feedbackGivenArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -2679,6 +2895,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     showcaseLikes: Prisma.$ShowcaseLikePayload<ExtArgs>[]
     showcaseComments: Prisma.$ShowcaseCommentPayload<ExtArgs>[]
     following: Prisma.$StudentFollowPayload<ExtArgs>[]
+    feedbackGiven: Prisma.$ProfileFeedbackPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -3101,6 +3318,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   showcaseLikes<T extends Prisma.User$showcaseLikesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$showcaseLikesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   showcaseComments<T extends Prisma.User$showcaseCommentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$showcaseCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   following<T extends Prisma.User$followingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$followingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentFollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  feedbackGiven<T extends Prisma.User$feedbackGivenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$feedbackGivenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfileFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3825,6 +4043,30 @@ export type User$followingArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.StudentFollowScalarFieldEnum | Prisma.StudentFollowScalarFieldEnum[]
+}
+
+/**
+ * User.feedbackGiven
+ */
+export type User$feedbackGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProfileFeedback
+   */
+  select?: Prisma.ProfileFeedbackSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProfileFeedback
+   */
+  omit?: Prisma.ProfileFeedbackOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProfileFeedbackInclude<ExtArgs> | null
+  where?: Prisma.ProfileFeedbackWhereInput
+  orderBy?: Prisma.ProfileFeedbackOrderByWithRelationInput | Prisma.ProfileFeedbackOrderByWithRelationInput[]
+  cursor?: Prisma.ProfileFeedbackWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProfileFeedbackScalarFieldEnum | Prisma.ProfileFeedbackScalarFieldEnum[]
 }
 
 /**

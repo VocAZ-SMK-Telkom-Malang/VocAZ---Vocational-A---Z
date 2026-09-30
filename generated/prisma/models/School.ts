@@ -20,8 +20,22 @@ export type SchoolModel = runtime.Types.Result.DefaultSelection<Prisma.$SchoolPa
 
 export type AggregateSchool = {
   _count: SchoolCountAggregateOutputType | null
+  _avg: SchoolAvgAggregateOutputType | null
+  _sum: SchoolSumAggregateOutputType | null
   _min: SchoolMinAggregateOutputType | null
   _max: SchoolMaxAggregateOutputType | null
+}
+
+export type SchoolAvgAggregateOutputType = {
+  activeStudentQuota: number | null
+  adminSeatQuota: number | null
+  subscriptionAmount: number | null
+}
+
+export type SchoolSumAggregateOutputType = {
+  activeStudentQuota: number | null
+  adminSeatQuota: number | null
+  subscriptionAmount: number | null
 }
 
 export type SchoolMinAggregateOutputType = {
@@ -45,6 +59,17 @@ export type SchoolMinAggregateOutputType = {
   bkkContact: string | null
   bkkEmail: string | null
   bkkPhone: string | null
+  schoolCode: string | null
+  activeStudentQuota: number | null
+  adminSeatQuota: number | null
+  subscriptionPlan: string | null
+  subscriptionStatus: string | null
+  subscriptionStartedAt: Date | null
+  subscriptionExpiresAt: Date | null
+  subscriptionAmount: number | null
+  paymentMethod: string | null
+  paymentReference: string | null
+  lastPaymentAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -70,6 +95,17 @@ export type SchoolMaxAggregateOutputType = {
   bkkContact: string | null
   bkkEmail: string | null
   bkkPhone: string | null
+  schoolCode: string | null
+  activeStudentQuota: number | null
+  adminSeatQuota: number | null
+  subscriptionPlan: string | null
+  subscriptionStatus: string | null
+  subscriptionStartedAt: Date | null
+  subscriptionExpiresAt: Date | null
+  subscriptionAmount: number | null
+  paymentMethod: string | null
+  paymentReference: string | null
+  lastPaymentAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -95,11 +131,34 @@ export type SchoolCountAggregateOutputType = {
   bkkContact: number
   bkkEmail: number
   bkkPhone: number
+  schoolCode: number
+  activeStudentQuota: number
+  adminSeatQuota: number
+  subscriptionPlan: number
+  subscriptionStatus: number
+  subscriptionStartedAt: number
+  subscriptionExpiresAt: number
+  subscriptionAmount: number
+  paymentMethod: number
+  paymentReference: number
+  lastPaymentAt: number
   createdAt: number
   updatedAt: number
   _all: number
 }
 
+
+export type SchoolAvgAggregateInputType = {
+  activeStudentQuota?: true
+  adminSeatQuota?: true
+  subscriptionAmount?: true
+}
+
+export type SchoolSumAggregateInputType = {
+  activeStudentQuota?: true
+  adminSeatQuota?: true
+  subscriptionAmount?: true
+}
 
 export type SchoolMinAggregateInputType = {
   id?: true
@@ -122,6 +181,17 @@ export type SchoolMinAggregateInputType = {
   bkkContact?: true
   bkkEmail?: true
   bkkPhone?: true
+  schoolCode?: true
+  activeStudentQuota?: true
+  adminSeatQuota?: true
+  subscriptionPlan?: true
+  subscriptionStatus?: true
+  subscriptionStartedAt?: true
+  subscriptionExpiresAt?: true
+  subscriptionAmount?: true
+  paymentMethod?: true
+  paymentReference?: true
+  lastPaymentAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -147,6 +217,17 @@ export type SchoolMaxAggregateInputType = {
   bkkContact?: true
   bkkEmail?: true
   bkkPhone?: true
+  schoolCode?: true
+  activeStudentQuota?: true
+  adminSeatQuota?: true
+  subscriptionPlan?: true
+  subscriptionStatus?: true
+  subscriptionStartedAt?: true
+  subscriptionExpiresAt?: true
+  subscriptionAmount?: true
+  paymentMethod?: true
+  paymentReference?: true
+  lastPaymentAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -172,6 +253,17 @@ export type SchoolCountAggregateInputType = {
   bkkContact?: true
   bkkEmail?: true
   bkkPhone?: true
+  schoolCode?: true
+  activeStudentQuota?: true
+  adminSeatQuota?: true
+  subscriptionPlan?: true
+  subscriptionStatus?: true
+  subscriptionStartedAt?: true
+  subscriptionExpiresAt?: true
+  subscriptionAmount?: true
+  paymentMethod?: true
+  paymentReference?: true
+  lastPaymentAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -215,6 +307,18 @@ export type SchoolAggregateArgs<ExtArgs extends runtime.Types.Extensions.Interna
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: SchoolAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: SchoolSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: SchoolMinAggregateInputType
@@ -245,6 +349,8 @@ export type SchoolGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   _count?: SchoolCountAggregateInputType | true
+  _avg?: SchoolAvgAggregateInputType
+  _sum?: SchoolSumAggregateInputType
   _min?: SchoolMinAggregateInputType
   _max?: SchoolMaxAggregateInputType
 }
@@ -270,9 +376,22 @@ export type SchoolGroupByOutputType = {
   bkkContact: string | null
   bkkEmail: string | null
   bkkPhone: string | null
+  schoolCode: string | null
+  activeStudentQuota: number
+  adminSeatQuota: number
+  subscriptionPlan: string | null
+  subscriptionStatus: string | null
+  subscriptionStartedAt: Date | null
+  subscriptionExpiresAt: Date | null
+  subscriptionAmount: number | null
+  paymentMethod: string | null
+  paymentReference: string | null
+  lastPaymentAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: SchoolCountAggregateOutputType | null
+  _avg: SchoolAvgAggregateOutputType | null
+  _sum: SchoolSumAggregateOutputType | null
   _min: SchoolMinAggregateOutputType | null
   _max: SchoolMaxAggregateOutputType | null
 }
@@ -316,6 +435,17 @@ export type SchoolWhereInput = {
   bkkContact?: Prisma.StringNullableFilter<"School"> | string | null
   bkkEmail?: Prisma.StringNullableFilter<"School"> | string | null
   bkkPhone?: Prisma.StringNullableFilter<"School"> | string | null
+  schoolCode?: Prisma.StringNullableFilter<"School"> | string | null
+  activeStudentQuota?: Prisma.IntFilter<"School"> | number
+  adminSeatQuota?: Prisma.IntFilter<"School"> | number
+  subscriptionPlan?: Prisma.StringNullableFilter<"School"> | string | null
+  subscriptionStatus?: Prisma.StringNullableFilter<"School"> | string | null
+  subscriptionStartedAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
+  subscriptionExpiresAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
+  subscriptionAmount?: Prisma.IntNullableFilter<"School"> | number | null
+  paymentMethod?: Prisma.StringNullableFilter<"School"> | string | null
+  paymentReference?: Prisma.StringNullableFilter<"School"> | string | null
+  lastPaymentAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"School"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"School"> | Date | string
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -347,6 +477,17 @@ export type SchoolOrderByWithRelationInput = {
   bkkContact?: Prisma.SortOrderInput | Prisma.SortOrder
   bkkEmail?: Prisma.SortOrderInput | Prisma.SortOrder
   bkkPhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  schoolCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  activeStudentQuota?: Prisma.SortOrder
+  adminSeatQuota?: Prisma.SortOrder
+  subscriptionPlan?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionStartedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionAmount?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentMethod?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentReference?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastPaymentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   owner?: Prisma.UserOrderByWithRelationInput
@@ -362,6 +503,7 @@ export type SchoolWhereUniqueInput = Prisma.AtLeast<{
   ownerUserId?: string
   npsn?: string
   slug?: string
+  schoolCode?: string
   AND?: Prisma.SchoolWhereInput | Prisma.SchoolWhereInput[]
   OR?: Prisma.SchoolWhereInput[]
   NOT?: Prisma.SchoolWhereInput | Prisma.SchoolWhereInput[]
@@ -381,6 +523,16 @@ export type SchoolWhereUniqueInput = Prisma.AtLeast<{
   bkkContact?: Prisma.StringNullableFilter<"School"> | string | null
   bkkEmail?: Prisma.StringNullableFilter<"School"> | string | null
   bkkPhone?: Prisma.StringNullableFilter<"School"> | string | null
+  activeStudentQuota?: Prisma.IntFilter<"School"> | number
+  adminSeatQuota?: Prisma.IntFilter<"School"> | number
+  subscriptionPlan?: Prisma.StringNullableFilter<"School"> | string | null
+  subscriptionStatus?: Prisma.StringNullableFilter<"School"> | string | null
+  subscriptionStartedAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
+  subscriptionExpiresAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
+  subscriptionAmount?: Prisma.IntNullableFilter<"School"> | number | null
+  paymentMethod?: Prisma.StringNullableFilter<"School"> | string | null
+  paymentReference?: Prisma.StringNullableFilter<"School"> | string | null
+  lastPaymentAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"School"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"School"> | Date | string
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
@@ -389,7 +541,7 @@ export type SchoolWhereUniqueInput = Prisma.AtLeast<{
   studentProfiles?: Prisma.StudentProfileListRelationFilter
   industryPartners?: Prisma.IndustryPartnerListRelationFilter
   careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
-}, "id" | "ownerUserId" | "npsn" | "slug">
+}, "id" | "ownerUserId" | "npsn" | "slug" | "schoolCode">
 
 export type SchoolOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -412,11 +564,24 @@ export type SchoolOrderByWithAggregationInput = {
   bkkContact?: Prisma.SortOrderInput | Prisma.SortOrder
   bkkEmail?: Prisma.SortOrderInput | Prisma.SortOrder
   bkkPhone?: Prisma.SortOrderInput | Prisma.SortOrder
+  schoolCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  activeStudentQuota?: Prisma.SortOrder
+  adminSeatQuota?: Prisma.SortOrder
+  subscriptionPlan?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionStartedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  subscriptionAmount?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentMethod?: Prisma.SortOrderInput | Prisma.SortOrder
+  paymentReference?: Prisma.SortOrderInput | Prisma.SortOrder
+  lastPaymentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.SchoolCountOrderByAggregateInput
+  _avg?: Prisma.SchoolAvgOrderByAggregateInput
   _max?: Prisma.SchoolMaxOrderByAggregateInput
   _min?: Prisma.SchoolMinOrderByAggregateInput
+  _sum?: Prisma.SchoolSumOrderByAggregateInput
 }
 
 export type SchoolScalarWhereWithAggregatesInput = {
@@ -443,6 +608,17 @@ export type SchoolScalarWhereWithAggregatesInput = {
   bkkContact?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
   bkkEmail?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
   bkkPhone?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
+  schoolCode?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
+  activeStudentQuota?: Prisma.IntWithAggregatesFilter<"School"> | number
+  adminSeatQuota?: Prisma.IntWithAggregatesFilter<"School"> | number
+  subscriptionPlan?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
+  subscriptionStatus?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
+  subscriptionStartedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"School"> | Date | string | null
+  subscriptionExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"School"> | Date | string | null
+  subscriptionAmount?: Prisma.IntNullableWithAggregatesFilter<"School"> | number | null
+  paymentMethod?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
+  paymentReference?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
+  lastPaymentAt?: Prisma.DateTimeNullableWithAggregatesFilter<"School"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"School"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"School"> | Date | string
 }
@@ -467,6 +643,17 @@ export type SchoolCreateInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
@@ -498,6 +685,17 @@ export type SchoolUncheckedCreateInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
@@ -527,6 +725,17 @@ export type SchoolUpdateInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
@@ -558,6 +767,17 @@ export type SchoolUncheckedUpdateInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
@@ -588,6 +808,17 @@ export type SchoolCreateManyInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -612,6 +843,17 @@ export type SchoolUpdateManyMutationInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -637,6 +879,17 @@ export type SchoolUncheckedUpdateManyInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -667,8 +920,25 @@ export type SchoolCountOrderByAggregateInput = {
   bkkContact?: Prisma.SortOrder
   bkkEmail?: Prisma.SortOrder
   bkkPhone?: Prisma.SortOrder
+  schoolCode?: Prisma.SortOrder
+  activeStudentQuota?: Prisma.SortOrder
+  adminSeatQuota?: Prisma.SortOrder
+  subscriptionPlan?: Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  subscriptionStartedAt?: Prisma.SortOrder
+  subscriptionExpiresAt?: Prisma.SortOrder
+  subscriptionAmount?: Prisma.SortOrder
+  paymentMethod?: Prisma.SortOrder
+  paymentReference?: Prisma.SortOrder
+  lastPaymentAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type SchoolAvgOrderByAggregateInput = {
+  activeStudentQuota?: Prisma.SortOrder
+  adminSeatQuota?: Prisma.SortOrder
+  subscriptionAmount?: Prisma.SortOrder
 }
 
 export type SchoolMaxOrderByAggregateInput = {
@@ -692,6 +962,17 @@ export type SchoolMaxOrderByAggregateInput = {
   bkkContact?: Prisma.SortOrder
   bkkEmail?: Prisma.SortOrder
   bkkPhone?: Prisma.SortOrder
+  schoolCode?: Prisma.SortOrder
+  activeStudentQuota?: Prisma.SortOrder
+  adminSeatQuota?: Prisma.SortOrder
+  subscriptionPlan?: Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  subscriptionStartedAt?: Prisma.SortOrder
+  subscriptionExpiresAt?: Prisma.SortOrder
+  subscriptionAmount?: Prisma.SortOrder
+  paymentMethod?: Prisma.SortOrder
+  paymentReference?: Prisma.SortOrder
+  lastPaymentAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -717,8 +998,25 @@ export type SchoolMinOrderByAggregateInput = {
   bkkContact?: Prisma.SortOrder
   bkkEmail?: Prisma.SortOrder
   bkkPhone?: Prisma.SortOrder
+  schoolCode?: Prisma.SortOrder
+  activeStudentQuota?: Prisma.SortOrder
+  adminSeatQuota?: Prisma.SortOrder
+  subscriptionPlan?: Prisma.SortOrder
+  subscriptionStatus?: Prisma.SortOrder
+  subscriptionStartedAt?: Prisma.SortOrder
+  subscriptionExpiresAt?: Prisma.SortOrder
+  subscriptionAmount?: Prisma.SortOrder
+  paymentMethod?: Prisma.SortOrder
+  paymentReference?: Prisma.SortOrder
+  lastPaymentAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+}
+
+export type SchoolSumOrderByAggregateInput = {
+  activeStudentQuota?: Prisma.SortOrder
+  adminSeatQuota?: Prisma.SortOrder
+  subscriptionAmount?: Prisma.SortOrder
 }
 
 export type SchoolScalarRelationFilter = {
@@ -854,6 +1152,17 @@ export type SchoolCreateWithoutOwnerInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   programs?: Prisma.SchoolProgramCreateNestedManyWithoutSchoolInput
@@ -883,6 +1192,17 @@ export type SchoolUncheckedCreateWithoutOwnerInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
@@ -928,6 +1248,17 @@ export type SchoolUpdateWithoutOwnerInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   programs?: Prisma.SchoolProgramUpdateManyWithoutSchoolNestedInput
@@ -957,6 +1288,17 @@ export type SchoolUncheckedUpdateWithoutOwnerInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
@@ -986,6 +1328,17 @@ export type SchoolCreateWithoutStudentProfilesInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
@@ -1016,6 +1369,17 @@ export type SchoolUncheckedCreateWithoutStudentProfilesInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
@@ -1060,6 +1424,17 @@ export type SchoolUpdateWithoutStudentProfilesInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
@@ -1090,6 +1465,17 @@ export type SchoolUncheckedUpdateWithoutStudentProfilesInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
@@ -1118,6 +1504,17 @@ export type SchoolCreateWithoutProgramsInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
@@ -1148,6 +1545,17 @@ export type SchoolUncheckedCreateWithoutProgramsInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   students?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutSchoolInput
@@ -1192,6 +1600,17 @@ export type SchoolUpdateWithoutProgramsInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
@@ -1222,6 +1641,17 @@ export type SchoolUncheckedUpdateWithoutProgramsInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   students?: Prisma.SchoolStudentUncheckedUpdateManyWithoutSchoolNestedInput
@@ -1250,6 +1680,17 @@ export type SchoolCreateWithoutStudentsInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
@@ -1280,6 +1721,17 @@ export type SchoolUncheckedCreateWithoutStudentsInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
@@ -1324,6 +1776,17 @@ export type SchoolUpdateWithoutStudentsInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
@@ -1354,6 +1817,17 @@ export type SchoolUncheckedUpdateWithoutStudentsInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
@@ -1382,6 +1856,17 @@ export type SchoolCreateWithoutIndustryPartnersInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
@@ -1412,6 +1897,17 @@ export type SchoolUncheckedCreateWithoutIndustryPartnersInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
@@ -1456,6 +1952,17 @@ export type SchoolUpdateWithoutIndustryPartnersInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
@@ -1486,6 +1993,17 @@ export type SchoolUncheckedUpdateWithoutIndustryPartnersInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
@@ -1514,6 +2032,17 @@ export type SchoolCreateWithoutCareerMonitoringsInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
@@ -1544,6 +2073,17 @@ export type SchoolUncheckedCreateWithoutCareerMonitoringsInput = {
   bkkContact?: string | null
   bkkEmail?: string | null
   bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
@@ -1588,6 +2128,17 @@ export type SchoolUpdateWithoutCareerMonitoringsInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
@@ -1618,6 +2169,17 @@ export type SchoolUncheckedUpdateWithoutCareerMonitoringsInput = {
   bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
@@ -1714,6 +2276,17 @@ export type SchoolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   bkkContact?: boolean
   bkkEmail?: boolean
   bkkPhone?: boolean
+  schoolCode?: boolean
+  activeStudentQuota?: boolean
+  adminSeatQuota?: boolean
+  subscriptionPlan?: boolean
+  subscriptionStatus?: boolean
+  subscriptionStartedAt?: boolean
+  subscriptionExpiresAt?: boolean
+  subscriptionAmount?: boolean
+  paymentMethod?: boolean
+  paymentReference?: boolean
+  lastPaymentAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   owner?: boolean | Prisma.School$ownerArgs<ExtArgs>
@@ -1746,6 +2319,17 @@ export type SchoolSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   bkkContact?: boolean
   bkkEmail?: boolean
   bkkPhone?: boolean
+  schoolCode?: boolean
+  activeStudentQuota?: boolean
+  adminSeatQuota?: boolean
+  subscriptionPlan?: boolean
+  subscriptionStatus?: boolean
+  subscriptionStartedAt?: boolean
+  subscriptionExpiresAt?: boolean
+  subscriptionAmount?: boolean
+  paymentMethod?: boolean
+  paymentReference?: boolean
+  lastPaymentAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   owner?: boolean | Prisma.School$ownerArgs<ExtArgs>
@@ -1772,6 +2356,17 @@ export type SchoolSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   bkkContact?: boolean
   bkkEmail?: boolean
   bkkPhone?: boolean
+  schoolCode?: boolean
+  activeStudentQuota?: boolean
+  adminSeatQuota?: boolean
+  subscriptionPlan?: boolean
+  subscriptionStatus?: boolean
+  subscriptionStartedAt?: boolean
+  subscriptionExpiresAt?: boolean
+  subscriptionAmount?: boolean
+  paymentMethod?: boolean
+  paymentReference?: boolean
+  lastPaymentAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   owner?: boolean | Prisma.School$ownerArgs<ExtArgs>
@@ -1798,11 +2393,22 @@ export type SchoolSelectScalar = {
   bkkContact?: boolean
   bkkEmail?: boolean
   bkkPhone?: boolean
+  schoolCode?: boolean
+  activeStudentQuota?: boolean
+  adminSeatQuota?: boolean
+  subscriptionPlan?: boolean
+  subscriptionStatus?: boolean
+  subscriptionStartedAt?: boolean
+  subscriptionExpiresAt?: boolean
+  subscriptionAmount?: boolean
+  paymentMethod?: boolean
+  paymentReference?: boolean
+  lastPaymentAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SchoolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "npsn" | "slug" | "level" | "accreditation" | "email" | "phone" | "website" | "address" | "city" | "province" | "logoUrl" | "logoKey" | "description" | "bkkName" | "bkkContact" | "bkkEmail" | "bkkPhone" | "createdAt" | "updatedAt", ExtArgs["result"]["school"]>
+export type SchoolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "npsn" | "slug" | "level" | "accreditation" | "email" | "phone" | "website" | "address" | "city" | "province" | "logoUrl" | "logoKey" | "description" | "bkkName" | "bkkContact" | "bkkEmail" | "bkkPhone" | "schoolCode" | "activeStudentQuota" | "adminSeatQuota" | "subscriptionPlan" | "subscriptionStatus" | "subscriptionStartedAt" | "subscriptionExpiresAt" | "subscriptionAmount" | "paymentMethod" | "paymentReference" | "lastPaymentAt" | "createdAt" | "updatedAt", ExtArgs["result"]["school"]>
 export type SchoolInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.School$ownerArgs<ExtArgs>
   programs?: boolean | Prisma.School$programsArgs<ExtArgs>
@@ -1850,6 +2456,17 @@ export type $SchoolPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     bkkContact: string | null
     bkkEmail: string | null
     bkkPhone: string | null
+    schoolCode: string | null
+    activeStudentQuota: number
+    adminSeatQuota: number
+    subscriptionPlan: string | null
+    subscriptionStatus: string | null
+    subscriptionStartedAt: Date | null
+    subscriptionExpiresAt: Date | null
+    subscriptionAmount: number | null
+    paymentMethod: string | null
+    paymentReference: string | null
+    lastPaymentAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["school"]>
@@ -2301,6 +2918,17 @@ export interface SchoolFieldRefs {
   readonly bkkContact: Prisma.FieldRef<"School", 'String'>
   readonly bkkEmail: Prisma.FieldRef<"School", 'String'>
   readonly bkkPhone: Prisma.FieldRef<"School", 'String'>
+  readonly schoolCode: Prisma.FieldRef<"School", 'String'>
+  readonly activeStudentQuota: Prisma.FieldRef<"School", 'Int'>
+  readonly adminSeatQuota: Prisma.FieldRef<"School", 'Int'>
+  readonly subscriptionPlan: Prisma.FieldRef<"School", 'String'>
+  readonly subscriptionStatus: Prisma.FieldRef<"School", 'String'>
+  readonly subscriptionStartedAt: Prisma.FieldRef<"School", 'DateTime'>
+  readonly subscriptionExpiresAt: Prisma.FieldRef<"School", 'DateTime'>
+  readonly subscriptionAmount: Prisma.FieldRef<"School", 'Int'>
+  readonly paymentMethod: Prisma.FieldRef<"School", 'String'>
+  readonly paymentReference: Prisma.FieldRef<"School", 'String'>
+  readonly lastPaymentAt: Prisma.FieldRef<"School", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"School", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"School", 'DateTime'>
 }

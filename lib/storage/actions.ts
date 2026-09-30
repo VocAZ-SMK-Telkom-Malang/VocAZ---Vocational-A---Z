@@ -11,6 +11,7 @@ type UploadTarget =
   | 'showcase-video'
   | 'showcase-thumb'
   | 'avatar'
+  | 'cover'   
   | 'portfolio'
 
 export async function getPresignedUploadUrl(input: {
@@ -24,18 +25,16 @@ export async function getPresignedUploadUrl(input: {
   | { ok: false; error: string }
 > {
   try {
-    // Batas ukuran per target
     const maxSize =
       input.target === 'showcase-video'
-        ? 200 * 1024 * 1024 // 200MB
-        : 5 * 1024 * 1024 // 5MB
+        ? 200 * 1024 * 1024
+        : 5 * 1024 * 1024
 
     if (input.fileSize > maxSize) {
       const mb = Math.floor(maxSize / 1024 / 1024)
       return { ok: false, error: `Ukuran file maksimal ${mb}MB` }
     }
 
-    // Allowed mime types per target
     const allowedByTarget: Record<UploadTarget, string[]> = {
       'company-logo': ['image/png', 'image/jpeg', 'image/webp'],
       'company-doc': [
@@ -52,11 +51,14 @@ export async function getPresignedUploadUrl(input: {
       ],
       'showcase-thumb': ['image/png', 'image/jpeg', 'image/webp'],
       avatar: ['image/png', 'image/jpeg', 'image/webp'],
+     cover: ['image/png', 'image/jpeg', 'image/webp'],   // ← TAMBAH INI
       portfolio: [
         'image/png',
         'image/jpeg',
         'image/webp',
         'application/pdf',
+        'video/mp4',
+        'video/webm',
       ],
     }
 
@@ -65,7 +67,6 @@ export async function getPresignedUploadUrl(input: {
       return { ok: false, error: 'Format file tidak didukung' }
     }
 
-    // Validasi folderId: alfanumerik + dash, 8-40 char
     if (!/^[a-zA-Z0-9-]{8,40}$/.test(input.folderId)) {
       return { ok: false, error: 'Folder ID tidak valid' }
     }
@@ -73,8 +74,6 @@ export async function getPresignedUploadUrl(input: {
     const ext = input.fileName.split('.').pop()?.toLowerCase() || 'bin'
     const uuid = crypto.randomUUID()
     const timestamp = Date.now()
-
-    // Key: {target}/{folderId}/{timestamp}-{uuid}.{ext}
     const key = `${input.target}/${input.folderId}/${timestamp}-${uuid}.${ext}`
 
     const command = new PutObjectCommand({
@@ -83,10 +82,7 @@ export async function getPresignedUploadUrl(input: {
       ContentType: input.contentType,
     })
 
-    // Video butuh waktu upload lebih lama → expires 10 menit
-    const expiresIn = input.target === 'showcase-video' ? 600 : 300
-
-    const url = await getSignedUrl(s3, command, { expiresIn })
+    const url = await getSignedUrl(s3, command, { expiresIn: 600 })
 
     return { ok: true, url, key }
   } catch (err) {

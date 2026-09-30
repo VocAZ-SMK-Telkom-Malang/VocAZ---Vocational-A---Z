@@ -532,11 +532,17 @@ export async function getExploreVideos(limit = 12) {
 // SHOWCASE FEED (publik — semua student)
 // ============================================
 
+// ============================================
+// SHOWCASE FEED (dengan filter lengkap)
+// ============================================
+
 type ShowcaseFeedOptions = {
   page?: number
   limit?: number
   excludeStudentId?: string
+  search?: string
   category?: string
+  sort?: 'terbaru' | 'terpopuler' | 'trending' | 'views'
 }
 
 export async function getShowcaseFeed(options: ShowcaseFeedOptions = {}) {
@@ -554,20 +560,57 @@ export async function getShowcaseFeed(options: ShowcaseFeedOptions = {}) {
     where.category = options.category
   }
 
+  if (options.search) {
+    const q = options.search.trim()
+    where.OR = [
+      { title: { contains: q, mode: 'insensitive' } },
+      { description: { contains: q, mode: 'insensitive' } },
+      { skillTags: { has: q } },
+      {
+        student: {
+          user: {
+            OR: [
+              { fullName: { contains: q, mode: 'insensitive' } },
+              { email: { contains: q, mode: 'insensitive' } },
+            ],
+          },
+        },
+      },
+    ]
+  }
+
+  // Sort
+  let orderBy: any[] = [{ publishedAt: 'desc' }, { createdAt: 'desc' }]
+  if (options.sort === 'terpopuler') {
+    orderBy = [{ likeCount: 'desc' }, { publishedAt: 'desc' }]
+  } else if (options.sort === 'views') {
+    orderBy = [{ viewCount: 'desc' }, { publishedAt: 'desc' }]
+  } else if (options.sort === 'trending') {
+    orderBy = [
+      { shareCount: 'desc' },
+      { likeCount: 'desc' },
+      { publishedAt: 'desc' },
+    ]
+  }
+
   const [videos, total] = await Promise.all([
     prisma.showcaseVideo.findMany({
       where,
       skip,
       take: limit,
-      orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+      orderBy,
       include: {
         student: {
           include: {
             user: {
-              select: { id: true, fullName: true, avatarUrl: true },
+              select: {
+                id: true,
+                fullName: true,
+                avatarUrl: true,
+              },
             },
             school: {
-              select: { id: true, name: true },
+              select: { name: true },
             },
           },
         },
@@ -576,16 +619,39 @@ export async function getShowcaseFeed(options: ShowcaseFeedOptions = {}) {
     prisma.showcaseVideo.count({ where }),
   ])
 
-  const hasMore = skip + videos.length < total
+  const mapped = videos.map((v) => ({
+    id: v.id,
+    title: v.title,
+    description: v.description,
+    videoUrl: v.videoUrl,
+    videoSource: v.videoSource,
+    thumbnailUrl: v.thumbnailUrl,
+    skillTags: v.skillTags,
+    category: v.category,
+    likeCount: v.likeCount,
+    commentCount: v.commentCount,
+    shareCount: v.shareCount,
+    viewCount: Number(v.viewCount),
+    durationSec: v.durationSec,
+    publishedAt: v.publishedAt,
+    createdAt: v.createdAt,
+    student: {
+      id: v.student.id,
+      userId: v.student.user.id,
+      fullName: v.student.user.fullName ?? 'Student',
+      avatarUrl: v.student.user.avatarUrl,
+      schoolName: v.student.school?.name ?? null,
+      headline: v.student.headline,
+    },
+  }))
 
   return {
-    videos,
+    videos: mapped,
+    hasMore: skip + videos.length < total,
     total,
     page,
-    hasMore,
   }
 }
-
 // ============================================
 // SHOWCASE DETAIL
 // ============================================

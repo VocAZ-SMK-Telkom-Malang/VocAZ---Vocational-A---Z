@@ -45,6 +45,10 @@ export type ApplicationMinAggregateOutputType = {
   matchScore: number | null
   appliedAt: Date | null
   updatedAt: Date | null
+  nextStep: string | null
+  interviewDate: Date | null
+  recruiterName: string | null
+  notes: string | null
 }
 
 export type ApplicationMaxAggregateOutputType = {
@@ -58,6 +62,10 @@ export type ApplicationMaxAggregateOutputType = {
   matchScore: number | null
   appliedAt: Date | null
   updatedAt: Date | null
+  nextStep: string | null
+  interviewDate: Date | null
+  recruiterName: string | null
+  notes: string | null
 }
 
 export type ApplicationCountAggregateOutputType = {
@@ -71,6 +79,10 @@ export type ApplicationCountAggregateOutputType = {
   matchScore: number
   appliedAt: number
   updatedAt: number
+  nextStep: number
+  interviewDate: number
+  recruiterName: number
+  notes: number
   _all: number
 }
 
@@ -94,6 +106,10 @@ export type ApplicationMinAggregateInputType = {
   matchScore?: true
   appliedAt?: true
   updatedAt?: true
+  nextStep?: true
+  interviewDate?: true
+  recruiterName?: true
+  notes?: true
 }
 
 export type ApplicationMaxAggregateInputType = {
@@ -107,6 +123,10 @@ export type ApplicationMaxAggregateInputType = {
   matchScore?: true
   appliedAt?: true
   updatedAt?: true
+  nextStep?: true
+  interviewDate?: true
+  recruiterName?: true
+  notes?: true
 }
 
 export type ApplicationCountAggregateInputType = {
@@ -120,6 +140,10 @@ export type ApplicationCountAggregateInputType = {
   matchScore?: true
   appliedAt?: true
   updatedAt?: true
+  nextStep?: true
+  interviewDate?: true
+  recruiterName?: true
+  notes?: true
   _all?: true
 }
 
@@ -220,6 +244,10 @@ export type ApplicationGroupByOutputType = {
   matchScore: number | null
   appliedAt: Date
   updatedAt: Date
+  nextStep: string | null
+  interviewDate: Date | null
+  recruiterName: string | null
+  notes: string | null
   _count: ApplicationCountAggregateOutputType | null
   _avg: ApplicationAvgAggregateOutputType | null
   _sum: ApplicationSumAggregateOutputType | null
@@ -256,6 +284,10 @@ export type ApplicationWhereInput = {
   matchScore?: Prisma.IntNullableFilter<"Application"> | number | null
   appliedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
+  nextStep?: Prisma.StringNullableFilter<"Application"> | string | null
+  interviewDate?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
+  recruiterName?: Prisma.StringNullableFilter<"Application"> | string | null
+  notes?: Prisma.StringNullableFilter<"Application"> | string | null
   job?: Prisma.XOR<Prisma.JobScalarRelationFilter, Prisma.JobWhereInput>
   student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   history?: Prisma.ApplicationStatusHistoryListRelationFilter
@@ -272,6 +304,10 @@ export type ApplicationOrderByWithRelationInput = {
   matchScore?: Prisma.SortOrderInput | Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  nextStep?: Prisma.SortOrderInput | Prisma.SortOrder
+  interviewDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  recruiterName?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   job?: Prisma.JobOrderByWithRelationInput
   student?: Prisma.StudentProfileOrderByWithRelationInput
   history?: Prisma.ApplicationStatusHistoryOrderByRelationAggregateInput
@@ -292,6 +328,10 @@ export type ApplicationWhereUniqueInput = Prisma.AtLeast<{
   matchScore?: Prisma.IntNullableFilter<"Application"> | number | null
   appliedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
+  nextStep?: Prisma.StringNullableFilter<"Application"> | string | null
+  interviewDate?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
+  recruiterName?: Prisma.StringNullableFilter<"Application"> | string | null
+  notes?: Prisma.StringNullableFilter<"Application"> | string | null
   job?: Prisma.XOR<Prisma.JobScalarRelationFilter, Prisma.JobWhereInput>
   student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   history?: Prisma.ApplicationStatusHistoryListRelationFilter
@@ -308,6 +348,10 @@ export type ApplicationOrderByWithAggregationInput = {
   matchScore?: Prisma.SortOrderInput | Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  nextStep?: Prisma.SortOrderInput | Prisma.SortOrder
+  interviewDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  recruiterName?: Prisma.SortOrderInput | Prisma.SortOrder
+  notes?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ApplicationCountOrderByAggregateInput
   _avg?: Prisma.ApplicationAvgOrderByAggregateInput
   _max?: Prisma.ApplicationMaxOrderByAggregateInput
@@ -329,6 +373,10 @@ export type ApplicationScalarWhereWithAggregatesInput = {
   matchScore?: Prisma.IntNullableWithAggregatesFilter<"Application"> | number | null
   appliedAt?: Prisma.DateTimeWithAggregatesFilter<"Application"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Application"> | Date | string
+  nextStep?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
+  interviewDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Application"> | Date | string | null
+  recruiterName?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
+  notes?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
 }
 
 export type ApplicationCreateInput = {
@@ -340,6 +388,10 @@ export type ApplicationCreateInput = {
   matchScore?: number | null
   appliedAt?: Date | string
   updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
   job: Prisma.JobCreateNestedOneWithoutApplicationsInput
   student: Prisma.StudentProfileCreateNestedOneWithoutApplicationsInput
   history?: Prisma.ApplicationStatusHistoryCreateNestedManyWithoutApplicationInput
@@ -356,6 +408,10 @@ export type ApplicationUncheckedCreateInput = {
   matchScore?: number | null
   appliedAt?: Date | string
   updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
   history?: Prisma.ApplicationStatusHistoryUncheckedCreateNestedManyWithoutApplicationInput
 }
 
@@ -368,6 +424,10 @@ export type ApplicationUpdateInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
   student?: Prisma.StudentProfileUpdateOneRequiredWithoutApplicationsNestedInput
   history?: Prisma.ApplicationStatusHistoryUpdateManyWithoutApplicationNestedInput
@@ -384,6 +444,10 @@ export type ApplicationUncheckedUpdateInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   history?: Prisma.ApplicationStatusHistoryUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
@@ -398,6 +462,10 @@ export type ApplicationCreateManyInput = {
   matchScore?: number | null
   appliedAt?: Date | string
   updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
 }
 
 export type ApplicationUpdateManyMutationInput = {
@@ -409,6 +477,10 @@ export type ApplicationUpdateManyMutationInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ApplicationUncheckedUpdateManyInput = {
@@ -422,6 +494,10 @@ export type ApplicationUncheckedUpdateManyInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ApplicationListRelationFilter = {
@@ -450,6 +526,10 @@ export type ApplicationCountOrderByAggregateInput = {
   matchScore?: Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  nextStep?: Prisma.SortOrder
+  interviewDate?: Prisma.SortOrder
+  recruiterName?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
 }
 
 export type ApplicationAvgOrderByAggregateInput = {
@@ -467,6 +547,10 @@ export type ApplicationMaxOrderByAggregateInput = {
   matchScore?: Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  nextStep?: Prisma.SortOrder
+  interviewDate?: Prisma.SortOrder
+  recruiterName?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
 }
 
 export type ApplicationMinOrderByAggregateInput = {
@@ -480,6 +564,10 @@ export type ApplicationMinOrderByAggregateInput = {
   matchScore?: Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  nextStep?: Prisma.SortOrder
+  interviewDate?: Prisma.SortOrder
+  recruiterName?: Prisma.SortOrder
+  notes?: Prisma.SortOrder
 }
 
 export type ApplicationSumOrderByAggregateInput = {
@@ -602,6 +690,10 @@ export type ApplicationCreateWithoutStudentInput = {
   matchScore?: number | null
   appliedAt?: Date | string
   updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
   job: Prisma.JobCreateNestedOneWithoutApplicationsInput
   history?: Prisma.ApplicationStatusHistoryCreateNestedManyWithoutApplicationInput
 }
@@ -616,6 +708,10 @@ export type ApplicationUncheckedCreateWithoutStudentInput = {
   matchScore?: number | null
   appliedAt?: Date | string
   updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
   history?: Prisma.ApplicationStatusHistoryUncheckedCreateNestedManyWithoutApplicationInput
 }
 
@@ -659,6 +755,10 @@ export type ApplicationScalarWhereInput = {
   matchScore?: Prisma.IntNullableFilter<"Application"> | number | null
   appliedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
+  nextStep?: Prisma.StringNullableFilter<"Application"> | string | null
+  interviewDate?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
+  recruiterName?: Prisma.StringNullableFilter<"Application"> | string | null
+  notes?: Prisma.StringNullableFilter<"Application"> | string | null
 }
 
 export type ApplicationCreateWithoutJobInput = {
@@ -670,6 +770,10 @@ export type ApplicationCreateWithoutJobInput = {
   matchScore?: number | null
   appliedAt?: Date | string
   updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
   student: Prisma.StudentProfileCreateNestedOneWithoutApplicationsInput
   history?: Prisma.ApplicationStatusHistoryCreateNestedManyWithoutApplicationInput
 }
@@ -684,6 +788,10 @@ export type ApplicationUncheckedCreateWithoutJobInput = {
   matchScore?: number | null
   appliedAt?: Date | string
   updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
   history?: Prisma.ApplicationStatusHistoryUncheckedCreateNestedManyWithoutApplicationInput
 }
 
@@ -722,6 +830,10 @@ export type ApplicationCreateWithoutHistoryInput = {
   matchScore?: number | null
   appliedAt?: Date | string
   updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
   job: Prisma.JobCreateNestedOneWithoutApplicationsInput
   student: Prisma.StudentProfileCreateNestedOneWithoutApplicationsInput
 }
@@ -737,6 +849,10 @@ export type ApplicationUncheckedCreateWithoutHistoryInput = {
   matchScore?: number | null
   appliedAt?: Date | string
   updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
 }
 
 export type ApplicationCreateOrConnectWithoutHistoryInput = {
@@ -764,6 +880,10 @@ export type ApplicationUpdateWithoutHistoryInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
   student?: Prisma.StudentProfileUpdateOneRequiredWithoutApplicationsNestedInput
 }
@@ -779,6 +899,10 @@ export type ApplicationUncheckedUpdateWithoutHistoryInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ApplicationCreateManyStudentInput = {
@@ -791,6 +915,10 @@ export type ApplicationCreateManyStudentInput = {
   matchScore?: number | null
   appliedAt?: Date | string
   updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
 }
 
 export type ApplicationUpdateWithoutStudentInput = {
@@ -802,6 +930,10 @@ export type ApplicationUpdateWithoutStudentInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
   history?: Prisma.ApplicationStatusHistoryUpdateManyWithoutApplicationNestedInput
 }
@@ -816,6 +948,10 @@ export type ApplicationUncheckedUpdateWithoutStudentInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   history?: Prisma.ApplicationStatusHistoryUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
@@ -829,6 +965,10 @@ export type ApplicationUncheckedUpdateManyWithoutStudentInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ApplicationCreateManyJobInput = {
@@ -841,6 +981,10 @@ export type ApplicationCreateManyJobInput = {
   matchScore?: number | null
   appliedAt?: Date | string
   updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
 }
 
 export type ApplicationUpdateWithoutJobInput = {
@@ -852,6 +996,10 @@ export type ApplicationUpdateWithoutJobInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   student?: Prisma.StudentProfileUpdateOneRequiredWithoutApplicationsNestedInput
   history?: Prisma.ApplicationStatusHistoryUpdateManyWithoutApplicationNestedInput
 }
@@ -866,6 +1014,10 @@ export type ApplicationUncheckedUpdateWithoutJobInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   history?: Prisma.ApplicationStatusHistoryUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
@@ -879,6 +1031,10 @@ export type ApplicationUncheckedUpdateManyWithoutJobInput = {
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -923,6 +1079,10 @@ export type ApplicationSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   matchScore?: boolean
   appliedAt?: boolean
   updatedAt?: boolean
+  nextStep?: boolean
+  interviewDate?: boolean
+  recruiterName?: boolean
+  notes?: boolean
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   history?: boolean | Prisma.Application$historyArgs<ExtArgs>
@@ -940,6 +1100,10 @@ export type ApplicationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   matchScore?: boolean
   appliedAt?: boolean
   updatedAt?: boolean
+  nextStep?: boolean
+  interviewDate?: boolean
+  recruiterName?: boolean
+  notes?: boolean
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["application"]>
@@ -955,6 +1119,10 @@ export type ApplicationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   matchScore?: boolean
   appliedAt?: boolean
   updatedAt?: boolean
+  nextStep?: boolean
+  interviewDate?: boolean
+  recruiterName?: boolean
+  notes?: boolean
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["application"]>
@@ -970,9 +1138,13 @@ export type ApplicationSelectScalar = {
   matchScore?: boolean
   appliedAt?: boolean
   updatedAt?: boolean
+  nextStep?: boolean
+  interviewDate?: boolean
+  recruiterName?: boolean
+  notes?: boolean
 }
 
-export type ApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobId" | "studentId" | "coverLetter" | "resumeUrl" | "resumeKey" | "status" | "matchScore" | "appliedAt" | "updatedAt", ExtArgs["result"]["application"]>
+export type ApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobId" | "studentId" | "coverLetter" | "resumeUrl" | "resumeKey" | "status" | "matchScore" | "appliedAt" | "updatedAt" | "nextStep" | "interviewDate" | "recruiterName" | "notes", ExtArgs["result"]["application"]>
 export type ApplicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
@@ -1006,6 +1178,10 @@ export type $ApplicationPayload<ExtArgs extends runtime.Types.Extensions.Interna
     matchScore: number | null
     appliedAt: Date
     updatedAt: Date
+    nextStep: string | null
+    interviewDate: Date | null
+    recruiterName: string | null
+    notes: string | null
   }, ExtArgs["result"]["application"]>
   composites: {}
 }
@@ -1442,6 +1618,10 @@ export interface ApplicationFieldRefs {
   readonly matchScore: Prisma.FieldRef<"Application", 'Int'>
   readonly appliedAt: Prisma.FieldRef<"Application", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Application", 'DateTime'>
+  readonly nextStep: Prisma.FieldRef<"Application", 'String'>
+  readonly interviewDate: Prisma.FieldRef<"Application", 'DateTime'>
+  readonly recruiterName: Prisma.FieldRef<"Application", 'String'>
+  readonly notes: Prisma.FieldRef<"Application", 'String'>
 }
     
 

@@ -80,6 +80,19 @@ export const ShowcaseStatus = {
 export type ShowcaseStatus = (typeof ShowcaseStatus)[keyof typeof ShowcaseStatus]
 
 
+export const VideoSource = {
+  upload: 'upload',
+  youtube: 'youtube',
+  tiktok: 'tiktok',
+  instagram: 'instagram',
+  gdrive: 'gdrive',
+  vimeo: 'vimeo',
+  external: 'external'
+} as const
+
+export type VideoSource = (typeof VideoSource)[keyof typeof VideoSource]
+
+
 export const CompanySize = {
   s1_10: 's1_10',
   s11_50: 's11_50',
@@ -293,17 +306,6 @@ export const ReportStatus = {
 } as const
 
 export type ReportStatus = (typeof ReportStatus)[keyof typeof ReportStatus]
-
-
-export const VideoSource = {
-  upload: 'upload',
-  youtube: 'youtube',
-  tiktok: 'tiktok',
-  gdrive: 'gdrive',
-  instagram: 'instagram'
-} as const
-
-export type VideoSource = (typeof VideoSource)[keyof typeof VideoSource]
 
 
 export const ShowcaseLikeStatus = {

@@ -1,15 +1,11 @@
 // components/showcase/feed/showcase-feed.tsx
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
-import Link from 'next/link'
-import { Loader2, ChevronUp, ChevronDown, Video, X } from 'lucide-react'
-import { ShowcaseFeedItem } from './showcase-feed-item'
-import { ShowcaseCommentSheet } from './showcase-comment-sheet'
-import {
-  fetchShowcaseFeed,
-  incrementShowcaseView,
-} from '@/lib/student/actions'
+import { useEffect, useState, useCallback } from 'react'
+import { Loader2, Video } from 'lucide-react'
+import { ShowcaseFeedHero } from './showcase-feed-hero'
+import { ShowcaseFeedViewer } from './showcase-feed-viewer'
+import { fetchShowcaseFeed } from '@/lib/student/actions'
 
 type Video = {
   id: string
@@ -22,252 +18,204 @@ type Video = {
   likeCount: number
   commentCount: number
   shareCount: number
-  viewCount: bigint
-  publishedAt: Date | null      // ← TAMBAH
-  createdAt: Date               // ← TAMBAH
+  viewCount: number
+  durationSec: number | null
+  publishedAt: string | Date | null
+  createdAt: string | Date
   student: {
     id: string
-    user: {
-      id: string
-      fullName: string | null
-      avatarUrl: string | null
-    }
-    school: {
-      id: string
-      name: string
-    } | null
+    fullName: string
+    avatarUrl: string | null
+    schoolName: string | null
+    headline: string | null
   }
 }
 
-type CommentTarget = {
-  videoId: string
-  ownerId: string
-}
-
 type Props = {
+  
   initialVideos: Video[]
   initialHasMore: boolean
   currentUserId: string | null
-  currentUserRole: string | null
+  currentUserRole: string
   currentStudentProfileId: string | null
   likedVideoIds: string[]
   followingStudentIds: string[]
 }
 
+type SortKey = 'terbaru' | 'terpopuler' | 'trending' | 'views'
+
+const CATEGORY_OPTIONS = [
+  { value: 'all', label: 'Semua' },
+  { value: 'software', label: 'Software' },
+  { value: 'network', label: 'Jaringan' },
+  { value: 'multimedia', label: 'Multimedia' },
+  { value: 'mechatronics', label: 'Mekatronika' },
+  { value: 'automotive', label: 'Otomotif' },
+  { value: 'business', label: 'Bisnis' },
+  { value: 'other', label: 'Lainnya' },
+]
+
+const SORT_OPTIONS: { value: SortKey; label: string }[] = [
+  { value: 'terbaru', label: 'Terbaru' },
+  { value: 'terpopuler', label: 'Terpopuler' },
+  { value: 'trending', label: 'Trending' },
+  { value: 'views', label: 'Paling Dilihat' },
+]
+
 export function ShowcaseFeed({
   initialVideos,
   initialHasMore,
   currentUserId,
-  currentUserRole,
   currentStudentProfileId,
   likedVideoIds,
   followingStudentIds,
 }: Props) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [videos, setVideos] = useState(initialVideos)
+  const [videos, setVideos] = useState<Video[]>(initialVideos)
   const [hasMore, setHasMore] = useState(initialHasMore)
   const [page, setPage] = useState(1)
-  const [loadingMore, setLoadingMore] = useState(false)
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [commentTarget, setCommentTarget] = useState<CommentTarget | null>(
-    null
-  )
+  const [loading, setLoading] = useState(false)
 
-  const likedSet = new Set(likedVideoIds)
-  const followingSet = new Set(followingStudentIds)
-
-  const uniqueVideos = videos.filter(
-    (video, index, self) =>
-      self.findIndex((v) => v.id === video.id) === index
-  )
-
-  const loadMore = useCallback(async () => {
-    if (loadingMore) return
-    setLoadingMore(true)
-    try {
-      const nextPage = page + 1
-      const result = await fetchShowcaseFeed({
-        page: nextPage,
-        limit: 5,
-        excludeStudentId: currentStudentProfileId || undefined,
-      })
-
-      setVideos((prev) => {
-        const existingIds = new Set(prev.map((v) => v.id))
-        const newVideos = (result.videos as Video[]).filter(
-          (v) => !existingIds.has(v.id)
-        )
-        return [...prev, ...newVideos]
-      })
-      setHasMore(result.hasMore)
-      setPage(nextPage)
-    } catch (err) {
-      console.error('Load more error:', err)
-    } finally {
-      setLoadingMore(false)
-    }
-  }, [page, loadingMore, currentStudentProfileId])
+  const [search, setSearch] = useState('')
+  const [category, setCategory] = useState('all')
+  const [sort, setSort] = useState<SortKey>('terbaru')
+  const [debouncedSearch, setDebouncedSearch] = useState('')
+  const [filterOpen, setFilterOpen] = useState(false)
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+    const t = setTimeout(() => setDebouncedSearch(search), 400)
+    return () => clearTimeout(t)
+  }, [search])
 
-    const handleScroll = () => {
-      const scrollTop = container.scrollTop
-      const itemHeight = container.clientHeight
-      const newIndex = Math.round(scrollTop / itemHeight)
-      setActiveIndex(newIndex)
-
-      const totalItems = uniqueVideos.length
-      if (newIndex >= totalItems - 2 && hasMore && !loadingMore) {
-        loadMore()
-      }
+  const reload = useCallback(async () => {
+    setLoading(true)
+    try {
+      const res = await fetchShowcaseFeed({
+        page: 1,
+        limit: 15,
+        excludeStudentId: currentStudentProfileId ?? undefined,
+        search: debouncedSearch || undefined,
+        category: category !== 'all' ? category : undefined,
+        sort,
+      })
+      setVideos(res.videos as any)
+      setHasMore(res.hasMore)
+      setPage(1)
+    } catch (err) {
+      console.error(err)
     }
+    setLoading(false)
+  }, [debouncedSearch, category, sort, currentStudentProfileId])
 
-    container.addEventListener('scroll', handleScroll, { passive: true })
-    return () => container.removeEventListener('scroll', handleScroll)
-  }, [uniqueVideos.length, hasMore, loadingMore, loadMore])
+  useEffect(() => {
+    reload()
+  }, [reload])
 
-  const handleViewed = useCallback((videoId: string) => {
-    incrementShowcaseView(videoId).catch(() => {})
-  }, [])
-
-  function scrollToIndex(index: number) {
-    const container = containerRef.current
-    if (!container) return
-    container.scrollTo({
-      top: index * container.clientHeight,
-      behavior: 'smooth',
-    })
-  }
-
-  // ============================================
-  // EMPTY STATE
-  // ============================================
-
-  if (uniqueVideos.length === 0) {
-    return (
-      <div className="w-full h-full flex items-center justify-center bg-black text-white relative">
-        <Link
-          href="/student/dashboard"
-          className="lg:hidden absolute top-4 left-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-colors"
-          aria-label="Kembali"
-        >
-          <X className="w-5 h-5" />
-        </Link>
-        <div className="text-center max-w-sm px-6">
-          <div className="w-16 h-16 rounded-full bg-white/10 mx-auto flex items-center justify-center mb-4">
-            <Video className="w-8 h-8 text-white/70" />
-          </div>
-          <h3 className="font-display text-lg font-bold mb-2">
-            Belum ada video showcase
-          </h3>
-          <p className="text-sm text-white/70">
-            Video showcase akan muncul di sini setelah siswa mulai upload.
-          </p>
-        </div>
-      </div>
-    )
-  }
-
-  // ============================================
-  // RENDER FEED
-  // ============================================
+  const uniqueCreators = new Set(videos.map((v) => v.student.id)).size
+  const totalLikes = videos.reduce((sum, v) => sum + v.likeCount, 0)
+  const activeFilterCount =
+    (category !== 'all' ? 1 : 0) + (sort !== 'terbaru' ? 1 : 0)
 
   return (
-    <>
-      <div className="relative w-full h-full bg-black">
-        <div
-          ref={containerRef}
-          className="w-full h-full overflow-y-scroll snap-y snap-mandatory scroll-smooth"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {uniqueVideos.map((video, index) => (
-            <div
-              key={video.id}
-              className="w-full h-full snap-start snap-always relative"
-            >
-              <ShowcaseFeedItem
-                video={video}
-                isActive={index === activeIndex}
-                isLiked={likedSet.has(video.id)}
-                isFollowing={followingSet.has(video.student.id)}
-                currentUserRole={currentUserRole}
-                currentStudentProfileId={currentStudentProfileId}
-                onOpenComments={(videoId) =>
-                  setCommentTarget({
-                    videoId,
-                    ownerId: video.student.id,
-                  })
-                }
-                onViewed={handleViewed}
-              />
-            </div>
-          ))}
+    <div className="space-y-6 pb-12">
+      {/* Hero */}
+      <ShowcaseFeedHero
+        search={search}
+        onSearchChange={setSearch}
+        totalVideos={videos.length}
+        totalCreators={uniqueCreators}
+        totalLikes={totalLikes}
+        onFilterClick={() => setFilterOpen((v) => !v)}
+        activeFilterCount={activeFilterCount}
+      />
 
-          {loadingMore && (
-            <div className="w-full h-20 flex items-center justify-center bg-black">
-              <Loader2 className="w-6 h-6 text-white animate-spin" />
+      {/* Filter panel */}
+      {filterOpen && (
+        <div className="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 space-y-4">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-wider font-bold text-on-surface-variant mb-2">
+              Kategori
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {CATEGORY_OPTIONS.map((c) => (
+                <button
+                  key={c.value}
+                  type="button"
+                  onClick={() => setCategory(c.value)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-colors ${
+                    category === c.value
+                      ? 'bg-primary text-white'
+                      : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'
+                  }`}
+                >
+                  {c.label}
+                </button>
+              ))}
             </div>
+          </div>
+
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-wider font-bold text-on-surface-variant mb-2">
+              Urutkan
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {SORT_OPTIONS.map((s) => (
+                <button
+                  key={s.value}
+                  type="button"
+                  onClick={() => setSort(s.value)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-colors ${
+                    sort === s.value
+                      ? 'bg-primary text-white'
+                      : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'
+                  }`}
+                >
+                  {s.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {activeFilterCount > 0 && (
+            <button
+              type="button"
+              onClick={() => {
+                setCategory('all')
+                setSort('terbaru')
+              }}
+              className="text-xs font-bold text-primary hover:underline underline-offset-4"
+            >
+              Reset filter
+            </button>
           )}
         </div>
+      )}
 
-        {/* Close / Back button — mobile only */}
-        <Link
-          href="/student/dashboard"
-          className="lg:hidden absolute top-4 left-4 z-30 w-10 h-10 rounded-full bg-black/50 backdrop-blur-md text-white flex items-center justify-center hover:bg-black/70 transition-colors"
-          aria-label="Kembali ke dashboard"
-        >
-          <X className="w-5 h-5" />
-        </Link>
-
-        {/* Nav buttons — desktop only */}
-        <div className="hidden lg:flex flex-col gap-2 absolute right-6 top-1/2 -translate-y-1/2 z-30">
-          <button
-            type="button"
-            onClick={() => scrollToIndex(Math.max(0, activeIndex - 1))}
-            disabled={activeIndex === 0}
-            className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-            aria-label="Video sebelumnya"
-          >
-            <ChevronUp className="w-5 h-5" />
-          </button>
-          <button
-            type="button"
-            onClick={() =>
-              scrollToIndex(
-                Math.min(uniqueVideos.length - 1, activeIndex + 1)
-              )
-            }
-            disabled={
-              activeIndex === uniqueVideos.length - 1 && !hasMore
-            }
-            className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md text-white flex items-center justify-center hover:bg-white/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-            aria-label="Video berikutnya"
-          >
-            <ChevronDown className="w-5 h-5" />
-          </button>
+      {/* Viewer */}
+      {loading && videos.length === 0 ? (
+        <div className="flex items-center justify-center py-20">
+          <Loader2 className="w-6 h-6 animate-spin text-primary" />
         </div>
-
-        {/* Counter */}
-        <div className="absolute top-4 right-16 z-30 px-3 py-1.5 rounded-full bg-black/50 backdrop-blur-md">
-          <span className="text-xs font-semibold text-white">
-            {activeIndex + 1} / {uniqueVideos.length}
-          </span>
+      ) : videos.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-20 text-center">
+          <div className="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center mb-4">
+            <Video className="w-7 h-7 text-on-surface-variant/60" />
+          </div>
+          <p className="text-base font-bold text-on-surface mb-1">
+            Tidak ada video
+          </p>
+          <p className="text-sm text-on-surface-variant">
+            Coba ubah filter atau kata kunci
+          </p>
         </div>
-      </div>
-
-      {commentTarget && (
-        <ShowcaseCommentSheet
-          videoId={commentTarget.videoId}
-          videoOwnerId={commentTarget.ownerId}
+      ) : (
+        <ShowcaseFeedViewer
+          videos={videos}
           currentUserId={currentUserId}
           currentStudentProfileId={currentStudentProfileId}
-          currentUserRole={currentUserRole}
-          isOpen={!!commentTarget}
-          onClose={() => setCommentTarget(null)}
+          likedVideoIds={likedVideoIds}
+          followingStudentIds={followingStudentIds}
         />
       )}
-    </>
+    </div>
   )
 }

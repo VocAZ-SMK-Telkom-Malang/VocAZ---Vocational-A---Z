@@ -61,6 +61,16 @@ enum ShowcaseStatus {
   flagged
 }
 
+enum VideoSource {
+  upload
+  youtube
+  tiktok
+  instagram
+  gdrive
+  vimeo
+  external
+}
+
 enum CompanySize {
   s1_10
   s11_50
@@ -213,14 +223,6 @@ enum ReportStatus {
   dismissed
 }
 
-enum VideoSource {
-  upload
-  youtube
-  tiktok
-  gdrive
-  instagram
-}
-
 enum ShowcaseLikeStatus {
   active
   removed
@@ -258,6 +260,7 @@ model User {
   showcaseLikes     ShowcaseLike[] // ← BARU
   showcaseComments  ShowcaseComment[]
   following         StudentFollow[]           @relation("Follower")
+  feedbackGiven     ProfileFeedback[]         @relation("GivenFeedback")   // ← TAMBAH INI
 
   @@index([role])
   @@map("users")
@@ -279,6 +282,8 @@ model StudentProfile {
   address           String?   @db.Text
   city              String?
   province          String?
+  coverImageUrl     String?   @map("cover_image_url")   // ← TAMBAH
+  coverImageKey     String?   @map("cover_image_key")   // ← TAMBAH
   profileCompletion Int       @default(0) @map("profile_completion")
   careerReadiness   Int       @default(0) @map("career_readiness")
   isOpenToWork      Boolean   @default(true) @map("is_open_to_work")
@@ -298,11 +303,13 @@ model StudentProfile {
   portfolios        StudentPortfolio[]
   showcaseVideos    ShowcaseVideo[]
   applications      Application[]
-  savedJobs         SavedJob[]
+  savedJobs      SavedJob[]
+  savedCompanies SavedCompany[]   // ← TAMBAH BARIS INI
   certificates      Certificate[]
   schoolEnrollments SchoolStudent[]
   careerMonitorings CareerMonitoring[]
   followers         StudentFollow[]      @relation("Following") // ← BARU (yang follow saya)
+  feedbacks         ProfileFeedback[]    @relation("ReceivedFeedback")   // ← TAMBAH INI
 
   @@map("student_profiles")
 }
@@ -478,6 +485,12 @@ model Company {
   address            String?            @db.Text
   city               String?
   province           String?
+  featured      Boolean  @default(false)        // ← BARU
+  logoColor     String?  @default("#DC2626")    // ← BARU
+  tagline       String?                          // ← BARU
+  employeeRange String?  @map("employee_range") // ← BARU
+  rating        Float    @default(0)            // ← BARU
+  reviewCount   Int      @default(0) @map("review_count") // ← BARU
   country            String             @default("Indonesia")
   verificationStatus VerificationStatus @default(unverified) @map("verification_status")
   verifiedAt         DateTime?          @map("verified_at")
@@ -490,6 +503,7 @@ model Company {
   preferences       CompanyTalentPreference[]
   verifications     CompanyVerification[]
   jobs              Job[]
+  savedByStudents SavedCompany[]   // ← TAMBAH BARIS INI
   industryPartners  IndustryPartner[]
   careerMonitorings CareerMonitoring[]
 
@@ -567,6 +581,8 @@ model Job {
   experienceLevel  ExperienceLevel? @map("experience_level")
   location         String?
   city             String?
+  benefits   String? @db.Text   // ← BARU
+  applicants Int     @default(0) // ← BARU
   province         String? // ← TAMBAH INI
   salaryMin        BigInt?          @map("salary_min")
   salaryMax        BigInt?          @map("salary_max")
@@ -605,6 +621,10 @@ model JobSkill {
   @@map("job_skills")
 }
 
+// =====================================================
+// APPLICATION
+// =====================================================
+
 model Application {
   id          String            @id @default(uuid()) @db.Uuid
   jobId       String            @map("job_id") @db.Uuid
@@ -617,14 +637,30 @@ model Application {
   appliedAt   DateTime          @default(now()) @map("applied_at")
   updatedAt   DateTime          @updatedAt @map("updated_at")
 
+  // ============================================
+  // RECRUITMENT TRACKING (BARU)
+  // ============================================
+  nextStep      String?   @map("next_step")
+  interviewDate DateTime? @map("interview_date")
+  recruiterName String?   @map("recruiter_name")
+  notes         String?   @db.Text
+
+  // ============================================
+  // RELATIONS
+  // ============================================
   job     Job                        @relation(fields: [jobId], references: [id], onDelete: Cascade)
   student StudentProfile             @relation(fields: [studentId], references: [id], onDelete: Cascade)
   history ApplicationStatusHistory[]
 
   @@unique([jobId, studentId])
   @@index([status])
+  @@index([studentId, updatedAt])
   @@map("applications")
 }
+
+// =====================================================
+// APPLICATION STATUS HISTORY
+// =====================================================
 
 model ApplicationStatusHistory {
   id            String   @id @default(uuid()) @db.Uuid
@@ -636,6 +672,7 @@ model ApplicationStatusHistory {
 
   application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
 
+  @@index([applicationId, createdAt])
   @@map("application_status_history")
 }
 
@@ -650,6 +687,24 @@ model SavedJob {
 
   @@unique([studentId, jobId])
   @@map("saved_jobs")
+}
+
+// =====================================================
+// SAVED COMPANY (BOOKMARK)
+// =====================================================
+
+model SavedCompany {
+  id        String   @id @default(uuid()) @db.Uuid
+  studentId String   @map("student_id") @db.Uuid
+  companyId String   @map("company_id") @db.Uuid
+  savedAt   DateTime @default(now()) @map("saved_at")
+
+  student StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  company Company        @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, companyId])
+  @@index([studentId, savedAt])
+  @@map("saved_companies")
 }
 
 // =====================================================
@@ -677,6 +732,21 @@ model School {
   bkkContact    String?      @map("bkk_contact")
   bkkEmail      String?      @map("bkk_email")
   bkkPhone      String?      @map("bkk_phone")
+
+  // ============================================
+  // SUBSCRIPTION
+  // ============================================
+  schoolCode            String?   @unique @map("school_code")
+  activeStudentQuota    Int       @default(200) @map("active_student_quota")
+  adminSeatQuota        Int       @default(1) @map("admin_seat_quota")
+  subscriptionPlan      String?   @map("subscription_plan")
+  subscriptionStatus    String?   @default("trial") @map("subscription_status")
+  subscriptionStartedAt DateTime? @map("subscription_started_at")
+  subscriptionExpiresAt DateTime? @map("subscription_expires_at")
+  subscriptionAmount    Int?      @map("subscription_amount")
+  paymentMethod         String?   @map("payment_method")
+  paymentReference      String?   @map("payment_reference")
+  lastPaymentAt         DateTime? @map("last_payment_at")
   createdAt     DateTime     @default(now()) @map("created_at")
   updatedAt     DateTime     @updatedAt @map("updated_at")
 
@@ -934,6 +1004,29 @@ model AuditLog {
   @@map("audit_logs")
 }
 
+// =====================================================
+// PROFILE FEEDBACK
+// =====================================================
+
+model ProfileFeedback {
+  id                String   @id @default(uuid()) @db.Uuid
+  studentProfileId  String   @map("student_profile_id") @db.Uuid
+  giverUserId       String   @map("giver_user_id") @db.Uuid
+  rating            Int      @default(5)
+  message           String   @db.Text
+  relationship      String?
+  isVerified        Boolean  @default(false) @map("is_verified")
+  isPublic          Boolean  @default(true) @map("is_public")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  studentProfile StudentProfile @relation("ReceivedFeedback", fields: [studentProfileId], references: [id], onDelete: Cascade)
+  giver          User           @relation("GivenFeedback", fields: [giverUserId], references: [id], onDelete: Cascade)
+
+  @@index([studentProfileId, createdAt])
+  @@map("profile_feedbacks")
+}
+
 model SystemSetting {
   id          String   @id @default(uuid()) @db.Uuid
   key         String   @unique
@@ -1054,3 +1147,4 @@ model StudentFollow {
   @@index([followingId])
   @@map("student_follows")
 }
+

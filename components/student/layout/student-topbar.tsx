@@ -3,19 +3,21 @@
 
 import Link from 'next/link'
 import {
-  Menu,
-  Bell,
+  PanelLeft,
   Search,
   User,
   ChevronDown,
-  PanelLeft,
+  Bell,
+  Settings,
 } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 import { LogoutButton } from '@/components/shared/logout-button'
 
 type Props = {
-  onMenuClick: () => void
-  onToggleCollapse: () => void
+  onMenuClick: () => void           // buka sidebar (mobile)
+  onToggleCollapse: () => void      // collapse/expand sidebar (desktop)
+  collapsed: boolean                // state collapse
+  onOpenCommandPalette: () => void
   user: {
     fullName: string | null
     email: string
@@ -26,10 +28,20 @@ type Props = {
 export function StudentTopbar({
   onMenuClick,
   onToggleCollapse,
+  collapsed,
+  onOpenCommandPalette,
   user,
 }: Props) {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
+
+  const [isMac, setIsMac] = useState(false)
+  useEffect(() => {
+    setIsMac(
+      typeof navigator !== 'undefined' &&
+        /Mac|iPhone|iPad/.test(navigator.platform)
+    )
+  }, [])
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -49,54 +61,82 @@ export function StudentTopbar({
     .slice(0, 2)
 
   return (
-    <header className="h-16 bg-white border-b border-outline-variant/30 flex items-center gap-2 sm:gap-3 px-4 sm:px-6 shrink-0">
-      {/* Mobile menu button */}
+    <header className="sticky top-0 z-30 h-16 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/30 flex items-center gap-2 sm:gap-3 px-3 sm:px-6">
+      {/* ============================================ */}
+      {/* Sidebar toggle — MOBILE (buka sidebar)       */}
+      {/* ============================================ */}
       <button
         type="button"
         onClick={onMenuClick}
-        className="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors"
+        className="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors shrink-0"
         aria-label="Buka menu"
-      >
-        <Menu className="w-5 h-5" />
-      </button>
-
-      {/* Desktop toggle button */}
-      <button
-        type="button"
-        onClick={onToggleCollapse}
-        className="hidden lg:flex p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors"
-        aria-label="Toggle sidebar"
-        title="Toggle sidebar"
       >
         <PanelLeft className="w-5 h-5" />
       </button>
 
-      {/* Search (desktop) */}
-      <div className="hidden md:flex items-center flex-1 max-w-md">
-        <div className="relative w-full">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
-          <input
-            type="text"
-            placeholder="Cari lowongan, perusahaan..."
-            className="w-full pl-10 pr-4 py-2 rounded-full bg-surface-container text-sm placeholder:text-on-surface-variant/70 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all"
-          />
-        </div>
-      </div>
+      {/* ============================================ */}
+      {/* Sidebar toggle — DESKTOP (collapse/expand)   */}
+      {/* ============================================ */}
+      <button
+        type="button"
+        onClick={onToggleCollapse}
+        className="hidden lg:flex p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors shrink-0"
+        aria-label={collapsed ? 'Perluas sidebar' : 'Perkecil sidebar'}
+        title={collapsed ? 'Perluas sidebar' : 'Perkecil sidebar'}
+      >
+        <PanelLeft
+          className={`w-5 h-5 transition-transform duration-300 ${
+            collapsed ? 'rotate-180' : ''
+          }`}
+        />
+      </button>
+
+      {/* ============================================ */}
+      {/* Search trigger                                */}
+      {/* ============================================ */}
+      <button
+        type="button"
+        onClick={onOpenCommandPalette}
+        className="hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-surface-container hover:bg-surface-container-high text-left transition-colors group w-full max-w-md"
+        aria-label="Buka pencarian"
+      >
+        <Search className="w-4 h-4 text-on-surface-variant shrink-0" />
+        <span className="flex-1 text-sm text-on-surface-variant/70 truncate text-left">
+          Cari halaman...
+        </span>
+        <kbd className="hidden md:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-surface-container-lowest text-[10px] font-mono font-semibold text-on-surface-variant ring-1 ring-outline-variant/30">
+          {isMac ? '⌘' : 'Ctrl'}+K
+        </kbd>
+      </button>
+
+      {/* Mobile search icon */}
+      <button
+        type="button"
+        onClick={onOpenCommandPalette}
+        className="sm:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors shrink-0"
+        aria-label="Buka pencarian"
+      >
+        <Search className="w-5 h-5" />
+      </button>
 
       {/* Spacer */}
-      <div className="flex-1 md:hidden" />
+      <div className="flex-1" />
 
-      {/* Right actions */}
-      <div className="flex items-center gap-1.5">
+      {/* ============================================ */}
+      {/* Right actions                                 */}
+      {/* ============================================ */}
+      <div className="flex items-center gap-1.5 shrink-0">
+        {/* Notifications */}
         <Link
           href="/student/notifications"
           className="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container transition-colors"
           aria-label="Notifikasi"
         >
           <Bell className="w-5 h-5" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500 ring-2 ring-white" />
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500 ring-2 ring-surface-container-lowest" />
         </Link>
 
+        {/* User menu */}
         <div className="relative" ref={menuRef}>
           <button
             type="button"
@@ -118,7 +158,7 @@ export function StudentTopbar({
           </button>
 
           {menuOpen && (
-            <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg ring-1 ring-outline-variant/30 overflow-hidden z-50">
+            <div className="absolute right-0 mt-2 w-56 bg-surface-container-lowest rounded-xl shadow-lg ring-1 ring-outline-variant/30 overflow-hidden z-50">
               <div className="px-4 py-3 border-b border-outline-variant/30">
                 <p className="text-sm font-semibold text-on-surface truncate">
                   {user.fullName || 'User'}
@@ -142,9 +182,7 @@ export function StudentTopbar({
                   onClick={() => setMenuOpen(false)}
                   className="flex items-center gap-3 px-4 py-2 text-sm text-on-surface hover:bg-surface-container transition-colors"
                 >
-                  <span className="w-4 h-4 flex items-center justify-center text-on-surface-variant">
-                    ⚙️
-                  </span>
+                  <Settings className="w-4 h-4 text-on-surface-variant" />
                   <span>Pengaturan</span>
                 </Link>
               </div>

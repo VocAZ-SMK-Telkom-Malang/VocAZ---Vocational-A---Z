@@ -1,6 +1,7 @@
 // lib/student/actions.ts
 'use server'
 
+
 import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { getServerSession } from '@/lib/auth/session'
@@ -8,61 +9,53 @@ import { getServerSession } from '@/lib/auth/session'
 type ActionResult = { ok: boolean; error?: string; data?: any }
 
 // ============================================
+/// lib/student/actions.ts
+
+// ============================================
 // HELPER: Get current student profile
+// 1. Coba dari auth session
+// 2. Fallback ke user student pertama di DB (untuk dev)
+// 3. Auto-create profile kalau belum ada
 // ============================================
 
 async function getCurrentStudentProfile() {
+  // 1. Ambil session
   const session = await getServerSession()
-  if (!session?.user) return null
 
+  if (!session?.user?.id) {
+    console.warn('❌ [profile] Tidak ada session — user belum login')
+    return null
+  }
+
+  // 2. Cari User by neonAuthUserId
   const user = await prisma.user.findUnique({
     where: { neonAuthUserId: session.user.id },
     include: { studentProfile: true },
   })
 
-  return user?.studentProfile || null
-}
-
-// ============================================
-// TOGGLE SAVE JOB
-// ============================================
-
-export async function toggleSaveJob(jobId: string): Promise<ActionResult> {
-  try {
-    const profile = await getCurrentStudentProfile()
-    if (!profile) {
-      return { ok: false, error: 'Harus login sebagai student' }
-    }
-
-    const existing = await prisma.savedJob.findUnique({
-      where: {
-        studentId_jobId: {
-          studentId: profile.id,
-          jobId,
-        },
-      },
-    })
-
-    if (existing) {
-      await prisma.savedJob.delete({ where: { id: existing.id } })
-      revalidatePath('/student/saved')
-      return { ok: true, data: { saved: false } }
-    }
-
-    await prisma.savedJob.create({
-      data: { studentId: profile.id, jobId },
-    })
-    revalidatePath('/student/saved')
-    return { ok: true, data: { saved: true } }
-  } catch (err) {
-    console.error('Toggle save job error:', err)
-    return {
-      ok: false,
-      error: err instanceof Error ? err.message : 'Gagal menyimpan',
-    }
+  if (!user) {
+    console.warn('❌ [profile] User tidak ditemukan untuk auth ID:', session.user.id)
+    return null
   }
-}
 
+  // 3. Kalau profile udah ada, return
+  if (user.studentProfile) {
+    console.log('✓ [profile] User:', user.email, '| Profile:', user.studentProfile.id)
+    return user.studentProfile
+  }
+
+  // 4. Auto-create profile kalau belum ada
+  console.log('⚠ [profile] Auto-create untuk:', user.email)
+  const newProfile = await prisma.studentProfile.create({
+    data: {
+      userId: user.id,
+      headline: 'Student',
+      city: 'Jakarta',
+      province: 'DKI Jakarta',
+    },
+  })
+  return newProfile
+}
 // ============================================
 // APPLY JOB
 // ============================================
@@ -218,7 +211,7 @@ type SaveShowcaseInput = {
   description?: string
   videoUrl: string
   videoKey?: string | null
-  videoSource: 'upload' | 'youtube' | 'tiktok' | 'gdrive' | 'instagram'
+  videoSource: 'upload' | 'youtube' | 'tiktok' | 'gdrive' | 'instagram' | 'vimeo' | 'external'
   thumbnailUrl?: string | null
   thumbnailKey?: string | null
   category?: string
@@ -293,6 +286,9 @@ export async function saveShowcaseVideo(
 
       revalidatePath('/student/showcase/my')
       revalidatePath('/student/dashboard')
+      revalidatePath('/student/profile')
+      revalidatePath('/student/talents')
+      revalidatePath('/talenta')
 
       return { ok: true, data: { id: updated.id } }
     }
@@ -332,6 +328,9 @@ export async function saveShowcaseVideo(
 
     revalidatePath('/student/showcase/my')
     revalidatePath('/student/dashboard')
+    revalidatePath('/student/profile')
+    revalidatePath('/student/talents')
+    revalidatePath('/talenta')
 
     return { ok: true, data: { id: created.id } }
   } catch (err) {
@@ -733,6 +732,9 @@ export async function fetchShowcaseFeed(input: {
   page: number
   limit?: number
   excludeStudentId?: string
+  search?: string
+  category?: string
+  sort?: 'terbaru' | 'terpopuler' | 'trending' | 'views'
 }) {
   const { getShowcaseFeed } = await import('./queries')
   return getShowcaseFeed(input)
@@ -744,4 +746,216 @@ export async function fetchVideoComments(
 ) {
   const { getVideoComments } = await import('./queries')
   return getVideoComments(videoId, options)
+}
+
+// lib/student/actions.ts
+// (tambahkan di akhir)
+
+export async function updateStudentCover(
+  coverImageUrl: string,
+  coverImageKey: string
+): Promise<ActionResult> {
+  try {
+    const profile = await getCurrentStudentProfile()
+    if (!profile) return { ok: false, error: 'Harus login sebagai student' }
+
+    await prisma.studentProfile.update({
+      where: { id: profile.id },
+      data: {
+        coverImageUrl,
+        coverImageKey,
+      },
+    })
+
+    await prisma.auditLog.create({
+      data: {
+        actorId: profile.userId,
+        action: 'student.cover.update',
+        targetType: 'student_profile',
+        targetId: profile.id,
+      },
+    })
+
+    revalidatePath('/student/profile')
+    revalidatePath('/student/profile/personal')
+    revalidatePath('/student/talents')
+    revalidatePath(`/student/talents/${profile.id}`)
+    revalidatePath('/talenta')
+    revalidatePath(`/talenta/${profile.id}`)
+
+    return { ok: true }
+  } catch (err) {
+    console.error('Update cover error:', err)
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : 'Gagal update cover',
+    }
+  }
+}
+
+export async function removeStudentCover(): Promise<ActionResult> {
+  try {
+    const profile = await getCurrentStudentProfile()
+    if (!profile) return { ok: false, error: 'Harus login' }
+
+    await prisma.studentProfile.update({
+      where: { id: profile.id },
+      data: {
+        coverImageUrl: null,
+        coverImageKey: null,
+      },
+    })
+
+    revalidatePath('/student/profile')
+    revalidatePath('/student/profile/personal')
+    revalidatePath('/student/talents')
+    revalidatePath(`/student/talents/${profile.id}`)
+    revalidatePath('/talenta')
+    revalidatePath(`/talenta/${profile.id}`)
+
+    return { ok: true }
+  } catch (err) {
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : 'Gagal hapus cover',
+    }
+  }
+}
+
+export async function toggleSaveJob(jobId: string): Promise<ActionResult> {
+  let saved = false
+
+  try {
+    const profile = await getCurrentStudentProfile()
+    console.log('🔵 [toggleSaveJob] profile:', profile ? profile.id : 'NULL')
+
+    if (!profile) {
+      return { ok: false, error: 'Student tidak ditemukan' }
+    }
+
+    const existing = await prisma.savedJob.findUnique({
+      where: {
+        studentId_jobId: { studentId: profile.id, jobId },
+      },
+    })
+
+    if (existing) {
+      await prisma.savedJob.delete({ where: { id: existing.id } })
+      console.log('🔵 [toggleSaveJob] UNSAVED:', jobId)
+      saved = false
+    } else {
+      const created = await prisma.savedJob.create({
+        data: { studentId: profile.id, jobId },
+      })
+      console.log('🔵 [toggleSaveJob] SAVED:', created.id)
+      saved = true
+    }
+  } catch (err) {
+    console.error('❌ [toggleSaveJob] DB error:', err)
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : 'Gagal menyimpan',
+    }
+  }
+
+  // ============================================
+  // REVALIDATE — di LUAR try/catch
+  // Kalau error, ga bikin DB operation dianggap gagal
+  // ============================================
+  try {
+    revalidatePath('/student/saved')
+    revalidatePath('/student/jobs')
+    revalidatePath(`/student/jobs/${jobId}`)
+  } catch (revalErr) {
+    // Diamkan — di script tsx ga ada Next.js runtime
+    console.warn('⚠ [toggleSaveJob] revalidatePath skipped:', revalErr instanceof Error ? revalErr.message : revalErr)
+  }
+
+  return { ok: true, data: { saved } }
+}
+
+// ============================================
+// SAVE COMPANY
+// ============================================
+
+export async function toggleSaveCompany(companyId: string): Promise<ActionResult> {
+  let saved = false
+
+  try {
+    const profile = await getCurrentStudentProfile()
+    console.log('🔵 [toggleSaveCompany] profile:', profile ? profile.id : 'NULL')
+
+    if (!profile) {
+      return { ok: false, error: 'Student tidak ditemukan' }
+    }
+
+    const existing = await prisma.savedCompany.findUnique({
+      where: {
+        studentId_companyId: { studentId: profile.id, companyId },
+      },
+    })
+
+    if (existing) {
+      await prisma.savedCompany.delete({ where: { id: existing.id } })
+      console.log('🔵 [toggleSaveCompany] UNSAVED:', companyId)
+      saved = false
+    } else {
+      const created = await prisma.savedCompany.create({
+        data: { studentId: profile.id, companyId },
+      })
+      console.log('🔵 [toggleSaveCompany] SAVED:', created.id)
+      saved = true
+    }
+  } catch (err) {
+    console.error('❌ [toggleSaveCompany] DB error:', err)
+    return {
+      ok: false,
+      error: err instanceof Error ? err.message : 'Gagal menyimpan',
+    }
+  }
+
+  // Revalidate di luar try
+  try {
+    revalidatePath('/student/saved')
+    revalidatePath('/student/companies')
+    revalidatePath(`/student/companies/${companyId}`)
+  } catch (revalErr) {
+    console.warn('⚠ [toggleSaveCompany] revalidate skipped:', revalErr instanceof Error ? revalErr.message : revalErr)
+  }
+
+  return { ok: true, data: { saved } }
+}
+
+// ============================================
+// GET SAVED IDS (buat sync state bookmark di list)
+// ============================================
+
+export async function getSavedJobIds(): Promise<string[]> {
+  try {
+    const profile = await getCurrentStudentProfile()
+    if (!profile) return []
+
+    const items = await prisma.savedJob.findMany({
+      where: { studentId: profile.id },
+      select: { jobId: true },
+    })
+    return items.map((i) => i.jobId)
+  } catch {
+    return []
+  }
+}
+
+export async function getSavedCompanyIds(): Promise<string[]> {
+  try {
+    const profile = await getCurrentStudentProfile()
+    if (!profile) return []
+
+    const items = await prisma.savedCompany.findMany({
+      where: { studentId: profile.id },
+      select: { companyId: true },
+    })
+    return items.map((i) => i.companyId)
+  } catch {
+    return []
+  }
 }

@@ -61,6 +61,9 @@
   --font-mono: 'Space Grotesk', monospace;
 }
 
+/* ============================================
+   BASE
+   ============================================ */
 ::-webkit-scrollbar {
   display: none;
 }
@@ -69,6 +72,9 @@ body {
   overscroll-behavior: none;
 }
 
+/* ============================================
+   MATERIAL SYMBOLS
+   ============================================ */
 .material-symbols-outlined {
   font-family: 'Material Symbols Outlined';
   font-weight: normal;
@@ -82,6 +88,7 @@ body {
   word-wrap: normal;
   direction: ltr;
   -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
 

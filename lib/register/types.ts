@@ -187,3 +187,53 @@ export const verificationSchema = z.object({
     .optional()
     .or(z.literal('')),
 })
+
+// Tambahkan di lib/register/types.ts
+
+export type FinalizeSchoolInput = {
+  neonAuthUserId: string
+  // Step 1
+  plan: 'basic' | 'pro' | 'plus'
+  planPrice: number
+  // Step 2
+  paymentMethod: string
+  paymentReference: string
+  // Step 3
+  email: string
+  password: string
+  fullName: string
+  position?: string
+  // Step 4
+  schoolName: string
+  npsn?: string
+  level: 'smk'
+  accreditation?: string
+  address?: string
+  city?: string
+  province?: string
+  bkkName?: string
+  bkkContact?: string
+  bkkEmail?: string
+  bkkPhone?: string
+}
+
+// lib/register/types.ts
+// (ganti yang lama)
+
+export type CertInstitutionTypeId = 'lsp_bnsp' | 'industry'
+
+export type FinalizeCertificationInput = {
+  neonAuthUserId: string
+  type: CertInstitutionTypeId
+  email: string
+  password: string
+  fullName: string
+  position?: string
+  institutionName: string
+  licenseNumber?: string
+  emailInstitution?: string
+  phone?: string
+  website?: string
+  address?: string
+  description?: string
+}

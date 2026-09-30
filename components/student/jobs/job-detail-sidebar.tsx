@@ -1,4 +1,5 @@
 // components/student/jobs/job-detail-sidebar.tsx
+import { JOBS, formatSalary, type Job } from './types'
 import Link from 'next/link'
 import {
   Building2,

@@ -1,3 +1,4 @@
+// test-prisma.ts
 import 'dotenv/config'
 import { PrismaClient } from './generated/prisma/client'
 import { PrismaNeon } from '@prisma/adapter-neon'
@@ -6,22 +7,10 @@ const adapter = new PrismaNeon({
   connectionString: process.env.DATABASE_URL!,
 })
 
-const prisma = new PrismaClient({ adapter })
+const p = new PrismaClient({ adapter })
 
-async function main() {
-  console.log('🔍 typeof prisma.skill:', typeof prisma.skill)
-  console.log('🔍 typeof prisma.industry:', typeof prisma.industry)
-  console.log('🔍 typeof prisma.province:', typeof prisma.province)
+console.log('savedCompany:', typeof (p as any).savedCompany)
+console.log('savedJob:', typeof (p as any).savedJob)
+console.log('company:', typeof (p as any).company)
 
-  const count = await prisma.industry.count()
-  console.log('✅ industries count:', count)
-}
-
-main()
-  .catch((e) => {
-    console.error('❌ Error:', e)
-    process.exit(1)
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  })
+process.exit(0)
