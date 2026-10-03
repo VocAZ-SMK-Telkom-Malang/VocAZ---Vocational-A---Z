@@ -20,7 +20,7 @@ export default async function SchoolDashboardPage() {
     }),
     prisma.schoolStudent.findMany({
       where: { schoolId: ctx.schoolId },
-      orderBy: { createdAt: 'desc' },
+      orderBy: { id: 'desc' },
       take: 5,
       select: {
         id: true,
@@ -33,7 +33,9 @@ export default async function SchoolDashboardPage() {
             user: {
               select: { fullName: true, avatarUrl: true },
             },
-            program: false,
+            program: {
+              select: { id: true, name: true },
+            },
           },
         },
       },

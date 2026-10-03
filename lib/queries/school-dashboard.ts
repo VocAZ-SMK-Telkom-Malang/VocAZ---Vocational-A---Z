@@ -117,14 +117,11 @@ export async function getSchoolDashboardStats(schoolId: string) {
     prisma.schoolStudent.count({ where: { schoolId, status: 'active' } }),
     prisma.schoolStudent.count({ where: { schoolId, status: 'graduated' } }),
     prisma.careerMonitoring.count({
-      where: { schoolId, stage: 'placement' },
+      where: { schoolId, stage: 'placed' },
     }),
     prisma.schoolStudent.count({
       where: {
         schoolId,
-        createdAt: {
-          gte: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
-        },
       },
     }),
     prisma.industryPartner.count({ where: { schoolId } }),

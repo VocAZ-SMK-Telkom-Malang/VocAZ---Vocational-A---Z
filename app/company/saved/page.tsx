@@ -36,7 +36,7 @@ export default async function CompanySavedPage({
     city: sp.city ?? 'all',
     skill: sp.skill ?? 'all',
     openToWorkOnly: sp.openToWork === '1',
-    sortBy: sp.sortBy ?? 'newest',
+    sortBy: (sp.sortBy ?? 'newest') as 'newest' | 'oldest' | 'name' | 'skills',
     page: Number(sp.page) || 1,
     pageSize: 12,
   }

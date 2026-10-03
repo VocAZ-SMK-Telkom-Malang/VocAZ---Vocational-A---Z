@@ -39,7 +39,7 @@ export default async function CompanyShowcasePage({
     minScore: Number(sp.minScore) || 0,
     category: sp.category ?? 'all',
     durationFilter: sp.duration ?? 'all',
-    sortBy: sp.sortBy ?? 'match',
+    sortBy: (sp.sortBy ?? 'match') as 'match' | 'newest' | 'popular' | 'views',
     page: Number(sp.page) || 1,
     pageSize: 12,
   }

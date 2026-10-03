@@ -104,3 +104,16 @@ function mapSize(s: string | null): string {
   }
   return s ? map[s] ?? s : '-'
 }
+
+export const getCompanyBySlug = getCompanyDetailBySlug
+
+export async function isCompanySaved(
+  companyId: string,
+  studentId?: string
+): Promise<boolean> {
+  if (!studentId) return false
+  const found = await prisma.savedCompany.findUnique({
+    where: { studentId_companyId: { studentId, companyId } },
+  })
+  return !!found
+}

@@ -141,7 +141,7 @@ export default async function CompanyDetailPage({ params }: Props) {
                 Lowongan Aktif
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {company.jobs.map((job) => (
+                {company.jobs.map((job: { id: string; title: string; slug: string; city: string | null; employmentType: string; skills: string[] }) => (
                   <Link
                     key={job.id}
                     href={`/lowongan/${job.slug}`}
@@ -155,7 +155,7 @@ export default async function CompanyDetailPage({ params }: Props) {
                     </p>
                     {job.skills.length > 0 && (
                       <div className="flex flex-wrap gap-1">
-                        {job.skills.slice(0, 2).map((skill) => (
+                        {job.skills.slice(0, 2).map((skill: string) => (
                           <span
                             key={skill}
                             className="inline-flex items-center px-2 py-0.5 rounded bg-surface-container text-on-surface-variant text-[10px] font-semibold"

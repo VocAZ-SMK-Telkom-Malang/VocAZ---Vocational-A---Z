@@ -91,7 +91,7 @@ export default async function AdminMonitoringPage() {
 
       {/* Two columns: Top Companies + Top Schools */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <TopCompanies companies={topCompanies} />
+        <TopCompanies companies={topCompanies as any} />
         <TopSchools schools={topSchools} />
       </div>
 

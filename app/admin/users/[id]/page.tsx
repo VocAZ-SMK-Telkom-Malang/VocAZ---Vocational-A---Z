@@ -159,7 +159,7 @@ export default async function UserDetailPage({
                     Skills ({user.studentProfile.skills.length})
                   </p>
                   <div className="flex flex-wrap gap-1.5">
-                    {user.studentProfile.skills.map((s) => (
+                    {user.studentProfile.skills.map((s: { id: string; skill: { name: string } }) => (
                       <span
                         key={s.id}
                         className="px-2.5 py-1 rounded-full bg-primary/10 text-primary font-mono text-[11px] font-semibold"
@@ -173,28 +173,28 @@ export default async function UserDetailPage({
             </AdminCard>
           )}
 
-          {user.company && (
+          {user.ownedCompany && (
             <AdminCard>
               <AdminCardHeader title="Profil Perusahaan" />
               <dl className="space-y-3">
-                <InfoRow label="Nama" value={user.company.name} />
-                <InfoRow label="Industri" value={user.company.industry || '-'} />
-                <InfoRow label="Kota" value={user.company.city || '-'} />
+                <InfoRow label="Nama" value={user.ownedCompany.name} />
+                <InfoRow label="Industri" value={user.ownedCompany.industry || '-'} />
+                <InfoRow label="Kota" value={user.ownedCompany.city || '-'} />
                 <InfoRow
                   label="Status Verifikasi"
-                  value={user.company.verificationStatus}
+                  value={user.ownedCompany.verificationStatus}
                 />
               </dl>
             </AdminCard>
           )}
 
-          {user.school && (
+          {user.ownedSchool && (
             <AdminCard>
               <AdminCardHeader title="Profil Sekolah" />
               <dl className="space-y-3">
-                <InfoRow label="Nama" value={user.school.name} />
-                <InfoRow label="NPSN" value={user.school.npsn || '-'} />
-                <InfoRow label="Kota" value={user.school.city || '-'} />
+                <InfoRow label="Nama" value={user.ownedSchool.name} />
+                <InfoRow label="NPSN" value={user.ownedSchool.npsn || '-'} />
+                <InfoRow label="Kota" value={user.ownedSchool.city || '-'} />
               </dl>
             </AdminCard>
           )}

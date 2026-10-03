@@ -40,7 +40,7 @@ export default async function Home() {
         <HeroSection stats={stats} />
         <TalentSection talents={talents} />
         <VideoSection videos={videos} />
-        <OpportunitySection jobs={jobs} />
+        <OpportunitySection jobs={jobs as any} />
         <StakeholderSection />
         <EcosystemSection />
         <PartnersSection />

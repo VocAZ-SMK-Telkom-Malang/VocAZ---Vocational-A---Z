@@ -137,6 +137,7 @@ model Company {
   verifiedAt         DateTime?                 @map("verified_at")
   createdAt          DateTime                  @default(now()) @map("created_at")
   updatedAt          DateTime                  @updatedAt @map("updated_at")
+  deletedAt          DateTime?                 @map("deleted_at")
   logoColor          String?                   @map("logo_color")
   tagline            String?
   employeeRange      String?                   @map("employee_range")
@@ -426,6 +427,7 @@ model Application {
   aiInterview         AiInterview?
   appliedAt           DateTime                   @default(now()) @map("applied_at")
   updatedAt           DateTime                   @updatedAt @map("updated_at")
+  reviewedAt          DateTime?                  @map("reviewed_at")
   nextStep            String?                    @map("next_step")
   interviewDate       DateTime?                  @map("interview_date")
   recruiterName       String?                    @map("recruiter_name")

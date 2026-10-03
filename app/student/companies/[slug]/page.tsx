@@ -91,10 +91,10 @@ export default async function CompanyDetailPage({ params }: Props) {
               </div>
             ) : (
               <div className="space-y-3">
-                {company.jobs.map((job) => {
+                {(company as any).jobs.map((job: { id: string; slug: string; title: string; location: string | null; employmentType: string; workMode: string; skills?: string[] }) => {
                   const initials = company.name
                     .split(' ')
-                    .map((w) => w[0])
+                    .map((w: string) => w[0])
                     .join('')
                     .toUpperCase()
                     .slice(0, 2)
@@ -144,7 +144,7 @@ export default async function CompanyDetailPage({ params }: Props) {
 
                         {job.skills.length > 0 && (
                           <div className="flex flex-wrap gap-1 mt-2">
-                            {job.skills.slice(0, 3).map((s) => (
+                            {(job.skills ?? []).slice(0, 3).map((s: string) => (
                               <span
                                 key={s}
                                 className="px-1.5 py-0.5 rounded bg-primary/5 text-[9px] font-semibold text-primary"

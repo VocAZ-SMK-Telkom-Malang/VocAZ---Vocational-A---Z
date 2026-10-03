@@ -62,6 +62,7 @@ export type CompanyMinAggregateOutputType = {
   verifiedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  deletedAt: Date | null
   logoColor: string | null
   tagline: string | null
   employeeRange: string | null
@@ -97,6 +98,7 @@ export type CompanyMaxAggregateOutputType = {
   verifiedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  deletedAt: Date | null
   logoColor: string | null
   tagline: string | null
   employeeRange: string | null
@@ -133,6 +135,7 @@ export type CompanyCountAggregateOutputType = {
   verifiedAt: number
   createdAt: number
   updatedAt: number
+  deletedAt: number
   logoColor: number
   tagline: number
   employeeRange: number
@@ -183,6 +186,7 @@ export type CompanyMinAggregateInputType = {
   verifiedAt?: true
   createdAt?: true
   updatedAt?: true
+  deletedAt?: true
   logoColor?: true
   tagline?: true
   employeeRange?: true
@@ -218,6 +222,7 @@ export type CompanyMaxAggregateInputType = {
   verifiedAt?: true
   createdAt?: true
   updatedAt?: true
+  deletedAt?: true
   logoColor?: true
   tagline?: true
   employeeRange?: true
@@ -254,6 +259,7 @@ export type CompanyCountAggregateInputType = {
   verifiedAt?: true
   createdAt?: true
   updatedAt?: true
+  deletedAt?: true
   logoColor?: true
   tagline?: true
   employeeRange?: true
@@ -378,6 +384,7 @@ export type CompanyGroupByOutputType = {
   verifiedAt: Date | null
   createdAt: Date
   updatedAt: Date
+  deletedAt: Date | null
   logoColor: string | null
   tagline: string | null
   employeeRange: string | null
@@ -438,6 +445,7 @@ export type CompanyWhereInput = {
   verifiedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
   logoColor?: Prisma.StringNullableFilter<"Company"> | string | null
   tagline?: Prisma.StringNullableFilter<"Company"> | string | null
   employeeRange?: Prisma.StringNullableFilter<"Company"> | string | null
@@ -486,6 +494,7 @@ export type CompanyOrderByWithRelationInput = {
   verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   logoColor?: Prisma.SortOrderInput | Prisma.SortOrder
   tagline?: Prisma.SortOrderInput | Prisma.SortOrder
   employeeRange?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -537,6 +546,7 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   verifiedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
   logoColor?: Prisma.StringNullableFilter<"Company"> | string | null
   tagline?: Prisma.StringNullableFilter<"Company"> | string | null
   employeeRange?: Prisma.StringNullableFilter<"Company"> | string | null
@@ -585,6 +595,7 @@ export type CompanyOrderByWithAggregationInput = {
   verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   logoColor?: Prisma.SortOrderInput | Prisma.SortOrder
   tagline?: Prisma.SortOrderInput | Prisma.SortOrder
   employeeRange?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -630,6 +641,7 @@ export type CompanyScalarWhereWithAggregatesInput = {
   verifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Company"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Company"> | Date | string | null
   logoColor?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   tagline?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   employeeRange?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
@@ -666,6 +678,7 @@ export type CompanyCreateInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -714,6 +727,7 @@ export type CompanyUncheckedCreateInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -760,6 +774,7 @@ export type CompanyUpdateInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -808,6 +823,7 @@ export type CompanyUncheckedUpdateInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -855,6 +871,7 @@ export type CompanyCreateManyInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -891,6 +908,7 @@ export type CompanyUpdateManyMutationInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -928,6 +946,7 @@ export type CompanyUncheckedUpdateManyInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -978,6 +997,7 @@ export type CompanyCountOrderByAggregateInput = {
   verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   logoColor?: Prisma.SortOrder
   tagline?: Prisma.SortOrder
   employeeRange?: Prisma.SortOrder
@@ -1020,6 +1040,7 @@ export type CompanyMaxOrderByAggregateInput = {
   verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   logoColor?: Prisma.SortOrder
   tagline?: Prisma.SortOrder
   employeeRange?: Prisma.SortOrder
@@ -1055,6 +1076,7 @@ export type CompanyMinOrderByAggregateInput = {
   verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  deletedAt?: Prisma.SortOrder
   logoColor?: Prisma.SortOrder
   tagline?: Prisma.SortOrder
   employeeRange?: Prisma.SortOrder
@@ -1300,6 +1322,7 @@ export type CompanyCreateWithoutOwnerInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -1346,6 +1369,7 @@ export type CompanyUncheckedCreateWithoutOwnerInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -1408,6 +1432,7 @@ export type CompanyUpdateWithoutOwnerInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1454,6 +1479,7 @@ export type CompanyUncheckedUpdateWithoutOwnerInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1500,6 +1526,7 @@ export type CompanyCreateWithoutVerificationsInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -1547,6 +1574,7 @@ export type CompanyUncheckedCreateWithoutVerificationsInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -1608,6 +1636,7 @@ export type CompanyUpdateWithoutVerificationsInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1655,6 +1684,7 @@ export type CompanyUncheckedUpdateWithoutVerificationsInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1700,6 +1730,7 @@ export type CompanyCreateWithoutMembersInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -1747,6 +1778,7 @@ export type CompanyUncheckedCreateWithoutMembersInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -1808,6 +1840,7 @@ export type CompanyUpdateWithoutMembersInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1855,6 +1888,7 @@ export type CompanyUncheckedUpdateWithoutMembersInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1900,6 +1934,7 @@ export type CompanyCreateWithoutPreferencesInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -1947,6 +1982,7 @@ export type CompanyUncheckedCreateWithoutPreferencesInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -2008,6 +2044,7 @@ export type CompanyUpdateWithoutPreferencesInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2055,6 +2092,7 @@ export type CompanyUncheckedUpdateWithoutPreferencesInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2100,6 +2138,7 @@ export type CompanyCreateWithoutSkillPreferencesInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -2147,6 +2186,7 @@ export type CompanyUncheckedCreateWithoutSkillPreferencesInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -2208,6 +2248,7 @@ export type CompanyUpdateWithoutSkillPreferencesInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2255,6 +2296,7 @@ export type CompanyUncheckedUpdateWithoutSkillPreferencesInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2300,6 +2342,7 @@ export type CompanyCreateWithoutJobsInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -2347,6 +2390,7 @@ export type CompanyUncheckedCreateWithoutJobsInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -2408,6 +2452,7 @@ export type CompanyUpdateWithoutJobsInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2455,6 +2500,7 @@ export type CompanyUncheckedUpdateWithoutJobsInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2500,6 +2546,7 @@ export type CompanyCreateWithoutSavedByInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -2547,6 +2594,7 @@ export type CompanyUncheckedCreateWithoutSavedByInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -2608,6 +2656,7 @@ export type CompanyUpdateWithoutSavedByInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2655,6 +2704,7 @@ export type CompanyUncheckedUpdateWithoutSavedByInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2700,6 +2750,7 @@ export type CompanyCreateWithoutIndustryPartnersInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -2747,6 +2798,7 @@ export type CompanyUncheckedCreateWithoutIndustryPartnersInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -2808,6 +2860,7 @@ export type CompanyUpdateWithoutIndustryPartnersInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2855,6 +2908,7 @@ export type CompanyUncheckedUpdateWithoutIndustryPartnersInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2900,6 +2954,7 @@ export type CompanyCreateWithoutCareerMonitoringsInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -2947,6 +3002,7 @@ export type CompanyUncheckedCreateWithoutCareerMonitoringsInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -3008,6 +3064,7 @@ export type CompanyUpdateWithoutCareerMonitoringsInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3055,6 +3112,7 @@ export type CompanyUncheckedUpdateWithoutCareerMonitoringsInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3100,6 +3158,7 @@ export type CompanyCreateWithoutSavedTalentsInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -3147,6 +3206,7 @@ export type CompanyUncheckedCreateWithoutSavedTalentsInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -3208,6 +3268,7 @@ export type CompanyUpdateWithoutSavedTalentsInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3255,6 +3316,7 @@ export type CompanyUncheckedUpdateWithoutSavedTalentsInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3300,6 +3362,7 @@ export type CompanyCreateWithoutInvitationsInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -3347,6 +3410,7 @@ export type CompanyUncheckedCreateWithoutInvitationsInput = {
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  deletedAt?: Date | string | null
   logoColor?: string | null
   tagline?: string | null
   employeeRange?: string | null
@@ -3408,6 +3472,7 @@ export type CompanyUpdateWithoutInvitationsInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3455,6 +3520,7 @@ export type CompanyUncheckedUpdateWithoutInvitationsInput = {
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -3604,6 +3670,7 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  deletedAt?: boolean
   logoColor?: boolean
   tagline?: boolean
   employeeRange?: boolean
@@ -3653,6 +3720,7 @@ export type CompanySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  deletedAt?: boolean
   logoColor?: boolean
   tagline?: boolean
   employeeRange?: boolean
@@ -3691,6 +3759,7 @@ export type CompanySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  deletedAt?: boolean
   logoColor?: boolean
   tagline?: boolean
   employeeRange?: boolean
@@ -3729,6 +3798,7 @@ export type CompanySelectScalar = {
   verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  deletedAt?: boolean
   logoColor?: boolean
   tagline?: boolean
   employeeRange?: boolean
@@ -3741,7 +3811,7 @@ export type CompanySelectScalar = {
   facebookUrl?: boolean
 }
 
-export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "slug" | "logoUrl" | "logoKey" | "coverUrl" | "coverKey" | "industry" | "companySize" | "website" | "email" | "phone" | "address" | "city" | "province" | "description" | "culture" | "benefits" | "foundedYear" | "verificationStatus" | "verifiedAt" | "createdAt" | "updatedAt" | "logoColor" | "tagline" | "employeeRange" | "featured" | "rating" | "reviewCount" | "matchingWeights" | "linkedinUrl" | "instagramUrl" | "facebookUrl", ExtArgs["result"]["company"]>
+export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "slug" | "logoUrl" | "logoKey" | "coverUrl" | "coverKey" | "industry" | "companySize" | "website" | "email" | "phone" | "address" | "city" | "province" | "description" | "culture" | "benefits" | "foundedYear" | "verificationStatus" | "verifiedAt" | "createdAt" | "updatedAt" | "deletedAt" | "logoColor" | "tagline" | "employeeRange" | "featured" | "rating" | "reviewCount" | "matchingWeights" | "linkedinUrl" | "instagramUrl" | "facebookUrl", ExtArgs["result"]["company"]>
 export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   careerMonitorings?: boolean | Prisma.Company$careerMonitoringsArgs<ExtArgs>
   owner?: boolean | Prisma.Company$ownerArgs<ExtArgs>
@@ -3803,6 +3873,7 @@ export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     verifiedAt: Date | null
     createdAt: Date
     updatedAt: Date
+    deletedAt: Date | null
     logoColor: string | null
     tagline: string | null
     employeeRange: string | null
@@ -4271,6 +4342,7 @@ export interface CompanyFieldRefs {
   readonly verifiedAt: Prisma.FieldRef<"Company", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Company", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Company", 'DateTime'>
+  readonly deletedAt: Prisma.FieldRef<"Company", 'DateTime'>
   readonly logoColor: Prisma.FieldRef<"Company", 'String'>
   readonly tagline: Prisma.FieldRef<"Company", 'String'>
   readonly employeeRange: Prisma.FieldRef<"Company", 'String'>

@@ -268,8 +268,8 @@ export async function getUserById(id: string) {
           experiences: true,
         },
       },
-      company: true,
-      school: true,
+      ownedCompany: true,
+      ownedSchool: true,
       certInstitution: true,
     },
   })

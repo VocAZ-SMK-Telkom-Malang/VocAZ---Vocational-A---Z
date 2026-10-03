@@ -37,8 +37,8 @@ type RegisterData = {
   bkkContact?: string
   bkkEmail?: string
   bkkPhone?: string
-  plan: string
-  planPrice?: number
+  plan: 'basic' | 'pro' | 'plus'
+  planPrice: number
   paymentMethod: string
   paymentReference?: string
 }
@@ -127,8 +127,8 @@ export function Step5Done() {
         // 3. Finalize — ini yang generate schoolCode + enrollmentToken
         const finalizeResult = await finalizeSchoolRegistration({
           neonAuthUserId: session.user.id,
-          plan: data.plan,
-          planPrice: data.planPrice,
+          plan: data.plan as 'basic' | 'pro' | 'plus',
+          planPrice: data.planPrice ?? 0,
           paymentMethod: data.paymentMethod,
           paymentReference: data.paymentReference || '',
           email: data.email,
