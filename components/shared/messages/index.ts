@@ -1,0 +1,10 @@
+// components/shared/messages/index.ts
+export { MessageButton } from './message-button'
+export { MessagesClient } from './messages-client'
+export { ConversationList } from './conversation-list'
+export { ConversationItem } from './conversation-item'
+export { ChatWindow } from './chat-window'
+export { ChatHeader } from './chat-header'
+export { ChatInput } from './chat-input'
+export { MessageBubble } from './message-bubble'
+export { MessagesEmpty } from './messages-empty'

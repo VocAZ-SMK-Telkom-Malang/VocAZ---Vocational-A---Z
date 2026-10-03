@@ -348,9 +348,9 @@ export type ShowcaseVideoWhereInput = {
   publishedAt?: Prisma.DateTimeNullableFilter<"ShowcaseVideo"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ShowcaseVideo"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShowcaseVideo"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
-  likes?: Prisma.ShowcaseLikeListRelationFilter
   comments?: Prisma.ShowcaseCommentListRelationFilter
+  likes?: Prisma.ShowcaseLikeListRelationFilter
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }
 
 export type ShowcaseVideoOrderByWithRelationInput = {
@@ -374,9 +374,9 @@ export type ShowcaseVideoOrderByWithRelationInput = {
   publishedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  student?: Prisma.StudentProfileOrderByWithRelationInput
-  likes?: Prisma.ShowcaseLikeOrderByRelationAggregateInput
   comments?: Prisma.ShowcaseCommentOrderByRelationAggregateInput
+  likes?: Prisma.ShowcaseLikeOrderByRelationAggregateInput
+  student?: Prisma.StudentProfileOrderByWithRelationInput
 }
 
 export type ShowcaseVideoWhereUniqueInput = Prisma.AtLeast<{
@@ -403,9 +403,9 @@ export type ShowcaseVideoWhereUniqueInput = Prisma.AtLeast<{
   publishedAt?: Prisma.DateTimeNullableFilter<"ShowcaseVideo"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"ShowcaseVideo"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShowcaseVideo"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
-  likes?: Prisma.ShowcaseLikeListRelationFilter
   comments?: Prisma.ShowcaseCommentListRelationFilter
+  likes?: Prisma.ShowcaseLikeListRelationFilter
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }, "id">
 
 export type ShowcaseVideoOrderByWithAggregationInput = {
@@ -482,9 +482,9 @@ export type ShowcaseVideoCreateInput = {
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  student: Prisma.StudentProfileCreateNestedOneWithoutShowcaseVideosInput
-  likes?: Prisma.ShowcaseLikeCreateNestedManyWithoutVideoInput
   comments?: Prisma.ShowcaseCommentCreateNestedManyWithoutVideoInput
+  likes?: Prisma.ShowcaseLikeCreateNestedManyWithoutVideoInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutShowcaseVideosInput
 }
 
 export type ShowcaseVideoUncheckedCreateInput = {
@@ -508,8 +508,8 @@ export type ShowcaseVideoUncheckedCreateInput = {
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  likes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutVideoInput
   comments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutVideoInput
+  likes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutVideoInput
 }
 
 export type ShowcaseVideoUpdateInput = {
@@ -532,9 +532,9 @@ export type ShowcaseVideoUpdateInput = {
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentProfileUpdateOneRequiredWithoutShowcaseVideosNestedInput
-  likes?: Prisma.ShowcaseLikeUpdateManyWithoutVideoNestedInput
   comments?: Prisma.ShowcaseCommentUpdateManyWithoutVideoNestedInput
+  likes?: Prisma.ShowcaseLikeUpdateManyWithoutVideoNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutShowcaseVideosNestedInput
 }
 
 export type ShowcaseVideoUncheckedUpdateInput = {
@@ -558,8 +558,8 @@ export type ShowcaseVideoUncheckedUpdateInput = {
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  likes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutVideoNestedInput
   comments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutVideoNestedInput
+  likes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutVideoNestedInput
 }
 
 export type ShowcaseVideoCreateManyInput = {
@@ -638,14 +638,6 @@ export type ShowcaseVideoListRelationFilter = {
 
 export type ShowcaseVideoOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type StringNullableListFilter<$PrismaModel = never> = {
-  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
-  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
-  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
-  isEmpty?: boolean
 }
 
 export type ShowcaseVideoCountOrderByAggregateInput = {
@@ -851,8 +843,8 @@ export type ShowcaseVideoCreateWithoutStudentInput = {
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  likes?: Prisma.ShowcaseLikeCreateNestedManyWithoutVideoInput
   comments?: Prisma.ShowcaseCommentCreateNestedManyWithoutVideoInput
+  likes?: Prisma.ShowcaseLikeCreateNestedManyWithoutVideoInput
 }
 
 export type ShowcaseVideoUncheckedCreateWithoutStudentInput = {
@@ -875,8 +867,8 @@ export type ShowcaseVideoUncheckedCreateWithoutStudentInput = {
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  likes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutVideoInput
   comments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutVideoInput
+  likes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutVideoInput
 }
 
 export type ShowcaseVideoCreateOrConnectWithoutStudentInput = {
@@ -951,8 +943,8 @@ export type ShowcaseVideoCreateWithoutLikesInput = {
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  student: Prisma.StudentProfileCreateNestedOneWithoutShowcaseVideosInput
   comments?: Prisma.ShowcaseCommentCreateNestedManyWithoutVideoInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutShowcaseVideosInput
 }
 
 export type ShowcaseVideoUncheckedCreateWithoutLikesInput = {
@@ -1015,8 +1007,8 @@ export type ShowcaseVideoUpdateWithoutLikesInput = {
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentProfileUpdateOneRequiredWithoutShowcaseVideosNestedInput
   comments?: Prisma.ShowcaseCommentUpdateManyWithoutVideoNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutShowcaseVideosNestedInput
 }
 
 export type ShowcaseVideoUncheckedUpdateWithoutLikesInput = {
@@ -1063,8 +1055,8 @@ export type ShowcaseVideoCreateWithoutCommentsInput = {
   publishedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  student: Prisma.StudentProfileCreateNestedOneWithoutShowcaseVideosInput
   likes?: Prisma.ShowcaseLikeCreateNestedManyWithoutVideoInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutShowcaseVideosInput
 }
 
 export type ShowcaseVideoUncheckedCreateWithoutCommentsInput = {
@@ -1127,8 +1119,8 @@ export type ShowcaseVideoUpdateWithoutCommentsInput = {
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentProfileUpdateOneRequiredWithoutShowcaseVideosNestedInput
   likes?: Prisma.ShowcaseLikeUpdateManyWithoutVideoNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutShowcaseVideosNestedInput
 }
 
 export type ShowcaseVideoUncheckedUpdateWithoutCommentsInput = {
@@ -1197,8 +1189,8 @@ export type ShowcaseVideoUpdateWithoutStudentInput = {
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  likes?: Prisma.ShowcaseLikeUpdateManyWithoutVideoNestedInput
   comments?: Prisma.ShowcaseCommentUpdateManyWithoutVideoNestedInput
+  likes?: Prisma.ShowcaseLikeUpdateManyWithoutVideoNestedInput
 }
 
 export type ShowcaseVideoUncheckedUpdateWithoutStudentInput = {
@@ -1221,8 +1213,8 @@ export type ShowcaseVideoUncheckedUpdateWithoutStudentInput = {
   publishedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  likes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutVideoNestedInput
   comments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutVideoNestedInput
+  likes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutVideoNestedInput
 }
 
 export type ShowcaseVideoUncheckedUpdateManyWithoutStudentInput = {
@@ -1253,13 +1245,13 @@ export type ShowcaseVideoUncheckedUpdateManyWithoutStudentInput = {
  */
 
 export type ShowcaseVideoCountOutputType = {
-  likes: number
   comments: number
+  likes: number
 }
 
 export type ShowcaseVideoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  likes?: boolean | ShowcaseVideoCountOutputTypeCountLikesArgs
   comments?: boolean | ShowcaseVideoCountOutputTypeCountCommentsArgs
+  likes?: boolean | ShowcaseVideoCountOutputTypeCountLikesArgs
 }
 
 /**
@@ -1275,15 +1267,15 @@ export type ShowcaseVideoCountOutputTypeDefaultArgs<ExtArgs extends runtime.Type
 /**
  * ShowcaseVideoCountOutputType without action
  */
-export type ShowcaseVideoCountOutputTypeCountLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ShowcaseLikeWhereInput
+export type ShowcaseVideoCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShowcaseCommentWhereInput
 }
 
 /**
  * ShowcaseVideoCountOutputType without action
  */
-export type ShowcaseVideoCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ShowcaseCommentWhereInput
+export type ShowcaseVideoCountOutputTypeCountLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShowcaseLikeWhereInput
 }
 
 
@@ -1308,9 +1300,9 @@ export type ShowcaseVideoSelect<ExtArgs extends runtime.Types.Extensions.Interna
   publishedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  likes?: boolean | Prisma.ShowcaseVideo$likesArgs<ExtArgs>
   comments?: boolean | Prisma.ShowcaseVideo$commentsArgs<ExtArgs>
+  likes?: boolean | Prisma.ShowcaseVideo$likesArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ShowcaseVideoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["showcaseVideo"]>
 
@@ -1387,9 +1379,9 @@ export type ShowcaseVideoSelectScalar = {
 
 export type ShowcaseVideoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "title" | "description" | "videoUrl" | "videoKey" | "videoSource" | "thumbnailUrl" | "thumbnailKey" | "durationSec" | "category" | "skillTags" | "viewCount" | "likeCount" | "commentCount" | "shareCount" | "status" | "publishedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["showcaseVideo"]>
 export type ShowcaseVideoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  likes?: boolean | Prisma.ShowcaseVideo$likesArgs<ExtArgs>
   comments?: boolean | Prisma.ShowcaseVideo$commentsArgs<ExtArgs>
+  likes?: boolean | Prisma.ShowcaseVideo$likesArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ShowcaseVideoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ShowcaseVideoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1402,9 +1394,9 @@ export type ShowcaseVideoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Type
 export type $ShowcaseVideoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ShowcaseVideo"
   objects: {
-    student: Prisma.$StudentProfilePayload<ExtArgs>
-    likes: Prisma.$ShowcaseLikePayload<ExtArgs>[]
     comments: Prisma.$ShowcaseCommentPayload<ExtArgs>[]
+    likes: Prisma.$ShowcaseLikePayload<ExtArgs>[]
+    student: Prisma.$StudentProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1821,9 +1813,9 @@ readonly fields: ShowcaseVideoFieldRefs;
  */
 export interface Prisma__ShowcaseVideoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  likes<T extends Prisma.ShowcaseVideo$likesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShowcaseVideo$likesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   comments<T extends Prisma.ShowcaseVideo$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShowcaseVideo$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  likes<T extends Prisma.ShowcaseVideo$likesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShowcaseVideo$likesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2274,30 +2266,6 @@ export type ShowcaseVideoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * ShowcaseVideo.likes
- */
-export type ShowcaseVideo$likesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ShowcaseLike
-   */
-  select?: Prisma.ShowcaseLikeSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ShowcaseLike
-   */
-  omit?: Prisma.ShowcaseLikeOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShowcaseLikeInclude<ExtArgs> | null
-  where?: Prisma.ShowcaseLikeWhereInput
-  orderBy?: Prisma.ShowcaseLikeOrderByWithRelationInput | Prisma.ShowcaseLikeOrderByWithRelationInput[]
-  cursor?: Prisma.ShowcaseLikeWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ShowcaseLikeScalarFieldEnum | Prisma.ShowcaseLikeScalarFieldEnum[]
-}
-
-/**
  * ShowcaseVideo.comments
  */
 export type ShowcaseVideo$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2319,6 +2287,30 @@ export type ShowcaseVideo$commentsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.ShowcaseCommentScalarFieldEnum | Prisma.ShowcaseCommentScalarFieldEnum[]
+}
+
+/**
+ * ShowcaseVideo.likes
+ */
+export type ShowcaseVideo$likesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShowcaseLike
+   */
+  select?: Prisma.ShowcaseLikeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShowcaseLike
+   */
+  omit?: Prisma.ShowcaseLikeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShowcaseLikeInclude<ExtArgs> | null
+  where?: Prisma.ShowcaseLikeWhereInput
+  orderBy?: Prisma.ShowcaseLikeOrderByWithRelationInput | Prisma.ShowcaseLikeOrderByWithRelationInput[]
+  cursor?: Prisma.ShowcaseLikeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShowcaseLikeScalarFieldEnum | Prisma.ShowcaseLikeScalarFieldEnum[]
 }
 
 /**

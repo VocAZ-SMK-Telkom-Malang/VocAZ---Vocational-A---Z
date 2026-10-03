@@ -54,6 +54,8 @@ export const ModelName = {
   User: 'User',
   StudentProfile: 'StudentProfile',
   StudentEducation: 'StudentEducation',
+  Company: 'Company',
+  CompanyVerification: 'CompanyVerification',
   StudentExperience: 'StudentExperience',
   Skill: 'Skill',
   StudentSkill: 'StudentSkill',
@@ -61,10 +63,9 @@ export const ModelName = {
   StudentPortfolio: 'StudentPortfolio',
   PortfolioMedia: 'PortfolioMedia',
   ShowcaseVideo: 'ShowcaseVideo',
-  Company: 'Company',
-  CompanyTeam: 'CompanyTeam',
+  CompanyMember: 'CompanyMember',
+  TalentPreference: 'TalentPreference',
   CompanyTalentPreference: 'CompanyTalentPreference',
-  CompanyVerification: 'CompanyVerification',
   Job: 'Job',
   JobSkill: 'JobSkill',
   Application: 'Application',
@@ -72,6 +73,7 @@ export const ModelName = {
   SavedJob: 'SavedJob',
   SavedCompany: 'SavedCompany',
   School: 'School',
+  SchoolMember: 'SchoolMember',
   SchoolProgram: 'SchoolProgram',
   SchoolStudent: 'SchoolStudent',
   IndustryPartner: 'IndustryPartner',
@@ -93,7 +95,14 @@ export const ModelName = {
   City: 'City',
   ShowcaseLike: 'ShowcaseLike',
   ShowcaseComment: 'ShowcaseComment',
-  StudentFollow: 'StudentFollow'
+  StudentFollow: 'StudentFollow',
+  ScreeningQuestion: 'ScreeningQuestion',
+  ScreeningAnswer: 'ScreeningAnswer',
+  AiInterview: 'AiInterview',
+  AiInterviewAnswer: 'AiInterviewAnswer',
+  TalentInvitation: 'TalentInvitation',
+  SavedTalent: 'SavedTalent',
+  CompanyInvitation: 'CompanyInvitation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -125,7 +134,10 @@ export const UserScalarFieldEnum = {
   lastLoginAt: 'lastLoginAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  jobTitle: 'jobTitle',
+  notificationPrefs: 'notificationPrefs',
+  schoolId: 'schoolId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -152,7 +164,10 @@ export const StudentProfileScalarFieldEnum = {
   followerCount: 'followerCount',
   followingCount: 'followingCount',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  cvKey: 'cvKey',
+  cvUpdatedAt: 'cvUpdatedAt',
+  cvUrl: 'cvUrl'
 } as const
 
 export type StudentProfileScalarFieldEnum = (typeof StudentProfileScalarFieldEnum)[keyof typeof StudentProfileScalarFieldEnum]
@@ -172,6 +187,64 @@ export const StudentEducationScalarFieldEnum = {
 } as const
 
 export type StudentEducationScalarFieldEnum = (typeof StudentEducationScalarFieldEnum)[keyof typeof StudentEducationScalarFieldEnum]
+
+
+export const CompanyScalarFieldEnum = {
+  id: 'id',
+  ownerUserId: 'ownerUserId',
+  name: 'name',
+  slug: 'slug',
+  logoUrl: 'logoUrl',
+  logoKey: 'logoKey',
+  coverUrl: 'coverUrl',
+  coverKey: 'coverKey',
+  industry: 'industry',
+  companySize: 'companySize',
+  website: 'website',
+  email: 'email',
+  phone: 'phone',
+  address: 'address',
+  city: 'city',
+  province: 'province',
+  description: 'description',
+  culture: 'culture',
+  benefits: 'benefits',
+  foundedYear: 'foundedYear',
+  verificationStatus: 'verificationStatus',
+  verifiedAt: 'verifiedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  logoColor: 'logoColor',
+  tagline: 'tagline',
+  employeeRange: 'employeeRange',
+  featured: 'featured',
+  rating: 'rating',
+  reviewCount: 'reviewCount',
+  matchingWeights: 'matchingWeights',
+  linkedinUrl: 'linkedinUrl',
+  instagramUrl: 'instagramUrl',
+  facebookUrl: 'facebookUrl'
+} as const
+
+export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+
+
+export const CompanyVerificationScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  legalDocumentUrl: 'legalDocumentUrl',
+  legalDocumentKey: 'legalDocumentKey',
+  businessRegistrationUrl: 'businessRegistrationUrl',
+  businessRegistrationKey: 'businessRegistrationKey',
+  supportingDocs: 'supportingDocs',
+  submittedAt: 'submittedAt',
+  reviewedBy: 'reviewedBy',
+  reviewedAt: 'reviewedAt',
+  status: 'status',
+  reviewNotes: 'reviewNotes'
+} as const
+
+export type CompanyVerificationScalarFieldEnum = (typeof CompanyVerificationScalarFieldEnum)[keyof typeof CompanyVerificationScalarFieldEnum]
 
 
 export const StudentExperienceScalarFieldEnum = {
@@ -284,85 +357,48 @@ export const ShowcaseVideoScalarFieldEnum = {
 export type ShowcaseVideoScalarFieldEnum = (typeof ShowcaseVideoScalarFieldEnum)[keyof typeof ShowcaseVideoScalarFieldEnum]
 
 
-export const CompanyScalarFieldEnum = {
-  id: 'id',
-  ownerUserId: 'ownerUserId',
-  name: 'name',
-  slug: 'slug',
-  industry: 'industry',
-  companySize: 'companySize',
-  foundedYear: 'foundedYear',
-  website: 'website',
-  email: 'email',
-  phone: 'phone',
-  description: 'description',
-  logoUrl: 'logoUrl',
-  logoKey: 'logoKey',
-  coverUrl: 'coverUrl',
-  coverKey: 'coverKey',
-  address: 'address',
-  city: 'city',
-  province: 'province',
-  featured: 'featured',
-  logoColor: 'logoColor',
-  tagline: 'tagline',
-  employeeRange: 'employeeRange',
-  rating: 'rating',
-  reviewCount: 'reviewCount',
-  country: 'country',
-  verificationStatus: 'verificationStatus',
-  verifiedAt: 'verifiedAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
-} as const
-
-export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
-
-
-export const CompanyTeamScalarFieldEnum = {
+export const CompanyMemberScalarFieldEnum = {
   id: 'id',
   companyId: 'companyId',
   userId: 'userId',
   role: 'role',
-  invitedBy: 'invitedBy',
-  joinedAt: 'joinedAt'
+  createdAt: 'createdAt'
 } as const
 
-export type CompanyTeamScalarFieldEnum = (typeof CompanyTeamScalarFieldEnum)[keyof typeof CompanyTeamScalarFieldEnum]
+export type CompanyMemberScalarFieldEnum = (typeof CompanyMemberScalarFieldEnum)[keyof typeof CompanyMemberScalarFieldEnum]
+
+
+export const TalentPreferenceScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  skills: 'skills',
+  programs: 'programs',
+  locations: 'locations',
+  certifications: 'certifications',
+  minExperience: 'minExperience',
+  maxExperience: 'maxExperience',
+  educationLevel: 'educationLevel',
+  workMode: 'workMode',
+  preferVerified: 'preferVerified',
+  preferBnsp: 'preferBnsp',
+  minMatchScore: 'minMatchScore',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TalentPreferenceScalarFieldEnum = (typeof TalentPreferenceScalarFieldEnum)[keyof typeof TalentPreferenceScalarFieldEnum]
 
 
 export const CompanyTalentPreferenceScalarFieldEnum = {
   id: 'id',
   companyId: 'companyId',
   skillId: 'skillId',
-  programKeahlian: 'programKeahlian',
-  minExperienceYears: 'minExperienceYears',
-  location: 'location',
-  requiresCertification: 'requiresCertification',
   weight: 'weight',
+  isRequired: 'isRequired',
   createdAt: 'createdAt'
 } as const
 
 export type CompanyTalentPreferenceScalarFieldEnum = (typeof CompanyTalentPreferenceScalarFieldEnum)[keyof typeof CompanyTalentPreferenceScalarFieldEnum]
-
-
-export const CompanyVerificationScalarFieldEnum = {
-  id: 'id',
-  companyId: 'companyId',
-  legalDocumentUrl: 'legalDocumentUrl',
-  legalDocumentKey: 'legalDocumentKey',
-  businessRegistrationUrl: 'businessRegistrationUrl',
-  businessRegistrationKey: 'businessRegistrationKey',
-  supportingDocs: 'supportingDocs',
-  submittedAt: 'submittedAt',
-  reviewedBy: 'reviewedBy',
-  reviewedAt: 'reviewedAt',
-  status: 'status',
-  reviewNotes: 'reviewNotes'
-} as const
-
-export type CompanyVerificationScalarFieldEnum = (typeof CompanyVerificationScalarFieldEnum)[keyof typeof CompanyVerificationScalarFieldEnum]
 
 
 export const JobScalarFieldEnum = {
@@ -418,6 +454,8 @@ export const ApplicationScalarFieldEnum = {
   resumeKey: 'resumeKey',
   status: 'status',
   matchScore: 'matchScore',
+  matchScoreBreakdown: 'matchScoreBreakdown',
+  matchScoreUpdatedAt: 'matchScoreUpdatedAt',
   appliedAt: 'appliedAt',
   updatedAt: 'updatedAt',
   nextStep: 'nextStep',
@@ -493,11 +531,27 @@ export const SchoolScalarFieldEnum = {
   paymentMethod: 'paymentMethod',
   paymentReference: 'paymentReference',
   lastPaymentAt: 'lastPaymentAt',
+  enrollmentToken: 'enrollmentToken',
+  tokenActive: 'tokenActive',
+  tokenExpiresAt: 'tokenExpiresAt',
+  isVerified: 'isVerified',
+  verifiedAt: 'verifiedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type SchoolScalarFieldEnum = (typeof SchoolScalarFieldEnum)[keyof typeof SchoolScalarFieldEnum]
+
+
+export const SchoolMemberScalarFieldEnum = {
+  id: 'id',
+  schoolId: 'schoolId',
+  userId: 'userId',
+  role: 'role',
+  createdAt: 'createdAt'
+} as const
+
+export type SchoolMemberScalarFieldEnum = (typeof SchoolMemberScalarFieldEnum)[keyof typeof SchoolMemberScalarFieldEnum]
 
 
 export const SchoolProgramScalarFieldEnum = {
@@ -808,6 +862,107 @@ export const StudentFollowScalarFieldEnum = {
 export type StudentFollowScalarFieldEnum = (typeof StudentFollowScalarFieldEnum)[keyof typeof StudentFollowScalarFieldEnum]
 
 
+export const ScreeningQuestionScalarFieldEnum = {
+  id: 'id',
+  jobId: 'jobId',
+  question: 'question',
+  description: 'description',
+  type: 'type',
+  options: 'options',
+  isRequired: 'isRequired',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt'
+} as const
+
+export type ScreeningQuestionScalarFieldEnum = (typeof ScreeningQuestionScalarFieldEnum)[keyof typeof ScreeningQuestionScalarFieldEnum]
+
+
+export const ScreeningAnswerScalarFieldEnum = {
+  id: 'id',
+  questionId: 'questionId',
+  applicationId: 'applicationId',
+  answerText: 'answerText',
+  answerBool: 'answerBool',
+  answerNumber: 'answerNumber',
+  answerChoice: 'answerChoice',
+  createdAt: 'createdAt'
+} as const
+
+export type ScreeningAnswerScalarFieldEnum = (typeof ScreeningAnswerScalarFieldEnum)[keyof typeof ScreeningAnswerScalarFieldEnum]
+
+
+export const AiInterviewScalarFieldEnum = {
+  id: 'id',
+  applicationId: 'applicationId',
+  invitedBy: 'invitedBy',
+  status: 'status',
+  invitedAt: 'invitedAt',
+  completedAt: 'completedAt',
+  expiresAt: 'expiresAt',
+  questions: 'questions',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AiInterviewScalarFieldEnum = (typeof AiInterviewScalarFieldEnum)[keyof typeof AiInterviewScalarFieldEnum]
+
+
+export const AiInterviewAnswerScalarFieldEnum = {
+  id: 'id',
+  interviewId: 'interviewId',
+  questionIndex: 'questionIndex',
+  question: 'question',
+  answer: 'answer',
+  answeredAt: 'answeredAt',
+  createdAt: 'createdAt'
+} as const
+
+export type AiInterviewAnswerScalarFieldEnum = (typeof AiInterviewAnswerScalarFieldEnum)[keyof typeof AiInterviewAnswerScalarFieldEnum]
+
+
+export const TalentInvitationScalarFieldEnum = {
+  id: 'id',
+  jobId: 'jobId',
+  studentId: 'studentId',
+  invitedBy: 'invitedBy',
+  message: 'message',
+  status: 'status',
+  respondedAt: 'respondedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type TalentInvitationScalarFieldEnum = (typeof TalentInvitationScalarFieldEnum)[keyof typeof TalentInvitationScalarFieldEnum]
+
+
+export const SavedTalentScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  studentId: 'studentId',
+  savedBy: 'savedBy',
+  note: 'note',
+  source: 'source',
+  createdAt: 'createdAt'
+} as const
+
+export type SavedTalentScalarFieldEnum = (typeof SavedTalentScalarFieldEnum)[keyof typeof SavedTalentScalarFieldEnum]
+
+
+export const CompanyInvitationScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  email: 'email',
+  role: 'role',
+  token: 'token',
+  invitedBy: 'invitedBy',
+  status: 'status',
+  expiresAt: 'expiresAt',
+  acceptedAt: 'acceptedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type CompanyInvitationScalarFieldEnum = (typeof CompanyInvitationScalarFieldEnum)[keyof typeof CompanyInvitationScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -824,20 +979,19 @@ export const NullableJsonNullValueInput = {
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 export const JsonNullValueFilter = {
@@ -847,4 +1001,12 @@ export const JsonNullValueFilter = {
 } as const
 
 export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

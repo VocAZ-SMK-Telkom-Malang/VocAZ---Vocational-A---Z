@@ -3,6 +3,7 @@
 
 import { prisma } from '@/lib/prisma'
 import type { ActionState, FinalizeStudentInput } from '@/lib/register/types'
+import { validateToken } from '@/lib/school/token'
 
 // ============================================
 // HELPER
@@ -20,7 +21,7 @@ function isValidUuid(v: string): boolean {
 // ============================================
 
 export async function finalizeStudentRegistration(
-  input: FinalizeStudentInput
+  input: FinalizeStudentInput & { schoolToken?: string | null }
 ): Promise<ActionState> {
   try {
     // 0. Validasi neonAuthUserId
@@ -51,7 +52,28 @@ export async function finalizeStudentRegistration(
       }
     }
 
-    // 3. Buat user
+    // ============================================
+    // 3. Resolve schoolId dari token (kalau ada)
+    // ============================================
+    let resolvedSchoolId: string | null = input.schoolId || null
+
+    if (input.schoolToken && input.schoolToken.trim()) {
+      const tokenResult = await validateToken(input.schoolToken.trim())
+
+      if (!tokenResult.ok) {
+        return {
+          ok: false,
+          error: `Token sekolah tidak valid: ${tokenResult.error}`,
+        }
+      }
+
+      // Token valid → override schoolId
+      resolvedSchoolId = tokenResult.school.id
+    }
+
+    // ============================================
+    // 4. Buat user
+    // ============================================
     const user = await prisma.user.create({
       data: {
         neonAuthUserId: input.neonAuthUserId,
@@ -62,14 +84,21 @@ export async function finalizeStudentRegistration(
       },
     })
 
-    // 4. Hitung profile completion
-    const completion = calculateProfileCompletion(input)
+    // ============================================
+    // 5. Hitung profile completion
+    // ============================================
+    const completion = calculateProfileCompletion({
+      ...input,
+      schoolId: resolvedSchoolId ?? undefined,
+    })
 
-    // 5. Buat StudentProfile
+    // ============================================
+    // 6. Buat StudentProfile
+    // ============================================
     const profile = await prisma.studentProfile.create({
       data: {
         userId: user.id,
-        schoolId: input.schoolId || null,
+        schoolId: resolvedSchoolId,
         nisn: input.nisn || null,
         headline: input.headline || null,
         bio: input.bio || null,
@@ -83,21 +112,30 @@ export async function finalizeStudentRegistration(
       },
     })
 
-    // 6. Link ke SchoolStudent (kalau ada school + program)
-    if (input.schoolId) {
-      await prisma.schoolStudent.create({
-        data: {
-          schoolId: input.schoolId,
-          studentId: profile.id,
-          programId: input.programId || null,
-          enrollmentYear: input.enrollmentYear,
-          graduationYear: input.graduationYear,
-          status: 'active',
-        },
-      })
+    // ============================================
+    // 7. Link ke SchoolStudent (kalau ada school)
+    // ============================================
+    if (resolvedSchoolId) {
+      try {
+        await prisma.schoolStudent.create({
+          data: {
+            schoolId: resolvedSchoolId,
+            studentId: profile.id,
+            programId: input.programId || null,
+            enrollmentYear: input.enrollmentYear,
+            graduationYear: input.graduationYear,
+            status: 'active',
+          },
+        })
+      } catch (err) {
+        // Kalau duplikat (siswa udah pernah link), abaikan
+        console.warn('[finalizeStudent] gagal create SchoolStudent:', err)
+      }
     }
 
-    // 7. Buat StudentSkill[]
+    // ============================================
+    // 8. Buat StudentSkill[]
+    // ============================================
     if (input.skillIds && input.skillIds.length > 0) {
       await prisma.studentSkill.createMany({
         data: input.skillIds.map((skillId) => ({
@@ -109,7 +147,9 @@ export async function finalizeStudentRegistration(
       })
     }
 
-    // 8. Audit log
+    // ============================================
+    // 9. Audit log
+    // ============================================
     await prisma.auditLog.create({
       data: {
         actorId: user.id,
@@ -117,7 +157,8 @@ export async function finalizeStudentRegistration(
         targetType: 'student_profile',
         targetId: profile.id,
         metadata: {
-          hasSchool: !!input.schoolId,
+          hasSchool: !!resolvedSchoolId,
+          schoolToken: input.schoolToken || null,
           skillCount: input.skillIds?.length || 0,
           completion,
         },
@@ -130,6 +171,7 @@ export async function finalizeStudentRegistration(
         userId: user.id,
         studentProfileId: profile.id,
         profileCompletion: completion,
+        schoolId: resolvedSchoolId,
       },
     }
   } catch (err) {

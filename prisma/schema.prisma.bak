@@ -1,0 +1,1193 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// =====================================================
+// ENUMS
+// =====================================================
+
+enum Role {
+  student
+  company
+  school
+  certification
+  admin
+}
+
+enum Gender {
+  male
+  female
+  other
+}
+
+enum EmploymentType {
+  internship
+  part_time
+  full_time
+  freelance
+  volunteer
+  contract
+}
+
+enum Proficiency {
+  beginner
+  intermediate
+  advanced
+  expert
+}
+
+enum AchievementLevel {
+  school
+  regional
+  national
+  international
+}
+
+enum MediaType {
+  image
+  video
+  document
+}
+
+enum ShowcaseStatus {
+  draft
+  published
+  hidden
+  flagged
+}
+
+enum VideoSource {
+  upload
+  youtube
+  tiktok
+  instagram
+  gdrive
+  vimeo
+  external
+}
+
+enum CompanySize {
+  s1_10
+  s11_50
+  s51_200
+  s201_500
+  s500plus
+}
+
+enum VerificationStatus {
+  unverified
+  pending
+  verified
+  rejected
+}
+
+enum VerificationReviewStatus {
+  pending
+  approved
+  rejected
+}
+
+enum CompanyTeamRole {
+  owner
+  admin
+  recruiter
+  viewer
+}
+
+enum WorkMode {
+  onsite
+  remote
+  hybrid
+}
+
+enum ExperienceLevel {
+  entry
+  junior
+  mid
+  senior
+}
+
+enum JobStatus {
+  draft
+  active
+  closed
+  archived
+}
+
+enum ApplicationStatus {
+  submitted
+  reviewed
+  shortlisted
+  interview
+  offered
+  hired
+  rejected
+  withdrawn
+}
+
+enum SchoolLevel {
+  smk
+  sma
+  ma
+  smklb
+}
+
+enum SchoolStudentStatus {
+  active
+  graduated
+  dropped
+}
+
+enum PartnershipType {
+  mou
+  internship
+  recruitment
+  training
+}
+
+enum PartnershipStatus {
+  active
+  expired
+  terminated
+}
+
+enum CareerStage {
+  opportunity
+  recommended
+  applied
+  interview
+  offered
+  placed
+  not_placed
+}
+
+enum CertInstitutionType {
+  lsp_bnsp
+  industry
+  training
+}
+
+enum CertBadgeType {
+  lsp_bnsp
+  industry
+  training
+}
+
+enum CertificateStatus {
+  pending
+  verified
+  rejected
+}
+
+enum VerificationReqStatus {
+  pending
+  in_review
+  verified
+  rejected
+}
+
+enum ConversationContext {
+  talent_profile
+  smart_match
+  showcase
+  application
+  general
+}
+
+enum NotificationType {
+  message
+  application_update
+  verification
+  opportunity
+  system
+}
+
+enum ContentType {
+  showcase_video
+  portfolio
+  profile
+  company
+  job
+  message
+}
+
+enum ReportStatus {
+  pending
+  reviewed
+  resolved
+  dismissed
+}
+
+enum ShowcaseLikeStatus {
+  active
+  removed
+}
+
+// =====================================================
+// USERS (sync dengan Neon Auth)
+// =====================================================
+
+model User {
+  id             String    @id @default(uuid()) @db.Uuid
+  neonAuthUserId String    @unique @map("neon_auth_user_id") @db.Uuid
+  email          String    @unique
+  role           Role
+  fullName       String?   @map("full_name")
+  phone          String?
+  avatarUrl      String?   @map("avatar_url")
+  avatarKey      String?   @map("avatar_key")
+  isActive       Boolean   @default(true) @map("is_active")
+  lastLoginAt    DateTime? @map("last_login_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  studentProfile    StudentProfile?
+  ownedCompany      Company?                  @relation("CompanyOwner")
+  school            School?
+  certInstitution   CertificationInstitution?
+  companyMembers    CompanyMember[]
+  conversationParts ConversationParticipant[]
+  sentMessages      Message[]                 @relation("SentMessages")
+  notifications     Notification[]
+  auditLogs         AuditLog[]
+  reports           ContentReport[]           @relation("Reporter")
+  showcaseLikes     ShowcaseLike[] // ← BARU
+  showcaseComments  ShowcaseComment[]
+  following         StudentFollow[]           @relation("Follower")
+  feedbackGiven     ProfileFeedback[]         @relation("GivenFeedback") // ← TAMBAH INI
+
+  @@index([role])
+  @@map("users")
+}
+
+// =====================================================
+// STUDENT / TALENT
+// =====================================================
+
+model StudentProfile {
+  id                String    @id @default(uuid()) @db.Uuid
+  userId            String    @unique @map("user_id") @db.Uuid
+  schoolId          String?   @map("school_id") @db.Uuid
+  nisn              String?
+  headline          String?
+  bio               String?   @db.Text
+  dateOfBirth       DateTime? @map("date_of_birth") @db.Date
+  gender            Gender?
+  address           String?   @db.Text
+  city              String?
+  province          String?
+  coverImageUrl     String?   @map("cover_image_url") // ← TAMBAH
+  coverImageKey     String?   @map("cover_image_key") // ← TAMBAH
+  profileCompletion Int       @default(0) @map("profile_completion")
+  careerReadiness   Int       @default(0) @map("career_readiness")
+  isOpenToWork      Boolean   @default(true) @map("is_open_to_work")
+  isPublic          Boolean   @default(true) @map("is_public")
+  followerCount     Int       @default(0) @map("follower_count") // ← BARU
+  followingCount    Int       @default(0) @map("following_count") // ← BARU
+  cvUrl       String?   @map("cv_url")
+  cvKey       String?   @map("cv_key")
+  cvUpdatedAt DateTime? @map("cv_updated_at")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  school School? @relation(fields: [schoolId], references: [id])
+
+  educations        StudentEducation[]
+  experiences       StudentExperience[]
+  skills            StudentSkill[]
+  achievements      StudentAchievement[]
+  portfolios        StudentPortfolio[]
+  showcaseVideos    ShowcaseVideo[]
+  applications      Application[]
+  savedJobs         SavedJob[]
+  savedCompanies    SavedCompany[] // ← TAMBAH BARIS INI
+  certificates      Certificate[]
+  schoolEnrollments SchoolStudent[]
+  careerMonitorings CareerMonitoring[]
+  followers         StudentFollow[]      @relation("Following") // ← BARU (yang follow saya)
+  feedbacks         ProfileFeedback[]    @relation("ReceivedFeedback") // ← TAMBAH INI
+
+  @@map("student_profiles")
+}
+
+model StudentEducation {
+  id          String   @id @default(uuid()) @db.Uuid
+  studentId   String   @map("student_id") @db.Uuid
+  schoolName  String   @map("school_name")
+  major       String?
+  degree      String?
+  startYear   Int?     @map("start_year")
+  endYear     Int?     @map("end_year")
+  gpa         Decimal? @db.Decimal(3, 2)
+  description String?  @db.Text
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  student StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("student_educations")
+}
+
+// =====================================================
+// COMPANY
+// =====================================================
+
+model Company {
+  id          String       @id @default(uuid()) @db.Uuid
+  ownerUserId String?      @unique @map("owner_user_id") @db.Uuid
+  owner       User?        @relation("CompanyOwner", fields: [ownerUserId], references: [id])
+  name        String
+  slug        String       @unique
+  logoUrl     String?      @map("logo_url")
+  logoKey     String?      @map("logo_key")
+  logoColor         String?      @map("logo_color")           // ← TAMBAH
+  tagline           String?     
+  industry    String?
+  companySize CompanySize? @map("company_size")
+  website     String?
+  email       String?
+  phone       String?
+  address     String?      @db.Text
+  city        String?
+  province    String?
+  description String?      @db.Text
+  culture     String?      @db.Text
+  benefits    String[]     @default([])
+  foundedYear Int?         @map("founded_year")
+  employeeRange String?    @map("employee_range")
+  
+
+  // Verification
+  verificationStatus VerificationStatus @default(unverified) @map("verification_status")
+  verifiedAt         DateTime?          @map("verified_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  members           CompanyMember[]
+  jobs              Job[]
+  preferences       TalentPreference?
+  skillPreferences  CompanyTalentPreference[]
+  savedBy           SavedCompany[]
+  industryPartners  IndustryPartner[]
+  careerMonitorings CareerMonitoring[]
+  verifications     CompanyVerification[]
+
+  @@index([verificationStatus])
+  @@map("companies")
+}
+
+// =====================================================
+// COMPANY VERIFICATION
+// =====================================================
+
+model CompanyVerification {
+  id        String @id @default(uuid()) @db.Uuid
+  companyId String @map("company_id") @db.Uuid
+
+  legalDocumentUrl        String? @map("legal_document_url")
+  legalDocumentKey        String? @map("legal_document_key")
+  businessRegistrationUrl String? @map("business_registration_url")
+  businessRegistrationKey String? @map("business_registration_key")
+  supportingDocs          Json?   @map("supporting_docs")
+
+  submittedAt DateTime @default(now()) @map("submitted_at")
+
+  reviewedBy  String?                  @map("reviewed_by") @db.Uuid
+  reviewedAt  DateTime?                @map("reviewed_at")
+  status      VerificationReviewStatus @default(pending)
+  reviewNotes String?                  @map("review_notes") @db.Text
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId, status])
+  @@index([status])
+  @@map("company_verifications")
+}
+
+model StudentExperience {
+  id             String          @id @default(uuid()) @db.Uuid
+  studentId      String          @map("student_id") @db.Uuid
+  title          String
+  companyName    String?         @map("company_name")
+  employmentType EmploymentType? @map("employment_type")
+  location       String?
+  startDate      DateTime?       @map("start_date") @db.Date
+  endDate        DateTime?       @map("end_date") @db.Date
+  isCurrent      Boolean         @default(false) @map("is_current")
+  description    String?         @db.Text
+  createdAt      DateTime        @default(now()) @map("created_at")
+
+  student StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("student_experiences")
+}
+
+model Skill {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  category  String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  students     StudentSkill[]
+  jobSkills    JobSkill[]
+  companyPrefs CompanyTalentPreference[]
+
+  @@map("skills")
+}
+
+model StudentSkill {
+  id          String      @id @default(uuid()) @db.Uuid
+  studentId   String      @map("student_id") @db.Uuid
+  skillId     String      @map("skill_id") @db.Uuid
+  proficiency Proficiency @default(intermediate)
+
+  student StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  skill   Skill          @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, skillId])
+  @@map("student_skills")
+}
+
+model StudentAchievement {
+  id             String            @id @default(uuid()) @db.Uuid
+  studentId      String            @map("student_id") @db.Uuid
+  title          String
+  issuer         String?
+  level          AchievementLevel?
+  dateAchieved   DateTime?         @map("date_achieved") @db.Date
+  description    String?           @db.Text
+  certificateUrl String?           @map("certificate_url")
+  certificateKey String?           @map("certificate_key")
+  createdAt      DateTime          @default(now()) @map("created_at")
+
+  student StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@map("student_achievements")
+}
+
+model StudentPortfolio {
+  id           String    @id @default(uuid()) @db.Uuid
+  studentId    String    @map("student_id") @db.Uuid
+  title        String
+  description  String?   @db.Text
+  projectUrl   String?   @map("project_url")
+  thumbnailUrl String?   @map("thumbnail_url")
+  thumbnailKey String?   @map("thumbnail_key")
+  startDate    DateTime? @map("start_date") @db.Date
+  endDate      DateTime? @map("end_date") @db.Date
+  isPublic     Boolean   @default(true) @map("is_public")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  student StudentProfile   @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  media   PortfolioMedia[]
+
+  @@map("student_portfolios")
+}
+
+model PortfolioMedia {
+  id          String    @id @default(uuid()) @db.Uuid
+  portfolioId String    @map("portfolio_id") @db.Uuid
+  mediaType   MediaType @map("media_type")
+  url         String
+  key         String
+  mimeType    String?   @map("mime_type")
+  sizeBytes   BigInt?   @map("size_bytes")
+  sortOrder   Int       @default(0) @map("sort_order")
+
+  portfolio StudentPortfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+
+  @@map("portfolio_media")
+}
+
+// =====================================================
+// VIDEO SHOWCASE
+// =====================================================
+
+model ShowcaseVideo {
+  id           String         @id @default(uuid()) @db.Uuid
+  studentId    String         @map("student_id") @db.Uuid
+  title        String
+  description  String?        @db.Text
+  videoUrl     String         @map("video_url")
+  videoKey     String?        @map("video_key")
+  videoSource  VideoSource    @default(upload) @map("video_source")
+  thumbnailUrl String?        @map("thumbnail_url")
+  thumbnailKey String?        @map("thumbnail_key")
+  durationSec  Int?           @map("duration_sec")
+  category     String?
+  skillTags    String[]       @map("skill_tags")
+  viewCount    BigInt         @default(0) @map("view_count")
+  likeCount    Int            @default(0) @map("like_count")
+  commentCount Int            @default(0) @map("comment_count")
+  shareCount   Int            @default(0) @map("share_count")
+  status       ShowcaseStatus @default(draft)
+  publishedAt  DateTime?      @map("published_at")
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime       @updatedAt @map("updated_at")
+
+  student  StudentProfile    @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  likes    ShowcaseLike[]
+  comments ShowcaseComment[]
+
+  @@index([status])
+  @@index([studentId])
+  @@index([publishedAt])
+  @@map("showcase_videos")
+}
+
+model CompanyMember {
+  id        String          @id @default(uuid()) @db.Uuid
+  companyId String          @map("company_id") @db.Uuid
+  userId    String          @map("user_id") @db.Uuid
+  role      CompanyTeamRole @default(recruiter)
+  createdAt DateTime        @default(now()) @map("created_at")
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, userId])
+  @@index([companyId])
+  @@index([userId])
+  @@map("company_members")
+}
+
+// =====================================================
+// TALENT PREFERENCES
+// =====================================================
+
+model TalentPreference {
+  id        String @id @default(uuid()) @db.Uuid
+  companyId String @unique @map("company_id") @db.Uuid
+
+  // Kriteria pencarian talent
+  skills         String[]  @default([])
+  programs       String[]  @default([])
+  locations      String[]  @default([])
+  certifications String[]  @default([])
+  minExperience  Int?      @map("min_experience")
+  maxExperience  Int?      @map("max_experience")
+  educationLevel String?   @map("education_level")
+  workMode       WorkMode? @map("work_mode")
+
+  // Bobot preferensi (opsional — bisa null)
+  preferVerified Boolean @default(true) @map("prefer_verified")
+  preferBnsp     Boolean @default(true) @map("prefer_bnsp")
+  minMatchScore  Int     @default(60) @map("min_match_score")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@map("talent_preferences")
+}
+
+model CompanyTalentPreference {
+  id         String   @id @default(uuid()) @db.Uuid
+  companyId  String   @map("company_id") @db.Uuid
+  skillId    String   @map("skill_id") @db.Uuid
+  weight     Int      @default(1) // 1-5, prioritas skill
+  isRequired Boolean  @default(false) @map("is_required")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  skill   Skill   @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, skillId])
+  @@index([companyId])
+  @@index([skillId])
+  @@map("company_talent_preferences")
+}
+
+// =====================================================
+// RECRUITMENT / JOBS
+// =====================================================
+
+model Job {
+  id               String           @id @default(uuid()) @db.Uuid
+  companyId        String           @map("company_id") @db.Uuid
+  createdBy        String?          @map("created_by") @db.Uuid
+  title            String
+  slug             String           @unique
+  description      String?          @db.Text
+  requirements     String?          @db.Text
+  responsibilities String?          @db.Text
+  employmentType   EmploymentType   @map("employment_type")
+  workMode         WorkMode         @map("work_mode")
+  experienceLevel  ExperienceLevel? @map("experience_level")
+  location         String?
+  city             String?
+  benefits         String?          @db.Text // ← BARU
+  applicants       Int              @default(0) // ← BARU
+  province         String? // ← TAMBAH INI
+  salaryMin        BigInt?          @map("salary_min")
+  salaryMax        BigInt?          @map("salary_max")
+  salaryCurrency   String           @default("IDR") @map("salary_currency")
+  isSalaryVisible  Boolean          @default(false) @map("is_salary_visible")
+  quota            Int              @default(1)
+  status           JobStatus        @default(draft)
+  publishedAt      DateTime?        @map("published_at")
+  expiredAt        DateTime?        @map("expired_at")
+  viewCount        BigInt           @default(0) @map("view_count")
+  createdAt        DateTime         @default(now()) @map("created_at")
+  updatedAt        DateTime         @updatedAt @map("updated_at")
+  deletedAt        DateTime?        @map("deleted_at")
+
+  company           Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  skills            JobSkill[]
+  applications      Application[]
+  savedBy           SavedJob[]
+  careerMonitorings CareerMonitoring[]
+
+  @@index([status, publishedAt])
+  @@index([companyId])
+  @@map("jobs")
+}
+
+model JobSkill {
+  id         String  @id @default(uuid()) @db.Uuid
+  jobId      String  @map("job_id") @db.Uuid
+  skillId    String  @map("skill_id") @db.Uuid
+  isRequired Boolean @default(true) @map("is_required")
+
+  job   Job   @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  skill Skill @relation(fields: [skillId], references: [id], onDelete: Cascade)
+
+  @@unique([jobId, skillId])
+  @@map("job_skills")
+}
+
+// =====================================================
+// APPLICATION
+// =====================================================
+
+model Application {
+  id          String            @id @default(uuid()) @db.Uuid
+  jobId       String            @map("job_id") @db.Uuid
+  studentId   String            @map("student_id") @db.Uuid
+  coverLetter String?           @map("cover_letter") @db.Text
+  resumeUrl   String?           @map("resume_url")
+  resumeKey   String?           @map("resume_key")
+  status      ApplicationStatus @default(submitted)
+  matchScore  Int?              @map("match_score")
+  appliedAt   DateTime          @default(now()) @map("applied_at")
+  updatedAt   DateTime          @updatedAt @map("updated_at")
+
+  // ============================================
+  // RECRUITMENT TRACKING (BARU)
+  // ============================================
+  nextStep      String?   @map("next_step")
+  interviewDate DateTime? @map("interview_date")
+  recruiterName String?   @map("recruiter_name")
+  notes         String?   @db.Text
+
+  // ============================================
+  // RELATIONS
+  // ============================================
+  job     Job                        @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  student StudentProfile             @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  history ApplicationStatusHistory[]
+
+  @@unique([jobId, studentId])
+  @@index([status])
+  @@index([studentId, updatedAt])
+  @@map("applications")
+}
+
+// =====================================================
+// APPLICATION STATUS HISTORY
+// =====================================================
+
+model ApplicationStatusHistory {
+  id            String   @id @default(uuid()) @db.Uuid
+  applicationId String   @map("application_id") @db.Uuid
+  status        String
+  notes         String?  @db.Text
+  changedBy     String?  @map("changed_by") @db.Uuid
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  application Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+
+  @@index([applicationId, createdAt])
+  @@map("application_status_history")
+}
+
+model SavedJob {
+  id        String   @id @default(uuid()) @db.Uuid
+  studentId String   @map("student_id") @db.Uuid
+  jobId     String   @map("job_id") @db.Uuid
+  savedAt   DateTime @default(now()) @map("saved_at")
+
+  student StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  job     Job            @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, jobId])
+  @@map("saved_jobs")
+}
+
+// =====================================================
+// SAVED COMPANY (BOOKMARK)
+// =====================================================
+
+model SavedCompany {
+  id        String   @id @default(uuid()) @db.Uuid
+  studentId String   @map("student_id") @db.Uuid
+  companyId String   @map("company_id") @db.Uuid
+  savedAt   DateTime @default(now()) @map("saved_at")
+
+  student StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  company Company        @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, companyId])
+  @@index([studentId, savedAt])
+  @@map("saved_companies")
+}
+
+// =====================================================
+// SCHOOL / BKK
+// =====================================================
+
+model School {
+  id            String       @id @default(uuid()) @db.Uuid
+  ownerUserId   String?      @unique @map("owner_user_id") @db.Uuid
+  name          String
+  npsn          String?      @unique
+  slug          String       @unique
+  level         SchoolLevel?
+  accreditation String?
+  email         String?
+  phone         String?
+  website       String?
+  address       String?      @db.Text
+  city          String?
+  province      String?
+  logoUrl       String?      @map("logo_url")
+  logoKey       String?      @map("logo_key")
+  description   String?      @db.Text
+  bkkName       String?      @map("bkk_name")
+  bkkContact    String?      @map("bkk_contact")
+  bkkEmail      String?      @map("bkk_email")
+  bkkPhone      String?      @map("bkk_phone")
+
+  // ============================================
+  // SUBSCRIPTION
+  // ============================================
+  schoolCode            String?   @unique @map("school_code")
+  activeStudentQuota    Int       @default(200) @map("active_student_quota")
+  adminSeatQuota        Int       @default(1) @map("admin_seat_quota")
+  subscriptionPlan      String?   @map("subscription_plan")
+  subscriptionStatus    String?   @default("trial") @map("subscription_status")
+  subscriptionStartedAt DateTime? @map("subscription_started_at")
+  subscriptionExpiresAt DateTime? @map("subscription_expires_at")
+  subscriptionAmount    Int?      @map("subscription_amount")
+  paymentMethod         String?   @map("payment_method")
+  paymentReference      String?   @map("payment_reference")
+  lastPaymentAt         DateTime? @map("last_payment_at")
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+
+  owner             User?              @relation(fields: [ownerUserId], references: [id])
+  programs          SchoolProgram[]
+  students          SchoolStudent[]
+  studentProfiles   StudentProfile[]
+  industryPartners  IndustryPartner[]
+  careerMonitorings CareerMonitoring[]
+
+  @@map("schools")
+}
+
+model SchoolProgram {
+  id          String  @id @default(uuid()) @db.Uuid
+  schoolId    String  @map("school_id") @db.Uuid
+  name        String
+  code        String?
+  description String? @db.Text
+
+  school   School          @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  students SchoolStudent[]
+
+  @@map("school_programs")
+}
+
+model SchoolStudent {
+  id             String              @id @default(uuid()) @db.Uuid
+  schoolId       String              @map("school_id") @db.Uuid
+  studentId      String              @map("student_id") @db.Uuid
+  programId      String?             @map("program_id") @db.Uuid
+  enrollmentYear Int?                @map("enrollment_year")
+  graduationYear Int?                @map("graduation_year")
+  status         SchoolStudentStatus @default(active)
+
+  school  School         @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  student StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  program SchoolProgram? @relation(fields: [programId], references: [id])
+
+  @@unique([schoolId, studentId])
+  @@map("school_students")
+}
+
+model IndustryPartner {
+  id              String            @id @default(uuid()) @db.Uuid
+  schoolId        String            @map("school_id") @db.Uuid
+  companyId       String            @map("company_id") @db.Uuid
+  partnershipType PartnershipType   @default(mou) @map("partnership_type")
+  startDate       DateTime?         @map("start_date") @db.Date
+  endDate         DateTime?         @map("end_date") @db.Date
+  status          PartnershipStatus @default(active)
+  notes           String?           @db.Text
+  createdAt       DateTime          @default(now()) @map("created_at")
+
+  school  School  @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([schoolId, companyId, partnershipType])
+  @@map("industry_partners")
+}
+
+model CareerMonitoring {
+  id            String      @id @default(uuid()) @db.Uuid
+  schoolId      String      @map("school_id") @db.Uuid
+  studentId     String      @map("student_id") @db.Uuid
+  jobId         String?     @map("job_id") @db.Uuid
+  companyId     String?     @map("company_id") @db.Uuid
+  stage         CareerStage @default(opportunity)
+  notes         String?     @db.Text
+  monitoredBy   String?     @map("monitored_by") @db.Uuid
+  placementDate DateTime?   @map("placement_date") @db.Date
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+
+  school  School         @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+  student StudentProfile @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  job     Job?           @relation(fields: [jobId], references: [id])
+  company Company?       @relation(fields: [companyId], references: [id])
+
+  @@index([schoolId, stage])
+  @@map("career_monitorings")
+}
+
+// =====================================================
+// CERTIFICATION INSTITUTION
+// =====================================================
+
+model CertificationInstitution {
+  id            String              @id @default(uuid()) @db.Uuid
+  ownerUserId   String?             @unique @map("owner_user_id") @db.Uuid
+  name          String
+  slug          String              @unique
+  type          CertInstitutionType
+  licenseNumber String?             @map("license_number")
+  email         String?
+  phone         String?
+  website       String?
+  address       String?             @db.Text
+  logoUrl       String?             @map("logo_url")
+  logoKey       String?             @map("logo_key")
+  description   String?             @db.Text
+  createdAt     DateTime            @default(now()) @map("created_at")
+  updatedAt     DateTime            @updatedAt @map("updated_at")
+
+  owner         User?                 @relation(fields: [ownerUserId], references: [id])
+  certificates  Certificate[]
+  verifications VerificationRequest[]
+
+  @@map("certification_institutions")
+}
+
+model Certificate {
+  id                 String            @id @default(uuid()) @db.Uuid
+  studentId          String            @map("student_id") @db.Uuid
+  institutionId      String?           @map("institution_id") @db.Uuid
+  title              String
+  certificateNumber  String?           @map("certificate_number")
+  issuedDate         DateTime?         @map("issued_date") @db.Date
+  expiredDate        DateTime?         @map("expired_date") @db.Date
+  documentUrl        String?           @map("document_url")
+  documentKey        String?           @map("document_key")
+  badgeType          CertBadgeType     @map("badge_type")
+  verificationStatus CertificateStatus @default(pending) @map("verification_status")
+  verifiedAt         DateTime?         @map("verified_at")
+  createdAt          DateTime          @default(now()) @map("created_at")
+
+  student              StudentProfile            @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  institution          CertificationInstitution? @relation(fields: [institutionId], references: [id])
+  verificationRequests VerificationRequest[]
+
+  @@index([verificationStatus])
+  @@map("certificates")
+}
+
+model VerificationRequest {
+  id            String                @id @default(uuid()) @db.Uuid
+  certificateId String                @map("certificate_id") @db.Uuid
+  institutionId String?               @map("institution_id") @db.Uuid
+  submittedBy   String?               @map("submitted_by") @db.Uuid
+  status        VerificationReqStatus @default(pending)
+  reviewedBy    String?               @map("reviewed_by") @db.Uuid
+  reviewedAt    DateTime?             @map("reviewed_at")
+  notes         String?               @db.Text
+  createdAt     DateTime              @default(now()) @map("created_at")
+
+  certificate Certificate               @relation(fields: [certificateId], references: [id], onDelete: Cascade)
+  institution CertificationInstitution? @relation(fields: [institutionId], references: [id])
+
+  @@index([status])
+  @@map("verification_requests")
+}
+
+// =====================================================
+// MESSAGES & NOTIFICATIONS
+// =====================================================
+
+model Conversation {
+  id            String               @id @default(uuid()) @db.Uuid
+  subject       String?
+  contextType   ConversationContext? @map("context_type")
+  contextId     String?              @map("context_id") @db.Uuid
+  lastMessageAt DateTime?            @map("last_message_at")
+  createdAt     DateTime             @default(now()) @map("created_at")
+
+  participants ConversationParticipant[]
+  messages     Message[]
+
+  @@map("conversations")
+}
+
+model ConversationParticipant {
+  id             String    @id @default(uuid()) @db.Uuid
+  conversationId String    @map("conversation_id") @db.Uuid
+  userId         String    @map("user_id") @db.Uuid
+  lastReadAt     DateTime? @map("last_read_at")
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([conversationId, userId])
+  @@map("conversation_participants")
+}
+
+model Message {
+  id             String   @id @default(uuid()) @db.Uuid
+  conversationId String   @map("conversation_id") @db.Uuid
+  senderId       String   @map("sender_id") @db.Uuid
+  body           String?  @db.Text
+  attachmentUrl  String?  @map("attachment_url")
+  attachmentKey  String?  @map("attachment_key")
+  attachmentType String?  @map("attachment_type")
+  isRead         Boolean  @default(false) @map("is_read")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender       User         @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId, createdAt])
+  @@map("messages")
+}
+
+model Notification {
+  id        String           @id @default(uuid()) @db.Uuid
+  userId    String           @map("user_id") @db.Uuid
+  type      NotificationType
+  title     String?
+  body      String?          @db.Text
+  actionUrl String?          @map("action_url")
+  isRead    Boolean          @default(false) @map("is_read")
+  createdAt DateTime         @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
+  @@map("notifications")
+}
+
+// =====================================================
+// SUPER ADMIN
+// =====================================================
+
+model ContentReport {
+  id             String       @id @default(uuid()) @db.Uuid
+  reporterId     String?      @map("reporter_id") @db.Uuid
+  contentType    ContentType  @map("content_type")
+  contentId      String       @map("content_id") @db.Uuid
+  reason         String?
+  description    String?      @db.Text
+  status         ReportStatus @default(pending)
+  reviewedBy     String?      @map("reviewed_by") @db.Uuid
+  reviewedAt     DateTime?    @map("reviewed_at")
+  resolutionNote String?      @map("resolution_note") @db.Text
+  createdAt      DateTime     @default(now()) @map("created_at")
+
+  reporter User? @relation("Reporter", fields: [reporterId], references: [id])
+
+  @@index([status])
+  @@map("content_reports")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid()) @db.Uuid
+  actorId    String?  @map("actor_id") @db.Uuid
+  action     String
+  targetType String?  @map("target_type")
+  targetId   String?  @map("target_id") @db.Uuid
+  metadata   Json?
+  ipAddress  String?  @map("ip_address")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  actor User? @relation(fields: [actorId], references: [id])
+
+  @@index([actorId])
+  @@index([action])
+  @@map("audit_logs")
+}
+
+// =====================================================
+// PROFILE FEEDBACK
+// =====================================================
+
+model ProfileFeedback {
+  id               String   @id @default(uuid()) @db.Uuid
+  studentProfileId String   @map("student_profile_id") @db.Uuid
+  giverUserId      String   @map("giver_user_id") @db.Uuid
+  rating           Int      @default(5)
+  message          String   @db.Text
+  relationship     String?
+  isVerified       Boolean  @default(false) @map("is_verified")
+  isPublic         Boolean  @default(true) @map("is_public")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  studentProfile StudentProfile @relation("ReceivedFeedback", fields: [studentProfileId], references: [id], onDelete: Cascade)
+  giver          User           @relation("GivenFeedback", fields: [giverUserId], references: [id], onDelete: Cascade)
+
+  @@index([studentProfileId, createdAt])
+  @@map("profile_feedbacks")
+}
+
+model SystemSetting {
+  id          String   @id @default(uuid()) @db.Uuid
+  key         String   @unique
+  value       Json?
+  description String?  @db.Text
+  updatedBy   String?  @map("updated_by") @db.Uuid
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("system_settings")
+}
+
+model PlatformStatistic {
+  id                    String   @id @default(uuid()) @db.Uuid
+  date                  DateTime @unique @db.Date
+  totalUsers            Int      @default(0) @map("total_users")
+  totalStudents         Int      @default(0) @map("total_students")
+  totalCompanies        Int      @default(0) @map("total_companies")
+  totalSchools          Int      @default(0) @map("total_schools")
+  totalCertInstitutions Int      @default(0) @map("total_cert_institutions")
+  totalJobs             Int      @default(0) @map("total_jobs")
+  totalApplications     Int      @default(0) @map("total_applications")
+  totalPlacements       Int      @default(0) @map("total_placements")
+  createdAt             DateTime @default(now()) @map("created_at")
+
+  @@map("platform_statistics")
+}
+
+// =====================================================
+// MASTER DATA
+// =====================================================
+
+model Industry {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  slug      String   @unique
+  icon      String?
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("industries")
+}
+
+model Province {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  code      String?  @unique
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  cities City[]
+
+  @@map("provinces")
+}
+
+model City {
+  id         String   @id @default(uuid()) @db.Uuid
+  provinceId String   @map("province_id") @db.Uuid
+  name       String
+  type       String? // "kota" | "kabupaten"
+  isActive   Boolean  @default(true) @map("is_active")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  province Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
+
+  @@unique([provinceId, name])
+  @@map("cities")
+}
+
+// =====================================================
+// SHOWCASE INTERACTIONS
+// =====================================================
+
+model ShowcaseLike {
+  id        String   @id @default(uuid()) @db.Uuid
+  videoId   String   @map("video_id") @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at")
+
+  video ShowcaseVideo @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  user  User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([videoId, userId])
+  @@index([videoId])
+  @@index([userId])
+  @@map("showcase_likes")
+}
+
+model ShowcaseComment {
+  id        String   @id @default(uuid()) @db.Uuid
+  videoId   String   @map("video_id") @db.Uuid
+  userId    String   @map("user_id") @db.Uuid
+  body      String   @db.Text
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  video ShowcaseVideo @relation(fields: [videoId], references: [id], onDelete: Cascade)
+  user  User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([videoId, createdAt])
+  @@index([userId])
+  @@map("showcase_comments")
+}
+
+model StudentFollow {
+  id          String   @id @default(uuid()) @db.Uuid
+  followerId  String   @map("follower_id") @db.Uuid // yang follow
+  followingId String   @map("following_id") @db.Uuid // yang di-follow (student)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  follower  User           @relation("Follower", fields: [followerId], references: [id], onDelete: Cascade)
+  following StudentProfile @relation("Following", fields: [followingId], references: [id], onDelete: Cascade)
+
+  @@unique([followerId, followingId])
+  @@index([followerId])
+  @@index([followingId])
+  @@map("student_follows")
+}

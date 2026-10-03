@@ -174,8 +174,8 @@ export type SavedCompanyWhereInput = {
   studentId?: Prisma.UuidFilter<"SavedCompany"> | string
   companyId?: Prisma.UuidFilter<"SavedCompany"> | string
   savedAt?: Prisma.DateTimeFilter<"SavedCompany"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }
 
 export type SavedCompanyOrderByWithRelationInput = {
@@ -183,8 +183,8 @@ export type SavedCompanyOrderByWithRelationInput = {
   studentId?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
   savedAt?: Prisma.SortOrder
-  student?: Prisma.StudentProfileOrderByWithRelationInput
   company?: Prisma.CompanyOrderByWithRelationInput
+  student?: Prisma.StudentProfileOrderByWithRelationInput
 }
 
 export type SavedCompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -196,8 +196,8 @@ export type SavedCompanyWhereUniqueInput = Prisma.AtLeast<{
   studentId?: Prisma.UuidFilter<"SavedCompany"> | string
   companyId?: Prisma.UuidFilter<"SavedCompany"> | string
   savedAt?: Prisma.DateTimeFilter<"SavedCompany"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }, "id" | "studentId_companyId">
 
 export type SavedCompanyOrderByWithAggregationInput = {
@@ -223,8 +223,8 @@ export type SavedCompanyScalarWhereWithAggregatesInput = {
 export type SavedCompanyCreateInput = {
   id?: string
   savedAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutSavedByInput
   student: Prisma.StudentProfileCreateNestedOneWithoutSavedCompaniesInput
-  company: Prisma.CompanyCreateNestedOneWithoutSavedByStudentsInput
 }
 
 export type SavedCompanyUncheckedCreateInput = {
@@ -237,8 +237,8 @@ export type SavedCompanyUncheckedCreateInput = {
 export type SavedCompanyUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   savedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutSavedByNestedInput
   student?: Prisma.StudentProfileUpdateOneRequiredWithoutSavedCompaniesNestedInput
-  company?: Prisma.CompanyUpdateOneRequiredWithoutSavedByStudentsNestedInput
 }
 
 export type SavedCompanyUncheckedUpdateInput = {
@@ -390,7 +390,7 @@ export type SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput = {
 export type SavedCompanyCreateWithoutStudentInput = {
   id?: string
   savedAt?: Date | string
-  company: Prisma.CompanyCreateNestedOneWithoutSavedByStudentsInput
+  company: Prisma.CompanyCreateNestedOneWithoutSavedByInput
 }
 
 export type SavedCompanyUncheckedCreateWithoutStudentInput = {
@@ -482,7 +482,7 @@ export type SavedCompanyCreateManyStudentInput = {
 export type SavedCompanyUpdateWithoutStudentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   savedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company?: Prisma.CompanyUpdateOneRequiredWithoutSavedByStudentsNestedInput
+  company?: Prisma.CompanyUpdateOneRequiredWithoutSavedByNestedInput
 }
 
 export type SavedCompanyUncheckedUpdateWithoutStudentInput = {
@@ -528,8 +528,8 @@ export type SavedCompanySelect<ExtArgs extends runtime.Types.Extensions.Internal
   studentId?: boolean
   companyId?: boolean
   savedAt?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["savedCompany"]>
 
 export type SavedCompanySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -537,8 +537,8 @@ export type SavedCompanySelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   studentId?: boolean
   companyId?: boolean
   savedAt?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["savedCompany"]>
 
 export type SavedCompanySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -546,8 +546,8 @@ export type SavedCompanySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   studentId?: boolean
   companyId?: boolean
   savedAt?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["savedCompany"]>
 
 export type SavedCompanySelectScalar = {
@@ -559,23 +559,23 @@ export type SavedCompanySelectScalar = {
 
 export type SavedCompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "companyId" | "savedAt", ExtArgs["result"]["savedCompany"]>
 export type SavedCompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 export type SavedCompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 export type SavedCompanyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 
 export type $SavedCompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SavedCompany"
   objects: {
-    student: Prisma.$StudentProfilePayload<ExtArgs>
     company: Prisma.$CompanyPayload<ExtArgs>
+    student: Prisma.$StudentProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -976,8 +976,8 @@ readonly fields: SavedCompanyFieldRefs;
  */
 export interface Prisma__SavedCompanyClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

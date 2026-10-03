@@ -230,8 +230,8 @@ export type StudentPortfolioWhereInput = {
   endDate?: Prisma.DateTimeNullableFilter<"StudentPortfolio"> | Date | string | null
   isPublic?: Prisma.BoolFilter<"StudentPortfolio"> | boolean
   createdAt?: Prisma.DateTimeFilter<"StudentPortfolio"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   media?: Prisma.PortfolioMediaListRelationFilter
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }
 
 export type StudentPortfolioOrderByWithRelationInput = {
@@ -246,8 +246,8 @@ export type StudentPortfolioOrderByWithRelationInput = {
   endDate?: Prisma.SortOrderInput | Prisma.SortOrder
   isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  student?: Prisma.StudentProfileOrderByWithRelationInput
   media?: Prisma.PortfolioMediaOrderByRelationAggregateInput
+  student?: Prisma.StudentProfileOrderByWithRelationInput
 }
 
 export type StudentPortfolioWhereUniqueInput = Prisma.AtLeast<{
@@ -265,8 +265,8 @@ export type StudentPortfolioWhereUniqueInput = Prisma.AtLeast<{
   endDate?: Prisma.DateTimeNullableFilter<"StudentPortfolio"> | Date | string | null
   isPublic?: Prisma.BoolFilter<"StudentPortfolio"> | boolean
   createdAt?: Prisma.DateTimeFilter<"StudentPortfolio"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   media?: Prisma.PortfolioMediaListRelationFilter
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }, "id">
 
 export type StudentPortfolioOrderByWithAggregationInput = {
@@ -314,8 +314,8 @@ export type StudentPortfolioCreateInput = {
   endDate?: Date | string | null
   isPublic?: boolean
   createdAt?: Date | string
-  student: Prisma.StudentProfileCreateNestedOneWithoutPortfoliosInput
   media?: Prisma.PortfolioMediaCreateNestedManyWithoutPortfolioInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutPortfoliosInput
 }
 
 export type StudentPortfolioUncheckedCreateInput = {
@@ -344,8 +344,8 @@ export type StudentPortfolioUpdateInput = {
   endDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentProfileUpdateOneRequiredWithoutPortfoliosNestedInput
   media?: Prisma.PortfolioMediaUpdateManyWithoutPortfolioNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutPortfoliosNestedInput
 }
 
 export type StudentPortfolioUncheckedUpdateInput = {
@@ -757,8 +757,8 @@ export type StudentPortfolioSelect<ExtArgs extends runtime.Types.Extensions.Inte
   endDate?: boolean
   isPublic?: boolean
   createdAt?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   media?: boolean | Prisma.StudentPortfolio$mediaArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.StudentPortfolioCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentPortfolio"]>
 
@@ -808,8 +808,8 @@ export type StudentPortfolioSelectScalar = {
 
 export type StudentPortfolioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "title" | "description" | "projectUrl" | "thumbnailUrl" | "thumbnailKey" | "startDate" | "endDate" | "isPublic" | "createdAt", ExtArgs["result"]["studentPortfolio"]>
 export type StudentPortfolioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   media?: boolean | Prisma.StudentPortfolio$mediaArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.StudentPortfolioCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StudentPortfolioIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -822,8 +822,8 @@ export type StudentPortfolioIncludeUpdateManyAndReturn<ExtArgs extends runtime.T
 export type $StudentPortfolioPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "StudentPortfolio"
   objects: {
-    student: Prisma.$StudentProfilePayload<ExtArgs>
     media: Prisma.$PortfolioMediaPayload<ExtArgs>[]
+    student: Prisma.$StudentProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1231,8 +1231,8 @@ readonly fields: StudentPortfolioFieldRefs;
  */
 export interface Prisma__StudentPortfolioClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   media<T extends Prisma.StudentPortfolio$mediaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentPortfolio$mediaArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PortfolioMediaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

@@ -38,6 +38,8 @@ export type UserMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
+  jobTitle: string | null
+  schoolId: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -54,6 +56,8 @@ export type UserMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
+  jobTitle: string | null
+  schoolId: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -70,6 +74,9 @@ export type UserCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   deletedAt: number
+  jobTitle: number
+  notificationPrefs: number
+  schoolId: number
   _all: number
 }
 
@@ -88,6 +95,8 @@ export type UserMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  jobTitle?: true
+  schoolId?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -104,6 +113,8 @@ export type UserMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  jobTitle?: true
+  schoolId?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -120,6 +131,9 @@ export type UserCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
+  jobTitle?: true
+  notificationPrefs?: true
+  schoolId?: true
   _all?: true
 }
 
@@ -209,6 +223,9 @@ export type UserGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
+  jobTitle: string | null
+  notificationPrefs: runtime.JsonValue | null
+  schoolId: string | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -246,20 +263,29 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  studentProfile?: Prisma.XOR<Prisma.StudentProfileNullableScalarRelationFilter, Prisma.StudentProfileWhereInput> | null
-  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
-  school?: Prisma.XOR<Prisma.SchoolNullableScalarRelationFilter, Prisma.SchoolWhereInput> | null
+  jobTitle?: Prisma.StringNullableFilter<"User"> | string | null
+  notificationPrefs?: Prisma.JsonNullableFilter<"User">
+  schoolId?: Prisma.UuidNullableFilter<"User"> | string | null
+  auditLogs?: Prisma.AuditLogListRelationFilter
   certInstitution?: Prisma.XOR<Prisma.CertificationInstitutionNullableScalarRelationFilter, Prisma.CertificationInstitutionWhereInput> | null
-  companyTeams?: Prisma.CompanyTeamListRelationFilter
+  ownedCompany?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  companyMembers?: Prisma.CompanyMemberListRelationFilter
+  ownedSchool?: Prisma.XOR<Prisma.SchoolNullableScalarRelationFilter, Prisma.SchoolWhereInput> | null
+  schoolMembers?: Prisma.SchoolMemberListRelationFilter
+  sentInvitations?: Prisma.TalentInvitationListRelationFilter
+  reports?: Prisma.ContentReportListRelationFilter
   conversationParts?: Prisma.ConversationParticipantListRelationFilter
   sentMessages?: Prisma.MessageListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
-  auditLogs?: Prisma.AuditLogListRelationFilter
-  reports?: Prisma.ContentReportListRelationFilter
-  showcaseLikes?: Prisma.ShowcaseLikeListRelationFilter
-  showcaseComments?: Prisma.ShowcaseCommentListRelationFilter
-  following?: Prisma.StudentFollowListRelationFilter
   feedbackGiven?: Prisma.ProfileFeedbackListRelationFilter
+  school?: Prisma.XOR<Prisma.SchoolNullableScalarRelationFilter, Prisma.SchoolWhereInput> | null
+  showcaseComments?: Prisma.ShowcaseCommentListRelationFilter
+  showcaseLikes?: Prisma.ShowcaseLikeListRelationFilter
+  savedTalents?: Prisma.SavedTalentListRelationFilter
+  aiInterviewsInvited?: Prisma.AiInterviewListRelationFilter
+  companyInvitations?: Prisma.CompanyInvitationListRelationFilter
+  following?: Prisma.StudentFollowListRelationFilter
+  studentProfile?: Prisma.XOR<Prisma.StudentProfileNullableScalarRelationFilter, Prisma.StudentProfileWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
@@ -276,20 +302,29 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  studentProfile?: Prisma.StudentProfileOrderByWithRelationInput
-  company?: Prisma.CompanyOrderByWithRelationInput
-  school?: Prisma.SchoolOrderByWithRelationInput
+  jobTitle?: Prisma.SortOrderInput | Prisma.SortOrder
+  notificationPrefs?: Prisma.SortOrderInput | Prisma.SortOrder
+  schoolId?: Prisma.SortOrderInput | Prisma.SortOrder
+  auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   certInstitution?: Prisma.CertificationInstitutionOrderByWithRelationInput
-  companyTeams?: Prisma.CompanyTeamOrderByRelationAggregateInput
+  ownedCompany?: Prisma.CompanyOrderByWithRelationInput
+  companyMembers?: Prisma.CompanyMemberOrderByRelationAggregateInput
+  ownedSchool?: Prisma.SchoolOrderByWithRelationInput
+  schoolMembers?: Prisma.SchoolMemberOrderByRelationAggregateInput
+  sentInvitations?: Prisma.TalentInvitationOrderByRelationAggregateInput
+  reports?: Prisma.ContentReportOrderByRelationAggregateInput
   conversationParts?: Prisma.ConversationParticipantOrderByRelationAggregateInput
   sentMessages?: Prisma.MessageOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
-  auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
-  reports?: Prisma.ContentReportOrderByRelationAggregateInput
-  showcaseLikes?: Prisma.ShowcaseLikeOrderByRelationAggregateInput
-  showcaseComments?: Prisma.ShowcaseCommentOrderByRelationAggregateInput
-  following?: Prisma.StudentFollowOrderByRelationAggregateInput
   feedbackGiven?: Prisma.ProfileFeedbackOrderByRelationAggregateInput
+  school?: Prisma.SchoolOrderByWithRelationInput
+  showcaseComments?: Prisma.ShowcaseCommentOrderByRelationAggregateInput
+  showcaseLikes?: Prisma.ShowcaseLikeOrderByRelationAggregateInput
+  savedTalents?: Prisma.SavedTalentOrderByRelationAggregateInput
+  aiInterviewsInvited?: Prisma.AiInterviewOrderByRelationAggregateInput
+  companyInvitations?: Prisma.CompanyInvitationOrderByRelationAggregateInput
+  following?: Prisma.StudentFollowOrderByRelationAggregateInput
+  studentProfile?: Prisma.StudentProfileOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -309,20 +344,29 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
-  studentProfile?: Prisma.XOR<Prisma.StudentProfileNullableScalarRelationFilter, Prisma.StudentProfileWhereInput> | null
-  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
-  school?: Prisma.XOR<Prisma.SchoolNullableScalarRelationFilter, Prisma.SchoolWhereInput> | null
+  jobTitle?: Prisma.StringNullableFilter<"User"> | string | null
+  notificationPrefs?: Prisma.JsonNullableFilter<"User">
+  schoolId?: Prisma.UuidNullableFilter<"User"> | string | null
+  auditLogs?: Prisma.AuditLogListRelationFilter
   certInstitution?: Prisma.XOR<Prisma.CertificationInstitutionNullableScalarRelationFilter, Prisma.CertificationInstitutionWhereInput> | null
-  companyTeams?: Prisma.CompanyTeamListRelationFilter
+  ownedCompany?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  companyMembers?: Prisma.CompanyMemberListRelationFilter
+  ownedSchool?: Prisma.XOR<Prisma.SchoolNullableScalarRelationFilter, Prisma.SchoolWhereInput> | null
+  schoolMembers?: Prisma.SchoolMemberListRelationFilter
+  sentInvitations?: Prisma.TalentInvitationListRelationFilter
+  reports?: Prisma.ContentReportListRelationFilter
   conversationParts?: Prisma.ConversationParticipantListRelationFilter
   sentMessages?: Prisma.MessageListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
-  auditLogs?: Prisma.AuditLogListRelationFilter
-  reports?: Prisma.ContentReportListRelationFilter
-  showcaseLikes?: Prisma.ShowcaseLikeListRelationFilter
-  showcaseComments?: Prisma.ShowcaseCommentListRelationFilter
-  following?: Prisma.StudentFollowListRelationFilter
   feedbackGiven?: Prisma.ProfileFeedbackListRelationFilter
+  school?: Prisma.XOR<Prisma.SchoolNullableScalarRelationFilter, Prisma.SchoolWhereInput> | null
+  showcaseComments?: Prisma.ShowcaseCommentListRelationFilter
+  showcaseLikes?: Prisma.ShowcaseLikeListRelationFilter
+  savedTalents?: Prisma.SavedTalentListRelationFilter
+  aiInterviewsInvited?: Prisma.AiInterviewListRelationFilter
+  companyInvitations?: Prisma.CompanyInvitationListRelationFilter
+  following?: Prisma.StudentFollowListRelationFilter
+  studentProfile?: Prisma.XOR<Prisma.StudentProfileNullableScalarRelationFilter, Prisma.StudentProfileWhereInput> | null
 }, "id" | "neonAuthUserId" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -339,6 +383,9 @@ export type UserOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  jobTitle?: Prisma.SortOrderInput | Prisma.SortOrder
+  notificationPrefs?: Prisma.SortOrderInput | Prisma.SortOrder
+  schoolId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -361,6 +408,9 @@ export type UserScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  jobTitle?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  notificationPrefs?: Prisma.JsonNullableWithAggregatesFilter<"User">
+  schoolId?: Prisma.UuidNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -377,20 +427,28 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -407,20 +465,28 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -437,20 +503,28 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -467,20 +541,28 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -497,6 +579,9 @@ export type UserCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -513,6 +598,8 @@ export type UserUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -529,6 +616,9 @@ export type UserUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -545,6 +635,9 @@ export type UserCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  jobTitle?: Prisma.SortOrder
+  notificationPrefs?: Prisma.SortOrder
+  schoolId?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -561,6 +654,8 @@ export type UserMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  jobTitle?: Prisma.SortOrder
+  schoolId?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -577,6 +672,8 @@ export type UserMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+  jobTitle?: Prisma.SortOrder
+  schoolId?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -587,6 +684,16 @@ export type UserScalarRelationFilter = {
 export type UserNullableScalarRelationFilter = {
   is?: Prisma.UserWhereInput | null
   isNot?: Prisma.UserWhereInput | null
+}
+
+export type UserListRelationFilter = {
+  every?: Prisma.UserWhereInput
+  some?: Prisma.UserWhereInput
+  none?: Prisma.UserWhereInput
+}
+
+export type UserOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -627,50 +734,106 @@ export type UserUpdateOneRequiredWithoutStudentProfileNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutStudentProfileInput, Prisma.UserUpdateWithoutStudentProfileInput>, Prisma.UserUncheckedUpdateWithoutStudentProfileInput>
 }
 
-export type UserCreateNestedOneWithoutCompanyInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyInput, Prisma.UserUncheckedCreateWithoutCompanyInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyInput
+export type UserCreateNestedOneWithoutOwnedCompanyInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedCompanyInput, Prisma.UserUncheckedCreateWithoutOwnedCompanyInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedCompanyInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneWithoutCompanyNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyInput, Prisma.UserUncheckedCreateWithoutCompanyInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyInput
-  upsert?: Prisma.UserUpsertWithoutCompanyInput
+export type UserUpdateOneWithoutOwnedCompanyNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedCompanyInput, Prisma.UserUncheckedCreateWithoutOwnedCompanyInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedCompanyInput
+  upsert?: Prisma.UserUpsertWithoutOwnedCompanyInput
   disconnect?: Prisma.UserWhereInput | boolean
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCompanyInput, Prisma.UserUpdateWithoutCompanyInput>, Prisma.UserUncheckedUpdateWithoutCompanyInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOwnedCompanyInput, Prisma.UserUpdateWithoutOwnedCompanyInput>, Prisma.UserUncheckedUpdateWithoutOwnedCompanyInput>
 }
 
-export type UserCreateNestedOneWithoutCompanyTeamsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyTeamsInput, Prisma.UserUncheckedCreateWithoutCompanyTeamsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyTeamsInput
+export type UserCreateNestedOneWithoutCompanyMembersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyMembersInput, Prisma.UserUncheckedCreateWithoutCompanyMembersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyMembersInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutCompanyTeamsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyTeamsInput, Prisma.UserUncheckedCreateWithoutCompanyTeamsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyTeamsInput
-  upsert?: Prisma.UserUpsertWithoutCompanyTeamsInput
+export type UserUpdateOneRequiredWithoutCompanyMembersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyMembersInput, Prisma.UserUncheckedCreateWithoutCompanyMembersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyMembersInput
+  upsert?: Prisma.UserUpsertWithoutCompanyMembersInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCompanyTeamsInput, Prisma.UserUpdateWithoutCompanyTeamsInput>, Prisma.UserUncheckedUpdateWithoutCompanyTeamsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCompanyMembersInput, Prisma.UserUpdateWithoutCompanyMembersInput>, Prisma.UserUncheckedUpdateWithoutCompanyMembersInput>
 }
 
-export type UserCreateNestedOneWithoutSchoolInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSchoolInput, Prisma.UserUncheckedCreateWithoutSchoolInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSchoolInput
+export type UserCreateNestedOneWithoutOwnedSchoolInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedSchoolInput, Prisma.UserUncheckedCreateWithoutOwnedSchoolInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedSchoolInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneWithoutSchoolNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSchoolInput, Prisma.UserUncheckedCreateWithoutSchoolInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSchoolInput
-  upsert?: Prisma.UserUpsertWithoutSchoolInput
+export type UserCreateNestedManyWithoutSchoolInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSchoolInput, Prisma.UserUncheckedCreateWithoutSchoolInput> | Prisma.UserCreateWithoutSchoolInput[] | Prisma.UserUncheckedCreateWithoutSchoolInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSchoolInput | Prisma.UserCreateOrConnectWithoutSchoolInput[]
+  createMany?: Prisma.UserCreateManySchoolInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUncheckedCreateNestedManyWithoutSchoolInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSchoolInput, Prisma.UserUncheckedCreateWithoutSchoolInput> | Prisma.UserCreateWithoutSchoolInput[] | Prisma.UserUncheckedCreateWithoutSchoolInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSchoolInput | Prisma.UserCreateOrConnectWithoutSchoolInput[]
+  createMany?: Prisma.UserCreateManySchoolInputEnvelope
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+}
+
+export type UserUpdateOneWithoutOwnedSchoolNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOwnedSchoolInput, Prisma.UserUncheckedCreateWithoutOwnedSchoolInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOwnedSchoolInput
+  upsert?: Prisma.UserUpsertWithoutOwnedSchoolInput
   disconnect?: Prisma.UserWhereInput | boolean
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSchoolInput, Prisma.UserUpdateWithoutSchoolInput>, Prisma.UserUncheckedUpdateWithoutSchoolInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOwnedSchoolInput, Prisma.UserUpdateWithoutOwnedSchoolInput>, Prisma.UserUncheckedUpdateWithoutOwnedSchoolInput>
+}
+
+export type UserUpdateManyWithoutSchoolNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSchoolInput, Prisma.UserUncheckedCreateWithoutSchoolInput> | Prisma.UserCreateWithoutSchoolInput[] | Prisma.UserUncheckedCreateWithoutSchoolInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSchoolInput | Prisma.UserCreateOrConnectWithoutSchoolInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutSchoolInput | Prisma.UserUpsertWithWhereUniqueWithoutSchoolInput[]
+  createMany?: Prisma.UserCreateManySchoolInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutSchoolInput | Prisma.UserUpdateWithWhereUniqueWithoutSchoolInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutSchoolInput | Prisma.UserUpdateManyWithWhereWithoutSchoolInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserUncheckedUpdateManyWithoutSchoolNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSchoolInput, Prisma.UserUncheckedCreateWithoutSchoolInput> | Prisma.UserCreateWithoutSchoolInput[] | Prisma.UserUncheckedCreateWithoutSchoolInput[]
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSchoolInput | Prisma.UserCreateOrConnectWithoutSchoolInput[]
+  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutSchoolInput | Prisma.UserUpsertWithWhereUniqueWithoutSchoolInput[]
+  createMany?: Prisma.UserCreateManySchoolInputEnvelope
+  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+  update?: Prisma.UserUpdateWithWhereUniqueWithoutSchoolInput | Prisma.UserUpdateWithWhereUniqueWithoutSchoolInput[]
+  updateMany?: Prisma.UserUpdateManyWithWhereWithoutSchoolInput | Prisma.UserUpdateManyWithWhereWithoutSchoolInput[]
+  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+}
+
+export type UserCreateNestedOneWithoutSchoolMembersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSchoolMembersInput, Prisma.UserUncheckedCreateWithoutSchoolMembersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSchoolMembersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSchoolMembersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSchoolMembersInput, Prisma.UserUncheckedCreateWithoutSchoolMembersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSchoolMembersInput
+  upsert?: Prisma.UserUpsertWithoutSchoolMembersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSchoolMembersInput, Prisma.UserUpdateWithoutSchoolMembersInput>, Prisma.UserUncheckedUpdateWithoutSchoolMembersInput>
 }
 
 export type UserCreateNestedOneWithoutCertInstitutionInput = {
@@ -819,6 +982,62 @@ export type UserUpdateOneRequiredWithoutFollowingNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFollowingInput, Prisma.UserUpdateWithoutFollowingInput>, Prisma.UserUncheckedUpdateWithoutFollowingInput>
 }
 
+export type UserCreateNestedOneWithoutAiInterviewsInvitedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiInterviewsInvitedInput, Prisma.UserUncheckedCreateWithoutAiInterviewsInvitedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiInterviewsInvitedInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAiInterviewsInvitedNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAiInterviewsInvitedInput, Prisma.UserUncheckedCreateWithoutAiInterviewsInvitedInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAiInterviewsInvitedInput
+  upsert?: Prisma.UserUpsertWithoutAiInterviewsInvitedInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAiInterviewsInvitedInput, Prisma.UserUpdateWithoutAiInterviewsInvitedInput>, Prisma.UserUncheckedUpdateWithoutAiInterviewsInvitedInput>
+}
+
+export type UserCreateNestedOneWithoutSentInvitationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentInvitationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSentInvitationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSentInvitationsInput
+  upsert?: Prisma.UserUpsertWithoutSentInvitationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSentInvitationsInput, Prisma.UserUpdateWithoutSentInvitationsInput>, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
+}
+
+export type UserCreateNestedOneWithoutSavedTalentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSavedTalentsInput, Prisma.UserUncheckedCreateWithoutSavedTalentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSavedTalentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSavedTalentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSavedTalentsInput, Prisma.UserUncheckedCreateWithoutSavedTalentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSavedTalentsInput
+  upsert?: Prisma.UserUpsertWithoutSavedTalentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSavedTalentsInput, Prisma.UserUpdateWithoutSavedTalentsInput>, Prisma.UserUncheckedUpdateWithoutSavedTalentsInput>
+}
+
+export type UserCreateNestedOneWithoutCompanyInvitationsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyInvitationsInput, Prisma.UserUncheckedCreateWithoutCompanyInvitationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyInvitationsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCompanyInvitationsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCompanyInvitationsInput, Prisma.UserUncheckedCreateWithoutCompanyInvitationsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCompanyInvitationsInput
+  upsert?: Prisma.UserUpsertWithoutCompanyInvitationsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCompanyInvitationsInput, Prisma.UserUpdateWithoutCompanyInvitationsInput>, Prisma.UserUncheckedUpdateWithoutCompanyInvitationsInput>
+}
+
 export type UserCreateWithoutStudentProfileInput = {
   id?: string
   neonAuthUserId: string
@@ -833,19 +1052,27 @@ export type UserCreateWithoutStudentProfileInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
 }
 
 export type UserUncheckedCreateWithoutStudentProfileInput = {
@@ -862,19 +1089,27 @@ export type UserUncheckedCreateWithoutStudentProfileInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
 }
 
 export type UserCreateOrConnectWithoutStudentProfileInput = {
@@ -907,19 +1142,27 @@ export type UserUpdateWithoutStudentProfileInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStudentProfileInput = {
@@ -936,22 +1179,30 @@ export type UserUncheckedUpdateWithoutStudentProfileInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
 }
 
-export type UserCreateWithoutCompanyInput = {
+export type UserCreateWithoutOwnedCompanyInput = {
   id?: string
   neonAuthUserId: string
   email: string
@@ -965,22 +1216,30 @@ export type UserCreateWithoutCompanyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutCompanyInput = {
+export type UserUncheckedCreateWithoutOwnedCompanyInput = {
   id?: string
   neonAuthUserId: string
   email: string
@@ -994,38 +1253,46 @@ export type UserUncheckedCreateWithoutCompanyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutCompanyInput = {
+export type UserCreateOrConnectWithoutOwnedCompanyInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCompanyInput, Prisma.UserUncheckedCreateWithoutCompanyInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedCompanyInput, Prisma.UserUncheckedCreateWithoutOwnedCompanyInput>
 }
 
-export type UserUpsertWithoutCompanyInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCompanyInput, Prisma.UserUncheckedUpdateWithoutCompanyInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCompanyInput, Prisma.UserUncheckedCreateWithoutCompanyInput>
+export type UserUpsertWithoutOwnedCompanyInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOwnedCompanyInput, Prisma.UserUncheckedUpdateWithoutOwnedCompanyInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedCompanyInput, Prisma.UserUncheckedCreateWithoutOwnedCompanyInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutCompanyInput = {
+export type UserUpdateToOneWithWhereWithoutOwnedCompanyInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCompanyInput, Prisma.UserUncheckedUpdateWithoutCompanyInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOwnedCompanyInput, Prisma.UserUncheckedUpdateWithoutOwnedCompanyInput>
 }
 
-export type UserUpdateWithoutCompanyInput = {
+export type UserUpdateWithoutOwnedCompanyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1039,22 +1306,30 @@ export type UserUpdateWithoutCompanyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutCompanyInput = {
+export type UserUncheckedUpdateWithoutOwnedCompanyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1068,22 +1343,30 @@ export type UserUncheckedUpdateWithoutCompanyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
-export type UserCreateWithoutCompanyTeamsInput = {
+export type UserCreateWithoutCompanyMembersInput = {
   id?: string
   neonAuthUserId: string
   email: string
@@ -1097,22 +1380,30 @@ export type UserCreateWithoutCompanyTeamsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutCompanyTeamsInput = {
+export type UserUncheckedCreateWithoutCompanyMembersInput = {
   id?: string
   neonAuthUserId: string
   email: string
@@ -1126,38 +1417,46 @@ export type UserUncheckedCreateWithoutCompanyTeamsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutCompanyTeamsInput = {
+export type UserCreateOrConnectWithoutCompanyMembersInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCompanyTeamsInput, Prisma.UserUncheckedCreateWithoutCompanyTeamsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCompanyMembersInput, Prisma.UserUncheckedCreateWithoutCompanyMembersInput>
 }
 
-export type UserUpsertWithoutCompanyTeamsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCompanyTeamsInput, Prisma.UserUncheckedUpdateWithoutCompanyTeamsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCompanyTeamsInput, Prisma.UserUncheckedCreateWithoutCompanyTeamsInput>
+export type UserUpsertWithoutCompanyMembersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCompanyMembersInput, Prisma.UserUncheckedUpdateWithoutCompanyMembersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCompanyMembersInput, Prisma.UserUncheckedCreateWithoutCompanyMembersInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutCompanyTeamsInput = {
+export type UserUpdateToOneWithWhereWithoutCompanyMembersInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCompanyTeamsInput, Prisma.UserUncheckedUpdateWithoutCompanyTeamsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCompanyMembersInput, Prisma.UserUncheckedUpdateWithoutCompanyMembersInput>
 }
 
-export type UserUpdateWithoutCompanyTeamsInput = {
+export type UserUpdateWithoutCompanyMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1171,22 +1470,30 @@ export type UserUpdateWithoutCompanyTeamsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutCompanyTeamsInput = {
+export type UserUncheckedUpdateWithoutCompanyMembersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1200,19 +1507,106 @@ export type UserUncheckedUpdateWithoutCompanyTeamsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutOwnedSchoolInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutOwnedSchoolInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutOwnedSchoolInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedSchoolInput, Prisma.UserUncheckedCreateWithoutOwnedSchoolInput>
 }
 
 export type UserCreateWithoutSchoolInput = {
@@ -1229,19 +1623,27 @@ export type UserCreateWithoutSchoolInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSchoolInput = {
@@ -1258,19 +1660,27 @@ export type UserUncheckedCreateWithoutSchoolInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSchoolInput = {
@@ -1278,18 +1688,23 @@ export type UserCreateOrConnectWithoutSchoolInput = {
   create: Prisma.XOR<Prisma.UserCreateWithoutSchoolInput, Prisma.UserUncheckedCreateWithoutSchoolInput>
 }
 
-export type UserUpsertWithoutSchoolInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutSchoolInput, Prisma.UserUncheckedUpdateWithoutSchoolInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutSchoolInput, Prisma.UserUncheckedCreateWithoutSchoolInput>
+export type UserCreateManySchoolInputEnvelope = {
+  data: Prisma.UserCreateManySchoolInput | Prisma.UserCreateManySchoolInput[]
+  skipDuplicates?: boolean
+}
+
+export type UserUpsertWithoutOwnedSchoolInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOwnedSchoolInput, Prisma.UserUncheckedUpdateWithoutOwnedSchoolInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOwnedSchoolInput, Prisma.UserUncheckedCreateWithoutOwnedSchoolInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutSchoolInput = {
+export type UserUpdateToOneWithWhereWithoutOwnedSchoolInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutSchoolInput, Prisma.UserUncheckedUpdateWithoutSchoolInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOwnedSchoolInput, Prisma.UserUncheckedUpdateWithoutOwnedSchoolInput>
 }
 
-export type UserUpdateWithoutSchoolInput = {
+export type UserUpdateWithoutOwnedSchoolInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1303,22 +1718,30 @@ export type UserUpdateWithoutSchoolInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutSchoolInput = {
+export type UserUncheckedUpdateWithoutOwnedSchoolInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1332,19 +1755,229 @@ export type UserUncheckedUpdateWithoutSchoolInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserUpsertWithWhereUniqueWithoutSchoolInput = {
+  where: Prisma.UserWhereUniqueInput
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSchoolInput, Prisma.UserUncheckedUpdateWithoutSchoolInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSchoolInput, Prisma.UserUncheckedCreateWithoutSchoolInput>
+}
+
+export type UserUpdateWithWhereUniqueWithoutSchoolInput = {
+  where: Prisma.UserWhereUniqueInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSchoolInput, Prisma.UserUncheckedUpdateWithoutSchoolInput>
+}
+
+export type UserUpdateManyWithWhereWithoutSchoolInput = {
+  where: Prisma.UserScalarWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutSchoolInput>
+}
+
+export type UserScalarWhereInput = {
+  AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+  OR?: Prisma.UserScalarWhereInput[]
+  NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+  id?: Prisma.UuidFilter<"User"> | string
+  neonAuthUserId?: Prisma.UuidFilter<"User"> | string
+  email?: Prisma.StringFilter<"User"> | string
+  role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  fullName?: Prisma.StringNullableFilter<"User"> | string | null
+  phone?: Prisma.StringNullableFilter<"User"> | string | null
+  avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  avatarKey?: Prisma.StringNullableFilter<"User"> | string | null
+  isActive?: Prisma.BoolFilter<"User"> | boolean
+  lastLoginAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  jobTitle?: Prisma.StringNullableFilter<"User"> | string | null
+  notificationPrefs?: Prisma.JsonNullableFilter<"User">
+  schoolId?: Prisma.UuidNullableFilter<"User"> | string | null
+}
+
+export type UserCreateWithoutSchoolMembersInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSchoolMembersInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSchoolMembersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSchoolMembersInput, Prisma.UserUncheckedCreateWithoutSchoolMembersInput>
+}
+
+export type UserUpsertWithoutSchoolMembersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSchoolMembersInput, Prisma.UserUncheckedUpdateWithoutSchoolMembersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSchoolMembersInput, Prisma.UserUncheckedCreateWithoutSchoolMembersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSchoolMembersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSchoolMembersInput, Prisma.UserUncheckedUpdateWithoutSchoolMembersInput>
+}
+
+export type UserUpdateWithoutSchoolMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSchoolMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCertInstitutionInput = {
@@ -1361,19 +1994,27 @@ export type UserCreateWithoutCertInstitutionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCertInstitutionInput = {
@@ -1390,19 +2031,27 @@ export type UserUncheckedCreateWithoutCertInstitutionInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCertInstitutionInput = {
@@ -1435,19 +2084,27 @@ export type UserUpdateWithoutCertInstitutionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCertInstitutionInput = {
@@ -1464,19 +2121,27 @@ export type UserUncheckedUpdateWithoutCertInstitutionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutConversationPartsInput = {
@@ -1493,19 +2158,27 @@ export type UserCreateWithoutConversationPartsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutConversationPartsInput = {
@@ -1522,19 +2195,27 @@ export type UserUncheckedCreateWithoutConversationPartsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutConversationPartsInput = {
@@ -1567,19 +2248,27 @@ export type UserUpdateWithoutConversationPartsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutConversationPartsInput = {
@@ -1596,19 +2285,27 @@ export type UserUncheckedUpdateWithoutConversationPartsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSentMessagesInput = {
@@ -1625,19 +2322,27 @@ export type UserCreateWithoutSentMessagesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -1654,19 +2359,27 @@ export type UserUncheckedCreateWithoutSentMessagesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -1699,19 +2412,27 @@ export type UserUpdateWithoutSentMessagesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -1728,19 +2449,27 @@ export type UserUncheckedUpdateWithoutSentMessagesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -1757,19 +2486,27 @@ export type UserCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -1786,19 +2523,27 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -1831,19 +2576,27 @@ export type UserUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -1860,19 +2613,27 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutReportsInput = {
@@ -1889,19 +2650,27 @@ export type UserCreateWithoutReportsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutReportsInput = {
@@ -1918,19 +2687,27 @@ export type UserUncheckedCreateWithoutReportsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutReportsInput = {
@@ -1963,19 +2740,27 @@ export type UserUpdateWithoutReportsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReportsInput = {
@@ -1992,19 +2777,27 @@ export type UserUncheckedUpdateWithoutReportsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAuditLogsInput = {
@@ -2021,19 +2814,27 @@ export type UserCreateWithoutAuditLogsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAuditLogsInput = {
@@ -2050,19 +2851,27 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAuditLogsInput = {
@@ -2095,19 +2904,27 @@ export type UserUpdateWithoutAuditLogsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAuditLogsInput = {
@@ -2124,19 +2941,27 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutFeedbackGivenInput = {
@@ -2153,19 +2978,27 @@ export type UserCreateWithoutFeedbackGivenInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
   showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
   following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutFeedbackGivenInput = {
@@ -2182,19 +3015,27 @@ export type UserUncheckedCreateWithoutFeedbackGivenInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
   following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutFeedbackGivenInput = {
@@ -2227,19 +3068,27 @@ export type UserUpdateWithoutFeedbackGivenInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
   following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFeedbackGivenInput = {
@@ -2256,19 +3105,27 @@ export type UserUncheckedUpdateWithoutFeedbackGivenInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
   showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
   following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutShowcaseLikesInput = {
@@ -2285,19 +3142,27 @@ export type UserCreateWithoutShowcaseLikesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutShowcaseLikesInput = {
@@ -2314,19 +3179,27 @@ export type UserUncheckedCreateWithoutShowcaseLikesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutShowcaseLikesInput = {
@@ -2359,19 +3232,27 @@ export type UserUpdateWithoutShowcaseLikesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutShowcaseLikesInput = {
@@ -2388,19 +3269,27 @@ export type UserUncheckedUpdateWithoutShowcaseLikesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutShowcaseCommentsInput = {
@@ -2417,19 +3306,27 @@ export type UserCreateWithoutShowcaseCommentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutShowcaseCommentsInput = {
@@ -2446,19 +3343,27 @@ export type UserUncheckedCreateWithoutShowcaseCommentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutShowcaseCommentsInput = {
@@ -2491,19 +3396,27 @@ export type UserUpdateWithoutShowcaseCommentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutShowcaseCommentsInput = {
@@ -2520,19 +3433,27 @@ export type UserUncheckedUpdateWithoutShowcaseCommentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutFollowingInput = {
@@ -2549,19 +3470,27 @@ export type UserCreateWithoutFollowingInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
   feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutFollowingInput = {
@@ -2578,19 +3507,27 @@ export type UserUncheckedCreateWithoutFollowingInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
-  company?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
-  school?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
-  companyTeams?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutUserInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
   conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
-  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutFollowingInput = {
@@ -2623,19 +3560,27 @@ export type UserUpdateWithoutFollowingInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutFollowingInput = {
@@ -2652,19 +3597,793 @@ export type UserUncheckedUpdateWithoutFollowingInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
-  company?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
-  school?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
   certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
-  companyTeams?: Prisma.CompanyTeamUncheckedUpdateManyWithoutUserNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
   conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
-  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
-  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
-  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
   feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAiInterviewsInvitedInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAiInterviewsInvitedInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAiInterviewsInvitedInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiInterviewsInvitedInput, Prisma.UserUncheckedCreateWithoutAiInterviewsInvitedInput>
+}
+
+export type UserUpsertWithoutAiInterviewsInvitedInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAiInterviewsInvitedInput, Prisma.UserUncheckedUpdateWithoutAiInterviewsInvitedInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAiInterviewsInvitedInput, Prisma.UserUncheckedCreateWithoutAiInterviewsInvitedInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAiInterviewsInvitedInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAiInterviewsInvitedInput, Prisma.UserUncheckedUpdateWithoutAiInterviewsInvitedInput>
+}
+
+export type UserUpdateWithoutAiInterviewsInvitedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAiInterviewsInvitedInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSentInvitationsInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSentInvitationsInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSentInvitationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
+}
+
+export type UserUpsertWithoutSentInvitationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSentInvitationsInput, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSentInvitationsInput, Prisma.UserUncheckedCreateWithoutSentInvitationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSentInvitationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSentInvitationsInput, Prisma.UserUncheckedUpdateWithoutSentInvitationsInput>
+}
+
+export type UserUpdateWithoutSentInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSentInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSavedTalentsInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSavedTalentsInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSavedTalentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSavedTalentsInput, Prisma.UserUncheckedCreateWithoutSavedTalentsInput>
+}
+
+export type UserUpsertWithoutSavedTalentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSavedTalentsInput, Prisma.UserUncheckedUpdateWithoutSavedTalentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSavedTalentsInput, Prisma.UserUncheckedCreateWithoutSavedTalentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSavedTalentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSavedTalentsInput, Prisma.UserUncheckedUpdateWithoutSavedTalentsInput>
+}
+
+export type UserUpdateWithoutSavedTalentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSavedTalentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCompanyInvitationsInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackCreateNestedManyWithoutGiverInput
+  school?: Prisma.SchoolCreateNestedOneWithoutUsersInput
+  showcaseComments?: Prisma.ShowcaseCommentCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutCompanyInvitationsInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: string | null
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutActorInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedCreateNestedOneWithoutOwnerInput
+  ownedCompany?: Prisma.CompanyUncheckedCreateNestedOneWithoutOwnerInput
+  companyMembers?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutUserInput
+  ownedSchool?: Prisma.SchoolUncheckedCreateNestedOneWithoutOwnerInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutUserInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutInviterInput
+  reports?: Prisma.ContentReportUncheckedCreateNestedManyWithoutReporterInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.MessageUncheckedCreateNestedManyWithoutSenderInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutGiverInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedCreateNestedManyWithoutUserInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedCreateNestedManyWithoutUserInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutSaverInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedCreateNestedManyWithoutInviterInput
+  following?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowerInput
+  studentProfile?: Prisma.StudentProfileUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutCompanyInvitationsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCompanyInvitationsInput, Prisma.UserUncheckedCreateWithoutCompanyInvitationsInput>
+}
+
+export type UserUpsertWithoutCompanyInvitationsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCompanyInvitationsInput, Prisma.UserUncheckedUpdateWithoutCompanyInvitationsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCompanyInvitationsInput, Prisma.UserUncheckedCreateWithoutCompanyInvitationsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCompanyInvitationsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCompanyInvitationsInput, Prisma.UserUncheckedUpdateWithoutCompanyInvitationsInput>
+}
+
+export type UserUpdateWithoutCompanyInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutUsersNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCompanyInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserCreateManySchoolInput = {
+  id?: string
+  neonAuthUserId: string
+  email: string
+  role: $Enums.Role
+  fullName?: string | null
+  phone?: string | null
+  avatarUrl?: string | null
+  avatarKey?: string | null
+  isActive?: boolean
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  jobTitle?: string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+}
+
+export type UserUpdateWithoutSchoolInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSchoolInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutActorNestedInput
+  certInstitution?: Prisma.CertificationInstitutionUncheckedUpdateOneWithoutOwnerNestedInput
+  ownedCompany?: Prisma.CompanyUncheckedUpdateOneWithoutOwnerNestedInput
+  companyMembers?: Prisma.CompanyMemberUncheckedUpdateManyWithoutUserNestedInput
+  ownedSchool?: Prisma.SchoolUncheckedUpdateOneWithoutOwnerNestedInput
+  schoolMembers?: Prisma.SchoolMemberUncheckedUpdateManyWithoutUserNestedInput
+  sentInvitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  reports?: Prisma.ContentReportUncheckedUpdateManyWithoutReporterNestedInput
+  conversationParts?: Prisma.ConversationParticipantUncheckedUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.MessageUncheckedUpdateManyWithoutSenderNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  feedbackGiven?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutGiverNestedInput
+  showcaseComments?: Prisma.ShowcaseCommentUncheckedUpdateManyWithoutUserNestedInput
+  showcaseLikes?: Prisma.ShowcaseLikeUncheckedUpdateManyWithoutUserNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutSaverNestedInput
+  aiInterviewsInvited?: Prisma.AiInterviewUncheckedUpdateManyWithoutInviterNestedInput
+  companyInvitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutInviterNestedInput
+  following?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowerNestedInput
+  studentProfile?: Prisma.StudentProfileUncheckedUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateManyWithoutSchoolInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  neonAuthUserId?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  fullName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  jobTitle?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notificationPrefs?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
 }
 
 
@@ -2673,29 +4392,39 @@ export type UserUncheckedUpdateWithoutFollowingInput = {
  */
 
 export type UserCountOutputType = {
-  companyTeams: number
+  auditLogs: number
+  companyMembers: number
+  schoolMembers: number
+  sentInvitations: number
+  reports: number
   conversationParts: number
   sentMessages: number
   notifications: number
-  auditLogs: number
-  reports: number
-  showcaseLikes: number
-  showcaseComments: number
-  following: number
   feedbackGiven: number
+  showcaseComments: number
+  showcaseLikes: number
+  savedTalents: number
+  aiInterviewsInvited: number
+  companyInvitations: number
+  following: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  companyTeams?: boolean | UserCountOutputTypeCountCompanyTeamsArgs
+  auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
+  companyMembers?: boolean | UserCountOutputTypeCountCompanyMembersArgs
+  schoolMembers?: boolean | UserCountOutputTypeCountSchoolMembersArgs
+  sentInvitations?: boolean | UserCountOutputTypeCountSentInvitationsArgs
+  reports?: boolean | UserCountOutputTypeCountReportsArgs
   conversationParts?: boolean | UserCountOutputTypeCountConversationPartsArgs
   sentMessages?: boolean | UserCountOutputTypeCountSentMessagesArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
-  auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
-  reports?: boolean | UserCountOutputTypeCountReportsArgs
-  showcaseLikes?: boolean | UserCountOutputTypeCountShowcaseLikesArgs
-  showcaseComments?: boolean | UserCountOutputTypeCountShowcaseCommentsArgs
-  following?: boolean | UserCountOutputTypeCountFollowingArgs
   feedbackGiven?: boolean | UserCountOutputTypeCountFeedbackGivenArgs
+  showcaseComments?: boolean | UserCountOutputTypeCountShowcaseCommentsArgs
+  showcaseLikes?: boolean | UserCountOutputTypeCountShowcaseLikesArgs
+  savedTalents?: boolean | UserCountOutputTypeCountSavedTalentsArgs
+  aiInterviewsInvited?: boolean | UserCountOutputTypeCountAiInterviewsInvitedArgs
+  companyInvitations?: boolean | UserCountOutputTypeCountCompanyInvitationsArgs
+  following?: boolean | UserCountOutputTypeCountFollowingArgs
 }
 
 /**
@@ -2711,8 +4440,36 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountCompanyTeamsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CompanyTeamWhereInput
+export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AuditLogWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCompanyMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompanyMemberWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSchoolMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SchoolMemberWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSentInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TalentInvitationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContentReportWhereInput
 }
 
 /**
@@ -2739,22 +4496,8 @@ export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Ty
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AuditLogWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ContentReportWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountShowcaseLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ShowcaseLikeWhereInput
+export type UserCountOutputTypeCountFeedbackGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProfileFeedbackWhereInput
 }
 
 /**
@@ -2767,15 +4510,36 @@ export type UserCountOutputTypeCountShowcaseCommentsArgs<ExtArgs extends runtime
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountFollowingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StudentFollowWhereInput
+export type UserCountOutputTypeCountShowcaseLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShowcaseLikeWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountFeedbackGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProfileFeedbackWhereInput
+export type UserCountOutputTypeCountSavedTalentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SavedTalentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAiInterviewsInvitedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AiInterviewWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCompanyInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompanyInvitationWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFollowingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StudentFollowWhereInput
 }
 
 
@@ -2793,20 +4557,29 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
-  studentProfile?: boolean | Prisma.User$studentProfileArgs<ExtArgs>
-  company?: boolean | Prisma.User$companyArgs<ExtArgs>
-  school?: boolean | Prisma.User$schoolArgs<ExtArgs>
+  jobTitle?: boolean
+  notificationPrefs?: boolean
+  schoolId?: boolean
+  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   certInstitution?: boolean | Prisma.User$certInstitutionArgs<ExtArgs>
-  companyTeams?: boolean | Prisma.User$companyTeamsArgs<ExtArgs>
+  ownedCompany?: boolean | Prisma.User$ownedCompanyArgs<ExtArgs>
+  companyMembers?: boolean | Prisma.User$companyMembersArgs<ExtArgs>
+  ownedSchool?: boolean | Prisma.User$ownedSchoolArgs<ExtArgs>
+  schoolMembers?: boolean | Prisma.User$schoolMembersArgs<ExtArgs>
+  sentInvitations?: boolean | Prisma.User$sentInvitationsArgs<ExtArgs>
+  reports?: boolean | Prisma.User$reportsArgs<ExtArgs>
   conversationParts?: boolean | Prisma.User$conversationPartsArgs<ExtArgs>
   sentMessages?: boolean | Prisma.User$sentMessagesArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
-  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
-  reports?: boolean | Prisma.User$reportsArgs<ExtArgs>
-  showcaseLikes?: boolean | Prisma.User$showcaseLikesArgs<ExtArgs>
-  showcaseComments?: boolean | Prisma.User$showcaseCommentsArgs<ExtArgs>
-  following?: boolean | Prisma.User$followingArgs<ExtArgs>
   feedbackGiven?: boolean | Prisma.User$feedbackGivenArgs<ExtArgs>
+  school?: boolean | Prisma.User$schoolArgs<ExtArgs>
+  showcaseComments?: boolean | Prisma.User$showcaseCommentsArgs<ExtArgs>
+  showcaseLikes?: boolean | Prisma.User$showcaseLikesArgs<ExtArgs>
+  savedTalents?: boolean | Prisma.User$savedTalentsArgs<ExtArgs>
+  aiInterviewsInvited?: boolean | Prisma.User$aiInterviewsInvitedArgs<ExtArgs>
+  companyInvitations?: boolean | Prisma.User$companyInvitationsArgs<ExtArgs>
+  following?: boolean | Prisma.User$followingArgs<ExtArgs>
+  studentProfile?: boolean | Prisma.User$studentProfileArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -2824,6 +4597,10 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  jobTitle?: boolean
+  notificationPrefs?: boolean
+  schoolId?: boolean
+  school?: boolean | Prisma.User$schoolArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -2840,6 +4617,10 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  jobTitle?: boolean
+  notificationPrefs?: boolean
+  schoolId?: boolean
+  school?: boolean | Prisma.User$schoolArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -2856,46 +4637,65 @@ export type UserSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
+  jobTitle?: boolean
+  notificationPrefs?: boolean
+  schoolId?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "neonAuthUserId" | "email" | "role" | "fullName" | "phone" | "avatarUrl" | "avatarKey" | "isActive" | "lastLoginAt" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "neonAuthUserId" | "email" | "role" | "fullName" | "phone" | "avatarUrl" | "avatarKey" | "isActive" | "lastLoginAt" | "createdAt" | "updatedAt" | "deletedAt" | "jobTitle" | "notificationPrefs" | "schoolId", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  studentProfile?: boolean | Prisma.User$studentProfileArgs<ExtArgs>
-  company?: boolean | Prisma.User$companyArgs<ExtArgs>
-  school?: boolean | Prisma.User$schoolArgs<ExtArgs>
+  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   certInstitution?: boolean | Prisma.User$certInstitutionArgs<ExtArgs>
-  companyTeams?: boolean | Prisma.User$companyTeamsArgs<ExtArgs>
+  ownedCompany?: boolean | Prisma.User$ownedCompanyArgs<ExtArgs>
+  companyMembers?: boolean | Prisma.User$companyMembersArgs<ExtArgs>
+  ownedSchool?: boolean | Prisma.User$ownedSchoolArgs<ExtArgs>
+  schoolMembers?: boolean | Prisma.User$schoolMembersArgs<ExtArgs>
+  sentInvitations?: boolean | Prisma.User$sentInvitationsArgs<ExtArgs>
+  reports?: boolean | Prisma.User$reportsArgs<ExtArgs>
   conversationParts?: boolean | Prisma.User$conversationPartsArgs<ExtArgs>
   sentMessages?: boolean | Prisma.User$sentMessagesArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
-  auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
-  reports?: boolean | Prisma.User$reportsArgs<ExtArgs>
-  showcaseLikes?: boolean | Prisma.User$showcaseLikesArgs<ExtArgs>
-  showcaseComments?: boolean | Prisma.User$showcaseCommentsArgs<ExtArgs>
-  following?: boolean | Prisma.User$followingArgs<ExtArgs>
   feedbackGiven?: boolean | Prisma.User$feedbackGivenArgs<ExtArgs>
+  school?: boolean | Prisma.User$schoolArgs<ExtArgs>
+  showcaseComments?: boolean | Prisma.User$showcaseCommentsArgs<ExtArgs>
+  showcaseLikes?: boolean | Prisma.User$showcaseLikesArgs<ExtArgs>
+  savedTalents?: boolean | Prisma.User$savedTalentsArgs<ExtArgs>
+  aiInterviewsInvited?: boolean | Prisma.User$aiInterviewsInvitedArgs<ExtArgs>
+  companyInvitations?: boolean | Prisma.User$companyInvitationsArgs<ExtArgs>
+  following?: boolean | Prisma.User$followingArgs<ExtArgs>
+  studentProfile?: boolean | Prisma.User$studentProfileArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  school?: boolean | Prisma.User$schoolArgs<ExtArgs>
+}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  school?: boolean | Prisma.User$schoolArgs<ExtArgs>
+}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    studentProfile: Prisma.$StudentProfilePayload<ExtArgs> | null
-    company: Prisma.$CompanyPayload<ExtArgs> | null
-    school: Prisma.$SchoolPayload<ExtArgs> | null
+    auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     certInstitution: Prisma.$CertificationInstitutionPayload<ExtArgs> | null
-    companyTeams: Prisma.$CompanyTeamPayload<ExtArgs>[]
+    ownedCompany: Prisma.$CompanyPayload<ExtArgs> | null
+    companyMembers: Prisma.$CompanyMemberPayload<ExtArgs>[]
+    ownedSchool: Prisma.$SchoolPayload<ExtArgs> | null
+    schoolMembers: Prisma.$SchoolMemberPayload<ExtArgs>[]
+    sentInvitations: Prisma.$TalentInvitationPayload<ExtArgs>[]
+    reports: Prisma.$ContentReportPayload<ExtArgs>[]
     conversationParts: Prisma.$ConversationParticipantPayload<ExtArgs>[]
     sentMessages: Prisma.$MessagePayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
-    auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
-    reports: Prisma.$ContentReportPayload<ExtArgs>[]
-    showcaseLikes: Prisma.$ShowcaseLikePayload<ExtArgs>[]
-    showcaseComments: Prisma.$ShowcaseCommentPayload<ExtArgs>[]
-    following: Prisma.$StudentFollowPayload<ExtArgs>[]
     feedbackGiven: Prisma.$ProfileFeedbackPayload<ExtArgs>[]
+    school: Prisma.$SchoolPayload<ExtArgs> | null
+    showcaseComments: Prisma.$ShowcaseCommentPayload<ExtArgs>[]
+    showcaseLikes: Prisma.$ShowcaseLikePayload<ExtArgs>[]
+    savedTalents: Prisma.$SavedTalentPayload<ExtArgs>[]
+    aiInterviewsInvited: Prisma.$AiInterviewPayload<ExtArgs>[]
+    companyInvitations: Prisma.$CompanyInvitationPayload<ExtArgs>[]
+    following: Prisma.$StudentFollowPayload<ExtArgs>[]
+    studentProfile: Prisma.$StudentProfilePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2911,6 +4711,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
+    jobTitle: string | null
+    notificationPrefs: runtime.JsonValue | null
+    schoolId: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -3305,20 +5108,26 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  studentProfile<T extends Prisma.User$studentProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$studentProfileArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  company<T extends Prisma.User$companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$companyArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  school<T extends Prisma.User$schoolArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$schoolArgs<ExtArgs>>): Prisma.Prisma__SchoolClient<runtime.Types.Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   certInstitution<T extends Prisma.User$certInstitutionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$certInstitutionArgs<ExtArgs>>): Prisma.Prisma__CertificationInstitutionClient<runtime.Types.Result.GetResult<Prisma.$CertificationInstitutionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  companyTeams<T extends Prisma.User$companyTeamsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$companyTeamsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyTeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ownedCompany<T extends Prisma.User$ownedCompanyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ownedCompanyArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  companyMembers<T extends Prisma.User$companyMembersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$companyMembersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  ownedSchool<T extends Prisma.User$ownedSchoolArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ownedSchoolArgs<ExtArgs>>): Prisma.Prisma__SchoolClient<runtime.Types.Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  schoolMembers<T extends Prisma.User$schoolMembersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$schoolMembersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchoolMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sentInvitations<T extends Prisma.User$sentInvitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentInvitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TalentInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reports<T extends Prisma.User$reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContentReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   conversationParts<T extends Prisma.User$conversationPartsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$conversationPartsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConversationParticipantPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sentMessages<T extends Prisma.User$sentMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  reports<T extends Prisma.User$reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContentReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  showcaseLikes<T extends Prisma.User$showcaseLikesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$showcaseLikesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  showcaseComments<T extends Prisma.User$showcaseCommentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$showcaseCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  following<T extends Prisma.User$followingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$followingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentFollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   feedbackGiven<T extends Prisma.User$feedbackGivenArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$feedbackGivenArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfileFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  school<T extends Prisma.User$schoolArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$schoolArgs<ExtArgs>>): Prisma.Prisma__SchoolClient<runtime.Types.Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  showcaseComments<T extends Prisma.User$showcaseCommentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$showcaseCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  showcaseLikes<T extends Prisma.User$showcaseLikesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$showcaseLikesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  savedTalents<T extends Prisma.User$savedTalentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$savedTalentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SavedTalentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiInterviewsInvited<T extends Prisma.User$aiInterviewsInvitedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$aiInterviewsInvitedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AiInterviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  companyInvitations<T extends Prisma.User$companyInvitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$companyInvitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  following<T extends Prisma.User$followingArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$followingArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentFollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  studentProfile<T extends Prisma.User$studentProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$studentProfileArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3361,6 +5170,9 @@ export interface UserFieldRefs {
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly jobTitle: Prisma.FieldRef<"User", 'String'>
+  readonly notificationPrefs: Prisma.FieldRef<"User", 'Json'>
+  readonly schoolId: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -3615,6 +5427,10 @@ export type UserCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    */
   data: Prisma.UserCreateManyInput | Prisma.UserCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -3685,6 +5501,10 @@ export type UserUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many Users to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -3754,60 +5574,27 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.studentProfile
+ * User.auditLogs
  */
-export type User$studentProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the StudentProfile
+   * Select specific fields to fetch from the AuditLog
    */
-  select?: Prisma.StudentProfileSelect<ExtArgs> | null
+  select?: Prisma.AuditLogSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the StudentProfile
+   * Omit specific fields from the AuditLog
    */
-  omit?: Prisma.StudentProfileOmit<ExtArgs> | null
+  omit?: Prisma.AuditLogOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.StudentProfileInclude<ExtArgs> | null
-  where?: Prisma.StudentProfileWhereInput
-}
-
-/**
- * User.company
- */
-export type User$companyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Company
-   */
-  select?: Prisma.CompanySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Company
-   */
-  omit?: Prisma.CompanyOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CompanyInclude<ExtArgs> | null
-  where?: Prisma.CompanyWhereInput
-}
-
-/**
- * User.school
- */
-export type User$schoolArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the School
-   */
-  select?: Prisma.SchoolSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the School
-   */
-  omit?: Prisma.SchoolOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SchoolInclude<ExtArgs> | null
-  where?: Prisma.SchoolWhereInput
+  include?: Prisma.AuditLogInclude<ExtArgs> | null
+  where?: Prisma.AuditLogWhereInput
+  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
+  cursor?: Prisma.AuditLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
 }
 
 /**
@@ -3830,27 +5617,137 @@ export type User$certInstitutionArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 /**
- * User.companyTeams
+ * User.ownedCompany
  */
-export type User$companyTeamsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$ownedCompanyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the CompanyTeam
+   * Select specific fields to fetch from the Company
    */
-  select?: Prisma.CompanyTeamSelect<ExtArgs> | null
+  select?: Prisma.CompanySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the CompanyTeam
+   * Omit specific fields from the Company
    */
-  omit?: Prisma.CompanyTeamOmit<ExtArgs> | null
+  omit?: Prisma.CompanyOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CompanyTeamInclude<ExtArgs> | null
-  where?: Prisma.CompanyTeamWhereInput
-  orderBy?: Prisma.CompanyTeamOrderByWithRelationInput | Prisma.CompanyTeamOrderByWithRelationInput[]
-  cursor?: Prisma.CompanyTeamWhereUniqueInput
+  include?: Prisma.CompanyInclude<ExtArgs> | null
+  where?: Prisma.CompanyWhereInput
+}
+
+/**
+ * User.companyMembers
+ */
+export type User$companyMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CompanyMember
+   */
+  select?: Prisma.CompanyMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CompanyMember
+   */
+  omit?: Prisma.CompanyMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompanyMemberInclude<ExtArgs> | null
+  where?: Prisma.CompanyMemberWhereInput
+  orderBy?: Prisma.CompanyMemberOrderByWithRelationInput | Prisma.CompanyMemberOrderByWithRelationInput[]
+  cursor?: Prisma.CompanyMemberWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.CompanyTeamScalarFieldEnum | Prisma.CompanyTeamScalarFieldEnum[]
+  distinct?: Prisma.CompanyMemberScalarFieldEnum | Prisma.CompanyMemberScalarFieldEnum[]
+}
+
+/**
+ * User.ownedSchool
+ */
+export type User$ownedSchoolArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the School
+   */
+  select?: Prisma.SchoolSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the School
+   */
+  omit?: Prisma.SchoolOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SchoolInclude<ExtArgs> | null
+  where?: Prisma.SchoolWhereInput
+}
+
+/**
+ * User.schoolMembers
+ */
+export type User$schoolMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SchoolMember
+   */
+  select?: Prisma.SchoolMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SchoolMember
+   */
+  omit?: Prisma.SchoolMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SchoolMemberInclude<ExtArgs> | null
+  where?: Prisma.SchoolMemberWhereInput
+  orderBy?: Prisma.SchoolMemberOrderByWithRelationInput | Prisma.SchoolMemberOrderByWithRelationInput[]
+  cursor?: Prisma.SchoolMemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SchoolMemberScalarFieldEnum | Prisma.SchoolMemberScalarFieldEnum[]
+}
+
+/**
+ * User.sentInvitations
+ */
+export type User$sentInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TalentInvitation
+   */
+  select?: Prisma.TalentInvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TalentInvitation
+   */
+  omit?: Prisma.TalentInvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TalentInvitationInclude<ExtArgs> | null
+  where?: Prisma.TalentInvitationWhereInput
+  orderBy?: Prisma.TalentInvitationOrderByWithRelationInput | Prisma.TalentInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.TalentInvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TalentInvitationScalarFieldEnum | Prisma.TalentInvitationScalarFieldEnum[]
+}
+
+/**
+ * User.reports
+ */
+export type User$reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContentReport
+   */
+  select?: Prisma.ContentReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ContentReport
+   */
+  omit?: Prisma.ContentReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContentReportInclude<ExtArgs> | null
+  where?: Prisma.ContentReportWhereInput
+  orderBy?: Prisma.ContentReportOrderByWithRelationInput | Prisma.ContentReportOrderByWithRelationInput[]
+  cursor?: Prisma.ContentReportWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContentReportScalarFieldEnum | Prisma.ContentReportScalarFieldEnum[]
 }
 
 /**
@@ -3926,75 +5823,46 @@ export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * User.auditLogs
+ * User.feedbackGiven
  */
-export type User$auditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$feedbackGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the AuditLog
+   * Select specific fields to fetch from the ProfileFeedback
    */
-  select?: Prisma.AuditLogSelect<ExtArgs> | null
+  select?: Prisma.ProfileFeedbackSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the AuditLog
+   * Omit specific fields from the ProfileFeedback
    */
-  omit?: Prisma.AuditLogOmit<ExtArgs> | null
+  omit?: Prisma.ProfileFeedbackOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AuditLogInclude<ExtArgs> | null
-  where?: Prisma.AuditLogWhereInput
-  orderBy?: Prisma.AuditLogOrderByWithRelationInput | Prisma.AuditLogOrderByWithRelationInput[]
-  cursor?: Prisma.AuditLogWhereUniqueInput
+  include?: Prisma.ProfileFeedbackInclude<ExtArgs> | null
+  where?: Prisma.ProfileFeedbackWhereInput
+  orderBy?: Prisma.ProfileFeedbackOrderByWithRelationInput | Prisma.ProfileFeedbackOrderByWithRelationInput[]
+  cursor?: Prisma.ProfileFeedbackWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AuditLogScalarFieldEnum | Prisma.AuditLogScalarFieldEnum[]
+  distinct?: Prisma.ProfileFeedbackScalarFieldEnum | Prisma.ProfileFeedbackScalarFieldEnum[]
 }
 
 /**
- * User.reports
+ * User.school
  */
-export type User$reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$schoolArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ContentReport
+   * Select specific fields to fetch from the School
    */
-  select?: Prisma.ContentReportSelect<ExtArgs> | null
+  select?: Prisma.SchoolSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ContentReport
+   * Omit specific fields from the School
    */
-  omit?: Prisma.ContentReportOmit<ExtArgs> | null
+  omit?: Prisma.SchoolOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ContentReportInclude<ExtArgs> | null
-  where?: Prisma.ContentReportWhereInput
-  orderBy?: Prisma.ContentReportOrderByWithRelationInput | Prisma.ContentReportOrderByWithRelationInput[]
-  cursor?: Prisma.ContentReportWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ContentReportScalarFieldEnum | Prisma.ContentReportScalarFieldEnum[]
-}
-
-/**
- * User.showcaseLikes
- */
-export type User$showcaseLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ShowcaseLike
-   */
-  select?: Prisma.ShowcaseLikeSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ShowcaseLike
-   */
-  omit?: Prisma.ShowcaseLikeOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShowcaseLikeInclude<ExtArgs> | null
-  where?: Prisma.ShowcaseLikeWhereInput
-  orderBy?: Prisma.ShowcaseLikeOrderByWithRelationInput | Prisma.ShowcaseLikeOrderByWithRelationInput[]
-  cursor?: Prisma.ShowcaseLikeWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ShowcaseLikeScalarFieldEnum | Prisma.ShowcaseLikeScalarFieldEnum[]
+  include?: Prisma.SchoolInclude<ExtArgs> | null
+  where?: Prisma.SchoolWhereInput
 }
 
 /**
@@ -4022,6 +5890,102 @@ export type User$showcaseCommentsArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
+ * User.showcaseLikes
+ */
+export type User$showcaseLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShowcaseLike
+   */
+  select?: Prisma.ShowcaseLikeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShowcaseLike
+   */
+  omit?: Prisma.ShowcaseLikeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShowcaseLikeInclude<ExtArgs> | null
+  where?: Prisma.ShowcaseLikeWhereInput
+  orderBy?: Prisma.ShowcaseLikeOrderByWithRelationInput | Prisma.ShowcaseLikeOrderByWithRelationInput[]
+  cursor?: Prisma.ShowcaseLikeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShowcaseLikeScalarFieldEnum | Prisma.ShowcaseLikeScalarFieldEnum[]
+}
+
+/**
+ * User.savedTalents
+ */
+export type User$savedTalentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SavedTalent
+   */
+  select?: Prisma.SavedTalentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SavedTalent
+   */
+  omit?: Prisma.SavedTalentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SavedTalentInclude<ExtArgs> | null
+  where?: Prisma.SavedTalentWhereInput
+  orderBy?: Prisma.SavedTalentOrderByWithRelationInput | Prisma.SavedTalentOrderByWithRelationInput[]
+  cursor?: Prisma.SavedTalentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SavedTalentScalarFieldEnum | Prisma.SavedTalentScalarFieldEnum[]
+}
+
+/**
+ * User.aiInterviewsInvited
+ */
+export type User$aiInterviewsInvitedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AiInterview
+   */
+  select?: Prisma.AiInterviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AiInterview
+   */
+  omit?: Prisma.AiInterviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AiInterviewInclude<ExtArgs> | null
+  where?: Prisma.AiInterviewWhereInput
+  orderBy?: Prisma.AiInterviewOrderByWithRelationInput | Prisma.AiInterviewOrderByWithRelationInput[]
+  cursor?: Prisma.AiInterviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AiInterviewScalarFieldEnum | Prisma.AiInterviewScalarFieldEnum[]
+}
+
+/**
+ * User.companyInvitations
+ */
+export type User$companyInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CompanyInvitation
+   */
+  select?: Prisma.CompanyInvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CompanyInvitation
+   */
+  omit?: Prisma.CompanyInvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompanyInvitationInclude<ExtArgs> | null
+  where?: Prisma.CompanyInvitationWhereInput
+  orderBy?: Prisma.CompanyInvitationOrderByWithRelationInput | Prisma.CompanyInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.CompanyInvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CompanyInvitationScalarFieldEnum | Prisma.CompanyInvitationScalarFieldEnum[]
+}
+
+/**
  * User.following
  */
 export type User$followingArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4046,27 +6010,22 @@ export type User$followingArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.feedbackGiven
+ * User.studentProfile
  */
-export type User$feedbackGivenArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$studentProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ProfileFeedback
+   * Select specific fields to fetch from the StudentProfile
    */
-  select?: Prisma.ProfileFeedbackSelect<ExtArgs> | null
+  select?: Prisma.StudentProfileSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ProfileFeedback
+   * Omit specific fields from the StudentProfile
    */
-  omit?: Prisma.ProfileFeedbackOmit<ExtArgs> | null
+  omit?: Prisma.StudentProfileOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ProfileFeedbackInclude<ExtArgs> | null
-  where?: Prisma.ProfileFeedbackWhereInput
-  orderBy?: Prisma.ProfileFeedbackOrderByWithRelationInput | Prisma.ProfileFeedbackOrderByWithRelationInput[]
-  cursor?: Prisma.ProfileFeedbackWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ProfileFeedbackScalarFieldEnum | Prisma.ProfileFeedbackScalarFieldEnum[]
+  include?: Prisma.StudentProfileInclude<ExtArgs> | null
+  where?: Prisma.StudentProfileWhereInput
 }
 
 /**

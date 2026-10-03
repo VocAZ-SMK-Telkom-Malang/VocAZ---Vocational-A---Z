@@ -236,9 +236,9 @@ export type SchoolStudentWhereInput = {
   enrollmentYear?: Prisma.IntNullableFilter<"SchoolStudent"> | number | null
   graduationYear?: Prisma.IntNullableFilter<"SchoolStudent"> | number | null
   status?: Prisma.EnumSchoolStudentStatusFilter<"SchoolStudent"> | $Enums.SchoolStudentStatus
+  program?: Prisma.XOR<Prisma.SchoolProgramNullableScalarRelationFilter, Prisma.SchoolProgramWhereInput> | null
   school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
   student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
-  program?: Prisma.XOR<Prisma.SchoolProgramNullableScalarRelationFilter, Prisma.SchoolProgramWhereInput> | null
 }
 
 export type SchoolStudentOrderByWithRelationInput = {
@@ -249,9 +249,9 @@ export type SchoolStudentOrderByWithRelationInput = {
   enrollmentYear?: Prisma.SortOrderInput | Prisma.SortOrder
   graduationYear?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  program?: Prisma.SchoolProgramOrderByWithRelationInput
   school?: Prisma.SchoolOrderByWithRelationInput
   student?: Prisma.StudentProfileOrderByWithRelationInput
-  program?: Prisma.SchoolProgramOrderByWithRelationInput
 }
 
 export type SchoolStudentWhereUniqueInput = Prisma.AtLeast<{
@@ -266,9 +266,9 @@ export type SchoolStudentWhereUniqueInput = Prisma.AtLeast<{
   enrollmentYear?: Prisma.IntNullableFilter<"SchoolStudent"> | number | null
   graduationYear?: Prisma.IntNullableFilter<"SchoolStudent"> | number | null
   status?: Prisma.EnumSchoolStudentStatusFilter<"SchoolStudent"> | $Enums.SchoolStudentStatus
+  program?: Prisma.XOR<Prisma.SchoolProgramNullableScalarRelationFilter, Prisma.SchoolProgramWhereInput> | null
   school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
   student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
-  program?: Prisma.XOR<Prisma.SchoolProgramNullableScalarRelationFilter, Prisma.SchoolProgramWhereInput> | null
 }, "id" | "schoolId_studentId">
 
 export type SchoolStudentOrderByWithAggregationInput = {
@@ -304,9 +304,9 @@ export type SchoolStudentCreateInput = {
   enrollmentYear?: number | null
   graduationYear?: number | null
   status?: $Enums.SchoolStudentStatus
+  program?: Prisma.SchoolProgramCreateNestedOneWithoutStudentsInput
   school: Prisma.SchoolCreateNestedOneWithoutStudentsInput
   student: Prisma.StudentProfileCreateNestedOneWithoutSchoolEnrollmentsInput
-  program?: Prisma.SchoolProgramCreateNestedOneWithoutStudentsInput
 }
 
 export type SchoolStudentUncheckedCreateInput = {
@@ -324,9 +324,9 @@ export type SchoolStudentUpdateInput = {
   enrollmentYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   graduationYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.EnumSchoolStudentStatusFieldUpdateOperationsInput | $Enums.SchoolStudentStatus
+  program?: Prisma.SchoolProgramUpdateOneWithoutStudentsNestedInput
   school?: Prisma.SchoolUpdateOneRequiredWithoutStudentsNestedInput
   student?: Prisma.StudentProfileUpdateOneRequiredWithoutSchoolEnrollmentsNestedInput
-  program?: Prisma.SchoolProgramUpdateOneWithoutStudentsNestedInput
 }
 
 export type SchoolStudentUncheckedUpdateInput = {
@@ -556,8 +556,8 @@ export type SchoolStudentCreateWithoutStudentInput = {
   enrollmentYear?: number | null
   graduationYear?: number | null
   status?: $Enums.SchoolStudentStatus
-  school: Prisma.SchoolCreateNestedOneWithoutStudentsInput
   program?: Prisma.SchoolProgramCreateNestedOneWithoutStudentsInput
+  school: Prisma.SchoolCreateNestedOneWithoutStudentsInput
 }
 
 export type SchoolStudentUncheckedCreateWithoutStudentInput = {
@@ -613,8 +613,8 @@ export type SchoolStudentCreateWithoutSchoolInput = {
   enrollmentYear?: number | null
   graduationYear?: number | null
   status?: $Enums.SchoolStudentStatus
-  student: Prisma.StudentProfileCreateNestedOneWithoutSchoolEnrollmentsInput
   program?: Prisma.SchoolProgramCreateNestedOneWithoutStudentsInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutSchoolEnrollmentsInput
 }
 
 export type SchoolStudentUncheckedCreateWithoutSchoolInput = {
@@ -710,8 +710,8 @@ export type SchoolStudentUpdateWithoutStudentInput = {
   enrollmentYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   graduationYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.EnumSchoolStudentStatusFieldUpdateOperationsInput | $Enums.SchoolStudentStatus
-  school?: Prisma.SchoolUpdateOneRequiredWithoutStudentsNestedInput
   program?: Prisma.SchoolProgramUpdateOneWithoutStudentsNestedInput
+  school?: Prisma.SchoolUpdateOneRequiredWithoutStudentsNestedInput
 }
 
 export type SchoolStudentUncheckedUpdateWithoutStudentInput = {
@@ -746,8 +746,8 @@ export type SchoolStudentUpdateWithoutSchoolInput = {
   enrollmentYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   graduationYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.EnumSchoolStudentStatusFieldUpdateOperationsInput | $Enums.SchoolStudentStatus
-  student?: Prisma.StudentProfileUpdateOneRequiredWithoutSchoolEnrollmentsNestedInput
   program?: Prisma.SchoolProgramUpdateOneWithoutStudentsNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutSchoolEnrollmentsNestedInput
 }
 
 export type SchoolStudentUncheckedUpdateWithoutSchoolInput = {
@@ -814,9 +814,9 @@ export type SchoolStudentSelect<ExtArgs extends runtime.Types.Extensions.Interna
   enrollmentYear?: boolean
   graduationYear?: boolean
   status?: boolean
+  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
 }, ExtArgs["result"]["schoolStudent"]>
 
 export type SchoolStudentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -827,9 +827,9 @@ export type SchoolStudentSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   enrollmentYear?: boolean
   graduationYear?: boolean
   status?: boolean
+  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
 }, ExtArgs["result"]["schoolStudent"]>
 
 export type SchoolStudentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -840,9 +840,9 @@ export type SchoolStudentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   enrollmentYear?: boolean
   graduationYear?: boolean
   status?: boolean
+  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
 }, ExtArgs["result"]["schoolStudent"]>
 
 export type SchoolStudentSelectScalar = {
@@ -857,27 +857,27 @@ export type SchoolStudentSelectScalar = {
 
 export type SchoolStudentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "schoolId" | "studentId" | "programId" | "enrollmentYear" | "graduationYear" | "status", ExtArgs["result"]["schoolStudent"]>
 export type SchoolStudentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
 }
 export type SchoolStudentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
 }
 export type SchoolStudentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  program?: boolean | Prisma.SchoolStudent$programArgs<ExtArgs>
 }
 
 export type $SchoolStudentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SchoolStudent"
   objects: {
+    program: Prisma.$SchoolProgramPayload<ExtArgs> | null
     school: Prisma.$SchoolPayload<ExtArgs>
     student: Prisma.$StudentProfilePayload<ExtArgs>
-    program: Prisma.$SchoolProgramPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1281,9 +1281,9 @@ readonly fields: SchoolStudentFieldRefs;
  */
 export interface Prisma__SchoolStudentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  program<T extends Prisma.SchoolStudent$programArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SchoolStudent$programArgs<ExtArgs>>): Prisma.Prisma__SchoolProgramClient<runtime.Types.Result.GetResult<Prisma.$SchoolProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   school<T extends Prisma.SchoolDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SchoolDefaultArgs<ExtArgs>>): Prisma.Prisma__SchoolClient<runtime.Types.Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  program<T extends Prisma.SchoolStudent$programArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SchoolStudent$programArgs<ExtArgs>>): Prisma.Prisma__SchoolProgramClient<runtime.Types.Result.GetResult<Prisma.$SchoolProgramPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

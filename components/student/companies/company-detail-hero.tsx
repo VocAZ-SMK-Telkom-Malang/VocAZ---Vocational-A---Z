@@ -14,10 +14,12 @@ import {
 } from 'lucide-react'
 import { useState, useTransition } from 'react'
 import { toggleSaveCompany } from '@/lib/student/actions'
+import { MessageButton } from '@/components/shared/messages'
 
 type Props = {
   company: {
     id: string
+    slug: string                    // ← TAMBAH (buat message button)
     name: string
     tagline: string
     industry: string
@@ -138,7 +140,8 @@ export function CompanyDetailHero({ company, initialSaved }: Props) {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0 flex-wrap">
+            {/* Bookmark */}
             <button
               type="button"
               onClick={handleSave}
@@ -152,6 +155,16 @@ export function CompanyDetailHero({ company, initialSaved }: Props) {
             >
               <Bookmark className={`w-4 h-4 ${saved ? 'fill-current' : ''}`} />
             </button>
+
+            {/* Chat Recruiter */}
+            <MessageButton
+              companySlug={company.slug}
+              variant="outline"
+              size="lg"
+              label="Chat Recruiter"
+            />
+
+            {/* Website */}
             {company.website && (
               <a
                 href={company.website}

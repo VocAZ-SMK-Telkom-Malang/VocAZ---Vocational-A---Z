@@ -27,7 +27,7 @@ export default async function StudentLayout({
   })
 
   if (!user) {
-    redirect('/onboarding')
+    redirect('/join')
   }
 
   // Guard: hanya student yang boleh masuk

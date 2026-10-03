@@ -246,8 +246,8 @@ export type CertificateWhereInput = {
   verificationStatus?: Prisma.EnumCertificateStatusFilter<"Certificate"> | $Enums.CertificateStatus
   verifiedAt?: Prisma.DateTimeNullableFilter<"Certificate"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Certificate"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   institution?: Prisma.XOR<Prisma.CertificationInstitutionNullableScalarRelationFilter, Prisma.CertificationInstitutionWhereInput> | null
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   verificationRequests?: Prisma.VerificationRequestListRelationFilter
 }
 
@@ -265,8 +265,8 @@ export type CertificateOrderByWithRelationInput = {
   verificationStatus?: Prisma.SortOrder
   verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  student?: Prisma.StudentProfileOrderByWithRelationInput
   institution?: Prisma.CertificationInstitutionOrderByWithRelationInput
+  student?: Prisma.StudentProfileOrderByWithRelationInput
   verificationRequests?: Prisma.VerificationRequestOrderByRelationAggregateInput
 }
 
@@ -287,8 +287,8 @@ export type CertificateWhereUniqueInput = Prisma.AtLeast<{
   verificationStatus?: Prisma.EnumCertificateStatusFilter<"Certificate"> | $Enums.CertificateStatus
   verifiedAt?: Prisma.DateTimeNullableFilter<"Certificate"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Certificate"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   institution?: Prisma.XOR<Prisma.CertificationInstitutionNullableScalarRelationFilter, Prisma.CertificationInstitutionWhereInput> | null
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   verificationRequests?: Prisma.VerificationRequestListRelationFilter
 }, "id">
 
@@ -342,8 +342,8 @@ export type CertificateCreateInput = {
   verificationStatus?: $Enums.CertificateStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
-  student: Prisma.StudentProfileCreateNestedOneWithoutCertificatesInput
   institution?: Prisma.CertificationInstitutionCreateNestedOneWithoutCertificatesInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutCertificatesInput
   verificationRequests?: Prisma.VerificationRequestCreateNestedManyWithoutCertificateInput
 }
 
@@ -376,8 +376,8 @@ export type CertificateUpdateInput = {
   verificationStatus?: Prisma.EnumCertificateStatusFieldUpdateOperationsInput | $Enums.CertificateStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentProfileUpdateOneRequiredWithoutCertificatesNestedInput
   institution?: Prisma.CertificationInstitutionUpdateOneWithoutCertificatesNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutCertificatesNestedInput
   verificationRequests?: Prisma.VerificationRequestUpdateManyWithoutCertificateNestedInput
 }
 
@@ -760,8 +760,8 @@ export type CertificateCreateWithoutVerificationRequestsInput = {
   verificationStatus?: $Enums.CertificateStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
-  student: Prisma.StudentProfileCreateNestedOneWithoutCertificatesInput
   institution?: Prisma.CertificationInstitutionCreateNestedOneWithoutCertificatesInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutCertificatesInput
 }
 
 export type CertificateUncheckedCreateWithoutVerificationRequestsInput = {
@@ -808,8 +808,8 @@ export type CertificateUpdateWithoutVerificationRequestsInput = {
   verificationStatus?: Prisma.EnumCertificateStatusFieldUpdateOperationsInput | $Enums.CertificateStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentProfileUpdateOneRequiredWithoutCertificatesNestedInput
   institution?: Prisma.CertificationInstitutionUpdateOneWithoutCertificatesNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutCertificatesNestedInput
 }
 
 export type CertificateUncheckedUpdateWithoutVerificationRequestsInput = {
@@ -997,8 +997,8 @@ export type CertificateSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   verificationStatus?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   institution?: boolean | Prisma.Certificate$institutionArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   verificationRequests?: boolean | Prisma.Certificate$verificationRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.CertificateCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["certificate"]>
@@ -1017,8 +1017,8 @@ export type CertificateSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   verificationStatus?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   institution?: boolean | Prisma.Certificate$institutionArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["certificate"]>
 
 export type CertificateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1035,8 +1035,8 @@ export type CertificateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   verificationStatus?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   institution?: boolean | Prisma.Certificate$institutionArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["certificate"]>
 
 export type CertificateSelectScalar = {
@@ -1057,25 +1057,25 @@ export type CertificateSelectScalar = {
 
 export type CertificateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "institutionId" | "title" | "certificateNumber" | "issuedDate" | "expiredDate" | "documentUrl" | "documentKey" | "badgeType" | "verificationStatus" | "verifiedAt" | "createdAt", ExtArgs["result"]["certificate"]>
 export type CertificateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   institution?: boolean | Prisma.Certificate$institutionArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   verificationRequests?: boolean | Prisma.Certificate$verificationRequestsArgs<ExtArgs>
   _count?: boolean | Prisma.CertificateCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CertificateIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   institution?: boolean | Prisma.Certificate$institutionArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 export type CertificateIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   institution?: boolean | Prisma.Certificate$institutionArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 
 export type $CertificatePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Certificate"
   objects: {
-    student: Prisma.$StudentProfilePayload<ExtArgs>
     institution: Prisma.$CertificationInstitutionPayload<ExtArgs> | null
+    student: Prisma.$StudentProfilePayload<ExtArgs>
     verificationRequests: Prisma.$VerificationRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1486,8 +1486,8 @@ readonly fields: CertificateFieldRefs;
  */
 export interface Prisma__CertificateClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   institution<T extends Prisma.Certificate$institutionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Certificate$institutionArgs<ExtArgs>>): Prisma.Prisma__CertificationInstitutionClient<runtime.Types.Result.GetResult<Prisma.$CertificationInstitutionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   verificationRequests<T extends Prisma.Certificate$verificationRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Certificate$verificationRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VerificationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.

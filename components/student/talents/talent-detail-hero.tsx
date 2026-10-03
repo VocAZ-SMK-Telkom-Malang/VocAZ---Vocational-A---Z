@@ -4,18 +4,18 @@
 import { useState } from 'react'
 import {
   MapPin,
-  Mail,
   GraduationCap,
   CheckCircle2,
   Share2,
-  Link2,
   Check,
 } from 'lucide-react'
 import { FollowButton } from '@/components/student/profile/follow-button'
+import { MessageButton } from '@/components/shared/messages'
 
 type Props = {
   talent: {
     id: string
+    userId: string                // ← WAJIB ADA
     fullName: string
     email: string
     avatarUrl: string | null
@@ -61,7 +61,7 @@ export function TalentDetailHero({
 
   return (
     <div className="relative overflow-hidden rounded-2xl bg-surface-container-lowest border border-outline-variant/30">
-      {/* Cover gradient subtle */}
+      {/* Cover gradient */}
       <div className="h-24 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent relative">
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -127,29 +127,35 @@ export function TalentDetailHero({
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2 shrink-0">
-            {!isOwnProfile && (
-              <>
-                <FollowButton
-                  studentProfileId={talent.id}
-                  initialFollowing={initialFollowing}
-                  initialFollowerCount={talent.followerCount}
-                />
-                <button
-                  type="button"
-                  onClick={handleShare}
-                  className="p-3 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors"
-                  aria-label="Bagikan"
-                >
-                  {copied ? (
-                    <Check className="w-4 h-4 text-emerald-600" />
-                  ) : (
-                    <Share2 className="w-4 h-4" />
-                  )}
-                </button>
-              </>
-            )}
-          </div>
+          {!isOwnProfile && (
+            <div className="flex items-center gap-2 shrink-0">
+              <MessageButton
+                userId={talent.userId}
+                variant="outline"
+                size="lg"
+                label="Pesan"
+              />
+
+              <FollowButton
+                studentProfileId={talent.id}
+                initialFollowing={initialFollowing}
+                initialFollowerCount={talent.followerCount}
+              />
+
+              <button
+                type="button"
+                onClick={handleShare}
+                className="p-3 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-colors"
+                aria-label="Bagikan"
+              >
+                {copied ? (
+                  <Check className="w-4 h-4 text-emerald-600" />
+                ) : (
+                  <Share2 className="w-4 h-4" />
+                )}
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Stats row */}

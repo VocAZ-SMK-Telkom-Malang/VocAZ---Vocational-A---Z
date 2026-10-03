@@ -46,7 +46,8 @@ export async function compressIfImage(file: File): Promise<File> {
 }
 
 type UploadTarget =
-  | 'company-logo'
+  | 'company-logo'   // ← TAMBAH
+  | 'company-cover'     
   | 'company-doc'
   | 'showcase-video'
   | 'showcase-thumb'

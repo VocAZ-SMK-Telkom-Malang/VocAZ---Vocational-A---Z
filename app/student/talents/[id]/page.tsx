@@ -3,12 +3,11 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import {
-  getTalentById,
+  getStudentProfileDetail,
+  getViewerContext,
   isFollowingTalent,
-  getCurrentUserContext,
-} from '@/lib/queries/talent-detail'
-import { TalentDetailHero } from '@/components/student/talents/talent-detail-hero'
-import { TalentDetailContent } from '@/components/student/talents/talent-detail-content'
+} from '@/lib/queries/student-profile-detail'
+import { StudentProfileView } from '@/components/shared/student-profile/student-profile-view'
 
 export const dynamic = 'force-dynamic'
 
@@ -18,18 +17,13 @@ type Props = {
 
 export default async function TalentDetailPage({ params }: Props) {
   const { id } = await params
-  const talent = await getTalentById(id)
-
-  if (!talent) {
-    notFound()
-  }
-
-  const [initialFollowing, currentUser] = await Promise.all([
+  const [profile, viewer, initialFollowing] = await Promise.all([
+    getStudentProfileDetail(id),
+    getViewerContext(id),
     isFollowingTalent(id),
-    getCurrentUserContext(),
   ])
 
-  const isOwnProfile = currentUser?.studentProfile?.id === id
+  if (!profile) notFound()
 
   return (
     <div className="space-y-6">
@@ -41,26 +35,11 @@ export default async function TalentDetailPage({ params }: Props) {
         Kembali ke daftar talent
       </Link>
 
-      <TalentDetailHero
-        talent={{
-          id: talent.id,
-          fullName: talent.fullName,
-          email: talent.email,
-          avatarUrl: talent.avatarUrl,
-          headline: talent.headline,
-          bio: talent.bio,
-          city: talent.city,
-          province: talent.province,
-          isOpenToWork: talent.isOpenToWork,
-          followerCount: talent.followerCount,
-          followingCount: talent.followingCount,
-          school: talent.school,
-        }}
+      <StudentProfileView
+        profile={profile}
+        viewer={viewer}
         initialFollowing={initialFollowing}
-        isOwnProfile={isOwnProfile}
       />
-
-      <TalentDetailContent talent={talent} />
     </div>
   )
 }

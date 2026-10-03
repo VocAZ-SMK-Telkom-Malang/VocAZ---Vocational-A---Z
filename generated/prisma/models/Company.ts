@@ -43,32 +43,34 @@ export type CompanyMinAggregateOutputType = {
   ownerUserId: string | null
   name: string | null
   slug: string | null
-  industry: string | null
-  companySize: $Enums.CompanySize | null
-  foundedYear: number | null
-  website: string | null
-  email: string | null
-  phone: string | null
-  description: string | null
   logoUrl: string | null
   logoKey: string | null
   coverUrl: string | null
   coverKey: string | null
+  industry: string | null
+  companySize: $Enums.CompanySize | null
+  website: string | null
+  email: string | null
+  phone: string | null
   address: string | null
   city: string | null
   province: string | null
-  featured: boolean | null
-  logoColor: string | null
-  tagline: string | null
-  employeeRange: string | null
-  rating: number | null
-  reviewCount: number | null
-  country: string | null
+  description: string | null
+  culture: string | null
+  foundedYear: number | null
   verificationStatus: $Enums.VerificationStatus | null
   verifiedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
-  deletedAt: Date | null
+  logoColor: string | null
+  tagline: string | null
+  employeeRange: string | null
+  featured: boolean | null
+  rating: number | null
+  reviewCount: number | null
+  linkedinUrl: string | null
+  instagramUrl: string | null
+  facebookUrl: string | null
 }
 
 export type CompanyMaxAggregateOutputType = {
@@ -76,32 +78,34 @@ export type CompanyMaxAggregateOutputType = {
   ownerUserId: string | null
   name: string | null
   slug: string | null
-  industry: string | null
-  companySize: $Enums.CompanySize | null
-  foundedYear: number | null
-  website: string | null
-  email: string | null
-  phone: string | null
-  description: string | null
   logoUrl: string | null
   logoKey: string | null
   coverUrl: string | null
   coverKey: string | null
+  industry: string | null
+  companySize: $Enums.CompanySize | null
+  website: string | null
+  email: string | null
+  phone: string | null
   address: string | null
   city: string | null
   province: string | null
-  featured: boolean | null
-  logoColor: string | null
-  tagline: string | null
-  employeeRange: string | null
-  rating: number | null
-  reviewCount: number | null
-  country: string | null
+  description: string | null
+  culture: string | null
+  foundedYear: number | null
   verificationStatus: $Enums.VerificationStatus | null
   verifiedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
-  deletedAt: Date | null
+  logoColor: string | null
+  tagline: string | null
+  employeeRange: string | null
+  featured: boolean | null
+  rating: number | null
+  reviewCount: number | null
+  linkedinUrl: string | null
+  instagramUrl: string | null
+  facebookUrl: string | null
 }
 
 export type CompanyCountAggregateOutputType = {
@@ -109,32 +113,36 @@ export type CompanyCountAggregateOutputType = {
   ownerUserId: number
   name: number
   slug: number
-  industry: number
-  companySize: number
-  foundedYear: number
-  website: number
-  email: number
-  phone: number
-  description: number
   logoUrl: number
   logoKey: number
   coverUrl: number
   coverKey: number
+  industry: number
+  companySize: number
+  website: number
+  email: number
+  phone: number
   address: number
   city: number
   province: number
-  featured: number
-  logoColor: number
-  tagline: number
-  employeeRange: number
-  rating: number
-  reviewCount: number
-  country: number
+  description: number
+  culture: number
+  benefits: number
+  foundedYear: number
   verificationStatus: number
   verifiedAt: number
   createdAt: number
   updatedAt: number
-  deletedAt: number
+  logoColor: number
+  tagline: number
+  employeeRange: number
+  featured: number
+  rating: number
+  reviewCount: number
+  matchingWeights: number
+  linkedinUrl: number
+  instagramUrl: number
+  facebookUrl: number
   _all: number
 }
 
@@ -156,32 +164,34 @@ export type CompanyMinAggregateInputType = {
   ownerUserId?: true
   name?: true
   slug?: true
-  industry?: true
-  companySize?: true
-  foundedYear?: true
-  website?: true
-  email?: true
-  phone?: true
-  description?: true
   logoUrl?: true
   logoKey?: true
   coverUrl?: true
   coverKey?: true
+  industry?: true
+  companySize?: true
+  website?: true
+  email?: true
+  phone?: true
   address?: true
   city?: true
   province?: true
-  featured?: true
-  logoColor?: true
-  tagline?: true
-  employeeRange?: true
-  rating?: true
-  reviewCount?: true
-  country?: true
+  description?: true
+  culture?: true
+  foundedYear?: true
   verificationStatus?: true
   verifiedAt?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
+  logoColor?: true
+  tagline?: true
+  employeeRange?: true
+  featured?: true
+  rating?: true
+  reviewCount?: true
+  linkedinUrl?: true
+  instagramUrl?: true
+  facebookUrl?: true
 }
 
 export type CompanyMaxAggregateInputType = {
@@ -189,32 +199,34 @@ export type CompanyMaxAggregateInputType = {
   ownerUserId?: true
   name?: true
   slug?: true
-  industry?: true
-  companySize?: true
-  foundedYear?: true
-  website?: true
-  email?: true
-  phone?: true
-  description?: true
   logoUrl?: true
   logoKey?: true
   coverUrl?: true
   coverKey?: true
+  industry?: true
+  companySize?: true
+  website?: true
+  email?: true
+  phone?: true
   address?: true
   city?: true
   province?: true
-  featured?: true
-  logoColor?: true
-  tagline?: true
-  employeeRange?: true
-  rating?: true
-  reviewCount?: true
-  country?: true
+  description?: true
+  culture?: true
+  foundedYear?: true
   verificationStatus?: true
   verifiedAt?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
+  logoColor?: true
+  tagline?: true
+  employeeRange?: true
+  featured?: true
+  rating?: true
+  reviewCount?: true
+  linkedinUrl?: true
+  instagramUrl?: true
+  facebookUrl?: true
 }
 
 export type CompanyCountAggregateInputType = {
@@ -222,32 +234,36 @@ export type CompanyCountAggregateInputType = {
   ownerUserId?: true
   name?: true
   slug?: true
-  industry?: true
-  companySize?: true
-  foundedYear?: true
-  website?: true
-  email?: true
-  phone?: true
-  description?: true
   logoUrl?: true
   logoKey?: true
   coverUrl?: true
   coverKey?: true
+  industry?: true
+  companySize?: true
+  website?: true
+  email?: true
+  phone?: true
   address?: true
   city?: true
   province?: true
-  featured?: true
-  logoColor?: true
-  tagline?: true
-  employeeRange?: true
-  rating?: true
-  reviewCount?: true
-  country?: true
+  description?: true
+  culture?: true
+  benefits?: true
+  foundedYear?: true
   verificationStatus?: true
   verifiedAt?: true
   createdAt?: true
   updatedAt?: true
-  deletedAt?: true
+  logoColor?: true
+  tagline?: true
+  employeeRange?: true
+  featured?: true
+  rating?: true
+  reviewCount?: true
+  matchingWeights?: true
+  linkedinUrl?: true
+  instagramUrl?: true
+  facebookUrl?: true
   _all?: true
 }
 
@@ -342,32 +358,36 @@ export type CompanyGroupByOutputType = {
   ownerUserId: string | null
   name: string
   slug: string
-  industry: string | null
-  companySize: $Enums.CompanySize | null
-  foundedYear: number | null
-  website: string | null
-  email: string | null
-  phone: string | null
-  description: string | null
   logoUrl: string | null
   logoKey: string | null
   coverUrl: string | null
   coverKey: string | null
+  industry: string | null
+  companySize: $Enums.CompanySize | null
+  website: string | null
+  email: string | null
+  phone: string | null
   address: string | null
   city: string | null
   province: string | null
-  featured: boolean
-  logoColor: string | null
-  tagline: string | null
-  employeeRange: string | null
-  rating: number
-  reviewCount: number
-  country: string
+  description: string | null
+  culture: string | null
+  benefits: string[]
+  foundedYear: number | null
   verificationStatus: $Enums.VerificationStatus
   verifiedAt: Date | null
   createdAt: Date
   updatedAt: Date
-  deletedAt: Date | null
+  logoColor: string | null
+  tagline: string | null
+  employeeRange: string | null
+  featured: boolean
+  rating: number
+  reviewCount: number
+  matchingWeights: runtime.JsonValue | null
+  linkedinUrl: string | null
+  instagramUrl: string | null
+  facebookUrl: string | null
   _count: CompanyCountAggregateOutputType | null
   _avg: CompanyAvgAggregateOutputType | null
   _sum: CompanySumAggregateOutputType | null
@@ -398,40 +418,47 @@ export type CompanyWhereInput = {
   ownerUserId?: Prisma.UuidNullableFilter<"Company"> | string | null
   name?: Prisma.StringFilter<"Company"> | string
   slug?: Prisma.StringFilter<"Company"> | string
-  industry?: Prisma.StringNullableFilter<"Company"> | string | null
-  companySize?: Prisma.EnumCompanySizeNullableFilter<"Company"> | $Enums.CompanySize | null
-  foundedYear?: Prisma.IntNullableFilter<"Company"> | number | null
-  website?: Prisma.StringNullableFilter<"Company"> | string | null
-  email?: Prisma.StringNullableFilter<"Company"> | string | null
-  phone?: Prisma.StringNullableFilter<"Company"> | string | null
-  description?: Prisma.StringNullableFilter<"Company"> | string | null
   logoUrl?: Prisma.StringNullableFilter<"Company"> | string | null
   logoKey?: Prisma.StringNullableFilter<"Company"> | string | null
   coverUrl?: Prisma.StringNullableFilter<"Company"> | string | null
   coverKey?: Prisma.StringNullableFilter<"Company"> | string | null
+  industry?: Prisma.StringNullableFilter<"Company"> | string | null
+  companySize?: Prisma.EnumCompanySizeNullableFilter<"Company"> | $Enums.CompanySize | null
+  website?: Prisma.StringNullableFilter<"Company"> | string | null
+  email?: Prisma.StringNullableFilter<"Company"> | string | null
+  phone?: Prisma.StringNullableFilter<"Company"> | string | null
   address?: Prisma.StringNullableFilter<"Company"> | string | null
   city?: Prisma.StringNullableFilter<"Company"> | string | null
   province?: Prisma.StringNullableFilter<"Company"> | string | null
-  featured?: Prisma.BoolFilter<"Company"> | boolean
-  logoColor?: Prisma.StringNullableFilter<"Company"> | string | null
-  tagline?: Prisma.StringNullableFilter<"Company"> | string | null
-  employeeRange?: Prisma.StringNullableFilter<"Company"> | string | null
-  rating?: Prisma.FloatFilter<"Company"> | number
-  reviewCount?: Prisma.IntFilter<"Company"> | number
-  country?: Prisma.StringFilter<"Company"> | string
+  description?: Prisma.StringNullableFilter<"Company"> | string | null
+  culture?: Prisma.StringNullableFilter<"Company"> | string | null
+  benefits?: Prisma.StringNullableListFilter<"Company">
+  foundedYear?: Prisma.IntNullableFilter<"Company"> | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFilter<"Company"> | $Enums.VerificationStatus
   verifiedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
-  owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  team?: Prisma.CompanyTeamListRelationFilter
-  preferences?: Prisma.CompanyTalentPreferenceListRelationFilter
-  verifications?: Prisma.CompanyVerificationListRelationFilter
-  jobs?: Prisma.JobListRelationFilter
-  savedByStudents?: Prisma.SavedCompanyListRelationFilter
-  industryPartners?: Prisma.IndustryPartnerListRelationFilter
+  logoColor?: Prisma.StringNullableFilter<"Company"> | string | null
+  tagline?: Prisma.StringNullableFilter<"Company"> | string | null
+  employeeRange?: Prisma.StringNullableFilter<"Company"> | string | null
+  featured?: Prisma.BoolFilter<"Company"> | boolean
+  rating?: Prisma.FloatFilter<"Company"> | number
+  reviewCount?: Prisma.IntFilter<"Company"> | number
+  matchingWeights?: Prisma.JsonNullableFilter<"Company">
+  linkedinUrl?: Prisma.StringNullableFilter<"Company"> | string | null
+  instagramUrl?: Prisma.StringNullableFilter<"Company"> | string | null
+  facebookUrl?: Prisma.StringNullableFilter<"Company"> | string | null
   careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
+  owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  members?: Prisma.CompanyMemberListRelationFilter
+  skillPreferences?: Prisma.CompanyTalentPreferenceListRelationFilter
+  verifications?: Prisma.CompanyVerificationListRelationFilter
+  industryPartners?: Prisma.IndustryPartnerListRelationFilter
+  savedTalents?: Prisma.SavedTalentListRelationFilter
+  invitations?: Prisma.CompanyInvitationListRelationFilter
+  jobs?: Prisma.JobListRelationFilter
+  savedBy?: Prisma.SavedCompanyListRelationFilter
+  preferences?: Prisma.XOR<Prisma.TalentPreferenceNullableScalarRelationFilter, Prisma.TalentPreferenceWhereInput> | null
 }
 
 export type CompanyOrderByWithRelationInput = {
@@ -439,40 +466,47 @@ export type CompanyOrderByWithRelationInput = {
   ownerUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
-  industry?: Prisma.SortOrderInput | Prisma.SortOrder
-  companySize?: Prisma.SortOrderInput | Prisma.SortOrder
-  foundedYear?: Prisma.SortOrderInput | Prisma.SortOrder
-  website?: Prisma.SortOrderInput | Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
-  phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  description?: Prisma.SortOrderInput | Prisma.SortOrder
   logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   logoKey?: Prisma.SortOrderInput | Prisma.SortOrder
   coverUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   coverKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  industry?: Prisma.SortOrderInput | Prisma.SortOrder
+  companySize?: Prisma.SortOrderInput | Prisma.SortOrder
+  website?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   city?: Prisma.SortOrderInput | Prisma.SortOrder
   province?: Prisma.SortOrderInput | Prisma.SortOrder
-  featured?: Prisma.SortOrder
-  logoColor?: Prisma.SortOrderInput | Prisma.SortOrder
-  tagline?: Prisma.SortOrderInput | Prisma.SortOrder
-  employeeRange?: Prisma.SortOrderInput | Prisma.SortOrder
-  rating?: Prisma.SortOrder
-  reviewCount?: Prisma.SortOrder
-  country?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  culture?: Prisma.SortOrderInput | Prisma.SortOrder
+  benefits?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrderInput | Prisma.SortOrder
   verificationStatus?: Prisma.SortOrder
   verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  owner?: Prisma.UserOrderByWithRelationInput
-  team?: Prisma.CompanyTeamOrderByRelationAggregateInput
-  preferences?: Prisma.CompanyTalentPreferenceOrderByRelationAggregateInput
-  verifications?: Prisma.CompanyVerificationOrderByRelationAggregateInput
-  jobs?: Prisma.JobOrderByRelationAggregateInput
-  savedByStudents?: Prisma.SavedCompanyOrderByRelationAggregateInput
-  industryPartners?: Prisma.IndustryPartnerOrderByRelationAggregateInput
+  logoColor?: Prisma.SortOrderInput | Prisma.SortOrder
+  tagline?: Prisma.SortOrderInput | Prisma.SortOrder
+  employeeRange?: Prisma.SortOrderInput | Prisma.SortOrder
+  featured?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviewCount?: Prisma.SortOrder
+  matchingWeights?: Prisma.SortOrderInput | Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  instagramUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  facebookUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   careerMonitorings?: Prisma.CareerMonitoringOrderByRelationAggregateInput
+  owner?: Prisma.UserOrderByWithRelationInput
+  members?: Prisma.CompanyMemberOrderByRelationAggregateInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceOrderByRelationAggregateInput
+  verifications?: Prisma.CompanyVerificationOrderByRelationAggregateInput
+  industryPartners?: Prisma.IndustryPartnerOrderByRelationAggregateInput
+  savedTalents?: Prisma.SavedTalentOrderByRelationAggregateInput
+  invitations?: Prisma.CompanyInvitationOrderByRelationAggregateInput
+  jobs?: Prisma.JobOrderByRelationAggregateInput
+  savedBy?: Prisma.SavedCompanyOrderByRelationAggregateInput
+  preferences?: Prisma.TalentPreferenceOrderByWithRelationInput
 }
 
 export type CompanyWhereUniqueInput = Prisma.AtLeast<{
@@ -483,40 +517,47 @@ export type CompanyWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.CompanyWhereInput[]
   NOT?: Prisma.CompanyWhereInput | Prisma.CompanyWhereInput[]
   name?: Prisma.StringFilter<"Company"> | string
-  industry?: Prisma.StringNullableFilter<"Company"> | string | null
-  companySize?: Prisma.EnumCompanySizeNullableFilter<"Company"> | $Enums.CompanySize | null
-  foundedYear?: Prisma.IntNullableFilter<"Company"> | number | null
-  website?: Prisma.StringNullableFilter<"Company"> | string | null
-  email?: Prisma.StringNullableFilter<"Company"> | string | null
-  phone?: Prisma.StringNullableFilter<"Company"> | string | null
-  description?: Prisma.StringNullableFilter<"Company"> | string | null
   logoUrl?: Prisma.StringNullableFilter<"Company"> | string | null
   logoKey?: Prisma.StringNullableFilter<"Company"> | string | null
   coverUrl?: Prisma.StringNullableFilter<"Company"> | string | null
   coverKey?: Prisma.StringNullableFilter<"Company"> | string | null
+  industry?: Prisma.StringNullableFilter<"Company"> | string | null
+  companySize?: Prisma.EnumCompanySizeNullableFilter<"Company"> | $Enums.CompanySize | null
+  website?: Prisma.StringNullableFilter<"Company"> | string | null
+  email?: Prisma.StringNullableFilter<"Company"> | string | null
+  phone?: Prisma.StringNullableFilter<"Company"> | string | null
   address?: Prisma.StringNullableFilter<"Company"> | string | null
   city?: Prisma.StringNullableFilter<"Company"> | string | null
   province?: Prisma.StringNullableFilter<"Company"> | string | null
-  featured?: Prisma.BoolFilter<"Company"> | boolean
-  logoColor?: Prisma.StringNullableFilter<"Company"> | string | null
-  tagline?: Prisma.StringNullableFilter<"Company"> | string | null
-  employeeRange?: Prisma.StringNullableFilter<"Company"> | string | null
-  rating?: Prisma.FloatFilter<"Company"> | number
-  reviewCount?: Prisma.IntFilter<"Company"> | number
-  country?: Prisma.StringFilter<"Company"> | string
+  description?: Prisma.StringNullableFilter<"Company"> | string | null
+  culture?: Prisma.StringNullableFilter<"Company"> | string | null
+  benefits?: Prisma.StringNullableListFilter<"Company">
+  foundedYear?: Prisma.IntNullableFilter<"Company"> | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFilter<"Company"> | $Enums.VerificationStatus
   verifiedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Company"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableFilter<"Company"> | Date | string | null
-  owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  team?: Prisma.CompanyTeamListRelationFilter
-  preferences?: Prisma.CompanyTalentPreferenceListRelationFilter
-  verifications?: Prisma.CompanyVerificationListRelationFilter
-  jobs?: Prisma.JobListRelationFilter
-  savedByStudents?: Prisma.SavedCompanyListRelationFilter
-  industryPartners?: Prisma.IndustryPartnerListRelationFilter
+  logoColor?: Prisma.StringNullableFilter<"Company"> | string | null
+  tagline?: Prisma.StringNullableFilter<"Company"> | string | null
+  employeeRange?: Prisma.StringNullableFilter<"Company"> | string | null
+  featured?: Prisma.BoolFilter<"Company"> | boolean
+  rating?: Prisma.FloatFilter<"Company"> | number
+  reviewCount?: Prisma.IntFilter<"Company"> | number
+  matchingWeights?: Prisma.JsonNullableFilter<"Company">
+  linkedinUrl?: Prisma.StringNullableFilter<"Company"> | string | null
+  instagramUrl?: Prisma.StringNullableFilter<"Company"> | string | null
+  facebookUrl?: Prisma.StringNullableFilter<"Company"> | string | null
   careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
+  owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  members?: Prisma.CompanyMemberListRelationFilter
+  skillPreferences?: Prisma.CompanyTalentPreferenceListRelationFilter
+  verifications?: Prisma.CompanyVerificationListRelationFilter
+  industryPartners?: Prisma.IndustryPartnerListRelationFilter
+  savedTalents?: Prisma.SavedTalentListRelationFilter
+  invitations?: Prisma.CompanyInvitationListRelationFilter
+  jobs?: Prisma.JobListRelationFilter
+  savedBy?: Prisma.SavedCompanyListRelationFilter
+  preferences?: Prisma.XOR<Prisma.TalentPreferenceNullableScalarRelationFilter, Prisma.TalentPreferenceWhereInput> | null
 }, "id" | "ownerUserId" | "slug">
 
 export type CompanyOrderByWithAggregationInput = {
@@ -524,32 +565,36 @@ export type CompanyOrderByWithAggregationInput = {
   ownerUserId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
-  industry?: Prisma.SortOrderInput | Prisma.SortOrder
-  companySize?: Prisma.SortOrderInput | Prisma.SortOrder
-  foundedYear?: Prisma.SortOrderInput | Prisma.SortOrder
-  website?: Prisma.SortOrderInput | Prisma.SortOrder
-  email?: Prisma.SortOrderInput | Prisma.SortOrder
-  phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  description?: Prisma.SortOrderInput | Prisma.SortOrder
   logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   logoKey?: Prisma.SortOrderInput | Prisma.SortOrder
   coverUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   coverKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  industry?: Prisma.SortOrderInput | Prisma.SortOrder
+  companySize?: Prisma.SortOrderInput | Prisma.SortOrder
+  website?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
   address?: Prisma.SortOrderInput | Prisma.SortOrder
   city?: Prisma.SortOrderInput | Prisma.SortOrder
   province?: Prisma.SortOrderInput | Prisma.SortOrder
-  featured?: Prisma.SortOrder
-  logoColor?: Prisma.SortOrderInput | Prisma.SortOrder
-  tagline?: Prisma.SortOrderInput | Prisma.SortOrder
-  employeeRange?: Prisma.SortOrderInput | Prisma.SortOrder
-  rating?: Prisma.SortOrder
-  reviewCount?: Prisma.SortOrder
-  country?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  culture?: Prisma.SortOrderInput | Prisma.SortOrder
+  benefits?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrderInput | Prisma.SortOrder
   verificationStatus?: Prisma.SortOrder
   verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  logoColor?: Prisma.SortOrderInput | Prisma.SortOrder
+  tagline?: Prisma.SortOrderInput | Prisma.SortOrder
+  employeeRange?: Prisma.SortOrderInput | Prisma.SortOrder
+  featured?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviewCount?: Prisma.SortOrder
+  matchingWeights?: Prisma.SortOrderInput | Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  instagramUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  facebookUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CompanyCountOrderByAggregateInput
   _avg?: Prisma.CompanyAvgOrderByAggregateInput
   _max?: Prisma.CompanyMaxOrderByAggregateInput
@@ -565,72 +610,83 @@ export type CompanyScalarWhereWithAggregatesInput = {
   ownerUserId?: Prisma.UuidNullableWithAggregatesFilter<"Company"> | string | null
   name?: Prisma.StringWithAggregatesFilter<"Company"> | string
   slug?: Prisma.StringWithAggregatesFilter<"Company"> | string
-  industry?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
-  companySize?: Prisma.EnumCompanySizeNullableWithAggregatesFilter<"Company"> | $Enums.CompanySize | null
-  foundedYear?: Prisma.IntNullableWithAggregatesFilter<"Company"> | number | null
-  website?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
-  email?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
-  phone?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
-  description?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   logoUrl?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   logoKey?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   coverUrl?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   coverKey?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  industry?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  companySize?: Prisma.EnumCompanySizeNullableWithAggregatesFilter<"Company"> | $Enums.CompanySize | null
+  website?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  email?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  phone?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   address?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   city?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
   province?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
-  featured?: Prisma.BoolWithAggregatesFilter<"Company"> | boolean
-  logoColor?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
-  tagline?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
-  employeeRange?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
-  rating?: Prisma.FloatWithAggregatesFilter<"Company"> | number
-  reviewCount?: Prisma.IntWithAggregatesFilter<"Company"> | number
-  country?: Prisma.StringWithAggregatesFilter<"Company"> | string
+  description?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  culture?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  benefits?: Prisma.StringNullableListFilter<"Company">
+  foundedYear?: Prisma.IntNullableWithAggregatesFilter<"Company"> | number | null
   verificationStatus?: Prisma.EnumVerificationStatusWithAggregatesFilter<"Company"> | $Enums.VerificationStatus
   verifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Company"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Company"> | Date | string
-  deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Company"> | Date | string | null
+  logoColor?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  tagline?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  employeeRange?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  featured?: Prisma.BoolWithAggregatesFilter<"Company"> | boolean
+  rating?: Prisma.FloatWithAggregatesFilter<"Company"> | number
+  reviewCount?: Prisma.IntWithAggregatesFilter<"Company"> | number
+  matchingWeights?: Prisma.JsonNullableWithAggregatesFilter<"Company">
+  linkedinUrl?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  instagramUrl?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
+  facebookUrl?: Prisma.StringNullableWithAggregatesFilter<"Company"> | string | null
 }
 
 export type CompanyCreateInput = {
   id?: string
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  owner?: Prisma.UserCreateNestedOneWithoutCompanyInput
-  team?: Prisma.CompanyTeamCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCompanyInput
+  members?: Prisma.CompanyMemberCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateInput = {
@@ -638,79 +694,93 @@ export type CompanyUncheckedCreateInput = {
   ownerUserId?: string | null
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  team?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
+  members?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceUncheckedCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  owner?: Prisma.UserUpdateOneWithoutCompanyNestedInput
-  team?: Prisma.CompanyTeamUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCompanyNestedInput
+  members?: Prisma.CompanyMemberUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUpdateOneWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateInput = {
@@ -718,39 +788,46 @@ export type CompanyUncheckedUpdateInput = {
   ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  team?: Prisma.CompanyTeamUncheckedUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
+  members?: Prisma.CompanyMemberUncheckedUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUncheckedUpdateOneWithoutCompanyNestedInput
 }
 
 export type CompanyCreateManyInput = {
@@ -758,64 +835,72 @@ export type CompanyCreateManyInput = {
   ownerUserId?: string | null
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
 }
 
 export type CompanyUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CompanyUncheckedUpdateManyInput = {
@@ -823,32 +908,36 @@ export type CompanyUncheckedUpdateManyInput = {
   ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type CompanyNullableScalarRelationFilter = {
@@ -856,37 +945,49 @@ export type CompanyNullableScalarRelationFilter = {
   isNot?: Prisma.CompanyWhereInput | null
 }
 
+export type StringNullableListFilter<$PrismaModel = never> = {
+  equals?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel> | null
+  has?: string | Prisma.StringFieldRefInput<$PrismaModel> | null
+  hasEvery?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  hasSome?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
+  isEmpty?: boolean
+}
+
 export type CompanyCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   ownerUserId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
-  industry?: Prisma.SortOrder
-  companySize?: Prisma.SortOrder
-  foundedYear?: Prisma.SortOrder
-  website?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  description?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
   logoKey?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrder
   coverKey?: Prisma.SortOrder
+  industry?: Prisma.SortOrder
+  companySize?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
   city?: Prisma.SortOrder
   province?: Prisma.SortOrder
-  featured?: Prisma.SortOrder
-  logoColor?: Prisma.SortOrder
-  tagline?: Prisma.SortOrder
-  employeeRange?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
-  reviewCount?: Prisma.SortOrder
-  country?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  culture?: Prisma.SortOrder
+  benefits?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrder
   verificationStatus?: Prisma.SortOrder
   verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
+  logoColor?: Prisma.SortOrder
+  tagline?: Prisma.SortOrder
+  employeeRange?: Prisma.SortOrder
+  featured?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviewCount?: Prisma.SortOrder
+  matchingWeights?: Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrder
+  instagramUrl?: Prisma.SortOrder
+  facebookUrl?: Prisma.SortOrder
 }
 
 export type CompanyAvgOrderByAggregateInput = {
@@ -900,32 +1001,34 @@ export type CompanyMaxOrderByAggregateInput = {
   ownerUserId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
-  industry?: Prisma.SortOrder
-  companySize?: Prisma.SortOrder
-  foundedYear?: Prisma.SortOrder
-  website?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  description?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
   logoKey?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrder
   coverKey?: Prisma.SortOrder
+  industry?: Prisma.SortOrder
+  companySize?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
   city?: Prisma.SortOrder
   province?: Prisma.SortOrder
-  featured?: Prisma.SortOrder
-  logoColor?: Prisma.SortOrder
-  tagline?: Prisma.SortOrder
-  employeeRange?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
-  reviewCount?: Prisma.SortOrder
-  country?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  culture?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrder
   verificationStatus?: Prisma.SortOrder
   verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
+  logoColor?: Prisma.SortOrder
+  tagline?: Prisma.SortOrder
+  employeeRange?: Prisma.SortOrder
+  featured?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviewCount?: Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrder
+  instagramUrl?: Prisma.SortOrder
+  facebookUrl?: Prisma.SortOrder
 }
 
 export type CompanyMinOrderByAggregateInput = {
@@ -933,32 +1036,34 @@ export type CompanyMinOrderByAggregateInput = {
   ownerUserId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   slug?: Prisma.SortOrder
-  industry?: Prisma.SortOrder
-  companySize?: Prisma.SortOrder
-  foundedYear?: Prisma.SortOrder
-  website?: Prisma.SortOrder
-  email?: Prisma.SortOrder
-  phone?: Prisma.SortOrder
-  description?: Prisma.SortOrder
   logoUrl?: Prisma.SortOrder
   logoKey?: Prisma.SortOrder
   coverUrl?: Prisma.SortOrder
   coverKey?: Prisma.SortOrder
+  industry?: Prisma.SortOrder
+  companySize?: Prisma.SortOrder
+  website?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   address?: Prisma.SortOrder
   city?: Prisma.SortOrder
   province?: Prisma.SortOrder
-  featured?: Prisma.SortOrder
-  logoColor?: Prisma.SortOrder
-  tagline?: Prisma.SortOrder
-  employeeRange?: Prisma.SortOrder
-  rating?: Prisma.SortOrder
-  reviewCount?: Prisma.SortOrder
-  country?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  culture?: Prisma.SortOrder
+  foundedYear?: Prisma.SortOrder
   verificationStatus?: Prisma.SortOrder
   verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  deletedAt?: Prisma.SortOrder
+  logoColor?: Prisma.SortOrder
+  tagline?: Prisma.SortOrder
+  employeeRange?: Prisma.SortOrder
+  featured?: Prisma.SortOrder
+  rating?: Prisma.SortOrder
+  reviewCount?: Prisma.SortOrder
+  linkedinUrl?: Prisma.SortOrder
+  instagramUrl?: Prisma.SortOrder
+  facebookUrl?: Prisma.SortOrder
 }
 
 export type CompanySumOrderByAggregateInput = {
@@ -1004,8 +1109,21 @@ export type CompanyUncheckedUpdateOneWithoutOwnerNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutOwnerInput, Prisma.CompanyUpdateWithoutOwnerInput>, Prisma.CompanyUncheckedUpdateWithoutOwnerInput>
 }
 
+export type CompanyCreatebenefitsInput = {
+  set: string[]
+}
+
 export type NullableEnumCompanySizeFieldUpdateOperationsInput = {
   set?: $Enums.CompanySize | null
+}
+
+export type CompanyUpdatebenefitsInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
+export type EnumVerificationStatusFieldUpdateOperationsInput = {
+  set?: $Enums.VerificationStatus
 }
 
 export type FloatFieldUpdateOperationsInput = {
@@ -1014,38 +1132,6 @@ export type FloatFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
-}
-
-export type EnumVerificationStatusFieldUpdateOperationsInput = {
-  set?: $Enums.VerificationStatus
-}
-
-export type CompanyCreateNestedOneWithoutTeamInput = {
-  create?: Prisma.XOR<Prisma.CompanyCreateWithoutTeamInput, Prisma.CompanyUncheckedCreateWithoutTeamInput>
-  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutTeamInput
-  connect?: Prisma.CompanyWhereUniqueInput
-}
-
-export type CompanyUpdateOneRequiredWithoutTeamNestedInput = {
-  create?: Prisma.XOR<Prisma.CompanyCreateWithoutTeamInput, Prisma.CompanyUncheckedCreateWithoutTeamInput>
-  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutTeamInput
-  upsert?: Prisma.CompanyUpsertWithoutTeamInput
-  connect?: Prisma.CompanyWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutTeamInput, Prisma.CompanyUpdateWithoutTeamInput>, Prisma.CompanyUncheckedUpdateWithoutTeamInput>
-}
-
-export type CompanyCreateNestedOneWithoutPreferencesInput = {
-  create?: Prisma.XOR<Prisma.CompanyCreateWithoutPreferencesInput, Prisma.CompanyUncheckedCreateWithoutPreferencesInput>
-  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutPreferencesInput
-  connect?: Prisma.CompanyWhereUniqueInput
-}
-
-export type CompanyUpdateOneRequiredWithoutPreferencesNestedInput = {
-  create?: Prisma.XOR<Prisma.CompanyCreateWithoutPreferencesInput, Prisma.CompanyUncheckedCreateWithoutPreferencesInput>
-  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutPreferencesInput
-  upsert?: Prisma.CompanyUpsertWithoutPreferencesInput
-  connect?: Prisma.CompanyWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutPreferencesInput, Prisma.CompanyUpdateWithoutPreferencesInput>, Prisma.CompanyUncheckedUpdateWithoutPreferencesInput>
 }
 
 export type CompanyCreateNestedOneWithoutVerificationsInput = {
@@ -1062,6 +1148,48 @@ export type CompanyUpdateOneRequiredWithoutVerificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutVerificationsInput, Prisma.CompanyUpdateWithoutVerificationsInput>, Prisma.CompanyUncheckedUpdateWithoutVerificationsInput>
 }
 
+export type CompanyCreateNestedOneWithoutMembersInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutMembersInput, Prisma.CompanyUncheckedCreateWithoutMembersInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutMembersInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutMembersNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutMembersInput, Prisma.CompanyUncheckedCreateWithoutMembersInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutMembersInput
+  upsert?: Prisma.CompanyUpsertWithoutMembersInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutMembersInput, Prisma.CompanyUpdateWithoutMembersInput>, Prisma.CompanyUncheckedUpdateWithoutMembersInput>
+}
+
+export type CompanyCreateNestedOneWithoutPreferencesInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutPreferencesInput, Prisma.CompanyUncheckedCreateWithoutPreferencesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutPreferencesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutPreferencesNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutPreferencesInput, Prisma.CompanyUncheckedCreateWithoutPreferencesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutPreferencesInput
+  upsert?: Prisma.CompanyUpsertWithoutPreferencesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutPreferencesInput, Prisma.CompanyUpdateWithoutPreferencesInput>, Prisma.CompanyUncheckedUpdateWithoutPreferencesInput>
+}
+
+export type CompanyCreateNestedOneWithoutSkillPreferencesInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSkillPreferencesInput, Prisma.CompanyUncheckedCreateWithoutSkillPreferencesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSkillPreferencesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutSkillPreferencesNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSkillPreferencesInput, Prisma.CompanyUncheckedCreateWithoutSkillPreferencesInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSkillPreferencesInput
+  upsert?: Prisma.CompanyUpsertWithoutSkillPreferencesInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutSkillPreferencesInput, Prisma.CompanyUpdateWithoutSkillPreferencesInput>, Prisma.CompanyUncheckedUpdateWithoutSkillPreferencesInput>
+}
+
 export type CompanyCreateNestedOneWithoutJobsInput = {
   create?: Prisma.XOR<Prisma.CompanyCreateWithoutJobsInput, Prisma.CompanyUncheckedCreateWithoutJobsInput>
   connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutJobsInput
@@ -1076,18 +1204,18 @@ export type CompanyUpdateOneRequiredWithoutJobsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutJobsInput, Prisma.CompanyUpdateWithoutJobsInput>, Prisma.CompanyUncheckedUpdateWithoutJobsInput>
 }
 
-export type CompanyCreateNestedOneWithoutSavedByStudentsInput = {
-  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSavedByStudentsInput, Prisma.CompanyUncheckedCreateWithoutSavedByStudentsInput>
-  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSavedByStudentsInput
+export type CompanyCreateNestedOneWithoutSavedByInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSavedByInput, Prisma.CompanyUncheckedCreateWithoutSavedByInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSavedByInput
   connect?: Prisma.CompanyWhereUniqueInput
 }
 
-export type CompanyUpdateOneRequiredWithoutSavedByStudentsNestedInput = {
-  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSavedByStudentsInput, Prisma.CompanyUncheckedCreateWithoutSavedByStudentsInput>
-  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSavedByStudentsInput
-  upsert?: Prisma.CompanyUpsertWithoutSavedByStudentsInput
+export type CompanyUpdateOneRequiredWithoutSavedByNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSavedByInput, Prisma.CompanyUncheckedCreateWithoutSavedByInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSavedByInput
+  upsert?: Prisma.CompanyUpsertWithoutSavedByInput
   connect?: Prisma.CompanyWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutSavedByStudentsInput, Prisma.CompanyUpdateWithoutSavedByStudentsInput>, Prisma.CompanyUncheckedUpdateWithoutSavedByStudentsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutSavedByInput, Prisma.CompanyUpdateWithoutSavedByInput>, Prisma.CompanyUncheckedUpdateWithoutSavedByInput>
 }
 
 export type CompanyCreateNestedOneWithoutIndustryPartnersInput = {
@@ -1120,82 +1248,124 @@ export type CompanyUpdateOneWithoutCareerMonitoringsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutCareerMonitoringsInput, Prisma.CompanyUpdateWithoutCareerMonitoringsInput>, Prisma.CompanyUncheckedUpdateWithoutCareerMonitoringsInput>
 }
 
+export type CompanyCreateNestedOneWithoutSavedTalentsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSavedTalentsInput, Prisma.CompanyUncheckedCreateWithoutSavedTalentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSavedTalentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutSavedTalentsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutSavedTalentsInput, Prisma.CompanyUncheckedCreateWithoutSavedTalentsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutSavedTalentsInput
+  upsert?: Prisma.CompanyUpsertWithoutSavedTalentsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutSavedTalentsInput, Prisma.CompanyUpdateWithoutSavedTalentsInput>, Prisma.CompanyUncheckedUpdateWithoutSavedTalentsInput>
+}
+
+export type CompanyCreateNestedOneWithoutInvitationsInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutInvitationsInput, Prisma.CompanyUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutInvitationsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+}
+
+export type CompanyUpdateOneRequiredWithoutInvitationsNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyCreateWithoutInvitationsInput, Prisma.CompanyUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.CompanyCreateOrConnectWithoutInvitationsInput
+  upsert?: Prisma.CompanyUpsertWithoutInvitationsInput
+  connect?: Prisma.CompanyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CompanyUpdateToOneWithWhereWithoutInvitationsInput, Prisma.CompanyUpdateWithoutInvitationsInput>, Prisma.CompanyUncheckedUpdateWithoutInvitationsInput>
+}
+
 export type CompanyCreateWithoutOwnerInput = {
   id?: string
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  team?: Prisma.CompanyTeamCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
+  members?: Prisma.CompanyMemberCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutOwnerInput = {
   id?: string
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  team?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
+  members?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceUncheckedCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutOwnerInput = {
@@ -1218,461 +1388,138 @@ export type CompanyUpdateWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  team?: Prisma.CompanyTeamUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
+  members?: Prisma.CompanyMemberUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUpdateOneWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutOwnerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  team?: Prisma.CompanyTeamUncheckedUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
-}
-
-export type CompanyCreateWithoutTeamInput = {
-  id?: string
-  name: string
-  slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
-  logoUrl?: string | null
-  logoKey?: string | null
-  coverUrl?: string | null
-  coverKey?: string | null
-  address?: string | null
-  city?: string | null
-  province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
-  verificationStatus?: $Enums.VerificationStatus
-  verifiedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  owner?: Prisma.UserCreateNestedOneWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
-}
-
-export type CompanyUncheckedCreateWithoutTeamInput = {
-  id?: string
-  ownerUserId?: string | null
-  name: string
-  slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
-  logoUrl?: string | null
-  logoKey?: string | null
-  coverUrl?: string | null
-  coverKey?: string | null
-  address?: string | null
-  city?: string | null
-  province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
-  verificationStatus?: $Enums.VerificationStatus
-  verifiedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
-}
-
-export type CompanyCreateOrConnectWithoutTeamInput = {
-  where: Prisma.CompanyWhereUniqueInput
-  create: Prisma.XOR<Prisma.CompanyCreateWithoutTeamInput, Prisma.CompanyUncheckedCreateWithoutTeamInput>
-}
-
-export type CompanyUpsertWithoutTeamInput = {
-  update: Prisma.XOR<Prisma.CompanyUpdateWithoutTeamInput, Prisma.CompanyUncheckedUpdateWithoutTeamInput>
-  create: Prisma.XOR<Prisma.CompanyCreateWithoutTeamInput, Prisma.CompanyUncheckedCreateWithoutTeamInput>
-  where?: Prisma.CompanyWhereInput
-}
-
-export type CompanyUpdateToOneWithWhereWithoutTeamInput = {
-  where?: Prisma.CompanyWhereInput
-  data: Prisma.XOR<Prisma.CompanyUpdateWithoutTeamInput, Prisma.CompanyUncheckedUpdateWithoutTeamInput>
-}
-
-export type CompanyUpdateWithoutTeamInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
-  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  owner?: Prisma.UserUpdateOneWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
-}
-
-export type CompanyUncheckedUpdateWithoutTeamInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
-  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
+  members?: Prisma.CompanyMemberUncheckedUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
   verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
   industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
-}
-
-export type CompanyCreateWithoutPreferencesInput = {
-  id?: string
-  name: string
-  slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
-  logoUrl?: string | null
-  logoKey?: string | null
-  coverUrl?: string | null
-  coverKey?: string | null
-  address?: string | null
-  city?: string | null
-  province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
-  verificationStatus?: $Enums.VerificationStatus
-  verifiedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  owner?: Prisma.UserCreateNestedOneWithoutCompanyInput
-  team?: Prisma.CompanyTeamCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
-}
-
-export type CompanyUncheckedCreateWithoutPreferencesInput = {
-  id?: string
-  ownerUserId?: string | null
-  name: string
-  slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
-  logoUrl?: string | null
-  logoKey?: string | null
-  coverUrl?: string | null
-  coverKey?: string | null
-  address?: string | null
-  city?: string | null
-  province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
-  verificationStatus?: $Enums.VerificationStatus
-  verifiedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  team?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
-}
-
-export type CompanyCreateOrConnectWithoutPreferencesInput = {
-  where: Prisma.CompanyWhereUniqueInput
-  create: Prisma.XOR<Prisma.CompanyCreateWithoutPreferencesInput, Prisma.CompanyUncheckedCreateWithoutPreferencesInput>
-}
-
-export type CompanyUpsertWithoutPreferencesInput = {
-  update: Prisma.XOR<Prisma.CompanyUpdateWithoutPreferencesInput, Prisma.CompanyUncheckedUpdateWithoutPreferencesInput>
-  create: Prisma.XOR<Prisma.CompanyCreateWithoutPreferencesInput, Prisma.CompanyUncheckedCreateWithoutPreferencesInput>
-  where?: Prisma.CompanyWhereInput
-}
-
-export type CompanyUpdateToOneWithWhereWithoutPreferencesInput = {
-  where?: Prisma.CompanyWhereInput
-  data: Prisma.XOR<Prisma.CompanyUpdateWithoutPreferencesInput, Prisma.CompanyUncheckedUpdateWithoutPreferencesInput>
-}
-
-export type CompanyUpdateWithoutPreferencesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
-  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  owner?: Prisma.UserUpdateOneWithoutCompanyNestedInput
-  team?: Prisma.CompanyTeamUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
-}
-
-export type CompanyUncheckedUpdateWithoutPreferencesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
-  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
-  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  team?: Prisma.CompanyTeamUncheckedUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutCompanyNestedInput
   jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUncheckedUpdateOneWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutVerificationsInput = {
   id?: string
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  owner?: Prisma.UserCreateNestedOneWithoutCompanyInput
-  team?: Prisma.CompanyTeamCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCompanyInput
+  members?: Prisma.CompanyMemberCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutVerificationsInput = {
@@ -1680,38 +1527,45 @@ export type CompanyUncheckedCreateWithoutVerificationsInput = {
   ownerUserId?: string | null
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  team?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
+  members?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceUncheckedCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutVerificationsInput = {
@@ -1734,39 +1588,46 @@ export type CompanyUpdateWithoutVerificationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  owner?: Prisma.UserUpdateOneWithoutCompanyNestedInput
-  team?: Prisma.CompanyTeamUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCompanyNestedInput
+  members?: Prisma.CompanyMemberUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUpdateOneWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutVerificationsInput = {
@@ -1774,77 +1635,691 @@ export type CompanyUncheckedUpdateWithoutVerificationsInput = {
   ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  team?: Prisma.CompanyTeamUncheckedUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
+  members?: Prisma.CompanyMemberUncheckedUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUncheckedUpdateOneWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutMembersInput = {
+  id?: string
+  name: string
+  slug: string
+  logoUrl?: string | null
+  logoKey?: string | null
+  coverUrl?: string | null
+  coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceCreateNestedOneWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutMembersInput = {
+  id?: string
+  ownerUserId?: string | null
+  name: string
+  slug: string
+  logoUrl?: string | null
+  logoKey?: string | null
+  coverUrl?: string | null
+  coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceUncheckedCreateNestedOneWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutMembersInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutMembersInput, Prisma.CompanyUncheckedCreateWithoutMembersInput>
+}
+
+export type CompanyUpsertWithoutMembersInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutMembersInput, Prisma.CompanyUncheckedUpdateWithoutMembersInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutMembersInput, Prisma.CompanyUncheckedCreateWithoutMembersInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutMembersInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutMembersInput, Prisma.CompanyUncheckedUpdateWithoutMembersInput>
+}
+
+export type CompanyUpdateWithoutMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUpdateOneWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUncheckedUpdateOneWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutPreferencesInput = {
+  id?: string
+  name: string
+  slug: string
+  logoUrl?: string | null
+  logoKey?: string | null
+  coverUrl?: string | null
+  coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCompanyInput
+  members?: Prisma.CompanyMemberCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutPreferencesInput = {
+  id?: string
+  ownerUserId?: string | null
+  name: string
+  slug: string
+  logoUrl?: string | null
+  logoKey?: string | null
+  coverUrl?: string | null
+  coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
+  members?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutPreferencesInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutPreferencesInput, Prisma.CompanyUncheckedCreateWithoutPreferencesInput>
+}
+
+export type CompanyUpsertWithoutPreferencesInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutPreferencesInput, Prisma.CompanyUncheckedUpdateWithoutPreferencesInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutPreferencesInput, Prisma.CompanyUncheckedCreateWithoutPreferencesInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutPreferencesInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutPreferencesInput, Prisma.CompanyUncheckedUpdateWithoutPreferencesInput>
+}
+
+export type CompanyUpdateWithoutPreferencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCompanyNestedInput
+  members?: Prisma.CompanyMemberUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutPreferencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
+  members?: Prisma.CompanyMemberUncheckedUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutSkillPreferencesInput = {
+  id?: string
+  name: string
+  slug: string
+  logoUrl?: string | null
+  logoKey?: string | null
+  coverUrl?: string | null
+  coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCompanyInput
+  members?: Prisma.CompanyMemberCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceCreateNestedOneWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutSkillPreferencesInput = {
+  id?: string
+  ownerUserId?: string | null
+  name: string
+  slug: string
+  logoUrl?: string | null
+  logoKey?: string | null
+  coverUrl?: string | null
+  coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
+  members?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceUncheckedCreateNestedOneWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutSkillPreferencesInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSkillPreferencesInput, Prisma.CompanyUncheckedCreateWithoutSkillPreferencesInput>
+}
+
+export type CompanyUpsertWithoutSkillPreferencesInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutSkillPreferencesInput, Prisma.CompanyUncheckedUpdateWithoutSkillPreferencesInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSkillPreferencesInput, Prisma.CompanyUncheckedCreateWithoutSkillPreferencesInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutSkillPreferencesInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutSkillPreferencesInput, Prisma.CompanyUncheckedUpdateWithoutSkillPreferencesInput>
+}
+
+export type CompanyUpdateWithoutSkillPreferencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCompanyNestedInput
+  members?: Prisma.CompanyMemberUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUpdateOneWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutSkillPreferencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
+  members?: Prisma.CompanyMemberUncheckedUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUncheckedUpdateOneWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutJobsInput = {
   id?: string
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  owner?: Prisma.UserCreateNestedOneWithoutCompanyInput
-  team?: Prisma.CompanyTeamCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCompanyInput
+  members?: Prisma.CompanyMemberCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutJobsInput = {
@@ -1852,38 +2327,45 @@ export type CompanyUncheckedCreateWithoutJobsInput = {
   ownerUserId?: string | null
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  team?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
+  members?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceUncheckedCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutJobsInput = {
@@ -1906,39 +2388,46 @@ export type CompanyUpdateWithoutJobsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  owner?: Prisma.UserUpdateOneWithoutCompanyNestedInput
-  team?: Prisma.CompanyTeamUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCompanyNestedInput
+  members?: Prisma.CompanyMemberUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUpdateOneWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutJobsInput = {
@@ -1946,249 +2435,291 @@ export type CompanyUncheckedUpdateWithoutJobsInput = {
   ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  team?: Prisma.CompanyTeamUncheckedUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
+  members?: Prisma.CompanyMemberUncheckedUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUncheckedUpdateOneWithoutCompanyNestedInput
 }
 
-export type CompanyCreateWithoutSavedByStudentsInput = {
+export type CompanyCreateWithoutSavedByInput = {
   id?: string
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  owner?: Prisma.UserCreateNestedOneWithoutCompanyInput
-  team?: Prisma.CompanyTeamCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCompanyInput
+  members?: Prisma.CompanyMemberCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceCreateNestedOneWithoutCompanyInput
 }
 
-export type CompanyUncheckedCreateWithoutSavedByStudentsInput = {
+export type CompanyUncheckedCreateWithoutSavedByInput = {
   id?: string
   ownerUserId?: string | null
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  team?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
+  members?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceUncheckedCreateNestedOneWithoutCompanyInput
 }
 
-export type CompanyCreateOrConnectWithoutSavedByStudentsInput = {
+export type CompanyCreateOrConnectWithoutSavedByInput = {
   where: Prisma.CompanyWhereUniqueInput
-  create: Prisma.XOR<Prisma.CompanyCreateWithoutSavedByStudentsInput, Prisma.CompanyUncheckedCreateWithoutSavedByStudentsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSavedByInput, Prisma.CompanyUncheckedCreateWithoutSavedByInput>
 }
 
-export type CompanyUpsertWithoutSavedByStudentsInput = {
-  update: Prisma.XOR<Prisma.CompanyUpdateWithoutSavedByStudentsInput, Prisma.CompanyUncheckedUpdateWithoutSavedByStudentsInput>
-  create: Prisma.XOR<Prisma.CompanyCreateWithoutSavedByStudentsInput, Prisma.CompanyUncheckedCreateWithoutSavedByStudentsInput>
+export type CompanyUpsertWithoutSavedByInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutSavedByInput, Prisma.CompanyUncheckedUpdateWithoutSavedByInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSavedByInput, Prisma.CompanyUncheckedCreateWithoutSavedByInput>
   where?: Prisma.CompanyWhereInput
 }
 
-export type CompanyUpdateToOneWithWhereWithoutSavedByStudentsInput = {
+export type CompanyUpdateToOneWithWhereWithoutSavedByInput = {
   where?: Prisma.CompanyWhereInput
-  data: Prisma.XOR<Prisma.CompanyUpdateWithoutSavedByStudentsInput, Prisma.CompanyUncheckedUpdateWithoutSavedByStudentsInput>
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutSavedByInput, Prisma.CompanyUncheckedUpdateWithoutSavedByInput>
 }
 
-export type CompanyUpdateWithoutSavedByStudentsInput = {
+export type CompanyUpdateWithoutSavedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  owner?: Prisma.UserUpdateOneWithoutCompanyNestedInput
-  team?: Prisma.CompanyTeamUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCompanyNestedInput
+  members?: Prisma.CompanyMemberUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUpdateOneWithoutCompanyNestedInput
 }
 
-export type CompanyUncheckedUpdateWithoutSavedByStudentsInput = {
+export type CompanyUncheckedUpdateWithoutSavedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  team?: Prisma.CompanyTeamUncheckedUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
+  members?: Prisma.CompanyMemberUncheckedUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUncheckedUpdateOneWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutIndustryPartnersInput = {
   id?: string
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  owner?: Prisma.UserCreateNestedOneWithoutCompanyInput
-  team?: Prisma.CompanyTeamCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCompanyInput
+  members?: Prisma.CompanyMemberCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutIndustryPartnersInput = {
@@ -2196,38 +2727,45 @@ export type CompanyUncheckedCreateWithoutIndustryPartnersInput = {
   ownerUserId?: string | null
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  team?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
-  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
+  members?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceUncheckedCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutIndustryPartnersInput = {
@@ -2250,39 +2788,46 @@ export type CompanyUpdateWithoutIndustryPartnersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  owner?: Prisma.UserUpdateOneWithoutCompanyNestedInput
-  team?: Prisma.CompanyTeamUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCompanyNestedInput
+  members?: Prisma.CompanyMemberUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUpdateOneWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutIndustryPartnersInput = {
@@ -2290,77 +2835,91 @@ export type CompanyUncheckedUpdateWithoutIndustryPartnersInput = {
   ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  team?: Prisma.CompanyTeamUncheckedUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
-  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
+  members?: Prisma.CompanyMemberUncheckedUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUncheckedUpdateOneWithoutCompanyNestedInput
 }
 
 export type CompanyCreateWithoutCareerMonitoringsInput = {
   id?: string
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  owner?: Prisma.UserCreateNestedOneWithoutCompanyInput
-  team?: Prisma.CompanyTeamCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCompanyInput
+  members?: Prisma.CompanyMemberCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
   verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
   industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyUncheckedCreateWithoutCareerMonitoringsInput = {
@@ -2368,38 +2927,45 @@ export type CompanyUncheckedCreateWithoutCareerMonitoringsInput = {
   ownerUserId?: string | null
   name: string
   slug: string
-  industry?: string | null
-  companySize?: $Enums.CompanySize | null
-  foundedYear?: number | null
-  website?: string | null
-  email?: string | null
-  phone?: string | null
-  description?: string | null
   logoUrl?: string | null
   logoKey?: string | null
   coverUrl?: string | null
   coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
   address?: string | null
   city?: string | null
   province?: string | null
-  featured?: boolean
-  logoColor?: string | null
-  tagline?: string | null
-  employeeRange?: string | null
-  rating?: number
-  reviewCount?: number
-  country?: string
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
   verificationStatus?: $Enums.VerificationStatus
   verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  deletedAt?: Date | string | null
-  team?: Prisma.CompanyTeamUncheckedCreateNestedManyWithoutCompanyInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  members?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
   verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
-  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
   industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceUncheckedCreateNestedOneWithoutCompanyInput
 }
 
 export type CompanyCreateOrConnectWithoutCareerMonitoringsInput = {
@@ -2422,39 +2988,46 @@ export type CompanyUpdateWithoutCareerMonitoringsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  owner?: Prisma.UserUpdateOneWithoutCompanyNestedInput
-  team?: Prisma.CompanyTeamUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  owner?: Prisma.UserUpdateOneWithoutOwnedCompanyNestedInput
+  members?: Prisma.CompanyMemberUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
   verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
   industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUpdateOneWithoutCompanyNestedInput
 }
 
 export type CompanyUncheckedUpdateWithoutCareerMonitoringsInput = {
@@ -2462,38 +3035,445 @@ export type CompanyUncheckedUpdateWithoutCareerMonitoringsInput = {
   ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
-  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  rating?: Prisma.FloatFieldUpdateOperationsInput | number
-  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
-  country?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  team?: Prisma.CompanyTeamUncheckedUpdateManyWithoutCompanyNestedInput
-  preferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  members?: Prisma.CompanyMemberUncheckedUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
   verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
-  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
-  savedByStudents?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
   industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUncheckedUpdateOneWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutSavedTalentsInput = {
+  id?: string
+  name: string
+  slug: string
+  logoUrl?: string | null
+  logoKey?: string | null
+  coverUrl?: string | null
+  coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCompanyInput
+  members?: Prisma.CompanyMemberCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceCreateNestedOneWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutSavedTalentsInput = {
+  id?: string
+  ownerUserId?: string | null
+  name: string
+  slug: string
+  logoUrl?: string | null
+  logoKey?: string | null
+  coverUrl?: string | null
+  coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
+  members?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  invitations?: Prisma.CompanyInvitationUncheckedCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceUncheckedCreateNestedOneWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutSavedTalentsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSavedTalentsInput, Prisma.CompanyUncheckedCreateWithoutSavedTalentsInput>
+}
+
+export type CompanyUpsertWithoutSavedTalentsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutSavedTalentsInput, Prisma.CompanyUncheckedUpdateWithoutSavedTalentsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutSavedTalentsInput, Prisma.CompanyUncheckedCreateWithoutSavedTalentsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutSavedTalentsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutSavedTalentsInput, Prisma.CompanyUncheckedUpdateWithoutSavedTalentsInput>
+}
+
+export type CompanyUpdateWithoutSavedTalentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCompanyNestedInput
+  members?: Prisma.CompanyMemberUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUpdateOneWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutSavedTalentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
+  members?: Prisma.CompanyMemberUncheckedUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  invitations?: Prisma.CompanyInvitationUncheckedUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUncheckedUpdateOneWithoutCompanyNestedInput
+}
+
+export type CompanyCreateWithoutInvitationsInput = {
+  id?: string
+  name: string
+  slug: string
+  logoUrl?: string | null
+  logoKey?: string | null
+  coverUrl?: string | null
+  coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutCompanyInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedCompanyInput
+  members?: Prisma.CompanyMemberCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceCreateNestedOneWithoutCompanyInput
+}
+
+export type CompanyUncheckedCreateWithoutInvitationsInput = {
+  id?: string
+  ownerUserId?: string | null
+  name: string
+  slug: string
+  logoUrl?: string | null
+  logoKey?: string | null
+  coverUrl?: string | null
+  coverKey?: string | null
+  industry?: string | null
+  companySize?: $Enums.CompanySize | null
+  website?: string | null
+  email?: string | null
+  phone?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  description?: string | null
+  culture?: string | null
+  benefits?: Prisma.CompanyCreatebenefitsInput | string[]
+  foundedYear?: number | null
+  verificationStatus?: $Enums.VerificationStatus
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  logoColor?: string | null
+  tagline?: string | null
+  employeeRange?: string | null
+  featured?: boolean
+  rating?: number
+  reviewCount?: number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: string | null
+  instagramUrl?: string | null
+  facebookUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutCompanyInput
+  members?: Prisma.CompanyMemberUncheckedCreateNestedManyWithoutCompanyInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedCreateNestedManyWithoutCompanyInput
+  verifications?: Prisma.CompanyVerificationUncheckedCreateNestedManyWithoutCompanyInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutCompanyInput
+  savedTalents?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutCompanyInput
+  jobs?: Prisma.JobUncheckedCreateNestedManyWithoutCompanyInput
+  savedBy?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutCompanyInput
+  preferences?: Prisma.TalentPreferenceUncheckedCreateNestedOneWithoutCompanyInput
+}
+
+export type CompanyCreateOrConnectWithoutInvitationsInput = {
+  where: Prisma.CompanyWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutInvitationsInput, Prisma.CompanyUncheckedCreateWithoutInvitationsInput>
+}
+
+export type CompanyUpsertWithoutInvitationsInput = {
+  update: Prisma.XOR<Prisma.CompanyUpdateWithoutInvitationsInput, Prisma.CompanyUncheckedUpdateWithoutInvitationsInput>
+  create: Prisma.XOR<Prisma.CompanyCreateWithoutInvitationsInput, Prisma.CompanyUncheckedCreateWithoutInvitationsInput>
+  where?: Prisma.CompanyWhereInput
+}
+
+export type CompanyUpdateToOneWithWhereWithoutInvitationsInput = {
+  where?: Prisma.CompanyWhereInput
+  data: Prisma.XOR<Prisma.CompanyUpdateWithoutInvitationsInput, Prisma.CompanyUncheckedUpdateWithoutInvitationsInput>
+}
+
+export type CompanyUpdateWithoutInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutCompanyNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedCompanyNestedInput
+  members?: Prisma.CompanyMemberUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUpdateOneWithoutCompanyNestedInput
+}
+
+export type CompanyUncheckedUpdateWithoutInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companySize?: Prisma.NullableEnumCompanySizeFieldUpdateOperationsInput | $Enums.CompanySize | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  culture?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  benefits?: Prisma.CompanyUpdatebenefitsInput | string[]
+  foundedYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  verificationStatus?: Prisma.EnumVerificationStatusFieldUpdateOperationsInput | $Enums.VerificationStatus
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  logoColor?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tagline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  employeeRange?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  featured?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rating?: Prisma.FloatFieldUpdateOperationsInput | number
+  reviewCount?: Prisma.IntFieldUpdateOperationsInput | number
+  matchingWeights?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  linkedinUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  instagramUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  facebookUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutCompanyNestedInput
+  members?: Prisma.CompanyMemberUncheckedUpdateManyWithoutCompanyNestedInput
+  skillPreferences?: Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput
+  verifications?: Prisma.CompanyVerificationUncheckedUpdateManyWithoutCompanyNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutCompanyNestedInput
+  savedTalents?: Prisma.SavedTalentUncheckedUpdateManyWithoutCompanyNestedInput
+  jobs?: Prisma.JobUncheckedUpdateManyWithoutCompanyNestedInput
+  savedBy?: Prisma.SavedCompanyUncheckedUpdateManyWithoutCompanyNestedInput
+  preferences?: Prisma.TalentPreferenceUncheckedUpdateOneWithoutCompanyNestedInput
 }
 
 
@@ -2502,23 +3482,27 @@ export type CompanyUncheckedUpdateWithoutCareerMonitoringsInput = {
  */
 
 export type CompanyCountOutputType = {
-  team: number
-  preferences: number
-  verifications: number
-  jobs: number
-  savedByStudents: number
-  industryPartners: number
   careerMonitorings: number
+  members: number
+  skillPreferences: number
+  verifications: number
+  industryPartners: number
+  savedTalents: number
+  invitations: number
+  jobs: number
+  savedBy: number
 }
 
 export type CompanyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  team?: boolean | CompanyCountOutputTypeCountTeamArgs
-  preferences?: boolean | CompanyCountOutputTypeCountPreferencesArgs
-  verifications?: boolean | CompanyCountOutputTypeCountVerificationsArgs
-  jobs?: boolean | CompanyCountOutputTypeCountJobsArgs
-  savedByStudents?: boolean | CompanyCountOutputTypeCountSavedByStudentsArgs
-  industryPartners?: boolean | CompanyCountOutputTypeCountIndustryPartnersArgs
   careerMonitorings?: boolean | CompanyCountOutputTypeCountCareerMonitoringsArgs
+  members?: boolean | CompanyCountOutputTypeCountMembersArgs
+  skillPreferences?: boolean | CompanyCountOutputTypeCountSkillPreferencesArgs
+  verifications?: boolean | CompanyCountOutputTypeCountVerificationsArgs
+  industryPartners?: boolean | CompanyCountOutputTypeCountIndustryPartnersArgs
+  savedTalents?: boolean | CompanyCountOutputTypeCountSavedTalentsArgs
+  invitations?: boolean | CompanyCountOutputTypeCountInvitationsArgs
+  jobs?: boolean | CompanyCountOutputTypeCountJobsArgs
+  savedBy?: boolean | CompanyCountOutputTypeCountSavedByArgs
 }
 
 /**
@@ -2534,14 +3518,21 @@ export type CompanyCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * CompanyCountOutputType without action
  */
-export type CompanyCountOutputTypeCountTeamArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CompanyTeamWhereInput
+export type CompanyCountOutputTypeCountCareerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CareerMonitoringWhereInput
 }
 
 /**
  * CompanyCountOutputType without action
  */
-export type CompanyCountOutputTypeCountPreferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type CompanyCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompanyMemberWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountSkillPreferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.CompanyTalentPreferenceWhereInput
 }
 
@@ -2555,20 +3546,6 @@ export type CompanyCountOutputTypeCountVerificationsArgs<ExtArgs extends runtime
 /**
  * CompanyCountOutputType without action
  */
-export type CompanyCountOutputTypeCountJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.JobWhereInput
-}
-
-/**
- * CompanyCountOutputType without action
- */
-export type CompanyCountOutputTypeCountSavedByStudentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SavedCompanyWhereInput
-}
-
-/**
- * CompanyCountOutputType without action
- */
 export type CompanyCountOutputTypeCountIndustryPartnersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.IndustryPartnerWhereInput
 }
@@ -2576,8 +3553,29 @@ export type CompanyCountOutputTypeCountIndustryPartnersArgs<ExtArgs extends runt
 /**
  * CompanyCountOutputType without action
  */
-export type CompanyCountOutputTypeCountCareerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CareerMonitoringWhereInput
+export type CompanyCountOutputTypeCountSavedTalentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SavedTalentWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CompanyInvitationWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.JobWhereInput
+}
+
+/**
+ * CompanyCountOutputType without action
+ */
+export type CompanyCountOutputTypeCountSavedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SavedCompanyWhereInput
 }
 
 
@@ -2586,40 +3584,47 @@ export type CompanySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   ownerUserId?: boolean
   name?: boolean
   slug?: boolean
-  industry?: boolean
-  companySize?: boolean
-  foundedYear?: boolean
-  website?: boolean
-  email?: boolean
-  phone?: boolean
-  description?: boolean
   logoUrl?: boolean
   logoKey?: boolean
   coverUrl?: boolean
   coverKey?: boolean
+  industry?: boolean
+  companySize?: boolean
+  website?: boolean
+  email?: boolean
+  phone?: boolean
   address?: boolean
   city?: boolean
   province?: boolean
-  featured?: boolean
-  logoColor?: boolean
-  tagline?: boolean
-  employeeRange?: boolean
-  rating?: boolean
-  reviewCount?: boolean
-  country?: boolean
+  description?: boolean
+  culture?: boolean
+  benefits?: boolean
+  foundedYear?: boolean
   verificationStatus?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
-  owner?: boolean | Prisma.Company$ownerArgs<ExtArgs>
-  team?: boolean | Prisma.Company$teamArgs<ExtArgs>
-  preferences?: boolean | Prisma.Company$preferencesArgs<ExtArgs>
-  verifications?: boolean | Prisma.Company$verificationsArgs<ExtArgs>
-  jobs?: boolean | Prisma.Company$jobsArgs<ExtArgs>
-  savedByStudents?: boolean | Prisma.Company$savedByStudentsArgs<ExtArgs>
-  industryPartners?: boolean | Prisma.Company$industryPartnersArgs<ExtArgs>
+  logoColor?: boolean
+  tagline?: boolean
+  employeeRange?: boolean
+  featured?: boolean
+  rating?: boolean
+  reviewCount?: boolean
+  matchingWeights?: boolean
+  linkedinUrl?: boolean
+  instagramUrl?: boolean
+  facebookUrl?: boolean
   careerMonitorings?: boolean | Prisma.Company$careerMonitoringsArgs<ExtArgs>
+  owner?: boolean | Prisma.Company$ownerArgs<ExtArgs>
+  members?: boolean | Prisma.Company$membersArgs<ExtArgs>
+  skillPreferences?: boolean | Prisma.Company$skillPreferencesArgs<ExtArgs>
+  verifications?: boolean | Prisma.Company$verificationsArgs<ExtArgs>
+  industryPartners?: boolean | Prisma.Company$industryPartnersArgs<ExtArgs>
+  savedTalents?: boolean | Prisma.Company$savedTalentsArgs<ExtArgs>
+  invitations?: boolean | Prisma.Company$invitationsArgs<ExtArgs>
+  jobs?: boolean | Prisma.Company$jobsArgs<ExtArgs>
+  savedBy?: boolean | Prisma.Company$savedByArgs<ExtArgs>
+  preferences?: boolean | Prisma.Company$preferencesArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -2628,32 +3633,36 @@ export type CompanySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   ownerUserId?: boolean
   name?: boolean
   slug?: boolean
-  industry?: boolean
-  companySize?: boolean
-  foundedYear?: boolean
-  website?: boolean
-  email?: boolean
-  phone?: boolean
-  description?: boolean
   logoUrl?: boolean
   logoKey?: boolean
   coverUrl?: boolean
   coverKey?: boolean
+  industry?: boolean
+  companySize?: boolean
+  website?: boolean
+  email?: boolean
+  phone?: boolean
   address?: boolean
   city?: boolean
   province?: boolean
-  featured?: boolean
-  logoColor?: boolean
-  tagline?: boolean
-  employeeRange?: boolean
-  rating?: boolean
-  reviewCount?: boolean
-  country?: boolean
+  description?: boolean
+  culture?: boolean
+  benefits?: boolean
+  foundedYear?: boolean
   verificationStatus?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
+  logoColor?: boolean
+  tagline?: boolean
+  employeeRange?: boolean
+  featured?: boolean
+  rating?: boolean
+  reviewCount?: boolean
+  matchingWeights?: boolean
+  linkedinUrl?: boolean
+  instagramUrl?: boolean
+  facebookUrl?: boolean
   owner?: boolean | Prisma.Company$ownerArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -2662,32 +3671,36 @@ export type CompanySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   ownerUserId?: boolean
   name?: boolean
   slug?: boolean
-  industry?: boolean
-  companySize?: boolean
-  foundedYear?: boolean
-  website?: boolean
-  email?: boolean
-  phone?: boolean
-  description?: boolean
   logoUrl?: boolean
   logoKey?: boolean
   coverUrl?: boolean
   coverKey?: boolean
+  industry?: boolean
+  companySize?: boolean
+  website?: boolean
+  email?: boolean
+  phone?: boolean
   address?: boolean
   city?: boolean
   province?: boolean
-  featured?: boolean
-  logoColor?: boolean
-  tagline?: boolean
-  employeeRange?: boolean
-  rating?: boolean
-  reviewCount?: boolean
-  country?: boolean
+  description?: boolean
+  culture?: boolean
+  benefits?: boolean
+  foundedYear?: boolean
   verificationStatus?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
+  logoColor?: boolean
+  tagline?: boolean
+  employeeRange?: boolean
+  featured?: boolean
+  rating?: boolean
+  reviewCount?: boolean
+  matchingWeights?: boolean
+  linkedinUrl?: boolean
+  instagramUrl?: boolean
+  facebookUrl?: boolean
   owner?: boolean | Prisma.Company$ownerArgs<ExtArgs>
 }, ExtArgs["result"]["company"]>
 
@@ -2696,44 +3709,51 @@ export type CompanySelectScalar = {
   ownerUserId?: boolean
   name?: boolean
   slug?: boolean
-  industry?: boolean
-  companySize?: boolean
-  foundedYear?: boolean
-  website?: boolean
-  email?: boolean
-  phone?: boolean
-  description?: boolean
   logoUrl?: boolean
   logoKey?: boolean
   coverUrl?: boolean
   coverKey?: boolean
+  industry?: boolean
+  companySize?: boolean
+  website?: boolean
+  email?: boolean
+  phone?: boolean
   address?: boolean
   city?: boolean
   province?: boolean
-  featured?: boolean
-  logoColor?: boolean
-  tagline?: boolean
-  employeeRange?: boolean
-  rating?: boolean
-  reviewCount?: boolean
-  country?: boolean
+  description?: boolean
+  culture?: boolean
+  benefits?: boolean
+  foundedYear?: boolean
   verificationStatus?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  deletedAt?: boolean
+  logoColor?: boolean
+  tagline?: boolean
+  employeeRange?: boolean
+  featured?: boolean
+  rating?: boolean
+  reviewCount?: boolean
+  matchingWeights?: boolean
+  linkedinUrl?: boolean
+  instagramUrl?: boolean
+  facebookUrl?: boolean
 }
 
-export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "slug" | "industry" | "companySize" | "foundedYear" | "website" | "email" | "phone" | "description" | "logoUrl" | "logoKey" | "coverUrl" | "coverKey" | "address" | "city" | "province" | "featured" | "logoColor" | "tagline" | "employeeRange" | "rating" | "reviewCount" | "country" | "verificationStatus" | "verifiedAt" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["company"]>
+export type CompanyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "slug" | "logoUrl" | "logoKey" | "coverUrl" | "coverKey" | "industry" | "companySize" | "website" | "email" | "phone" | "address" | "city" | "province" | "description" | "culture" | "benefits" | "foundedYear" | "verificationStatus" | "verifiedAt" | "createdAt" | "updatedAt" | "logoColor" | "tagline" | "employeeRange" | "featured" | "rating" | "reviewCount" | "matchingWeights" | "linkedinUrl" | "instagramUrl" | "facebookUrl", ExtArgs["result"]["company"]>
 export type CompanyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  owner?: boolean | Prisma.Company$ownerArgs<ExtArgs>
-  team?: boolean | Prisma.Company$teamArgs<ExtArgs>
-  preferences?: boolean | Prisma.Company$preferencesArgs<ExtArgs>
-  verifications?: boolean | Prisma.Company$verificationsArgs<ExtArgs>
-  jobs?: boolean | Prisma.Company$jobsArgs<ExtArgs>
-  savedByStudents?: boolean | Prisma.Company$savedByStudentsArgs<ExtArgs>
-  industryPartners?: boolean | Prisma.Company$industryPartnersArgs<ExtArgs>
   careerMonitorings?: boolean | Prisma.Company$careerMonitoringsArgs<ExtArgs>
+  owner?: boolean | Prisma.Company$ownerArgs<ExtArgs>
+  members?: boolean | Prisma.Company$membersArgs<ExtArgs>
+  skillPreferences?: boolean | Prisma.Company$skillPreferencesArgs<ExtArgs>
+  verifications?: boolean | Prisma.Company$verificationsArgs<ExtArgs>
+  industryPartners?: boolean | Prisma.Company$industryPartnersArgs<ExtArgs>
+  savedTalents?: boolean | Prisma.Company$savedTalentsArgs<ExtArgs>
+  invitations?: boolean | Prisma.Company$invitationsArgs<ExtArgs>
+  jobs?: boolean | Prisma.Company$jobsArgs<ExtArgs>
+  savedBy?: boolean | Prisma.Company$savedByArgs<ExtArgs>
+  preferences?: boolean | Prisma.Company$preferencesArgs<ExtArgs>
   _count?: boolean | Prisma.CompanyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CompanyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2746,46 +3766,53 @@ export type CompanyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $CompanyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Company"
   objects: {
-    owner: Prisma.$UserPayload<ExtArgs> | null
-    team: Prisma.$CompanyTeamPayload<ExtArgs>[]
-    preferences: Prisma.$CompanyTalentPreferencePayload<ExtArgs>[]
-    verifications: Prisma.$CompanyVerificationPayload<ExtArgs>[]
-    jobs: Prisma.$JobPayload<ExtArgs>[]
-    savedByStudents: Prisma.$SavedCompanyPayload<ExtArgs>[]
-    industryPartners: Prisma.$IndustryPartnerPayload<ExtArgs>[]
     careerMonitorings: Prisma.$CareerMonitoringPayload<ExtArgs>[]
+    owner: Prisma.$UserPayload<ExtArgs> | null
+    members: Prisma.$CompanyMemberPayload<ExtArgs>[]
+    skillPreferences: Prisma.$CompanyTalentPreferencePayload<ExtArgs>[]
+    verifications: Prisma.$CompanyVerificationPayload<ExtArgs>[]
+    industryPartners: Prisma.$IndustryPartnerPayload<ExtArgs>[]
+    savedTalents: Prisma.$SavedTalentPayload<ExtArgs>[]
+    invitations: Prisma.$CompanyInvitationPayload<ExtArgs>[]
+    jobs: Prisma.$JobPayload<ExtArgs>[]
+    savedBy: Prisma.$SavedCompanyPayload<ExtArgs>[]
+    preferences: Prisma.$TalentPreferencePayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     ownerUserId: string | null
     name: string
     slug: string
-    industry: string | null
-    companySize: $Enums.CompanySize | null
-    foundedYear: number | null
-    website: string | null
-    email: string | null
-    phone: string | null
-    description: string | null
     logoUrl: string | null
     logoKey: string | null
     coverUrl: string | null
     coverKey: string | null
+    industry: string | null
+    companySize: $Enums.CompanySize | null
+    website: string | null
+    email: string | null
+    phone: string | null
     address: string | null
     city: string | null
     province: string | null
-    featured: boolean
-    logoColor: string | null
-    tagline: string | null
-    employeeRange: string | null
-    rating: number
-    reviewCount: number
-    country: string
+    description: string | null
+    culture: string | null
+    benefits: string[]
+    foundedYear: number | null
     verificationStatus: $Enums.VerificationStatus
     verifiedAt: Date | null
     createdAt: Date
     updatedAt: Date
-    deletedAt: Date | null
+    logoColor: string | null
+    tagline: string | null
+    employeeRange: string | null
+    featured: boolean
+    rating: number
+    reviewCount: number
+    matchingWeights: runtime.JsonValue | null
+    linkedinUrl: string | null
+    instagramUrl: string | null
+    facebookUrl: string | null
   }, ExtArgs["result"]["company"]>
   composites: {}
 }
@@ -3180,14 +4207,17 @@ readonly fields: CompanyFieldRefs;
  */
 export interface Prisma__CompanyClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  owner<T extends Prisma.Company$ownerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$ownerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  team<T extends Prisma.Company$teamArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$teamArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyTeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  preferences<T extends Prisma.Company$preferencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$preferencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyTalentPreferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  verifications<T extends Prisma.Company$verificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$verificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyVerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  jobs<T extends Prisma.Company$jobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$jobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  savedByStudents<T extends Prisma.Company$savedByStudentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$savedByStudentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SavedCompanyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  industryPartners<T extends Prisma.Company$industryPartnersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$industryPartnersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IndustryPartnerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   careerMonitorings<T extends Prisma.Company$careerMonitoringsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$careerMonitoringsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CareerMonitoringPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  owner<T extends Prisma.Company$ownerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$ownerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  members<T extends Prisma.Company$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  skillPreferences<T extends Prisma.Company$skillPreferencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$skillPreferencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyTalentPreferencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  verifications<T extends Prisma.Company$verificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$verificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyVerificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  industryPartners<T extends Prisma.Company$industryPartnersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$industryPartnersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IndustryPartnerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  savedTalents<T extends Prisma.Company$savedTalentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$savedTalentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SavedTalentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invitations<T extends Prisma.Company$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CompanyInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  jobs<T extends Prisma.Company$jobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$jobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  savedBy<T extends Prisma.Company$savedByArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$savedByArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SavedCompanyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  preferences<T extends Prisma.Company$preferencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Company$preferencesArgs<ExtArgs>>): Prisma.Prisma__TalentPreferenceClient<runtime.Types.Result.GetResult<Prisma.$TalentPreferencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3221,32 +4251,36 @@ export interface CompanyFieldRefs {
   readonly ownerUserId: Prisma.FieldRef<"Company", 'String'>
   readonly name: Prisma.FieldRef<"Company", 'String'>
   readonly slug: Prisma.FieldRef<"Company", 'String'>
-  readonly industry: Prisma.FieldRef<"Company", 'String'>
-  readonly companySize: Prisma.FieldRef<"Company", 'CompanySize'>
-  readonly foundedYear: Prisma.FieldRef<"Company", 'Int'>
-  readonly website: Prisma.FieldRef<"Company", 'String'>
-  readonly email: Prisma.FieldRef<"Company", 'String'>
-  readonly phone: Prisma.FieldRef<"Company", 'String'>
-  readonly description: Prisma.FieldRef<"Company", 'String'>
   readonly logoUrl: Prisma.FieldRef<"Company", 'String'>
   readonly logoKey: Prisma.FieldRef<"Company", 'String'>
   readonly coverUrl: Prisma.FieldRef<"Company", 'String'>
   readonly coverKey: Prisma.FieldRef<"Company", 'String'>
+  readonly industry: Prisma.FieldRef<"Company", 'String'>
+  readonly companySize: Prisma.FieldRef<"Company", 'CompanySize'>
+  readonly website: Prisma.FieldRef<"Company", 'String'>
+  readonly email: Prisma.FieldRef<"Company", 'String'>
+  readonly phone: Prisma.FieldRef<"Company", 'String'>
   readonly address: Prisma.FieldRef<"Company", 'String'>
   readonly city: Prisma.FieldRef<"Company", 'String'>
   readonly province: Prisma.FieldRef<"Company", 'String'>
-  readonly featured: Prisma.FieldRef<"Company", 'Boolean'>
-  readonly logoColor: Prisma.FieldRef<"Company", 'String'>
-  readonly tagline: Prisma.FieldRef<"Company", 'String'>
-  readonly employeeRange: Prisma.FieldRef<"Company", 'String'>
-  readonly rating: Prisma.FieldRef<"Company", 'Float'>
-  readonly reviewCount: Prisma.FieldRef<"Company", 'Int'>
-  readonly country: Prisma.FieldRef<"Company", 'String'>
+  readonly description: Prisma.FieldRef<"Company", 'String'>
+  readonly culture: Prisma.FieldRef<"Company", 'String'>
+  readonly benefits: Prisma.FieldRef<"Company", 'String[]'>
+  readonly foundedYear: Prisma.FieldRef<"Company", 'Int'>
   readonly verificationStatus: Prisma.FieldRef<"Company", 'VerificationStatus'>
   readonly verifiedAt: Prisma.FieldRef<"Company", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Company", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Company", 'DateTime'>
-  readonly deletedAt: Prisma.FieldRef<"Company", 'DateTime'>
+  readonly logoColor: Prisma.FieldRef<"Company", 'String'>
+  readonly tagline: Prisma.FieldRef<"Company", 'String'>
+  readonly employeeRange: Prisma.FieldRef<"Company", 'String'>
+  readonly featured: Prisma.FieldRef<"Company", 'Boolean'>
+  readonly rating: Prisma.FieldRef<"Company", 'Float'>
+  readonly reviewCount: Prisma.FieldRef<"Company", 'Int'>
+  readonly matchingWeights: Prisma.FieldRef<"Company", 'Json'>
+  readonly linkedinUrl: Prisma.FieldRef<"Company", 'String'>
+  readonly instagramUrl: Prisma.FieldRef<"Company", 'String'>
+  readonly facebookUrl: Prisma.FieldRef<"Company", 'String'>
 }
     
 
@@ -3648,6 +4682,30 @@ export type CompanyDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
+ * Company.careerMonitorings
+ */
+export type Company$careerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CareerMonitoring
+   */
+  select?: Prisma.CareerMonitoringSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CareerMonitoring
+   */
+  omit?: Prisma.CareerMonitoringOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CareerMonitoringInclude<ExtArgs> | null
+  where?: Prisma.CareerMonitoringWhereInput
+  orderBy?: Prisma.CareerMonitoringOrderByWithRelationInput | Prisma.CareerMonitoringOrderByWithRelationInput[]
+  cursor?: Prisma.CareerMonitoringWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CareerMonitoringScalarFieldEnum | Prisma.CareerMonitoringScalarFieldEnum[]
+}
+
+/**
  * Company.owner
  */
 export type Company$ownerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3667,33 +4725,33 @@ export type Company$ownerArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * Company.team
+ * Company.members
  */
-export type Company$teamArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Company$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the CompanyTeam
+   * Select specific fields to fetch from the CompanyMember
    */
-  select?: Prisma.CompanyTeamSelect<ExtArgs> | null
+  select?: Prisma.CompanyMemberSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the CompanyTeam
+   * Omit specific fields from the CompanyMember
    */
-  omit?: Prisma.CompanyTeamOmit<ExtArgs> | null
+  omit?: Prisma.CompanyMemberOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CompanyTeamInclude<ExtArgs> | null
-  where?: Prisma.CompanyTeamWhereInput
-  orderBy?: Prisma.CompanyTeamOrderByWithRelationInput | Prisma.CompanyTeamOrderByWithRelationInput[]
-  cursor?: Prisma.CompanyTeamWhereUniqueInput
+  include?: Prisma.CompanyMemberInclude<ExtArgs> | null
+  where?: Prisma.CompanyMemberWhereInput
+  orderBy?: Prisma.CompanyMemberOrderByWithRelationInput | Prisma.CompanyMemberOrderByWithRelationInput[]
+  cursor?: Prisma.CompanyMemberWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.CompanyTeamScalarFieldEnum | Prisma.CompanyTeamScalarFieldEnum[]
+  distinct?: Prisma.CompanyMemberScalarFieldEnum | Prisma.CompanyMemberScalarFieldEnum[]
 }
 
 /**
- * Company.preferences
+ * Company.skillPreferences
  */
-export type Company$preferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Company$skillPreferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the CompanyTalentPreference
    */
@@ -3739,54 +4797,6 @@ export type Company$verificationsArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * Company.jobs
- */
-export type Company$jobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Job
-   */
-  select?: Prisma.JobSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Job
-   */
-  omit?: Prisma.JobOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.JobInclude<ExtArgs> | null
-  where?: Prisma.JobWhereInput
-  orderBy?: Prisma.JobOrderByWithRelationInput | Prisma.JobOrderByWithRelationInput[]
-  cursor?: Prisma.JobWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.JobScalarFieldEnum | Prisma.JobScalarFieldEnum[]
-}
-
-/**
- * Company.savedByStudents
- */
-export type Company$savedByStudentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SavedCompany
-   */
-  select?: Prisma.SavedCompanySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SavedCompany
-   */
-  omit?: Prisma.SavedCompanyOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SavedCompanyInclude<ExtArgs> | null
-  where?: Prisma.SavedCompanyWhereInput
-  orderBy?: Prisma.SavedCompanyOrderByWithRelationInput | Prisma.SavedCompanyOrderByWithRelationInput[]
-  cursor?: Prisma.SavedCompanyWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SavedCompanyScalarFieldEnum | Prisma.SavedCompanyScalarFieldEnum[]
-}
-
-/**
  * Company.industryPartners
  */
 export type Company$industryPartnersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3811,27 +4821,118 @@ export type Company$industryPartnersArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
- * Company.careerMonitorings
+ * Company.savedTalents
  */
-export type Company$careerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Company$savedTalentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the CareerMonitoring
+   * Select specific fields to fetch from the SavedTalent
    */
-  select?: Prisma.CareerMonitoringSelect<ExtArgs> | null
+  select?: Prisma.SavedTalentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the CareerMonitoring
+   * Omit specific fields from the SavedTalent
    */
-  omit?: Prisma.CareerMonitoringOmit<ExtArgs> | null
+  omit?: Prisma.SavedTalentOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CareerMonitoringInclude<ExtArgs> | null
-  where?: Prisma.CareerMonitoringWhereInput
-  orderBy?: Prisma.CareerMonitoringOrderByWithRelationInput | Prisma.CareerMonitoringOrderByWithRelationInput[]
-  cursor?: Prisma.CareerMonitoringWhereUniqueInput
+  include?: Prisma.SavedTalentInclude<ExtArgs> | null
+  where?: Prisma.SavedTalentWhereInput
+  orderBy?: Prisma.SavedTalentOrderByWithRelationInput | Prisma.SavedTalentOrderByWithRelationInput[]
+  cursor?: Prisma.SavedTalentWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.CareerMonitoringScalarFieldEnum | Prisma.CareerMonitoringScalarFieldEnum[]
+  distinct?: Prisma.SavedTalentScalarFieldEnum | Prisma.SavedTalentScalarFieldEnum[]
+}
+
+/**
+ * Company.invitations
+ */
+export type Company$invitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CompanyInvitation
+   */
+  select?: Prisma.CompanyInvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CompanyInvitation
+   */
+  omit?: Prisma.CompanyInvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompanyInvitationInclude<ExtArgs> | null
+  where?: Prisma.CompanyInvitationWhereInput
+  orderBy?: Prisma.CompanyInvitationOrderByWithRelationInput | Prisma.CompanyInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.CompanyInvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CompanyInvitationScalarFieldEnum | Prisma.CompanyInvitationScalarFieldEnum[]
+}
+
+/**
+ * Company.jobs
+ */
+export type Company$jobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Job
+   */
+  select?: Prisma.JobSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Job
+   */
+  omit?: Prisma.JobOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobInclude<ExtArgs> | null
+  where?: Prisma.JobWhereInput
+  orderBy?: Prisma.JobOrderByWithRelationInput | Prisma.JobOrderByWithRelationInput[]
+  cursor?: Prisma.JobWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.JobScalarFieldEnum | Prisma.JobScalarFieldEnum[]
+}
+
+/**
+ * Company.savedBy
+ */
+export type Company$savedByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SavedCompany
+   */
+  select?: Prisma.SavedCompanySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SavedCompany
+   */
+  omit?: Prisma.SavedCompanyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SavedCompanyInclude<ExtArgs> | null
+  where?: Prisma.SavedCompanyWhereInput
+  orderBy?: Prisma.SavedCompanyOrderByWithRelationInput | Prisma.SavedCompanyOrderByWithRelationInput[]
+  cursor?: Prisma.SavedCompanyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SavedCompanyScalarFieldEnum | Prisma.SavedCompanyScalarFieldEnum[]
+}
+
+/**
+ * Company.preferences
+ */
+export type Company$preferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TalentPreference
+   */
+  select?: Prisma.TalentPreferenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TalentPreference
+   */
+  omit?: Prisma.TalentPreferenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TalentPreferenceInclude<ExtArgs> | null
+  where?: Prisma.TalentPreferenceWhereInput
 }
 
 /**

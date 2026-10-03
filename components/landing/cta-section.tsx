@@ -38,7 +38,7 @@ export function CTASection() {
         {/* CTAs */}
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Link
-            href="/auth/sign-up"
+            href="/join"
             className="inline-flex items-center gap-2 bg-white text-primary-container font-display font-semibold px-8 py-3 rounded-full shadow-[0_8px_24px_rgba(0,0,0,0.20)] hover:bg-[#FFF5F2] hover:scale-105 active:scale-95 transition-all"
           >
             <span>Join VocAZ</span>

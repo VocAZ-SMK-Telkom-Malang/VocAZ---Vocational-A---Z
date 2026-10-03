@@ -27,12 +27,10 @@ export type AggregateCompanyTalentPreference = {
 }
 
 export type CompanyTalentPreferenceAvgAggregateOutputType = {
-  minExperienceYears: number | null
   weight: number | null
 }
 
 export type CompanyTalentPreferenceSumAggregateOutputType = {
-  minExperienceYears: number | null
   weight: number | null
 }
 
@@ -40,11 +38,8 @@ export type CompanyTalentPreferenceMinAggregateOutputType = {
   id: string | null
   companyId: string | null
   skillId: string | null
-  programKeahlian: string | null
-  minExperienceYears: number | null
-  location: string | null
-  requiresCertification: boolean | null
   weight: number | null
+  isRequired: boolean | null
   createdAt: Date | null
 }
 
@@ -52,11 +47,8 @@ export type CompanyTalentPreferenceMaxAggregateOutputType = {
   id: string | null
   companyId: string | null
   skillId: string | null
-  programKeahlian: string | null
-  minExperienceYears: number | null
-  location: string | null
-  requiresCertification: boolean | null
   weight: number | null
+  isRequired: boolean | null
   createdAt: Date | null
 }
 
@@ -64,23 +56,18 @@ export type CompanyTalentPreferenceCountAggregateOutputType = {
   id: number
   companyId: number
   skillId: number
-  programKeahlian: number
-  minExperienceYears: number
-  location: number
-  requiresCertification: number
   weight: number
+  isRequired: number
   createdAt: number
   _all: number
 }
 
 
 export type CompanyTalentPreferenceAvgAggregateInputType = {
-  minExperienceYears?: true
   weight?: true
 }
 
 export type CompanyTalentPreferenceSumAggregateInputType = {
-  minExperienceYears?: true
   weight?: true
 }
 
@@ -88,11 +75,8 @@ export type CompanyTalentPreferenceMinAggregateInputType = {
   id?: true
   companyId?: true
   skillId?: true
-  programKeahlian?: true
-  minExperienceYears?: true
-  location?: true
-  requiresCertification?: true
   weight?: true
+  isRequired?: true
   createdAt?: true
 }
 
@@ -100,11 +84,8 @@ export type CompanyTalentPreferenceMaxAggregateInputType = {
   id?: true
   companyId?: true
   skillId?: true
-  programKeahlian?: true
-  minExperienceYears?: true
-  location?: true
-  requiresCertification?: true
   weight?: true
+  isRequired?: true
   createdAt?: true
 }
 
@@ -112,11 +93,8 @@ export type CompanyTalentPreferenceCountAggregateInputType = {
   id?: true
   companyId?: true
   skillId?: true
-  programKeahlian?: true
-  minExperienceYears?: true
-  location?: true
-  requiresCertification?: true
   weight?: true
+  isRequired?: true
   createdAt?: true
   _all?: true
 }
@@ -210,12 +188,9 @@ export type CompanyTalentPreferenceGroupByArgs<ExtArgs extends runtime.Types.Ext
 export type CompanyTalentPreferenceGroupByOutputType = {
   id: string
   companyId: string
-  skillId: string | null
-  programKeahlian: string | null
-  minExperienceYears: number | null
-  location: string | null
-  requiresCertification: boolean
+  skillId: string
   weight: number
+  isRequired: boolean
   createdAt: Date
   _count: CompanyTalentPreferenceCountAggregateOutputType | null
   _avg: CompanyTalentPreferenceAvgAggregateOutputType | null
@@ -245,26 +220,20 @@ export type CompanyTalentPreferenceWhereInput = {
   NOT?: Prisma.CompanyTalentPreferenceWhereInput | Prisma.CompanyTalentPreferenceWhereInput[]
   id?: Prisma.UuidFilter<"CompanyTalentPreference"> | string
   companyId?: Prisma.UuidFilter<"CompanyTalentPreference"> | string
-  skillId?: Prisma.UuidNullableFilter<"CompanyTalentPreference"> | string | null
-  programKeahlian?: Prisma.StringNullableFilter<"CompanyTalentPreference"> | string | null
-  minExperienceYears?: Prisma.IntNullableFilter<"CompanyTalentPreference"> | number | null
-  location?: Prisma.StringNullableFilter<"CompanyTalentPreference"> | string | null
-  requiresCertification?: Prisma.BoolFilter<"CompanyTalentPreference"> | boolean
+  skillId?: Prisma.UuidFilter<"CompanyTalentPreference"> | string
   weight?: Prisma.IntFilter<"CompanyTalentPreference"> | number
+  isRequired?: Prisma.BoolFilter<"CompanyTalentPreference"> | boolean
   createdAt?: Prisma.DateTimeFilter<"CompanyTalentPreference"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
-  skill?: Prisma.XOR<Prisma.SkillNullableScalarRelationFilter, Prisma.SkillWhereInput> | null
+  skill?: Prisma.XOR<Prisma.SkillScalarRelationFilter, Prisma.SkillWhereInput>
 }
 
 export type CompanyTalentPreferenceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  skillId?: Prisma.SortOrderInput | Prisma.SortOrder
-  programKeahlian?: Prisma.SortOrderInput | Prisma.SortOrder
-  minExperienceYears?: Prisma.SortOrderInput | Prisma.SortOrder
-  location?: Prisma.SortOrderInput | Prisma.SortOrder
-  requiresCertification?: Prisma.SortOrder
+  skillId?: Prisma.SortOrder
   weight?: Prisma.SortOrder
+  isRequired?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   company?: Prisma.CompanyOrderByWithRelationInput
   skill?: Prisma.SkillOrderByWithRelationInput
@@ -272,30 +241,25 @@ export type CompanyTalentPreferenceOrderByWithRelationInput = {
 
 export type CompanyTalentPreferenceWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  companyId_skillId?: Prisma.CompanyTalentPreferenceCompanyIdSkillIdCompoundUniqueInput
   AND?: Prisma.CompanyTalentPreferenceWhereInput | Prisma.CompanyTalentPreferenceWhereInput[]
   OR?: Prisma.CompanyTalentPreferenceWhereInput[]
   NOT?: Prisma.CompanyTalentPreferenceWhereInput | Prisma.CompanyTalentPreferenceWhereInput[]
   companyId?: Prisma.UuidFilter<"CompanyTalentPreference"> | string
-  skillId?: Prisma.UuidNullableFilter<"CompanyTalentPreference"> | string | null
-  programKeahlian?: Prisma.StringNullableFilter<"CompanyTalentPreference"> | string | null
-  minExperienceYears?: Prisma.IntNullableFilter<"CompanyTalentPreference"> | number | null
-  location?: Prisma.StringNullableFilter<"CompanyTalentPreference"> | string | null
-  requiresCertification?: Prisma.BoolFilter<"CompanyTalentPreference"> | boolean
+  skillId?: Prisma.UuidFilter<"CompanyTalentPreference"> | string
   weight?: Prisma.IntFilter<"CompanyTalentPreference"> | number
+  isRequired?: Prisma.BoolFilter<"CompanyTalentPreference"> | boolean
   createdAt?: Prisma.DateTimeFilter<"CompanyTalentPreference"> | Date | string
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
-  skill?: Prisma.XOR<Prisma.SkillNullableScalarRelationFilter, Prisma.SkillWhereInput> | null
-}, "id">
+  skill?: Prisma.XOR<Prisma.SkillScalarRelationFilter, Prisma.SkillWhereInput>
+}, "id" | "companyId_skillId">
 
 export type CompanyTalentPreferenceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
-  skillId?: Prisma.SortOrderInput | Prisma.SortOrder
-  programKeahlian?: Prisma.SortOrderInput | Prisma.SortOrder
-  minExperienceYears?: Prisma.SortOrderInput | Prisma.SortOrder
-  location?: Prisma.SortOrderInput | Prisma.SortOrder
-  requiresCertification?: Prisma.SortOrder
+  skillId?: Prisma.SortOrder
   weight?: Prisma.SortOrder
+  isRequired?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.CompanyTalentPreferenceCountOrderByAggregateInput
   _avg?: Prisma.CompanyTalentPreferenceAvgOrderByAggregateInput
@@ -310,94 +274,70 @@ export type CompanyTalentPreferenceScalarWhereWithAggregatesInput = {
   NOT?: Prisma.CompanyTalentPreferenceScalarWhereWithAggregatesInput | Prisma.CompanyTalentPreferenceScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"CompanyTalentPreference"> | string
   companyId?: Prisma.UuidWithAggregatesFilter<"CompanyTalentPreference"> | string
-  skillId?: Prisma.UuidNullableWithAggregatesFilter<"CompanyTalentPreference"> | string | null
-  programKeahlian?: Prisma.StringNullableWithAggregatesFilter<"CompanyTalentPreference"> | string | null
-  minExperienceYears?: Prisma.IntNullableWithAggregatesFilter<"CompanyTalentPreference"> | number | null
-  location?: Prisma.StringNullableWithAggregatesFilter<"CompanyTalentPreference"> | string | null
-  requiresCertification?: Prisma.BoolWithAggregatesFilter<"CompanyTalentPreference"> | boolean
+  skillId?: Prisma.UuidWithAggregatesFilter<"CompanyTalentPreference"> | string
   weight?: Prisma.IntWithAggregatesFilter<"CompanyTalentPreference"> | number
+  isRequired?: Prisma.BoolWithAggregatesFilter<"CompanyTalentPreference"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CompanyTalentPreference"> | Date | string
 }
 
 export type CompanyTalentPreferenceCreateInput = {
   id?: string
-  programKeahlian?: string | null
-  minExperienceYears?: number | null
-  location?: string | null
-  requiresCertification?: boolean
   weight?: number
+  isRequired?: boolean
   createdAt?: Date | string
-  company: Prisma.CompanyCreateNestedOneWithoutPreferencesInput
-  skill?: Prisma.SkillCreateNestedOneWithoutPrefsInput
+  company: Prisma.CompanyCreateNestedOneWithoutSkillPreferencesInput
+  skill: Prisma.SkillCreateNestedOneWithoutCompanyPrefsInput
 }
 
 export type CompanyTalentPreferenceUncheckedCreateInput = {
   id?: string
   companyId: string
-  skillId?: string | null
-  programKeahlian?: string | null
-  minExperienceYears?: number | null
-  location?: string | null
-  requiresCertification?: boolean
+  skillId: string
   weight?: number
+  isRequired?: boolean
   createdAt?: Date | string
 }
 
 export type CompanyTalentPreferenceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  programKeahlian?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minExperienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  requiresCertification?: Prisma.BoolFieldUpdateOperationsInput | boolean
   weight?: Prisma.IntFieldUpdateOperationsInput | number
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company?: Prisma.CompanyUpdateOneRequiredWithoutPreferencesNestedInput
-  skill?: Prisma.SkillUpdateOneWithoutPrefsNestedInput
+  company?: Prisma.CompanyUpdateOneRequiredWithoutSkillPreferencesNestedInput
+  skill?: Prisma.SkillUpdateOneRequiredWithoutCompanyPrefsNestedInput
 }
 
 export type CompanyTalentPreferenceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
-  skillId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  programKeahlian?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minExperienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  requiresCertification?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  skillId?: Prisma.StringFieldUpdateOperationsInput | string
   weight?: Prisma.IntFieldUpdateOperationsInput | number
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CompanyTalentPreferenceCreateManyInput = {
   id?: string
   companyId: string
-  skillId?: string | null
-  programKeahlian?: string | null
-  minExperienceYears?: number | null
-  location?: string | null
-  requiresCertification?: boolean
+  skillId: string
   weight?: number
+  isRequired?: boolean
   createdAt?: Date | string
 }
 
 export type CompanyTalentPreferenceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  programKeahlian?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minExperienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  requiresCertification?: Prisma.BoolFieldUpdateOperationsInput | boolean
   weight?: Prisma.IntFieldUpdateOperationsInput | number
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CompanyTalentPreferenceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
-  skillId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  programKeahlian?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minExperienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  requiresCertification?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  skillId?: Prisma.StringFieldUpdateOperationsInput | string
   weight?: Prisma.IntFieldUpdateOperationsInput | number
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -411,20 +351,21 @@ export type CompanyTalentPreferenceOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type CompanyTalentPreferenceCompanyIdSkillIdCompoundUniqueInput = {
+  companyId: string
+  skillId: string
+}
+
 export type CompanyTalentPreferenceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
   skillId?: Prisma.SortOrder
-  programKeahlian?: Prisma.SortOrder
-  minExperienceYears?: Prisma.SortOrder
-  location?: Prisma.SortOrder
-  requiresCertification?: Prisma.SortOrder
   weight?: Prisma.SortOrder
+  isRequired?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type CompanyTalentPreferenceAvgOrderByAggregateInput = {
-  minExperienceYears?: Prisma.SortOrder
   weight?: Prisma.SortOrder
 }
 
@@ -432,11 +373,8 @@ export type CompanyTalentPreferenceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
   skillId?: Prisma.SortOrder
-  programKeahlian?: Prisma.SortOrder
-  minExperienceYears?: Prisma.SortOrder
-  location?: Prisma.SortOrder
-  requiresCertification?: Prisma.SortOrder
   weight?: Prisma.SortOrder
+  isRequired?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -444,59 +382,13 @@ export type CompanyTalentPreferenceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
   skillId?: Prisma.SortOrder
-  programKeahlian?: Prisma.SortOrder
-  minExperienceYears?: Prisma.SortOrder
-  location?: Prisma.SortOrder
-  requiresCertification?: Prisma.SortOrder
   weight?: Prisma.SortOrder
+  isRequired?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
 export type CompanyTalentPreferenceSumOrderByAggregateInput = {
-  minExperienceYears?: Prisma.SortOrder
   weight?: Prisma.SortOrder
-}
-
-export type CompanyTalentPreferenceCreateNestedManyWithoutSkillInput = {
-  create?: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput> | Prisma.CompanyTalentPreferenceCreateWithoutSkillInput[] | Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput[]
-  connectOrCreate?: Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput | Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput[]
-  createMany?: Prisma.CompanyTalentPreferenceCreateManySkillInputEnvelope
-  connect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
-}
-
-export type CompanyTalentPreferenceUncheckedCreateNestedManyWithoutSkillInput = {
-  create?: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput> | Prisma.CompanyTalentPreferenceCreateWithoutSkillInput[] | Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput[]
-  connectOrCreate?: Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput | Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput[]
-  createMany?: Prisma.CompanyTalentPreferenceCreateManySkillInputEnvelope
-  connect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
-}
-
-export type CompanyTalentPreferenceUpdateManyWithoutSkillNestedInput = {
-  create?: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput> | Prisma.CompanyTalentPreferenceCreateWithoutSkillInput[] | Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput[]
-  connectOrCreate?: Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput | Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput[]
-  upsert?: Prisma.CompanyTalentPreferenceUpsertWithWhereUniqueWithoutSkillInput | Prisma.CompanyTalentPreferenceUpsertWithWhereUniqueWithoutSkillInput[]
-  createMany?: Prisma.CompanyTalentPreferenceCreateManySkillInputEnvelope
-  set?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
-  disconnect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
-  delete?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
-  connect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
-  update?: Prisma.CompanyTalentPreferenceUpdateWithWhereUniqueWithoutSkillInput | Prisma.CompanyTalentPreferenceUpdateWithWhereUniqueWithoutSkillInput[]
-  updateMany?: Prisma.CompanyTalentPreferenceUpdateManyWithWhereWithoutSkillInput | Prisma.CompanyTalentPreferenceUpdateManyWithWhereWithoutSkillInput[]
-  deleteMany?: Prisma.CompanyTalentPreferenceScalarWhereInput | Prisma.CompanyTalentPreferenceScalarWhereInput[]
-}
-
-export type CompanyTalentPreferenceUncheckedUpdateManyWithoutSkillNestedInput = {
-  create?: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput> | Prisma.CompanyTalentPreferenceCreateWithoutSkillInput[] | Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput[]
-  connectOrCreate?: Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput | Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput[]
-  upsert?: Prisma.CompanyTalentPreferenceUpsertWithWhereUniqueWithoutSkillInput | Prisma.CompanyTalentPreferenceUpsertWithWhereUniqueWithoutSkillInput[]
-  createMany?: Prisma.CompanyTalentPreferenceCreateManySkillInputEnvelope
-  set?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
-  disconnect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
-  delete?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
-  connect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
-  update?: Prisma.CompanyTalentPreferenceUpdateWithWhereUniqueWithoutSkillInput | Prisma.CompanyTalentPreferenceUpdateWithWhereUniqueWithoutSkillInput[]
-  updateMany?: Prisma.CompanyTalentPreferenceUpdateManyWithWhereWithoutSkillInput | Prisma.CompanyTalentPreferenceUpdateManyWithWhereWithoutSkillInput[]
-  deleteMany?: Prisma.CompanyTalentPreferenceScalarWhereInput | Prisma.CompanyTalentPreferenceScalarWhereInput[]
 }
 
 export type CompanyTalentPreferenceCreateNestedManyWithoutCompanyInput = {
@@ -541,88 +433,61 @@ export type CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyNestedInput 
   deleteMany?: Prisma.CompanyTalentPreferenceScalarWhereInput | Prisma.CompanyTalentPreferenceScalarWhereInput[]
 }
 
-export type CompanyTalentPreferenceCreateWithoutSkillInput = {
-  id?: string
-  programKeahlian?: string | null
-  minExperienceYears?: number | null
-  location?: string | null
-  requiresCertification?: boolean
-  weight?: number
-  createdAt?: Date | string
-  company: Prisma.CompanyCreateNestedOneWithoutPreferencesInput
+export type CompanyTalentPreferenceCreateNestedManyWithoutSkillInput = {
+  create?: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput> | Prisma.CompanyTalentPreferenceCreateWithoutSkillInput[] | Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput[]
+  connectOrCreate?: Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput | Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput[]
+  createMany?: Prisma.CompanyTalentPreferenceCreateManySkillInputEnvelope
+  connect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
 }
 
-export type CompanyTalentPreferenceUncheckedCreateWithoutSkillInput = {
-  id?: string
-  companyId: string
-  programKeahlian?: string | null
-  minExperienceYears?: number | null
-  location?: string | null
-  requiresCertification?: boolean
-  weight?: number
-  createdAt?: Date | string
+export type CompanyTalentPreferenceUncheckedCreateNestedManyWithoutSkillInput = {
+  create?: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput> | Prisma.CompanyTalentPreferenceCreateWithoutSkillInput[] | Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput[]
+  connectOrCreate?: Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput | Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput[]
+  createMany?: Prisma.CompanyTalentPreferenceCreateManySkillInputEnvelope
+  connect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
 }
 
-export type CompanyTalentPreferenceCreateOrConnectWithoutSkillInput = {
-  where: Prisma.CompanyTalentPreferenceWhereUniqueInput
-  create: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput>
+export type CompanyTalentPreferenceUpdateManyWithoutSkillNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput> | Prisma.CompanyTalentPreferenceCreateWithoutSkillInput[] | Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput[]
+  connectOrCreate?: Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput | Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput[]
+  upsert?: Prisma.CompanyTalentPreferenceUpsertWithWhereUniqueWithoutSkillInput | Prisma.CompanyTalentPreferenceUpsertWithWhereUniqueWithoutSkillInput[]
+  createMany?: Prisma.CompanyTalentPreferenceCreateManySkillInputEnvelope
+  set?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
+  disconnect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
+  delete?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
+  connect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
+  update?: Prisma.CompanyTalentPreferenceUpdateWithWhereUniqueWithoutSkillInput | Prisma.CompanyTalentPreferenceUpdateWithWhereUniqueWithoutSkillInput[]
+  updateMany?: Prisma.CompanyTalentPreferenceUpdateManyWithWhereWithoutSkillInput | Prisma.CompanyTalentPreferenceUpdateManyWithWhereWithoutSkillInput[]
+  deleteMany?: Prisma.CompanyTalentPreferenceScalarWhereInput | Prisma.CompanyTalentPreferenceScalarWhereInput[]
 }
 
-export type CompanyTalentPreferenceCreateManySkillInputEnvelope = {
-  data: Prisma.CompanyTalentPreferenceCreateManySkillInput | Prisma.CompanyTalentPreferenceCreateManySkillInput[]
-  skipDuplicates?: boolean
-}
-
-export type CompanyTalentPreferenceUpsertWithWhereUniqueWithoutSkillInput = {
-  where: Prisma.CompanyTalentPreferenceWhereUniqueInput
-  update: Prisma.XOR<Prisma.CompanyTalentPreferenceUpdateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedUpdateWithoutSkillInput>
-  create: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput>
-}
-
-export type CompanyTalentPreferenceUpdateWithWhereUniqueWithoutSkillInput = {
-  where: Prisma.CompanyTalentPreferenceWhereUniqueInput
-  data: Prisma.XOR<Prisma.CompanyTalentPreferenceUpdateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedUpdateWithoutSkillInput>
-}
-
-export type CompanyTalentPreferenceUpdateManyWithWhereWithoutSkillInput = {
-  where: Prisma.CompanyTalentPreferenceScalarWhereInput
-  data: Prisma.XOR<Prisma.CompanyTalentPreferenceUpdateManyMutationInput, Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutSkillInput>
-}
-
-export type CompanyTalentPreferenceScalarWhereInput = {
-  AND?: Prisma.CompanyTalentPreferenceScalarWhereInput | Prisma.CompanyTalentPreferenceScalarWhereInput[]
-  OR?: Prisma.CompanyTalentPreferenceScalarWhereInput[]
-  NOT?: Prisma.CompanyTalentPreferenceScalarWhereInput | Prisma.CompanyTalentPreferenceScalarWhereInput[]
-  id?: Prisma.UuidFilter<"CompanyTalentPreference"> | string
-  companyId?: Prisma.UuidFilter<"CompanyTalentPreference"> | string
-  skillId?: Prisma.UuidNullableFilter<"CompanyTalentPreference"> | string | null
-  programKeahlian?: Prisma.StringNullableFilter<"CompanyTalentPreference"> | string | null
-  minExperienceYears?: Prisma.IntNullableFilter<"CompanyTalentPreference"> | number | null
-  location?: Prisma.StringNullableFilter<"CompanyTalentPreference"> | string | null
-  requiresCertification?: Prisma.BoolFilter<"CompanyTalentPreference"> | boolean
-  weight?: Prisma.IntFilter<"CompanyTalentPreference"> | number
-  createdAt?: Prisma.DateTimeFilter<"CompanyTalentPreference"> | Date | string
+export type CompanyTalentPreferenceUncheckedUpdateManyWithoutSkillNestedInput = {
+  create?: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput> | Prisma.CompanyTalentPreferenceCreateWithoutSkillInput[] | Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput[]
+  connectOrCreate?: Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput | Prisma.CompanyTalentPreferenceCreateOrConnectWithoutSkillInput[]
+  upsert?: Prisma.CompanyTalentPreferenceUpsertWithWhereUniqueWithoutSkillInput | Prisma.CompanyTalentPreferenceUpsertWithWhereUniqueWithoutSkillInput[]
+  createMany?: Prisma.CompanyTalentPreferenceCreateManySkillInputEnvelope
+  set?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
+  disconnect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
+  delete?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
+  connect?: Prisma.CompanyTalentPreferenceWhereUniqueInput | Prisma.CompanyTalentPreferenceWhereUniqueInput[]
+  update?: Prisma.CompanyTalentPreferenceUpdateWithWhereUniqueWithoutSkillInput | Prisma.CompanyTalentPreferenceUpdateWithWhereUniqueWithoutSkillInput[]
+  updateMany?: Prisma.CompanyTalentPreferenceUpdateManyWithWhereWithoutSkillInput | Prisma.CompanyTalentPreferenceUpdateManyWithWhereWithoutSkillInput[]
+  deleteMany?: Prisma.CompanyTalentPreferenceScalarWhereInput | Prisma.CompanyTalentPreferenceScalarWhereInput[]
 }
 
 export type CompanyTalentPreferenceCreateWithoutCompanyInput = {
   id?: string
-  programKeahlian?: string | null
-  minExperienceYears?: number | null
-  location?: string | null
-  requiresCertification?: boolean
   weight?: number
+  isRequired?: boolean
   createdAt?: Date | string
-  skill?: Prisma.SkillCreateNestedOneWithoutPrefsInput
+  skill: Prisma.SkillCreateNestedOneWithoutCompanyPrefsInput
 }
 
 export type CompanyTalentPreferenceUncheckedCreateWithoutCompanyInput = {
   id?: string
-  skillId?: string | null
-  programKeahlian?: string | null
-  minExperienceYears?: number | null
-  location?: string | null
-  requiresCertification?: boolean
+  skillId: string
   weight?: number
+  isRequired?: boolean
   createdAt?: Date | string
 }
 
@@ -652,91 +517,121 @@ export type CompanyTalentPreferenceUpdateManyWithWhereWithoutCompanyInput = {
   data: Prisma.XOR<Prisma.CompanyTalentPreferenceUpdateManyMutationInput, Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyInput>
 }
 
+export type CompanyTalentPreferenceScalarWhereInput = {
+  AND?: Prisma.CompanyTalentPreferenceScalarWhereInput | Prisma.CompanyTalentPreferenceScalarWhereInput[]
+  OR?: Prisma.CompanyTalentPreferenceScalarWhereInput[]
+  NOT?: Prisma.CompanyTalentPreferenceScalarWhereInput | Prisma.CompanyTalentPreferenceScalarWhereInput[]
+  id?: Prisma.UuidFilter<"CompanyTalentPreference"> | string
+  companyId?: Prisma.UuidFilter<"CompanyTalentPreference"> | string
+  skillId?: Prisma.UuidFilter<"CompanyTalentPreference"> | string
+  weight?: Prisma.IntFilter<"CompanyTalentPreference"> | number
+  isRequired?: Prisma.BoolFilter<"CompanyTalentPreference"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"CompanyTalentPreference"> | Date | string
+}
+
+export type CompanyTalentPreferenceCreateWithoutSkillInput = {
+  id?: string
+  weight?: number
+  isRequired?: boolean
+  createdAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutSkillPreferencesInput
+}
+
+export type CompanyTalentPreferenceUncheckedCreateWithoutSkillInput = {
+  id?: string
+  companyId: string
+  weight?: number
+  isRequired?: boolean
+  createdAt?: Date | string
+}
+
+export type CompanyTalentPreferenceCreateOrConnectWithoutSkillInput = {
+  where: Prisma.CompanyTalentPreferenceWhereUniqueInput
+  create: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput>
+}
+
+export type CompanyTalentPreferenceCreateManySkillInputEnvelope = {
+  data: Prisma.CompanyTalentPreferenceCreateManySkillInput | Prisma.CompanyTalentPreferenceCreateManySkillInput[]
+  skipDuplicates?: boolean
+}
+
+export type CompanyTalentPreferenceUpsertWithWhereUniqueWithoutSkillInput = {
+  where: Prisma.CompanyTalentPreferenceWhereUniqueInput
+  update: Prisma.XOR<Prisma.CompanyTalentPreferenceUpdateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedUpdateWithoutSkillInput>
+  create: Prisma.XOR<Prisma.CompanyTalentPreferenceCreateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedCreateWithoutSkillInput>
+}
+
+export type CompanyTalentPreferenceUpdateWithWhereUniqueWithoutSkillInput = {
+  where: Prisma.CompanyTalentPreferenceWhereUniqueInput
+  data: Prisma.XOR<Prisma.CompanyTalentPreferenceUpdateWithoutSkillInput, Prisma.CompanyTalentPreferenceUncheckedUpdateWithoutSkillInput>
+}
+
+export type CompanyTalentPreferenceUpdateManyWithWhereWithoutSkillInput = {
+  where: Prisma.CompanyTalentPreferenceScalarWhereInput
+  data: Prisma.XOR<Prisma.CompanyTalentPreferenceUpdateManyMutationInput, Prisma.CompanyTalentPreferenceUncheckedUpdateManyWithoutSkillInput>
+}
+
+export type CompanyTalentPreferenceCreateManyCompanyInput = {
+  id?: string
+  skillId: string
+  weight?: number
+  isRequired?: boolean
+  createdAt?: Date | string
+}
+
+export type CompanyTalentPreferenceUpdateWithoutCompanyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  weight?: Prisma.IntFieldUpdateOperationsInput | number
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  skill?: Prisma.SkillUpdateOneRequiredWithoutCompanyPrefsNestedInput
+}
+
+export type CompanyTalentPreferenceUncheckedUpdateWithoutCompanyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  skillId?: Prisma.StringFieldUpdateOperationsInput | string
+  weight?: Prisma.IntFieldUpdateOperationsInput | number
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  skillId?: Prisma.StringFieldUpdateOperationsInput | string
+  weight?: Prisma.IntFieldUpdateOperationsInput | number
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type CompanyTalentPreferenceCreateManySkillInput = {
   id?: string
   companyId: string
-  programKeahlian?: string | null
-  minExperienceYears?: number | null
-  location?: string | null
-  requiresCertification?: boolean
   weight?: number
+  isRequired?: boolean
   createdAt?: Date | string
 }
 
 export type CompanyTalentPreferenceUpdateWithoutSkillInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  programKeahlian?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minExperienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  requiresCertification?: Prisma.BoolFieldUpdateOperationsInput | boolean
   weight?: Prisma.IntFieldUpdateOperationsInput | number
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company?: Prisma.CompanyUpdateOneRequiredWithoutPreferencesNestedInput
+  company?: Prisma.CompanyUpdateOneRequiredWithoutSkillPreferencesNestedInput
 }
 
 export type CompanyTalentPreferenceUncheckedUpdateWithoutSkillInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
-  programKeahlian?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minExperienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  requiresCertification?: Prisma.BoolFieldUpdateOperationsInput | boolean
   weight?: Prisma.IntFieldUpdateOperationsInput | number
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type CompanyTalentPreferenceUncheckedUpdateManyWithoutSkillInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   companyId?: Prisma.StringFieldUpdateOperationsInput | string
-  programKeahlian?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minExperienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  requiresCertification?: Prisma.BoolFieldUpdateOperationsInput | boolean
   weight?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type CompanyTalentPreferenceCreateManyCompanyInput = {
-  id?: string
-  skillId?: string | null
-  programKeahlian?: string | null
-  minExperienceYears?: number | null
-  location?: string | null
-  requiresCertification?: boolean
-  weight?: number
-  createdAt?: Date | string
-}
-
-export type CompanyTalentPreferenceUpdateWithoutCompanyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  programKeahlian?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minExperienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  requiresCertification?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  weight?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  skill?: Prisma.SkillUpdateOneWithoutPrefsNestedInput
-}
-
-export type CompanyTalentPreferenceUncheckedUpdateWithoutCompanyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  skillId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  programKeahlian?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minExperienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  requiresCertification?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  weight?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type CompanyTalentPreferenceUncheckedUpdateManyWithoutCompanyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  skillId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  programKeahlian?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  minExperienceYears?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  location?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  requiresCertification?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  weight?: Prisma.IntFieldUpdateOperationsInput | number
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -746,85 +641,70 @@ export type CompanyTalentPreferenceSelect<ExtArgs extends runtime.Types.Extensio
   id?: boolean
   companyId?: boolean
   skillId?: boolean
-  programKeahlian?: boolean
-  minExperienceYears?: boolean
-  location?: boolean
-  requiresCertification?: boolean
   weight?: boolean
+  isRequired?: boolean
   createdAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
-  skill?: boolean | Prisma.CompanyTalentPreference$skillArgs<ExtArgs>
+  skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["companyTalentPreference"]>
 
 export type CompanyTalentPreferenceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   companyId?: boolean
   skillId?: boolean
-  programKeahlian?: boolean
-  minExperienceYears?: boolean
-  location?: boolean
-  requiresCertification?: boolean
   weight?: boolean
+  isRequired?: boolean
   createdAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
-  skill?: boolean | Prisma.CompanyTalentPreference$skillArgs<ExtArgs>
+  skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["companyTalentPreference"]>
 
 export type CompanyTalentPreferenceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   companyId?: boolean
   skillId?: boolean
-  programKeahlian?: boolean
-  minExperienceYears?: boolean
-  location?: boolean
-  requiresCertification?: boolean
   weight?: boolean
+  isRequired?: boolean
   createdAt?: boolean
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
-  skill?: boolean | Prisma.CompanyTalentPreference$skillArgs<ExtArgs>
+  skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["companyTalentPreference"]>
 
 export type CompanyTalentPreferenceSelectScalar = {
   id?: boolean
   companyId?: boolean
   skillId?: boolean
-  programKeahlian?: boolean
-  minExperienceYears?: boolean
-  location?: boolean
-  requiresCertification?: boolean
   weight?: boolean
+  isRequired?: boolean
   createdAt?: boolean
 }
 
-export type CompanyTalentPreferenceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "skillId" | "programKeahlian" | "minExperienceYears" | "location" | "requiresCertification" | "weight" | "createdAt", ExtArgs["result"]["companyTalentPreference"]>
+export type CompanyTalentPreferenceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "companyId" | "skillId" | "weight" | "isRequired" | "createdAt", ExtArgs["result"]["companyTalentPreference"]>
 export type CompanyTalentPreferenceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
-  skill?: boolean | Prisma.CompanyTalentPreference$skillArgs<ExtArgs>
+  skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
 }
 export type CompanyTalentPreferenceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
-  skill?: boolean | Prisma.CompanyTalentPreference$skillArgs<ExtArgs>
+  skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
 }
 export type CompanyTalentPreferenceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
-  skill?: boolean | Prisma.CompanyTalentPreference$skillArgs<ExtArgs>
+  skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
 }
 
 export type $CompanyTalentPreferencePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CompanyTalentPreference"
   objects: {
     company: Prisma.$CompanyPayload<ExtArgs>
-    skill: Prisma.$SkillPayload<ExtArgs> | null
+    skill: Prisma.$SkillPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     companyId: string
-    skillId: string | null
-    programKeahlian: string | null
-    minExperienceYears: number | null
-    location: string | null
-    requiresCertification: boolean
+    skillId: string
     weight: number
+    isRequired: boolean
     createdAt: Date
   }, ExtArgs["result"]["companyTalentPreference"]>
   composites: {}
@@ -1221,7 +1101,7 @@ readonly fields: CompanyTalentPreferenceFieldRefs;
 export interface Prisma__CompanyTalentPreferenceClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  skill<T extends Prisma.CompanyTalentPreference$skillArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyTalentPreference$skillArgs<ExtArgs>>): Prisma.Prisma__SkillClient<runtime.Types.Result.GetResult<Prisma.$SkillPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  skill<T extends Prisma.SkillDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SkillDefaultArgs<ExtArgs>>): Prisma.Prisma__SkillClient<runtime.Types.Result.GetResult<Prisma.$SkillPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1254,11 +1134,8 @@ export interface CompanyTalentPreferenceFieldRefs {
   readonly id: Prisma.FieldRef<"CompanyTalentPreference", 'String'>
   readonly companyId: Prisma.FieldRef<"CompanyTalentPreference", 'String'>
   readonly skillId: Prisma.FieldRef<"CompanyTalentPreference", 'String'>
-  readonly programKeahlian: Prisma.FieldRef<"CompanyTalentPreference", 'String'>
-  readonly minExperienceYears: Prisma.FieldRef<"CompanyTalentPreference", 'Int'>
-  readonly location: Prisma.FieldRef<"CompanyTalentPreference", 'String'>
-  readonly requiresCertification: Prisma.FieldRef<"CompanyTalentPreference", 'Boolean'>
   readonly weight: Prisma.FieldRef<"CompanyTalentPreference", 'Int'>
+  readonly isRequired: Prisma.FieldRef<"CompanyTalentPreference", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"CompanyTalentPreference", 'DateTime'>
 }
     
@@ -1658,25 +1535,6 @@ export type CompanyTalentPreferenceDeleteManyArgs<ExtArgs extends runtime.Types.
    * Limit how many CompanyTalentPreferences to delete.
    */
   limit?: number
-}
-
-/**
- * CompanyTalentPreference.skill
- */
-export type CompanyTalentPreference$skillArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Skill
-   */
-  select?: Prisma.SkillSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Skill
-   */
-  omit?: Prisma.SkillOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SkillInclude<ExtArgs> | null
-  where?: Prisma.SkillWhereInput
 }
 
 /**

@@ -214,8 +214,8 @@ export type IndustryPartnerWhereInput = {
   status?: Prisma.EnumPartnershipStatusFilter<"IndustryPartner"> | $Enums.PartnershipStatus
   notes?: Prisma.StringNullableFilter<"IndustryPartner"> | string | null
   createdAt?: Prisma.DateTimeFilter<"IndustryPartner"> | Date | string
-  school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
 }
 
 export type IndustryPartnerOrderByWithRelationInput = {
@@ -228,8 +228,8 @@ export type IndustryPartnerOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  school?: Prisma.SchoolOrderByWithRelationInput
   company?: Prisma.CompanyOrderByWithRelationInput
+  school?: Prisma.SchoolOrderByWithRelationInput
 }
 
 export type IndustryPartnerWhereUniqueInput = Prisma.AtLeast<{
@@ -246,8 +246,8 @@ export type IndustryPartnerWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumPartnershipStatusFilter<"IndustryPartner"> | $Enums.PartnershipStatus
   notes?: Prisma.StringNullableFilter<"IndustryPartner"> | string | null
   createdAt?: Prisma.DateTimeFilter<"IndustryPartner"> | Date | string
-  school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
 }, "id" | "schoolId_companyId_partnershipType">
 
 export type IndustryPartnerOrderByWithAggregationInput = {
@@ -288,8 +288,8 @@ export type IndustryPartnerCreateInput = {
   status?: $Enums.PartnershipStatus
   notes?: string | null
   createdAt?: Date | string
-  school: Prisma.SchoolCreateNestedOneWithoutIndustryPartnersInput
   company: Prisma.CompanyCreateNestedOneWithoutIndustryPartnersInput
+  school: Prisma.SchoolCreateNestedOneWithoutIndustryPartnersInput
 }
 
 export type IndustryPartnerUncheckedCreateInput = {
@@ -312,8 +312,8 @@ export type IndustryPartnerUpdateInput = {
   status?: Prisma.EnumPartnershipStatusFieldUpdateOperationsInput | $Enums.PartnershipStatus
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  school?: Prisma.SchoolUpdateOneRequiredWithoutIndustryPartnersNestedInput
   company?: Prisma.CompanyUpdateOneRequiredWithoutIndustryPartnersNestedInput
+  school?: Prisma.SchoolUpdateOneRequiredWithoutIndustryPartnersNestedInput
 }
 
 export type IndustryPartnerUncheckedUpdateInput = {
@@ -717,8 +717,8 @@ export type IndustryPartnerSelect<ExtArgs extends runtime.Types.Extensions.Inter
   status?: boolean
   notes?: boolean
   createdAt?: boolean
-  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["industryPartner"]>
 
 export type IndustryPartnerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -731,8 +731,8 @@ export type IndustryPartnerSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   status?: boolean
   notes?: boolean
   createdAt?: boolean
-  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["industryPartner"]>
 
 export type IndustryPartnerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -745,8 +745,8 @@ export type IndustryPartnerSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   status?: boolean
   notes?: boolean
   createdAt?: boolean
-  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["industryPartner"]>
 
 export type IndustryPartnerSelectScalar = {
@@ -763,23 +763,23 @@ export type IndustryPartnerSelectScalar = {
 
 export type IndustryPartnerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "schoolId" | "companyId" | "partnershipType" | "startDate" | "endDate" | "status" | "notes" | "createdAt", ExtArgs["result"]["industryPartner"]>
 export type IndustryPartnerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
 }
 export type IndustryPartnerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
 }
 export type IndustryPartnerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
 }
 
 export type $IndustryPartnerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "IndustryPartner"
   objects: {
-    school: Prisma.$SchoolPayload<ExtArgs>
     company: Prisma.$CompanyPayload<ExtArgs>
+    school: Prisma.$SchoolPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1185,8 +1185,8 @@ readonly fields: IndustryPartnerFieldRefs;
  */
 export interface Prisma__IndustryPartnerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  school<T extends Prisma.SchoolDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SchoolDefaultArgs<ExtArgs>>): Prisma.Prisma__SchoolClient<runtime.Types.Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  school<T extends Prisma.SchoolDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SchoolDefaultArgs<ExtArgs>>): Prisma.Prisma__SchoolClient<runtime.Types.Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

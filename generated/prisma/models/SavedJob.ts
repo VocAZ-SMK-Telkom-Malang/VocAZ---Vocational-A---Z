@@ -174,8 +174,8 @@ export type SavedJobWhereInput = {
   studentId?: Prisma.UuidFilter<"SavedJob"> | string
   jobId?: Prisma.UuidFilter<"SavedJob"> | string
   savedAt?: Prisma.DateTimeFilter<"SavedJob"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   job?: Prisma.XOR<Prisma.JobScalarRelationFilter, Prisma.JobWhereInput>
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }
 
 export type SavedJobOrderByWithRelationInput = {
@@ -183,8 +183,8 @@ export type SavedJobOrderByWithRelationInput = {
   studentId?: Prisma.SortOrder
   jobId?: Prisma.SortOrder
   savedAt?: Prisma.SortOrder
-  student?: Prisma.StudentProfileOrderByWithRelationInput
   job?: Prisma.JobOrderByWithRelationInput
+  student?: Prisma.StudentProfileOrderByWithRelationInput
 }
 
 export type SavedJobWhereUniqueInput = Prisma.AtLeast<{
@@ -196,8 +196,8 @@ export type SavedJobWhereUniqueInput = Prisma.AtLeast<{
   studentId?: Prisma.UuidFilter<"SavedJob"> | string
   jobId?: Prisma.UuidFilter<"SavedJob"> | string
   savedAt?: Prisma.DateTimeFilter<"SavedJob"> | Date | string
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   job?: Prisma.XOR<Prisma.JobScalarRelationFilter, Prisma.JobWhereInput>
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }, "id" | "studentId_jobId">
 
 export type SavedJobOrderByWithAggregationInput = {
@@ -223,8 +223,8 @@ export type SavedJobScalarWhereWithAggregatesInput = {
 export type SavedJobCreateInput = {
   id?: string
   savedAt?: Date | string
-  student: Prisma.StudentProfileCreateNestedOneWithoutSavedJobsInput
   job: Prisma.JobCreateNestedOneWithoutSavedByInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutSavedJobsInput
 }
 
 export type SavedJobUncheckedCreateInput = {
@@ -237,8 +237,8 @@ export type SavedJobUncheckedCreateInput = {
 export type SavedJobUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   savedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentProfileUpdateOneRequiredWithoutSavedJobsNestedInput
   job?: Prisma.JobUpdateOneRequiredWithoutSavedByNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutSavedJobsNestedInput
 }
 
 export type SavedJobUncheckedUpdateInput = {
@@ -528,8 +528,8 @@ export type SavedJobSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   studentId?: boolean
   jobId?: boolean
   savedAt?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["savedJob"]>
 
 export type SavedJobSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -537,8 +537,8 @@ export type SavedJobSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   studentId?: boolean
   jobId?: boolean
   savedAt?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["savedJob"]>
 
 export type SavedJobSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -546,8 +546,8 @@ export type SavedJobSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   studentId?: boolean
   jobId?: boolean
   savedAt?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["savedJob"]>
 
 export type SavedJobSelectScalar = {
@@ -559,23 +559,23 @@ export type SavedJobSelectScalar = {
 
 export type SavedJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "jobId" | "savedAt", ExtArgs["result"]["savedJob"]>
 export type SavedJobInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 export type SavedJobIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 export type SavedJobIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 
 export type $SavedJobPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SavedJob"
   objects: {
-    student: Prisma.$StudentProfilePayload<ExtArgs>
     job: Prisma.$JobPayload<ExtArgs>
+    student: Prisma.$StudentProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -976,8 +976,8 @@ readonly fields: SavedJobFieldRefs;
  */
 export interface Prisma__SavedJobClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   job<T extends Prisma.JobDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobDefaultArgs<ExtArgs>>): Prisma.Prisma__JobClient<runtime.Types.Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

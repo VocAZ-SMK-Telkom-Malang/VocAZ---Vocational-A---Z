@@ -262,8 +262,8 @@ export type CertificationInstitutionWhereInput = {
   description?: Prisma.StringNullableFilter<"CertificationInstitution"> | string | null
   createdAt?: Prisma.DateTimeFilter<"CertificationInstitution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CertificationInstitution"> | Date | string
-  owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   certificates?: Prisma.CertificateListRelationFilter
+  owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   verifications?: Prisma.VerificationRequestListRelationFilter
 }
 
@@ -283,8 +283,8 @@ export type CertificationInstitutionOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  owner?: Prisma.UserOrderByWithRelationInput
   certificates?: Prisma.CertificateOrderByRelationAggregateInput
+  owner?: Prisma.UserOrderByWithRelationInput
   verifications?: Prisma.VerificationRequestOrderByRelationAggregateInput
 }
 
@@ -307,8 +307,8 @@ export type CertificationInstitutionWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"CertificationInstitution"> | string | null
   createdAt?: Prisma.DateTimeFilter<"CertificationInstitution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CertificationInstitution"> | Date | string
-  owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   certificates?: Prisma.CertificateListRelationFilter
+  owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
   verifications?: Prisma.VerificationRequestListRelationFilter
 }, "id" | "ownerUserId" | "slug">
 
@@ -369,8 +369,8 @@ export type CertificationInstitutionCreateInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  owner?: Prisma.UserCreateNestedOneWithoutCertInstitutionInput
   certificates?: Prisma.CertificateCreateNestedManyWithoutInstitutionInput
+  owner?: Prisma.UserCreateNestedOneWithoutCertInstitutionInput
   verifications?: Prisma.VerificationRequestCreateNestedManyWithoutInstitutionInput
 }
 
@@ -409,8 +409,8 @@ export type CertificationInstitutionUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  owner?: Prisma.UserUpdateOneWithoutCertInstitutionNestedInput
   certificates?: Prisma.CertificateUpdateManyWithoutInstitutionNestedInput
+  owner?: Prisma.UserUpdateOneWithoutCertInstitutionNestedInput
   verifications?: Prisma.VerificationRequestUpdateManyWithoutInstitutionNestedInput
 }
 
@@ -813,8 +813,8 @@ export type CertificationInstitutionCreateWithoutVerificationsInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  owner?: Prisma.UserCreateNestedOneWithoutCertInstitutionInput
   certificates?: Prisma.CertificateCreateNestedManyWithoutInstitutionInput
+  owner?: Prisma.UserCreateNestedOneWithoutCertInstitutionInput
 }
 
 export type CertificationInstitutionUncheckedCreateWithoutVerificationsInput = {
@@ -867,8 +867,8 @@ export type CertificationInstitutionUpdateWithoutVerificationsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  owner?: Prisma.UserUpdateOneWithoutCertInstitutionNestedInput
   certificates?: Prisma.CertificateUpdateManyWithoutInstitutionNestedInput
+  owner?: Prisma.UserUpdateOneWithoutCertInstitutionNestedInput
 }
 
 export type CertificationInstitutionUncheckedUpdateWithoutVerificationsInput = {
@@ -946,8 +946,8 @@ export type CertificationInstitutionSelect<ExtArgs extends runtime.Types.Extensi
   description?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  owner?: boolean | Prisma.CertificationInstitution$ownerArgs<ExtArgs>
   certificates?: boolean | Prisma.CertificationInstitution$certificatesArgs<ExtArgs>
+  owner?: boolean | Prisma.CertificationInstitution$ownerArgs<ExtArgs>
   verifications?: boolean | Prisma.CertificationInstitution$verificationsArgs<ExtArgs>
   _count?: boolean | Prisma.CertificationInstitutionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["certificationInstitution"]>
@@ -1010,8 +1010,8 @@ export type CertificationInstitutionSelectScalar = {
 
 export type CertificationInstitutionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "slug" | "type" | "licenseNumber" | "email" | "phone" | "website" | "address" | "logoUrl" | "logoKey" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["certificationInstitution"]>
 export type CertificationInstitutionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  owner?: boolean | Prisma.CertificationInstitution$ownerArgs<ExtArgs>
   certificates?: boolean | Prisma.CertificationInstitution$certificatesArgs<ExtArgs>
+  owner?: boolean | Prisma.CertificationInstitution$ownerArgs<ExtArgs>
   verifications?: boolean | Prisma.CertificationInstitution$verificationsArgs<ExtArgs>
   _count?: boolean | Prisma.CertificationInstitutionCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1025,8 +1025,8 @@ export type CertificationInstitutionIncludeUpdateManyAndReturn<ExtArgs extends r
 export type $CertificationInstitutionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CertificationInstitution"
   objects: {
-    owner: Prisma.$UserPayload<ExtArgs> | null
     certificates: Prisma.$CertificatePayload<ExtArgs>[]
+    owner: Prisma.$UserPayload<ExtArgs> | null
     verifications: Prisma.$VerificationRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1439,8 +1439,8 @@ readonly fields: CertificationInstitutionFieldRefs;
  */
 export interface Prisma__CertificationInstitutionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  owner<T extends Prisma.CertificationInstitution$ownerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CertificationInstitution$ownerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   certificates<T extends Prisma.CertificationInstitution$certificatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CertificationInstitution$certificatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CertificatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  owner<T extends Prisma.CertificationInstitution$ownerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CertificationInstitution$ownerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   verifications<T extends Prisma.CertificationInstitution$verificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CertificationInstitution$verificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VerificationRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1887,25 +1887,6 @@ export type CertificationInstitutionDeleteManyArgs<ExtArgs extends runtime.Types
 }
 
 /**
- * CertificationInstitution.owner
- */
-export type CertificationInstitution$ownerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
-}
-
-/**
  * CertificationInstitution.certificates
  */
 export type CertificationInstitution$certificatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1927,6 +1908,25 @@ export type CertificationInstitution$certificatesArgs<ExtArgs extends runtime.Ty
   take?: number
   skip?: number
   distinct?: Prisma.CertificateScalarFieldEnum | Prisma.CertificateScalarFieldEnum[]
+}
+
+/**
+ * CertificationInstitution.owner
+ */
+export type CertificationInstitution$ownerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

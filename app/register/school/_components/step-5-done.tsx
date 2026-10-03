@@ -11,6 +11,9 @@ import {
   AlertCircle,
   RefreshCw,
   Sparkles,
+  Copy,
+  Check,
+  Key,
 } from 'lucide-react'
 import { RegisterShell } from '@/components/register/register-shell'
 import { REGISTER_STEPS } from '@/lib/register/steps'
@@ -19,11 +22,35 @@ import { finalizeSchoolRegistration } from '@/lib/register/actions/school'
 
 type Status = 'loading' | 'success' | 'error' | 'already-registered'
 
+type RegisterData = {
+  email: string
+  password: string
+  fullName: string
+  position?: string
+  schoolName: string
+  npsn?: string
+  accreditation?: string
+  address?: string
+  city?: string
+  province?: string
+  bkkName?: string
+  bkkContact?: string
+  bkkEmail?: string
+  bkkPhone?: string
+  plan: string
+  planPrice?: number
+  paymentMethod: string
+  paymentReference?: string
+}
+
 export function Step5Done() {
   const router = useRouter()
   const [status, setStatus] = useState<Status>('loading')
   const [error, setError] = useState<string | null>(null)
   const [schoolCode, setSchoolCode] = useState<string | null>(null)
+  const [enrollmentToken, setEnrollmentToken] = useState<string | null>(null)
+  const [copiedCode, setCopiedCode] = useState(false)
+  const [copiedToken, setCopiedToken] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -40,8 +67,9 @@ export function Step5Done() {
           return
         }
 
-        const data = JSON.parse(raw)
+        const data: RegisterData = JSON.parse(raw)
 
+        // Validate
         if (
           !data.email ||
           !data.password ||
@@ -96,7 +124,7 @@ export function Step5Done() {
           return
         }
 
-        // 3. Finalize
+        // 3. Finalize — ini yang generate schoolCode + enrollmentToken
         const finalizeResult = await finalizeSchoolRegistration({
           neonAuthUserId: session.user.id,
           plan: data.plan,
@@ -133,16 +161,19 @@ export function Step5Done() {
 
         if (!cancelled) {
           setSchoolCode(finalizeResult.data?.schoolCode || null)
+          setEnrollmentToken(
+            (finalizeResult.data as any)?.enrollmentToken || null
+          )
           setStatus('success')
         }
 
-        // 5. Redirect
+        // 5. Auto-redirect setelah 8 detik (user punya waktu baca token)
         setTimeout(() => {
           if (!cancelled) {
             router.push('/school/dashboard')
             router.refresh()
           }
-        }, 4000)
+        }, 8000)
       } catch (err) {
         if (!cancelled) {
           setError(err instanceof Error ? err.message : 'Terjadi kesalahan')
@@ -157,6 +188,19 @@ export function Step5Done() {
       cancelled = true
     }
   }, [router])
+
+  async function copyToClipboard(
+    text: string,
+    setter: (v: boolean) => void
+  ) {
+    try {
+      await navigator.clipboard.writeText(text)
+      setter(true)
+      setTimeout(() => setter(false), 2000)
+    } catch (err) {
+      console.error('Copy failed:', err)
+    }
+  }
 
   return (
     <RegisterShell
@@ -214,8 +258,68 @@ export function Step5Done() {
               <div className="font-mono text-2xl font-extrabold text-on-surface tracking-wider mb-2">
                 {schoolCode}
               </div>
-              <p className="text-xs text-on-surface-variant leading-relaxed">
-                Bagikan kode ini ke siswa Anda untuk mendaftar di VocAZ.
+              <p className="text-xs text-on-surface-variant leading-relaxed mb-3">
+                Kode ini untuk login &amp; identifikasi sekolah.
+              </p>
+              <button
+                type="button"
+                onClick={() =>
+                  copyToClipboard(schoolCode, setCopiedCode)
+                }
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-primary/30 text-primary text-xs font-bold hover:bg-primary/5 transition-colors"
+              >
+                {copiedCode ? (
+                  <>
+                    <Check className="w-3.5 h-3.5" /> Tersalin
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-3.5 h-3.5" /> Copy Kode
+                  </>
+                )}
+              </button>
+            </div>
+          )}
+
+          {/* Enrollment Token card — untuk share ke siswa */}
+          {enrollmentToken && (
+            <div className="rounded-2xl border-2 border-dashed border-amber-300 bg-amber-50 p-5">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-800 font-mono text-[10px] font-bold uppercase tracking-wider mb-3">
+                <Key className="w-3 h-3" />
+                Token Enrollment Siswa
+              </div>
+
+              <p className="text-xs text-amber-800 leading-relaxed mb-3">
+                Bagikan token ini ke siswa Anda. Siswa masukkan token ini saat
+                mendaftar di VocAZ untuk otomatis ter-link ke sekolah.
+              </p>
+
+              <div className="flex items-center gap-2 p-3 rounded-xl bg-white border border-amber-200">
+                <code className="flex-1 font-mono font-black text-lg text-amber-900 tracking-wider break-all">
+                  {enrollmentToken}
+                </code>
+                <button
+                  type="button"
+                  onClick={() =>
+                    copyToClipboard(enrollmentToken, setCopiedToken)
+                  }
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-600 text-white text-xs font-bold hover:brightness-110 transition-all shrink-0"
+                >
+                  {copiedToken ? (
+                    <>
+                      <Check className="w-3.5 h-3.5" /> Tersalin
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="w-3.5 h-3.5" /> Copy
+                    </>
+                  )}
+                </button>
+              </div>
+
+              <p className="text-[11px] text-amber-700 mt-3 leading-relaxed">
+                💡 Token ini juga bisa dilihat &amp; di-share ulang nanti di{' '}
+                <strong>Profil Sekolah → Bagikan Token</strong>.
               </p>
             </div>
           )}
@@ -231,7 +335,7 @@ export function Step5Done() {
                 </p>
                 <p className="text-xs text-on-surface-variant leading-relaxed">
                   Lengkapi profil sekolah, undang admin BKK, dan mulai
-                  mengaktifkan akun siswa dengan kode sekolah.
+                  mengaktifkan akun siswa dengan token di atas.
                 </p>
               </div>
             </div>
@@ -239,7 +343,7 @@ export function Step5Done() {
 
           <div className="flex items-center justify-center gap-2 text-xs text-on-surface-variant">
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
-            <span>Mengalihkan ke dashboard...</span>
+            <span>Mengalihkan ke dashboard dalam beberapa detik...</span>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 pt-2">

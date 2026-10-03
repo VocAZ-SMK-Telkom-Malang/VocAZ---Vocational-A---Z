@@ -62,6 +62,9 @@ export type StudentProfileMinAggregateOutputType = {
   followingCount: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  cvKey: string | null
+  cvUpdatedAt: Date | null
+  cvUrl: string | null
 }
 
 export type StudentProfileMaxAggregateOutputType = {
@@ -86,6 +89,9 @@ export type StudentProfileMaxAggregateOutputType = {
   followingCount: number | null
   createdAt: Date | null
   updatedAt: Date | null
+  cvKey: string | null
+  cvUpdatedAt: Date | null
+  cvUrl: string | null
 }
 
 export type StudentProfileCountAggregateOutputType = {
@@ -110,6 +116,9 @@ export type StudentProfileCountAggregateOutputType = {
   followingCount: number
   createdAt: number
   updatedAt: number
+  cvKey: number
+  cvUpdatedAt: number
+  cvUrl: number
   _all: number
 }
 
@@ -150,6 +159,9 @@ export type StudentProfileMinAggregateInputType = {
   followingCount?: true
   createdAt?: true
   updatedAt?: true
+  cvKey?: true
+  cvUpdatedAt?: true
+  cvUrl?: true
 }
 
 export type StudentProfileMaxAggregateInputType = {
@@ -174,6 +186,9 @@ export type StudentProfileMaxAggregateInputType = {
   followingCount?: true
   createdAt?: true
   updatedAt?: true
+  cvKey?: true
+  cvUpdatedAt?: true
+  cvUrl?: true
 }
 
 export type StudentProfileCountAggregateInputType = {
@@ -198,6 +213,9 @@ export type StudentProfileCountAggregateInputType = {
   followingCount?: true
   createdAt?: true
   updatedAt?: true
+  cvKey?: true
+  cvUpdatedAt?: true
+  cvUrl?: true
   _all?: true
 }
 
@@ -309,6 +327,9 @@ export type StudentProfileGroupByOutputType = {
   followingCount: number
   createdAt: Date
   updatedAt: Date
+  cvKey: string | null
+  cvUpdatedAt: Date | null
+  cvUrl: string | null
   _count: StudentProfileCountAggregateOutputType | null
   _avg: StudentProfileAvgAggregateOutputType | null
   _sum: StudentProfileSumAggregateOutputType | null
@@ -356,22 +377,27 @@ export type StudentProfileWhereInput = {
   followingCount?: Prisma.IntFilter<"StudentProfile"> | number
   createdAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  school?: Prisma.XOR<Prisma.SchoolNullableScalarRelationFilter, Prisma.SchoolWhereInput> | null
+  cvKey?: Prisma.StringNullableFilter<"StudentProfile"> | string | null
+  cvUpdatedAt?: Prisma.DateTimeNullableFilter<"StudentProfile"> | Date | string | null
+  cvUrl?: Prisma.StringNullableFilter<"StudentProfile"> | string | null
+  applications?: Prisma.ApplicationListRelationFilter
+  careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
+  certificates?: Prisma.CertificateListRelationFilter
+  invitations?: Prisma.TalentInvitationListRelationFilter
+  feedbacks?: Prisma.ProfileFeedbackListRelationFilter
+  savedCompanies?: Prisma.SavedCompanyListRelationFilter
+  savedByCompanies?: Prisma.SavedTalentListRelationFilter
+  savedJobs?: Prisma.SavedJobListRelationFilter
+  schoolEnrollments?: Prisma.SchoolStudentListRelationFilter
+  showcaseVideos?: Prisma.ShowcaseVideoListRelationFilter
+  achievements?: Prisma.StudentAchievementListRelationFilter
   educations?: Prisma.StudentEducationListRelationFilter
   experiences?: Prisma.StudentExperienceListRelationFilter
-  skills?: Prisma.StudentSkillListRelationFilter
-  achievements?: Prisma.StudentAchievementListRelationFilter
-  portfolios?: Prisma.StudentPortfolioListRelationFilter
-  showcaseVideos?: Prisma.ShowcaseVideoListRelationFilter
-  applications?: Prisma.ApplicationListRelationFilter
-  savedJobs?: Prisma.SavedJobListRelationFilter
-  savedCompanies?: Prisma.SavedCompanyListRelationFilter
-  certificates?: Prisma.CertificateListRelationFilter
-  schoolEnrollments?: Prisma.SchoolStudentListRelationFilter
-  careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
   followers?: Prisma.StudentFollowListRelationFilter
-  feedbacks?: Prisma.ProfileFeedbackListRelationFilter
+  portfolios?: Prisma.StudentPortfolioListRelationFilter
+  school?: Prisma.XOR<Prisma.SchoolNullableScalarRelationFilter, Prisma.SchoolWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  skills?: Prisma.StudentSkillListRelationFilter
 }
 
 export type StudentProfileOrderByWithRelationInput = {
@@ -396,22 +422,27 @@ export type StudentProfileOrderByWithRelationInput = {
   followingCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
-  school?: Prisma.SchoolOrderByWithRelationInput
+  cvKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  cvUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  cvUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  applications?: Prisma.ApplicationOrderByRelationAggregateInput
+  careerMonitorings?: Prisma.CareerMonitoringOrderByRelationAggregateInput
+  certificates?: Prisma.CertificateOrderByRelationAggregateInput
+  invitations?: Prisma.TalentInvitationOrderByRelationAggregateInput
+  feedbacks?: Prisma.ProfileFeedbackOrderByRelationAggregateInput
+  savedCompanies?: Prisma.SavedCompanyOrderByRelationAggregateInput
+  savedByCompanies?: Prisma.SavedTalentOrderByRelationAggregateInput
+  savedJobs?: Prisma.SavedJobOrderByRelationAggregateInput
+  schoolEnrollments?: Prisma.SchoolStudentOrderByRelationAggregateInput
+  showcaseVideos?: Prisma.ShowcaseVideoOrderByRelationAggregateInput
+  achievements?: Prisma.StudentAchievementOrderByRelationAggregateInput
   educations?: Prisma.StudentEducationOrderByRelationAggregateInput
   experiences?: Prisma.StudentExperienceOrderByRelationAggregateInput
-  skills?: Prisma.StudentSkillOrderByRelationAggregateInput
-  achievements?: Prisma.StudentAchievementOrderByRelationAggregateInput
-  portfolios?: Prisma.StudentPortfolioOrderByRelationAggregateInput
-  showcaseVideos?: Prisma.ShowcaseVideoOrderByRelationAggregateInput
-  applications?: Prisma.ApplicationOrderByRelationAggregateInput
-  savedJobs?: Prisma.SavedJobOrderByRelationAggregateInput
-  savedCompanies?: Prisma.SavedCompanyOrderByRelationAggregateInput
-  certificates?: Prisma.CertificateOrderByRelationAggregateInput
-  schoolEnrollments?: Prisma.SchoolStudentOrderByRelationAggregateInput
-  careerMonitorings?: Prisma.CareerMonitoringOrderByRelationAggregateInput
   followers?: Prisma.StudentFollowOrderByRelationAggregateInput
-  feedbacks?: Prisma.ProfileFeedbackOrderByRelationAggregateInput
+  portfolios?: Prisma.StudentPortfolioOrderByRelationAggregateInput
+  school?: Prisma.SchoolOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
+  skills?: Prisma.StudentSkillOrderByRelationAggregateInput
 }
 
 export type StudentProfileWhereUniqueInput = Prisma.AtLeast<{
@@ -439,22 +470,27 @@ export type StudentProfileWhereUniqueInput = Prisma.AtLeast<{
   followingCount?: Prisma.IntFilter<"StudentProfile"> | number
   createdAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  school?: Prisma.XOR<Prisma.SchoolNullableScalarRelationFilter, Prisma.SchoolWhereInput> | null
+  cvKey?: Prisma.StringNullableFilter<"StudentProfile"> | string | null
+  cvUpdatedAt?: Prisma.DateTimeNullableFilter<"StudentProfile"> | Date | string | null
+  cvUrl?: Prisma.StringNullableFilter<"StudentProfile"> | string | null
+  applications?: Prisma.ApplicationListRelationFilter
+  careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
+  certificates?: Prisma.CertificateListRelationFilter
+  invitations?: Prisma.TalentInvitationListRelationFilter
+  feedbacks?: Prisma.ProfileFeedbackListRelationFilter
+  savedCompanies?: Prisma.SavedCompanyListRelationFilter
+  savedByCompanies?: Prisma.SavedTalentListRelationFilter
+  savedJobs?: Prisma.SavedJobListRelationFilter
+  schoolEnrollments?: Prisma.SchoolStudentListRelationFilter
+  showcaseVideos?: Prisma.ShowcaseVideoListRelationFilter
+  achievements?: Prisma.StudentAchievementListRelationFilter
   educations?: Prisma.StudentEducationListRelationFilter
   experiences?: Prisma.StudentExperienceListRelationFilter
-  skills?: Prisma.StudentSkillListRelationFilter
-  achievements?: Prisma.StudentAchievementListRelationFilter
-  portfolios?: Prisma.StudentPortfolioListRelationFilter
-  showcaseVideos?: Prisma.ShowcaseVideoListRelationFilter
-  applications?: Prisma.ApplicationListRelationFilter
-  savedJobs?: Prisma.SavedJobListRelationFilter
-  savedCompanies?: Prisma.SavedCompanyListRelationFilter
-  certificates?: Prisma.CertificateListRelationFilter
-  schoolEnrollments?: Prisma.SchoolStudentListRelationFilter
-  careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
   followers?: Prisma.StudentFollowListRelationFilter
-  feedbacks?: Prisma.ProfileFeedbackListRelationFilter
+  portfolios?: Prisma.StudentPortfolioListRelationFilter
+  school?: Prisma.XOR<Prisma.SchoolNullableScalarRelationFilter, Prisma.SchoolWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  skills?: Prisma.StudentSkillListRelationFilter
 }, "id" | "userId">
 
 export type StudentProfileOrderByWithAggregationInput = {
@@ -479,6 +515,9 @@ export type StudentProfileOrderByWithAggregationInput = {
   followingCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  cvKey?: Prisma.SortOrderInput | Prisma.SortOrder
+  cvUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  cvUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.StudentProfileCountOrderByAggregateInput
   _avg?: Prisma.StudentProfileAvgOrderByAggregateInput
   _max?: Prisma.StudentProfileMaxOrderByAggregateInput
@@ -511,6 +550,9 @@ export type StudentProfileScalarWhereWithAggregatesInput = {
   followingCount?: Prisma.IntWithAggregatesFilter<"StudentProfile"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"StudentProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"StudentProfile"> | Date | string
+  cvKey?: Prisma.StringNullableWithAggregatesFilter<"StudentProfile"> | string | null
+  cvUpdatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"StudentProfile"> | Date | string | null
+  cvUrl?: Prisma.StringNullableWithAggregatesFilter<"StudentProfile"> | string | null
 }
 
 export type StudentProfileCreateInput = {
@@ -533,22 +575,27 @@ export type StudentProfileCreateInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateInput = {
@@ -573,20 +620,25 @@ export type StudentProfileUncheckedCreateInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUpdateInput = {
@@ -609,22 +661,27 @@ export type StudentProfileUpdateInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateInput = {
@@ -649,20 +706,25 @@ export type StudentProfileUncheckedUpdateInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateManyInput = {
@@ -687,6 +749,9 @@ export type StudentProfileCreateManyInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
 }
 
 export type StudentProfileUpdateManyMutationInput = {
@@ -709,6 +774,9 @@ export type StudentProfileUpdateManyMutationInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StudentProfileUncheckedUpdateManyInput = {
@@ -733,6 +801,9 @@ export type StudentProfileUncheckedUpdateManyInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StudentProfileNullableScalarRelationFilter = {
@@ -762,6 +833,9 @@ export type StudentProfileCountOrderByAggregateInput = {
   followingCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  cvKey?: Prisma.SortOrder
+  cvUpdatedAt?: Prisma.SortOrder
+  cvUrl?: Prisma.SortOrder
 }
 
 export type StudentProfileAvgOrderByAggregateInput = {
@@ -793,6 +867,9 @@ export type StudentProfileMaxOrderByAggregateInput = {
   followingCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  cvKey?: Prisma.SortOrder
+  cvUpdatedAt?: Prisma.SortOrder
+  cvUrl?: Prisma.SortOrder
 }
 
 export type StudentProfileMinOrderByAggregateInput = {
@@ -817,6 +894,9 @@ export type StudentProfileMinOrderByAggregateInput = {
   followingCount?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  cvKey?: Prisma.SortOrder
+  cvUpdatedAt?: Prisma.SortOrder
+  cvUrl?: Prisma.SortOrder
 }
 
 export type StudentProfileSumOrderByAggregateInput = {
@@ -1123,6 +1203,34 @@ export type StudentProfileUpdateOneRequiredWithoutFollowersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.StudentProfileUpdateToOneWithWhereWithoutFollowersInput, Prisma.StudentProfileUpdateWithoutFollowersInput>, Prisma.StudentProfileUncheckedUpdateWithoutFollowersInput>
 }
 
+export type StudentProfileCreateNestedOneWithoutInvitationsInput = {
+  create?: Prisma.XOR<Prisma.StudentProfileCreateWithoutInvitationsInput, Prisma.StudentProfileUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.StudentProfileCreateOrConnectWithoutInvitationsInput
+  connect?: Prisma.StudentProfileWhereUniqueInput
+}
+
+export type StudentProfileUpdateOneRequiredWithoutInvitationsNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentProfileCreateWithoutInvitationsInput, Prisma.StudentProfileUncheckedCreateWithoutInvitationsInput>
+  connectOrCreate?: Prisma.StudentProfileCreateOrConnectWithoutInvitationsInput
+  upsert?: Prisma.StudentProfileUpsertWithoutInvitationsInput
+  connect?: Prisma.StudentProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentProfileUpdateToOneWithWhereWithoutInvitationsInput, Prisma.StudentProfileUpdateWithoutInvitationsInput>, Prisma.StudentProfileUncheckedUpdateWithoutInvitationsInput>
+}
+
+export type StudentProfileCreateNestedOneWithoutSavedByCompaniesInput = {
+  create?: Prisma.XOR<Prisma.StudentProfileCreateWithoutSavedByCompaniesInput, Prisma.StudentProfileUncheckedCreateWithoutSavedByCompaniesInput>
+  connectOrCreate?: Prisma.StudentProfileCreateOrConnectWithoutSavedByCompaniesInput
+  connect?: Prisma.StudentProfileWhereUniqueInput
+}
+
+export type StudentProfileUpdateOneRequiredWithoutSavedByCompaniesNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentProfileCreateWithoutSavedByCompaniesInput, Prisma.StudentProfileUncheckedCreateWithoutSavedByCompaniesInput>
+  connectOrCreate?: Prisma.StudentProfileCreateOrConnectWithoutSavedByCompaniesInput
+  upsert?: Prisma.StudentProfileUpsertWithoutSavedByCompaniesInput
+  connect?: Prisma.StudentProfileWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.StudentProfileUpdateToOneWithWhereWithoutSavedByCompaniesInput, Prisma.StudentProfileUpdateWithoutSavedByCompaniesInput>, Prisma.StudentProfileUncheckedUpdateWithoutSavedByCompaniesInput>
+}
+
 export type StudentProfileCreateWithoutUserInput = {
   id?: string
   nisn?: string | null
@@ -1143,21 +1251,26 @@ export type StudentProfileCreateWithoutUserInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutUserInput = {
@@ -1181,20 +1294,25 @@ export type StudentProfileUncheckedCreateWithoutUserInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutUserInput = {
@@ -1233,21 +1351,26 @@ export type StudentProfileUpdateWithoutUserInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutUserInput = {
@@ -1271,20 +1394,25 @@ export type StudentProfileUncheckedUpdateWithoutUserInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutEducationsInput = {
@@ -1307,21 +1435,26 @@ export type StudentProfileCreateWithoutEducationsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
-  experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
   applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
-  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
   feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
+  experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutEducationsInput = {
@@ -1346,19 +1479,24 @@ export type StudentProfileUncheckedCreateWithoutEducationsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
-  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
   feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
+  experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutEducationsInput = {
@@ -1397,21 +1535,26 @@ export type StudentProfileUpdateWithoutEducationsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
-  experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
-  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
   feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
+  experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutEducationsInput = {
@@ -1436,19 +1579,24 @@ export type StudentProfileUncheckedUpdateWithoutEducationsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
-  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
   feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
+  experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutExperiencesInput = {
@@ -1471,21 +1619,26 @@ export type StudentProfileCreateWithoutExperiencesInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
-  educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
   applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
-  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
   feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
+  educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutExperiencesInput = {
@@ -1510,19 +1663,24 @@ export type StudentProfileUncheckedCreateWithoutExperiencesInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
   applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
-  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
   feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
+  educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutExperiencesInput = {
@@ -1561,21 +1719,26 @@ export type StudentProfileUpdateWithoutExperiencesInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
-  educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
-  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
   feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
+  educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutExperiencesInput = {
@@ -1600,19 +1763,24 @@ export type StudentProfileUncheckedUpdateWithoutExperiencesInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
-  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
   feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
+  educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutSkillsInput = {
@@ -1635,21 +1803,26 @@ export type StudentProfileCreateWithoutSkillsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
 }
 
 export type StudentProfileUncheckedCreateWithoutSkillsInput = {
@@ -1674,19 +1847,24 @@ export type StudentProfileUncheckedCreateWithoutSkillsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutSkillsInput = {
@@ -1725,21 +1903,26 @@ export type StudentProfileUpdateWithoutSkillsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutSkillsInput = {
@@ -1764,19 +1947,24 @@ export type StudentProfileUncheckedUpdateWithoutSkillsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutAchievementsInput = {
@@ -1799,21 +1987,26 @@ export type StudentProfileCreateWithoutAchievementsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutAchievementsInput = {
@@ -1838,19 +2031,24 @@ export type StudentProfileUncheckedCreateWithoutAchievementsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutAchievementsInput = {
@@ -1889,21 +2087,26 @@ export type StudentProfileUpdateWithoutAchievementsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutAchievementsInput = {
@@ -1928,19 +2131,24 @@ export type StudentProfileUncheckedUpdateWithoutAchievementsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutPortfoliosInput = {
@@ -1963,21 +2171,26 @@ export type StudentProfileCreateWithoutPortfoliosInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutPortfoliosInput = {
@@ -2002,19 +2215,24 @@ export type StudentProfileUncheckedCreateWithoutPortfoliosInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutPortfoliosInput = {
@@ -2053,21 +2271,26 @@ export type StudentProfileUpdateWithoutPortfoliosInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutPortfoliosInput = {
@@ -2092,19 +2315,24 @@ export type StudentProfileUncheckedUpdateWithoutPortfoliosInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutShowcaseVideosInput = {
@@ -2127,21 +2355,26 @@ export type StudentProfileCreateWithoutShowcaseVideosInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutShowcaseVideosInput = {
@@ -2166,19 +2399,24 @@ export type StudentProfileUncheckedCreateWithoutShowcaseVideosInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutShowcaseVideosInput = {
@@ -2217,21 +2455,26 @@ export type StudentProfileUpdateWithoutShowcaseVideosInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutShowcaseVideosInput = {
@@ -2256,19 +2499,24 @@ export type StudentProfileUncheckedUpdateWithoutShowcaseVideosInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutApplicationsInput = {
@@ -2291,21 +2539,26 @@ export type StudentProfileCreateWithoutApplicationsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutApplicationsInput = {
@@ -2330,19 +2583,24 @@ export type StudentProfileUncheckedCreateWithoutApplicationsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutApplicationsInput = {
@@ -2381,21 +2639,26 @@ export type StudentProfileUpdateWithoutApplicationsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutApplicationsInput = {
@@ -2420,19 +2683,24 @@ export type StudentProfileUncheckedUpdateWithoutApplicationsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutSavedJobsInput = {
@@ -2455,21 +2723,26 @@ export type StudentProfileCreateWithoutSavedJobsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutSavedJobsInput = {
@@ -2494,19 +2767,24 @@ export type StudentProfileUncheckedCreateWithoutSavedJobsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutSavedJobsInput = {
@@ -2545,21 +2823,26 @@ export type StudentProfileUpdateWithoutSavedJobsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutSavedJobsInput = {
@@ -2584,19 +2867,24 @@ export type StudentProfileUncheckedUpdateWithoutSavedJobsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutSavedCompaniesInput = {
@@ -2619,21 +2907,26 @@ export type StudentProfileCreateWithoutSavedCompaniesInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutSavedCompaniesInput = {
@@ -2658,19 +2951,24 @@ export type StudentProfileUncheckedCreateWithoutSavedCompaniesInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutSavedCompaniesInput = {
@@ -2709,21 +3007,26 @@ export type StudentProfileUpdateWithoutSavedCompaniesInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutSavedCompaniesInput = {
@@ -2748,19 +3051,24 @@ export type StudentProfileUncheckedUpdateWithoutSavedCompaniesInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutSchoolInput = {
@@ -2783,21 +3091,26 @@ export type StudentProfileCreateWithoutSchoolInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutSchoolInput = {
@@ -2821,20 +3134,25 @@ export type StudentProfileUncheckedCreateWithoutSchoolInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutSchoolInput = {
@@ -2888,6 +3206,9 @@ export type StudentProfileScalarWhereInput = {
   followingCount?: Prisma.IntFilter<"StudentProfile"> | number
   createdAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"StudentProfile"> | Date | string
+  cvKey?: Prisma.StringNullableFilter<"StudentProfile"> | string | null
+  cvUpdatedAt?: Prisma.DateTimeNullableFilter<"StudentProfile"> | Date | string | null
+  cvUrl?: Prisma.StringNullableFilter<"StudentProfile"> | string | null
 }
 
 export type StudentProfileCreateWithoutSchoolEnrollmentsInput = {
@@ -2910,21 +3231,26 @@ export type StudentProfileCreateWithoutSchoolEnrollmentsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutSchoolEnrollmentsInput = {
@@ -2949,19 +3275,24 @@ export type StudentProfileUncheckedCreateWithoutSchoolEnrollmentsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutSchoolEnrollmentsInput = {
@@ -3000,21 +3331,26 @@ export type StudentProfileUpdateWithoutSchoolEnrollmentsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutSchoolEnrollmentsInput = {
@@ -3039,19 +3375,24 @@ export type StudentProfileUncheckedUpdateWithoutSchoolEnrollmentsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutCareerMonitoringsInput = {
@@ -3074,21 +3415,26 @@ export type StudentProfileCreateWithoutCareerMonitoringsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutCareerMonitoringsInput = {
@@ -3113,19 +3459,24 @@ export type StudentProfileUncheckedCreateWithoutCareerMonitoringsInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutCareerMonitoringsInput = {
@@ -3164,21 +3515,26 @@ export type StudentProfileUpdateWithoutCareerMonitoringsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutCareerMonitoringsInput = {
@@ -3203,19 +3559,24 @@ export type StudentProfileUncheckedUpdateWithoutCareerMonitoringsInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutCertificatesInput = {
@@ -3238,21 +3599,26 @@ export type StudentProfileCreateWithoutCertificatesInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutCertificatesInput = {
@@ -3277,19 +3643,24 @@ export type StudentProfileUncheckedCreateWithoutCertificatesInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutCertificatesInput = {
@@ -3328,21 +3699,26 @@ export type StudentProfileUpdateWithoutCertificatesInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutCertificatesInput = {
@@ -3367,19 +3743,24 @@ export type StudentProfileUncheckedUpdateWithoutCertificatesInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutFeedbacksInput = {
@@ -3402,21 +3783,26 @@ export type StudentProfileCreateWithoutFeedbacksInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutFeedbacksInput = {
@@ -3441,19 +3827,24 @@ export type StudentProfileUncheckedCreateWithoutFeedbacksInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
-  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
   followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutFeedbacksInput = {
@@ -3492,21 +3883,26 @@ export type StudentProfileUpdateWithoutFeedbacksInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutFeedbacksInput = {
@@ -3531,19 +3927,24 @@ export type StudentProfileUncheckedUpdateWithoutFeedbacksInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateWithoutFollowersInput = {
@@ -3566,21 +3967,26 @@ export type StudentProfileCreateWithoutFollowersInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
-  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
   portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
-  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileUncheckedCreateWithoutFollowersInput = {
@@ -3605,19 +4011,24 @@ export type StudentProfileUncheckedCreateWithoutFollowersInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
   experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
-  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
-  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
   portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
-  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
-  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
-  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
 }
 
 export type StudentProfileCreateOrConnectWithoutFollowersInput = {
@@ -3656,21 +4067,26 @@ export type StudentProfileUpdateWithoutFollowersInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
-  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutFollowersInput = {
@@ -3695,19 +4111,392 @@ export type StudentProfileUncheckedUpdateWithoutFollowersInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentProfileCreateWithoutInvitationsInput = {
+  id?: string
+  nisn?: string | null
+  headline?: string | null
+  bio?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  coverImageUrl?: string | null
+  coverImageKey?: string | null
+  profileCompletion?: number
+  careerReadiness?: number
+  isOpenToWork?: boolean
+  isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
+  educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
+  experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
+}
+
+export type StudentProfileUncheckedCreateWithoutInvitationsInput = {
+  id?: string
+  userId: string
+  schoolId?: string | null
+  nisn?: string | null
+  headline?: string | null
+  bio?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  coverImageUrl?: string | null
+  coverImageKey?: string | null
+  profileCompletion?: number
+  careerReadiness?: number
+  isOpenToWork?: boolean
+  isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
+  educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
+  experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentProfileCreateOrConnectWithoutInvitationsInput = {
+  where: Prisma.StudentProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentProfileCreateWithoutInvitationsInput, Prisma.StudentProfileUncheckedCreateWithoutInvitationsInput>
+}
+
+export type StudentProfileUpsertWithoutInvitationsInput = {
+  update: Prisma.XOR<Prisma.StudentProfileUpdateWithoutInvitationsInput, Prisma.StudentProfileUncheckedUpdateWithoutInvitationsInput>
+  create: Prisma.XOR<Prisma.StudentProfileCreateWithoutInvitationsInput, Prisma.StudentProfileUncheckedCreateWithoutInvitationsInput>
+  where?: Prisma.StudentProfileWhereInput
+}
+
+export type StudentProfileUpdateToOneWithWhereWithoutInvitationsInput = {
+  where?: Prisma.StudentProfileWhereInput
+  data: Prisma.XOR<Prisma.StudentProfileUpdateWithoutInvitationsInput, Prisma.StudentProfileUncheckedUpdateWithoutInvitationsInput>
+}
+
+export type StudentProfileUpdateWithoutInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nisn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletion?: Prisma.IntFieldUpdateOperationsInput | number
+  careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
+  isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
+  educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
+  experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentProfileUncheckedUpdateWithoutInvitationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nisn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletion?: Prisma.IntFieldUpdateOperationsInput | number
+  careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
+  isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
   feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
+  educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
+  experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentProfileCreateWithoutSavedByCompaniesInput = {
+  id?: string
+  nisn?: string | null
+  headline?: string | null
+  bio?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  coverImageUrl?: string | null
+  coverImageKey?: string | null
+  profileCompletion?: number
+  careerReadiness?: number
+  isOpenToWork?: boolean
+  isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementCreateNestedManyWithoutStudentInput
+  educations?: Prisma.StudentEducationCreateNestedManyWithoutStudentInput
+  experiences?: Prisma.StudentExperienceCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowCreateNestedManyWithoutFollowingInput
+  portfolios?: Prisma.StudentPortfolioCreateNestedManyWithoutStudentInput
+  school?: Prisma.SchoolCreateNestedOneWithoutStudentProfilesInput
+  user: Prisma.UserCreateNestedOneWithoutStudentProfileInput
+  skills?: Prisma.StudentSkillCreateNestedManyWithoutStudentInput
+}
+
+export type StudentProfileUncheckedCreateWithoutSavedByCompaniesInput = {
+  id?: string
+  userId: string
+  schoolId?: string | null
+  nisn?: string | null
+  headline?: string | null
+  bio?: string | null
+  dateOfBirth?: Date | string | null
+  gender?: $Enums.Gender | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  coverImageUrl?: string | null
+  coverImageKey?: string | null
+  profileCompletion?: number
+  careerReadiness?: number
+  isOpenToWork?: boolean
+  isPublic?: boolean
+  followerCount?: number
+  followingCount?: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
+  applications?: Prisma.ApplicationUncheckedCreateNestedManyWithoutStudentInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutStudentInput
+  certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutStudentInput
+  invitations?: Prisma.TalentInvitationUncheckedCreateNestedManyWithoutStudentInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedCreateNestedManyWithoutStudentProfileInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedCreateNestedManyWithoutStudentInput
+  savedJobs?: Prisma.SavedJobUncheckedCreateNestedManyWithoutStudentInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutStudentInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedCreateNestedManyWithoutStudentInput
+  achievements?: Prisma.StudentAchievementUncheckedCreateNestedManyWithoutStudentInput
+  educations?: Prisma.StudentEducationUncheckedCreateNestedManyWithoutStudentInput
+  experiences?: Prisma.StudentExperienceUncheckedCreateNestedManyWithoutStudentInput
+  followers?: Prisma.StudentFollowUncheckedCreateNestedManyWithoutFollowingInput
+  portfolios?: Prisma.StudentPortfolioUncheckedCreateNestedManyWithoutStudentInput
+  skills?: Prisma.StudentSkillUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type StudentProfileCreateOrConnectWithoutSavedByCompaniesInput = {
+  where: Prisma.StudentProfileWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentProfileCreateWithoutSavedByCompaniesInput, Prisma.StudentProfileUncheckedCreateWithoutSavedByCompaniesInput>
+}
+
+export type StudentProfileUpsertWithoutSavedByCompaniesInput = {
+  update: Prisma.XOR<Prisma.StudentProfileUpdateWithoutSavedByCompaniesInput, Prisma.StudentProfileUncheckedUpdateWithoutSavedByCompaniesInput>
+  create: Prisma.XOR<Prisma.StudentProfileCreateWithoutSavedByCompaniesInput, Prisma.StudentProfileUncheckedCreateWithoutSavedByCompaniesInput>
+  where?: Prisma.StudentProfileWhereInput
+}
+
+export type StudentProfileUpdateToOneWithWhereWithoutSavedByCompaniesInput = {
+  where?: Prisma.StudentProfileWhereInput
+  data: Prisma.XOR<Prisma.StudentProfileUpdateWithoutSavedByCompaniesInput, Prisma.StudentProfileUncheckedUpdateWithoutSavedByCompaniesInput>
+}
+
+export type StudentProfileUpdateWithoutSavedByCompaniesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nisn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletion?: Prisma.IntFieldUpdateOperationsInput | number
+  careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
+  isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
+  educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
+  experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  school?: Prisma.SchoolUpdateOneWithoutStudentProfilesNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
+}
+
+export type StudentProfileUncheckedUpdateWithoutSavedByCompaniesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  schoolId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nisn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  headline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dateOfBirth?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  coverImageKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profileCompletion?: Prisma.IntFieldUpdateOperationsInput | number
+  careerReadiness?: Prisma.IntFieldUpdateOperationsInput | number
+  isOpenToWork?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  followerCount?: Prisma.IntFieldUpdateOperationsInput | number
+  followingCount?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
+  educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
+  experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
+  followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileCreateManySchoolInput = {
@@ -3731,6 +4520,9 @@ export type StudentProfileCreateManySchoolInput = {
   followingCount?: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  cvKey?: string | null
+  cvUpdatedAt?: Date | string | null
+  cvUrl?: string | null
 }
 
 export type StudentProfileUpdateWithoutSchoolInput = {
@@ -3753,21 +4545,26 @@ export type StudentProfileUpdateWithoutSchoolInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUpdateManyWithoutStudentNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutStudentProfileNestedInput
+  skills?: Prisma.StudentSkillUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateWithoutSchoolInput = {
@@ -3791,20 +4588,25 @@ export type StudentProfileUncheckedUpdateWithoutSchoolInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
+  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
+  invitations?: Prisma.TalentInvitationUncheckedUpdateManyWithoutStudentNestedInput
+  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
+  savedByCompanies?: Prisma.SavedTalentUncheckedUpdateManyWithoutStudentNestedInput
+  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
+  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
+  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
+  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
   educations?: Prisma.StudentEducationUncheckedUpdateManyWithoutStudentNestedInput
   experiences?: Prisma.StudentExperienceUncheckedUpdateManyWithoutStudentNestedInput
-  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
-  achievements?: Prisma.StudentAchievementUncheckedUpdateManyWithoutStudentNestedInput
-  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
-  showcaseVideos?: Prisma.ShowcaseVideoUncheckedUpdateManyWithoutStudentNestedInput
-  applications?: Prisma.ApplicationUncheckedUpdateManyWithoutStudentNestedInput
-  savedJobs?: Prisma.SavedJobUncheckedUpdateManyWithoutStudentNestedInput
-  savedCompanies?: Prisma.SavedCompanyUncheckedUpdateManyWithoutStudentNestedInput
-  certificates?: Prisma.CertificateUncheckedUpdateManyWithoutStudentNestedInput
-  schoolEnrollments?: Prisma.SchoolStudentUncheckedUpdateManyWithoutStudentNestedInput
-  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutStudentNestedInput
   followers?: Prisma.StudentFollowUncheckedUpdateManyWithoutFollowingNestedInput
-  feedbacks?: Prisma.ProfileFeedbackUncheckedUpdateManyWithoutStudentProfileNestedInput
+  portfolios?: Prisma.StudentPortfolioUncheckedUpdateManyWithoutStudentNestedInput
+  skills?: Prisma.StudentSkillUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 export type StudentProfileUncheckedUpdateManyWithoutSchoolInput = {
@@ -3828,6 +4630,9 @@ export type StudentProfileUncheckedUpdateManyWithoutSchoolInput = {
   followingCount?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cvKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cvUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -3836,37 +4641,41 @@ export type StudentProfileUncheckedUpdateManyWithoutSchoolInput = {
  */
 
 export type StudentProfileCountOutputType = {
+  applications: number
+  careerMonitorings: number
+  certificates: number
+  invitations: number
+  feedbacks: number
+  savedCompanies: number
+  savedByCompanies: number
+  savedJobs: number
+  schoolEnrollments: number
+  showcaseVideos: number
+  achievements: number
   educations: number
   experiences: number
-  skills: number
-  achievements: number
-  portfolios: number
-  showcaseVideos: number
-  applications: number
-  savedJobs: number
-  savedCompanies: number
-  certificates: number
-  schoolEnrollments: number
-  careerMonitorings: number
   followers: number
-  feedbacks: number
+  portfolios: number
+  skills: number
 }
 
 export type StudentProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  applications?: boolean | StudentProfileCountOutputTypeCountApplicationsArgs
+  careerMonitorings?: boolean | StudentProfileCountOutputTypeCountCareerMonitoringsArgs
+  certificates?: boolean | StudentProfileCountOutputTypeCountCertificatesArgs
+  invitations?: boolean | StudentProfileCountOutputTypeCountInvitationsArgs
+  feedbacks?: boolean | StudentProfileCountOutputTypeCountFeedbacksArgs
+  savedCompanies?: boolean | StudentProfileCountOutputTypeCountSavedCompaniesArgs
+  savedByCompanies?: boolean | StudentProfileCountOutputTypeCountSavedByCompaniesArgs
+  savedJobs?: boolean | StudentProfileCountOutputTypeCountSavedJobsArgs
+  schoolEnrollments?: boolean | StudentProfileCountOutputTypeCountSchoolEnrollmentsArgs
+  showcaseVideos?: boolean | StudentProfileCountOutputTypeCountShowcaseVideosArgs
+  achievements?: boolean | StudentProfileCountOutputTypeCountAchievementsArgs
   educations?: boolean | StudentProfileCountOutputTypeCountEducationsArgs
   experiences?: boolean | StudentProfileCountOutputTypeCountExperiencesArgs
-  skills?: boolean | StudentProfileCountOutputTypeCountSkillsArgs
-  achievements?: boolean | StudentProfileCountOutputTypeCountAchievementsArgs
-  portfolios?: boolean | StudentProfileCountOutputTypeCountPortfoliosArgs
-  showcaseVideos?: boolean | StudentProfileCountOutputTypeCountShowcaseVideosArgs
-  applications?: boolean | StudentProfileCountOutputTypeCountApplicationsArgs
-  savedJobs?: boolean | StudentProfileCountOutputTypeCountSavedJobsArgs
-  savedCompanies?: boolean | StudentProfileCountOutputTypeCountSavedCompaniesArgs
-  certificates?: boolean | StudentProfileCountOutputTypeCountCertificatesArgs
-  schoolEnrollments?: boolean | StudentProfileCountOutputTypeCountSchoolEnrollmentsArgs
-  careerMonitorings?: boolean | StudentProfileCountOutputTypeCountCareerMonitoringsArgs
   followers?: boolean | StudentProfileCountOutputTypeCountFollowersArgs
-  feedbacks?: boolean | StudentProfileCountOutputTypeCountFeedbacksArgs
+  portfolios?: boolean | StudentProfileCountOutputTypeCountPortfoliosArgs
+  skills?: boolean | StudentProfileCountOutputTypeCountSkillsArgs
 }
 
 /**
@@ -3877,6 +4686,83 @@ export type StudentProfileCountOutputTypeDefaultArgs<ExtArgs extends runtime.Typ
    * Select specific fields to fetch from the StudentProfileCountOutputType
    */
   select?: Prisma.StudentProfileCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ApplicationWhereInput
+}
+
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountCareerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CareerMonitoringWhereInput
+}
+
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountCertificatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CertificateWhereInput
+}
+
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountInvitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TalentInvitationWhereInput
+}
+
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountFeedbacksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProfileFeedbackWhereInput
+}
+
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountSavedCompaniesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SavedCompanyWhereInput
+}
+
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountSavedByCompaniesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SavedTalentWhereInput
+}
+
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountSavedJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SavedJobWhereInput
+}
+
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountSchoolEnrollmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SchoolStudentWhereInput
+}
+
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountShowcaseVideosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShowcaseVideoWhereInput
+}
+
+/**
+ * StudentProfileCountOutputType without action
+ */
+export type StudentProfileCountOutputTypeCountAchievementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StudentAchievementWhereInput
 }
 
 /**
@@ -3896,15 +4782,8 @@ export type StudentProfileCountOutputTypeCountExperiencesArgs<ExtArgs extends ru
 /**
  * StudentProfileCountOutputType without action
  */
-export type StudentProfileCountOutputTypeCountSkillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StudentSkillWhereInput
-}
-
-/**
- * StudentProfileCountOutputType without action
- */
-export type StudentProfileCountOutputTypeCountAchievementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StudentAchievementWhereInput
+export type StudentProfileCountOutputTypeCountFollowersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StudentFollowWhereInput
 }
 
 /**
@@ -3917,64 +4796,8 @@ export type StudentProfileCountOutputTypeCountPortfoliosArgs<ExtArgs extends run
 /**
  * StudentProfileCountOutputType without action
  */
-export type StudentProfileCountOutputTypeCountShowcaseVideosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ShowcaseVideoWhereInput
-}
-
-/**
- * StudentProfileCountOutputType without action
- */
-export type StudentProfileCountOutputTypeCountApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ApplicationWhereInput
-}
-
-/**
- * StudentProfileCountOutputType without action
- */
-export type StudentProfileCountOutputTypeCountSavedJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SavedJobWhereInput
-}
-
-/**
- * StudentProfileCountOutputType without action
- */
-export type StudentProfileCountOutputTypeCountSavedCompaniesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SavedCompanyWhereInput
-}
-
-/**
- * StudentProfileCountOutputType without action
- */
-export type StudentProfileCountOutputTypeCountCertificatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CertificateWhereInput
-}
-
-/**
- * StudentProfileCountOutputType without action
- */
-export type StudentProfileCountOutputTypeCountSchoolEnrollmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SchoolStudentWhereInput
-}
-
-/**
- * StudentProfileCountOutputType without action
- */
-export type StudentProfileCountOutputTypeCountCareerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CareerMonitoringWhereInput
-}
-
-/**
- * StudentProfileCountOutputType without action
- */
-export type StudentProfileCountOutputTypeCountFollowersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.StudentFollowWhereInput
-}
-
-/**
- * StudentProfileCountOutputType without action
- */
-export type StudentProfileCountOutputTypeCountFeedbacksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProfileFeedbackWhereInput
+export type StudentProfileCountOutputTypeCountSkillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StudentSkillWhereInput
 }
 
 
@@ -4000,22 +4823,27 @@ export type StudentProfileSelect<ExtArgs extends runtime.Types.Extensions.Intern
   followingCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  school?: boolean | Prisma.StudentProfile$schoolArgs<ExtArgs>
+  cvKey?: boolean
+  cvUpdatedAt?: boolean
+  cvUrl?: boolean
+  applications?: boolean | Prisma.StudentProfile$applicationsArgs<ExtArgs>
+  careerMonitorings?: boolean | Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs>
+  certificates?: boolean | Prisma.StudentProfile$certificatesArgs<ExtArgs>
+  invitations?: boolean | Prisma.StudentProfile$invitationsArgs<ExtArgs>
+  feedbacks?: boolean | Prisma.StudentProfile$feedbacksArgs<ExtArgs>
+  savedCompanies?: boolean | Prisma.StudentProfile$savedCompaniesArgs<ExtArgs>
+  savedByCompanies?: boolean | Prisma.StudentProfile$savedByCompaniesArgs<ExtArgs>
+  savedJobs?: boolean | Prisma.StudentProfile$savedJobsArgs<ExtArgs>
+  schoolEnrollments?: boolean | Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs>
+  showcaseVideos?: boolean | Prisma.StudentProfile$showcaseVideosArgs<ExtArgs>
+  achievements?: boolean | Prisma.StudentProfile$achievementsArgs<ExtArgs>
   educations?: boolean | Prisma.StudentProfile$educationsArgs<ExtArgs>
   experiences?: boolean | Prisma.StudentProfile$experiencesArgs<ExtArgs>
-  skills?: boolean | Prisma.StudentProfile$skillsArgs<ExtArgs>
-  achievements?: boolean | Prisma.StudentProfile$achievementsArgs<ExtArgs>
-  portfolios?: boolean | Prisma.StudentProfile$portfoliosArgs<ExtArgs>
-  showcaseVideos?: boolean | Prisma.StudentProfile$showcaseVideosArgs<ExtArgs>
-  applications?: boolean | Prisma.StudentProfile$applicationsArgs<ExtArgs>
-  savedJobs?: boolean | Prisma.StudentProfile$savedJobsArgs<ExtArgs>
-  savedCompanies?: boolean | Prisma.StudentProfile$savedCompaniesArgs<ExtArgs>
-  certificates?: boolean | Prisma.StudentProfile$certificatesArgs<ExtArgs>
-  schoolEnrollments?: boolean | Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs>
-  careerMonitorings?: boolean | Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs>
   followers?: boolean | Prisma.StudentProfile$followersArgs<ExtArgs>
-  feedbacks?: boolean | Prisma.StudentProfile$feedbacksArgs<ExtArgs>
+  portfolios?: boolean | Prisma.StudentProfile$portfoliosArgs<ExtArgs>
+  school?: boolean | Prisma.StudentProfile$schoolArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  skills?: boolean | Prisma.StudentProfile$skillsArgs<ExtArgs>
   _count?: boolean | Prisma.StudentProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentProfile"]>
 
@@ -4041,8 +4869,11 @@ export type StudentProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   followingCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  cvKey?: boolean
+  cvUpdatedAt?: boolean
+  cvUrl?: boolean
   school?: boolean | Prisma.StudentProfile$schoolArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentProfile"]>
 
 export type StudentProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -4067,8 +4898,11 @@ export type StudentProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   followingCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  cvKey?: boolean
+  cvUpdatedAt?: boolean
+  cvUrl?: boolean
   school?: boolean | Prisma.StudentProfile$schoolArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentProfile"]>
 
 export type StudentProfileSelectScalar = {
@@ -4093,56 +4927,63 @@ export type StudentProfileSelectScalar = {
   followingCount?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  cvKey?: boolean
+  cvUpdatedAt?: boolean
+  cvUrl?: boolean
 }
 
-export type StudentProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "schoolId" | "nisn" | "headline" | "bio" | "dateOfBirth" | "gender" | "address" | "city" | "province" | "coverImageUrl" | "coverImageKey" | "profileCompletion" | "careerReadiness" | "isOpenToWork" | "isPublic" | "followerCount" | "followingCount" | "createdAt" | "updatedAt", ExtArgs["result"]["studentProfile"]>
+export type StudentProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "schoolId" | "nisn" | "headline" | "bio" | "dateOfBirth" | "gender" | "address" | "city" | "province" | "coverImageUrl" | "coverImageKey" | "profileCompletion" | "careerReadiness" | "isOpenToWork" | "isPublic" | "followerCount" | "followingCount" | "createdAt" | "updatedAt" | "cvKey" | "cvUpdatedAt" | "cvUrl", ExtArgs["result"]["studentProfile"]>
 export type StudentProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  school?: boolean | Prisma.StudentProfile$schoolArgs<ExtArgs>
+  applications?: boolean | Prisma.StudentProfile$applicationsArgs<ExtArgs>
+  careerMonitorings?: boolean | Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs>
+  certificates?: boolean | Prisma.StudentProfile$certificatesArgs<ExtArgs>
+  invitations?: boolean | Prisma.StudentProfile$invitationsArgs<ExtArgs>
+  feedbacks?: boolean | Prisma.StudentProfile$feedbacksArgs<ExtArgs>
+  savedCompanies?: boolean | Prisma.StudentProfile$savedCompaniesArgs<ExtArgs>
+  savedByCompanies?: boolean | Prisma.StudentProfile$savedByCompaniesArgs<ExtArgs>
+  savedJobs?: boolean | Prisma.StudentProfile$savedJobsArgs<ExtArgs>
+  schoolEnrollments?: boolean | Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs>
+  showcaseVideos?: boolean | Prisma.StudentProfile$showcaseVideosArgs<ExtArgs>
+  achievements?: boolean | Prisma.StudentProfile$achievementsArgs<ExtArgs>
   educations?: boolean | Prisma.StudentProfile$educationsArgs<ExtArgs>
   experiences?: boolean | Prisma.StudentProfile$experiencesArgs<ExtArgs>
-  skills?: boolean | Prisma.StudentProfile$skillsArgs<ExtArgs>
-  achievements?: boolean | Prisma.StudentProfile$achievementsArgs<ExtArgs>
-  portfolios?: boolean | Prisma.StudentProfile$portfoliosArgs<ExtArgs>
-  showcaseVideos?: boolean | Prisma.StudentProfile$showcaseVideosArgs<ExtArgs>
-  applications?: boolean | Prisma.StudentProfile$applicationsArgs<ExtArgs>
-  savedJobs?: boolean | Prisma.StudentProfile$savedJobsArgs<ExtArgs>
-  savedCompanies?: boolean | Prisma.StudentProfile$savedCompaniesArgs<ExtArgs>
-  certificates?: boolean | Prisma.StudentProfile$certificatesArgs<ExtArgs>
-  schoolEnrollments?: boolean | Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs>
-  careerMonitorings?: boolean | Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs>
   followers?: boolean | Prisma.StudentProfile$followersArgs<ExtArgs>
-  feedbacks?: boolean | Prisma.StudentProfile$feedbacksArgs<ExtArgs>
+  portfolios?: boolean | Prisma.StudentProfile$portfoliosArgs<ExtArgs>
+  school?: boolean | Prisma.StudentProfile$schoolArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  skills?: boolean | Prisma.StudentProfile$skillsArgs<ExtArgs>
   _count?: boolean | Prisma.StudentProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type StudentProfileIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   school?: boolean | Prisma.StudentProfile$schoolArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type StudentProfileIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   school?: boolean | Prisma.StudentProfile$schoolArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $StudentProfilePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "StudentProfile"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
-    school: Prisma.$SchoolPayload<ExtArgs> | null
+    applications: Prisma.$ApplicationPayload<ExtArgs>[]
+    careerMonitorings: Prisma.$CareerMonitoringPayload<ExtArgs>[]
+    certificates: Prisma.$CertificatePayload<ExtArgs>[]
+    invitations: Prisma.$TalentInvitationPayload<ExtArgs>[]
+    feedbacks: Prisma.$ProfileFeedbackPayload<ExtArgs>[]
+    savedCompanies: Prisma.$SavedCompanyPayload<ExtArgs>[]
+    savedByCompanies: Prisma.$SavedTalentPayload<ExtArgs>[]
+    savedJobs: Prisma.$SavedJobPayload<ExtArgs>[]
+    schoolEnrollments: Prisma.$SchoolStudentPayload<ExtArgs>[]
+    showcaseVideos: Prisma.$ShowcaseVideoPayload<ExtArgs>[]
+    achievements: Prisma.$StudentAchievementPayload<ExtArgs>[]
     educations: Prisma.$StudentEducationPayload<ExtArgs>[]
     experiences: Prisma.$StudentExperiencePayload<ExtArgs>[]
-    skills: Prisma.$StudentSkillPayload<ExtArgs>[]
-    achievements: Prisma.$StudentAchievementPayload<ExtArgs>[]
-    portfolios: Prisma.$StudentPortfolioPayload<ExtArgs>[]
-    showcaseVideos: Prisma.$ShowcaseVideoPayload<ExtArgs>[]
-    applications: Prisma.$ApplicationPayload<ExtArgs>[]
-    savedJobs: Prisma.$SavedJobPayload<ExtArgs>[]
-    savedCompanies: Prisma.$SavedCompanyPayload<ExtArgs>[]
-    certificates: Prisma.$CertificatePayload<ExtArgs>[]
-    schoolEnrollments: Prisma.$SchoolStudentPayload<ExtArgs>[]
-    careerMonitorings: Prisma.$CareerMonitoringPayload<ExtArgs>[]
     followers: Prisma.$StudentFollowPayload<ExtArgs>[]
-    feedbacks: Prisma.$ProfileFeedbackPayload<ExtArgs>[]
+    portfolios: Prisma.$StudentPortfolioPayload<ExtArgs>[]
+    school: Prisma.$SchoolPayload<ExtArgs> | null
+    user: Prisma.$UserPayload<ExtArgs>
+    skills: Prisma.$StudentSkillPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -4166,6 +5007,9 @@ export type $StudentProfilePayload<ExtArgs extends runtime.Types.Extensions.Inte
     followingCount: number
     createdAt: Date
     updatedAt: Date
+    cvKey: string | null
+    cvUpdatedAt: Date | null
+    cvUrl: string | null
   }, ExtArgs["result"]["studentProfile"]>
   composites: {}
 }
@@ -4560,22 +5404,24 @@ readonly fields: StudentProfileFieldRefs;
  */
 export interface Prisma__StudentProfileClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  school<T extends Prisma.StudentProfile$schoolArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$schoolArgs<ExtArgs>>): Prisma.Prisma__SchoolClient<runtime.Types.Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  applications<T extends Prisma.StudentProfile$applicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  careerMonitorings<T extends Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CareerMonitoringPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  certificates<T extends Prisma.StudentProfile$certificatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$certificatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CertificatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invitations<T extends Prisma.StudentProfile$invitationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$invitationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TalentInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  feedbacks<T extends Prisma.StudentProfile$feedbacksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$feedbacksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfileFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  savedCompanies<T extends Prisma.StudentProfile$savedCompaniesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$savedCompaniesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SavedCompanyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  savedByCompanies<T extends Prisma.StudentProfile$savedByCompaniesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$savedByCompaniesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SavedTalentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  savedJobs<T extends Prisma.StudentProfile$savedJobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$savedJobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SavedJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  schoolEnrollments<T extends Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchoolStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  showcaseVideos<T extends Prisma.StudentProfile$showcaseVideosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$showcaseVideosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseVideoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  achievements<T extends Prisma.StudentProfile$achievementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$achievementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentAchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   educations<T extends Prisma.StudentProfile$educationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$educationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentEducationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   experiences<T extends Prisma.StudentProfile$experiencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$experiencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentExperiencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  skills<T extends Prisma.StudentProfile$skillsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$skillsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  achievements<T extends Prisma.StudentProfile$achievementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$achievementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentAchievementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  portfolios<T extends Prisma.StudentProfile$portfoliosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$portfoliosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentPortfolioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  showcaseVideos<T extends Prisma.StudentProfile$showcaseVideosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$showcaseVideosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShowcaseVideoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  applications<T extends Prisma.StudentProfile$applicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$applicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  savedJobs<T extends Prisma.StudentProfile$savedJobsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$savedJobsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SavedJobPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  savedCompanies<T extends Prisma.StudentProfile$savedCompaniesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$savedCompaniesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SavedCompanyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  certificates<T extends Prisma.StudentProfile$certificatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$certificatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CertificatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  schoolEnrollments<T extends Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$schoolEnrollmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchoolStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  careerMonitorings<T extends Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$careerMonitoringsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CareerMonitoringPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   followers<T extends Prisma.StudentProfile$followersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$followersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentFollowPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  feedbacks<T extends Prisma.StudentProfile$feedbacksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$feedbacksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfileFeedbackPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  portfolios<T extends Prisma.StudentProfile$portfoliosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$portfoliosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentPortfolioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  school<T extends Prisma.StudentProfile$schoolArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$schoolArgs<ExtArgs>>): Prisma.Prisma__SchoolClient<runtime.Types.Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  skills<T extends Prisma.StudentProfile$skillsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfile$skillsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentSkillPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4626,6 +5472,9 @@ export interface StudentProfileFieldRefs {
   readonly followingCount: Prisma.FieldRef<"StudentProfile", 'Int'>
   readonly createdAt: Prisma.FieldRef<"StudentProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"StudentProfile", 'DateTime'>
+  readonly cvKey: Prisma.FieldRef<"StudentProfile", 'String'>
+  readonly cvUpdatedAt: Prisma.FieldRef<"StudentProfile", 'DateTime'>
+  readonly cvUrl: Prisma.FieldRef<"StudentProfile", 'String'>
 }
     
 
@@ -5027,22 +5876,267 @@ export type StudentProfileDeleteManyArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
- * StudentProfile.school
+ * StudentProfile.applications
  */
-export type StudentProfile$schoolArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type StudentProfile$applicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the School
+   * Select specific fields to fetch from the Application
    */
-  select?: Prisma.SchoolSelect<ExtArgs> | null
+  select?: Prisma.ApplicationSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the School
+   * Omit specific fields from the Application
    */
-  omit?: Prisma.SchoolOmit<ExtArgs> | null
+  omit?: Prisma.ApplicationOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SchoolInclude<ExtArgs> | null
-  where?: Prisma.SchoolWhereInput
+  include?: Prisma.ApplicationInclude<ExtArgs> | null
+  where?: Prisma.ApplicationWhereInput
+  orderBy?: Prisma.ApplicationOrderByWithRelationInput | Prisma.ApplicationOrderByWithRelationInput[]
+  cursor?: Prisma.ApplicationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ApplicationScalarFieldEnum | Prisma.ApplicationScalarFieldEnum[]
+}
+
+/**
+ * StudentProfile.careerMonitorings
+ */
+export type StudentProfile$careerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CareerMonitoring
+   */
+  select?: Prisma.CareerMonitoringSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CareerMonitoring
+   */
+  omit?: Prisma.CareerMonitoringOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CareerMonitoringInclude<ExtArgs> | null
+  where?: Prisma.CareerMonitoringWhereInput
+  orderBy?: Prisma.CareerMonitoringOrderByWithRelationInput | Prisma.CareerMonitoringOrderByWithRelationInput[]
+  cursor?: Prisma.CareerMonitoringWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CareerMonitoringScalarFieldEnum | Prisma.CareerMonitoringScalarFieldEnum[]
+}
+
+/**
+ * StudentProfile.certificates
+ */
+export type StudentProfile$certificatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Certificate
+   */
+  select?: Prisma.CertificateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Certificate
+   */
+  omit?: Prisma.CertificateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CertificateInclude<ExtArgs> | null
+  where?: Prisma.CertificateWhereInput
+  orderBy?: Prisma.CertificateOrderByWithRelationInput | Prisma.CertificateOrderByWithRelationInput[]
+  cursor?: Prisma.CertificateWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CertificateScalarFieldEnum | Prisma.CertificateScalarFieldEnum[]
+}
+
+/**
+ * StudentProfile.invitations
+ */
+export type StudentProfile$invitationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TalentInvitation
+   */
+  select?: Prisma.TalentInvitationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TalentInvitation
+   */
+  omit?: Prisma.TalentInvitationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TalentInvitationInclude<ExtArgs> | null
+  where?: Prisma.TalentInvitationWhereInput
+  orderBy?: Prisma.TalentInvitationOrderByWithRelationInput | Prisma.TalentInvitationOrderByWithRelationInput[]
+  cursor?: Prisma.TalentInvitationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TalentInvitationScalarFieldEnum | Prisma.TalentInvitationScalarFieldEnum[]
+}
+
+/**
+ * StudentProfile.feedbacks
+ */
+export type StudentProfile$feedbacksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProfileFeedback
+   */
+  select?: Prisma.ProfileFeedbackSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProfileFeedback
+   */
+  omit?: Prisma.ProfileFeedbackOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProfileFeedbackInclude<ExtArgs> | null
+  where?: Prisma.ProfileFeedbackWhereInput
+  orderBy?: Prisma.ProfileFeedbackOrderByWithRelationInput | Prisma.ProfileFeedbackOrderByWithRelationInput[]
+  cursor?: Prisma.ProfileFeedbackWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProfileFeedbackScalarFieldEnum | Prisma.ProfileFeedbackScalarFieldEnum[]
+}
+
+/**
+ * StudentProfile.savedCompanies
+ */
+export type StudentProfile$savedCompaniesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SavedCompany
+   */
+  select?: Prisma.SavedCompanySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SavedCompany
+   */
+  omit?: Prisma.SavedCompanyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SavedCompanyInclude<ExtArgs> | null
+  where?: Prisma.SavedCompanyWhereInput
+  orderBy?: Prisma.SavedCompanyOrderByWithRelationInput | Prisma.SavedCompanyOrderByWithRelationInput[]
+  cursor?: Prisma.SavedCompanyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SavedCompanyScalarFieldEnum | Prisma.SavedCompanyScalarFieldEnum[]
+}
+
+/**
+ * StudentProfile.savedByCompanies
+ */
+export type StudentProfile$savedByCompaniesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SavedTalent
+   */
+  select?: Prisma.SavedTalentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SavedTalent
+   */
+  omit?: Prisma.SavedTalentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SavedTalentInclude<ExtArgs> | null
+  where?: Prisma.SavedTalentWhereInput
+  orderBy?: Prisma.SavedTalentOrderByWithRelationInput | Prisma.SavedTalentOrderByWithRelationInput[]
+  cursor?: Prisma.SavedTalentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SavedTalentScalarFieldEnum | Prisma.SavedTalentScalarFieldEnum[]
+}
+
+/**
+ * StudentProfile.savedJobs
+ */
+export type StudentProfile$savedJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SavedJob
+   */
+  select?: Prisma.SavedJobSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SavedJob
+   */
+  omit?: Prisma.SavedJobOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SavedJobInclude<ExtArgs> | null
+  where?: Prisma.SavedJobWhereInput
+  orderBy?: Prisma.SavedJobOrderByWithRelationInput | Prisma.SavedJobOrderByWithRelationInput[]
+  cursor?: Prisma.SavedJobWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SavedJobScalarFieldEnum | Prisma.SavedJobScalarFieldEnum[]
+}
+
+/**
+ * StudentProfile.schoolEnrollments
+ */
+export type StudentProfile$schoolEnrollmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SchoolStudent
+   */
+  select?: Prisma.SchoolStudentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SchoolStudent
+   */
+  omit?: Prisma.SchoolStudentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SchoolStudentInclude<ExtArgs> | null
+  where?: Prisma.SchoolStudentWhereInput
+  orderBy?: Prisma.SchoolStudentOrderByWithRelationInput | Prisma.SchoolStudentOrderByWithRelationInput[]
+  cursor?: Prisma.SchoolStudentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SchoolStudentScalarFieldEnum | Prisma.SchoolStudentScalarFieldEnum[]
+}
+
+/**
+ * StudentProfile.showcaseVideos
+ */
+export type StudentProfile$showcaseVideosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ShowcaseVideo
+   */
+  select?: Prisma.ShowcaseVideoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ShowcaseVideo
+   */
+  omit?: Prisma.ShowcaseVideoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ShowcaseVideoInclude<ExtArgs> | null
+  where?: Prisma.ShowcaseVideoWhereInput
+  orderBy?: Prisma.ShowcaseVideoOrderByWithRelationInput | Prisma.ShowcaseVideoOrderByWithRelationInput[]
+  cursor?: Prisma.ShowcaseVideoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ShowcaseVideoScalarFieldEnum | Prisma.ShowcaseVideoScalarFieldEnum[]
+}
+
+/**
+ * StudentProfile.achievements
+ */
+export type StudentProfile$achievementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StudentAchievement
+   */
+  select?: Prisma.StudentAchievementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StudentAchievement
+   */
+  omit?: Prisma.StudentAchievementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StudentAchievementInclude<ExtArgs> | null
+  where?: Prisma.StudentAchievementWhereInput
+  orderBy?: Prisma.StudentAchievementOrderByWithRelationInput | Prisma.StudentAchievementOrderByWithRelationInput[]
+  cursor?: Prisma.StudentAchievementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StudentAchievementScalarFieldEnum | Prisma.StudentAchievementScalarFieldEnum[]
 }
 
 /**
@@ -5094,51 +6188,27 @@ export type StudentProfile$experiencesArgs<ExtArgs extends runtime.Types.Extensi
 }
 
 /**
- * StudentProfile.skills
+ * StudentProfile.followers
  */
-export type StudentProfile$skillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type StudentProfile$followersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the StudentSkill
+   * Select specific fields to fetch from the StudentFollow
    */
-  select?: Prisma.StudentSkillSelect<ExtArgs> | null
+  select?: Prisma.StudentFollowSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the StudentSkill
+   * Omit specific fields from the StudentFollow
    */
-  omit?: Prisma.StudentSkillOmit<ExtArgs> | null
+  omit?: Prisma.StudentFollowOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.StudentSkillInclude<ExtArgs> | null
-  where?: Prisma.StudentSkillWhereInput
-  orderBy?: Prisma.StudentSkillOrderByWithRelationInput | Prisma.StudentSkillOrderByWithRelationInput[]
-  cursor?: Prisma.StudentSkillWhereUniqueInput
+  include?: Prisma.StudentFollowInclude<ExtArgs> | null
+  where?: Prisma.StudentFollowWhereInput
+  orderBy?: Prisma.StudentFollowOrderByWithRelationInput | Prisma.StudentFollowOrderByWithRelationInput[]
+  cursor?: Prisma.StudentFollowWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.StudentSkillScalarFieldEnum | Prisma.StudentSkillScalarFieldEnum[]
-}
-
-/**
- * StudentProfile.achievements
- */
-export type StudentProfile$achievementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the StudentAchievement
-   */
-  select?: Prisma.StudentAchievementSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the StudentAchievement
-   */
-  omit?: Prisma.StudentAchievementOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.StudentAchievementInclude<ExtArgs> | null
-  where?: Prisma.StudentAchievementWhereInput
-  orderBy?: Prisma.StudentAchievementOrderByWithRelationInput | Prisma.StudentAchievementOrderByWithRelationInput[]
-  cursor?: Prisma.StudentAchievementWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.StudentAchievementScalarFieldEnum | Prisma.StudentAchievementScalarFieldEnum[]
+  distinct?: Prisma.StudentFollowScalarFieldEnum | Prisma.StudentFollowScalarFieldEnum[]
 }
 
 /**
@@ -5166,219 +6236,46 @@ export type StudentProfile$portfoliosArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
- * StudentProfile.showcaseVideos
+ * StudentProfile.school
  */
-export type StudentProfile$showcaseVideosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type StudentProfile$schoolArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ShowcaseVideo
+   * Select specific fields to fetch from the School
    */
-  select?: Prisma.ShowcaseVideoSelect<ExtArgs> | null
+  select?: Prisma.SchoolSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ShowcaseVideo
+   * Omit specific fields from the School
    */
-  omit?: Prisma.ShowcaseVideoOmit<ExtArgs> | null
+  omit?: Prisma.SchoolOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ShowcaseVideoInclude<ExtArgs> | null
-  where?: Prisma.ShowcaseVideoWhereInput
-  orderBy?: Prisma.ShowcaseVideoOrderByWithRelationInput | Prisma.ShowcaseVideoOrderByWithRelationInput[]
-  cursor?: Prisma.ShowcaseVideoWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ShowcaseVideoScalarFieldEnum | Prisma.ShowcaseVideoScalarFieldEnum[]
+  include?: Prisma.SchoolInclude<ExtArgs> | null
+  where?: Prisma.SchoolWhereInput
 }
 
 /**
- * StudentProfile.applications
+ * StudentProfile.skills
  */
-export type StudentProfile$applicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type StudentProfile$skillsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Application
+   * Select specific fields to fetch from the StudentSkill
    */
-  select?: Prisma.ApplicationSelect<ExtArgs> | null
+  select?: Prisma.StudentSkillSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Application
+   * Omit specific fields from the StudentSkill
    */
-  omit?: Prisma.ApplicationOmit<ExtArgs> | null
+  omit?: Prisma.StudentSkillOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ApplicationInclude<ExtArgs> | null
-  where?: Prisma.ApplicationWhereInput
-  orderBy?: Prisma.ApplicationOrderByWithRelationInput | Prisma.ApplicationOrderByWithRelationInput[]
-  cursor?: Prisma.ApplicationWhereUniqueInput
+  include?: Prisma.StudentSkillInclude<ExtArgs> | null
+  where?: Prisma.StudentSkillWhereInput
+  orderBy?: Prisma.StudentSkillOrderByWithRelationInput | Prisma.StudentSkillOrderByWithRelationInput[]
+  cursor?: Prisma.StudentSkillWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ApplicationScalarFieldEnum | Prisma.ApplicationScalarFieldEnum[]
-}
-
-/**
- * StudentProfile.savedJobs
- */
-export type StudentProfile$savedJobsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SavedJob
-   */
-  select?: Prisma.SavedJobSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SavedJob
-   */
-  omit?: Prisma.SavedJobOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SavedJobInclude<ExtArgs> | null
-  where?: Prisma.SavedJobWhereInput
-  orderBy?: Prisma.SavedJobOrderByWithRelationInput | Prisma.SavedJobOrderByWithRelationInput[]
-  cursor?: Prisma.SavedJobWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SavedJobScalarFieldEnum | Prisma.SavedJobScalarFieldEnum[]
-}
-
-/**
- * StudentProfile.savedCompanies
- */
-export type StudentProfile$savedCompaniesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SavedCompany
-   */
-  select?: Prisma.SavedCompanySelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SavedCompany
-   */
-  omit?: Prisma.SavedCompanyOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SavedCompanyInclude<ExtArgs> | null
-  where?: Prisma.SavedCompanyWhereInput
-  orderBy?: Prisma.SavedCompanyOrderByWithRelationInput | Prisma.SavedCompanyOrderByWithRelationInput[]
-  cursor?: Prisma.SavedCompanyWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SavedCompanyScalarFieldEnum | Prisma.SavedCompanyScalarFieldEnum[]
-}
-
-/**
- * StudentProfile.certificates
- */
-export type StudentProfile$certificatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Certificate
-   */
-  select?: Prisma.CertificateSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Certificate
-   */
-  omit?: Prisma.CertificateOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CertificateInclude<ExtArgs> | null
-  where?: Prisma.CertificateWhereInput
-  orderBy?: Prisma.CertificateOrderByWithRelationInput | Prisma.CertificateOrderByWithRelationInput[]
-  cursor?: Prisma.CertificateWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CertificateScalarFieldEnum | Prisma.CertificateScalarFieldEnum[]
-}
-
-/**
- * StudentProfile.schoolEnrollments
- */
-export type StudentProfile$schoolEnrollmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SchoolStudent
-   */
-  select?: Prisma.SchoolStudentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SchoolStudent
-   */
-  omit?: Prisma.SchoolStudentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SchoolStudentInclude<ExtArgs> | null
-  where?: Prisma.SchoolStudentWhereInput
-  orderBy?: Prisma.SchoolStudentOrderByWithRelationInput | Prisma.SchoolStudentOrderByWithRelationInput[]
-  cursor?: Prisma.SchoolStudentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SchoolStudentScalarFieldEnum | Prisma.SchoolStudentScalarFieldEnum[]
-}
-
-/**
- * StudentProfile.careerMonitorings
- */
-export type StudentProfile$careerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the CareerMonitoring
-   */
-  select?: Prisma.CareerMonitoringSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the CareerMonitoring
-   */
-  omit?: Prisma.CareerMonitoringOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CareerMonitoringInclude<ExtArgs> | null
-  where?: Prisma.CareerMonitoringWhereInput
-  orderBy?: Prisma.CareerMonitoringOrderByWithRelationInput | Prisma.CareerMonitoringOrderByWithRelationInput[]
-  cursor?: Prisma.CareerMonitoringWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CareerMonitoringScalarFieldEnum | Prisma.CareerMonitoringScalarFieldEnum[]
-}
-
-/**
- * StudentProfile.followers
- */
-export type StudentProfile$followersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the StudentFollow
-   */
-  select?: Prisma.StudentFollowSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the StudentFollow
-   */
-  omit?: Prisma.StudentFollowOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.StudentFollowInclude<ExtArgs> | null
-  where?: Prisma.StudentFollowWhereInput
-  orderBy?: Prisma.StudentFollowOrderByWithRelationInput | Prisma.StudentFollowOrderByWithRelationInput[]
-  cursor?: Prisma.StudentFollowWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.StudentFollowScalarFieldEnum | Prisma.StudentFollowScalarFieldEnum[]
-}
-
-/**
- * StudentProfile.feedbacks
- */
-export type StudentProfile$feedbacksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ProfileFeedback
-   */
-  select?: Prisma.ProfileFeedbackSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ProfileFeedback
-   */
-  omit?: Prisma.ProfileFeedbackOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProfileFeedbackInclude<ExtArgs> | null
-  where?: Prisma.ProfileFeedbackWhereInput
-  orderBy?: Prisma.ProfileFeedbackOrderByWithRelationInput | Prisma.ProfileFeedbackOrderByWithRelationInput[]
-  cursor?: Prisma.ProfileFeedbackWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ProfileFeedbackScalarFieldEnum | Prisma.ProfileFeedbackScalarFieldEnum[]
+  distinct?: Prisma.StudentSkillScalarFieldEnum | Prisma.StudentSkillScalarFieldEnum[]
 }
 
 /**

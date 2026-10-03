@@ -174,8 +174,8 @@ export type ShowcaseLikeWhereInput = {
   videoId?: Prisma.UuidFilter<"ShowcaseLike"> | string
   userId?: Prisma.UuidFilter<"ShowcaseLike"> | string
   createdAt?: Prisma.DateTimeFilter<"ShowcaseLike"> | Date | string
-  video?: Prisma.XOR<Prisma.ShowcaseVideoScalarRelationFilter, Prisma.ShowcaseVideoWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  video?: Prisma.XOR<Prisma.ShowcaseVideoScalarRelationFilter, Prisma.ShowcaseVideoWhereInput>
 }
 
 export type ShowcaseLikeOrderByWithRelationInput = {
@@ -183,8 +183,8 @@ export type ShowcaseLikeOrderByWithRelationInput = {
   videoId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  video?: Prisma.ShowcaseVideoOrderByWithRelationInput
   user?: Prisma.UserOrderByWithRelationInput
+  video?: Prisma.ShowcaseVideoOrderByWithRelationInput
 }
 
 export type ShowcaseLikeWhereUniqueInput = Prisma.AtLeast<{
@@ -196,8 +196,8 @@ export type ShowcaseLikeWhereUniqueInput = Prisma.AtLeast<{
   videoId?: Prisma.UuidFilter<"ShowcaseLike"> | string
   userId?: Prisma.UuidFilter<"ShowcaseLike"> | string
   createdAt?: Prisma.DateTimeFilter<"ShowcaseLike"> | Date | string
-  video?: Prisma.XOR<Prisma.ShowcaseVideoScalarRelationFilter, Prisma.ShowcaseVideoWhereInput>
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  video?: Prisma.XOR<Prisma.ShowcaseVideoScalarRelationFilter, Prisma.ShowcaseVideoWhereInput>
 }, "id" | "videoId_userId">
 
 export type ShowcaseLikeOrderByWithAggregationInput = {
@@ -223,8 +223,8 @@ export type ShowcaseLikeScalarWhereWithAggregatesInput = {
 export type ShowcaseLikeCreateInput = {
   id?: string
   createdAt?: Date | string
-  video: Prisma.ShowcaseVideoCreateNestedOneWithoutLikesInput
   user: Prisma.UserCreateNestedOneWithoutShowcaseLikesInput
+  video: Prisma.ShowcaseVideoCreateNestedOneWithoutLikesInput
 }
 
 export type ShowcaseLikeUncheckedCreateInput = {
@@ -237,8 +237,8 @@ export type ShowcaseLikeUncheckedCreateInput = {
 export type ShowcaseLikeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  video?: Prisma.ShowcaseVideoUpdateOneRequiredWithoutLikesNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutShowcaseLikesNestedInput
+  video?: Prisma.ShowcaseVideoUpdateOneRequiredWithoutLikesNestedInput
 }
 
 export type ShowcaseLikeUncheckedUpdateInput = {
@@ -528,8 +528,8 @@ export type ShowcaseLikeSelect<ExtArgs extends runtime.Types.Extensions.Internal
   videoId?: boolean
   userId?: boolean
   createdAt?: boolean
-  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["showcaseLike"]>
 
 export type ShowcaseLikeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -537,8 +537,8 @@ export type ShowcaseLikeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   videoId?: boolean
   userId?: boolean
   createdAt?: boolean
-  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["showcaseLike"]>
 
 export type ShowcaseLikeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -546,8 +546,8 @@ export type ShowcaseLikeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   videoId?: boolean
   userId?: boolean
   createdAt?: boolean
-  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["showcaseLike"]>
 
 export type ShowcaseLikeSelectScalar = {
@@ -559,23 +559,23 @@ export type ShowcaseLikeSelectScalar = {
 
 export type ShowcaseLikeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "videoId" | "userId" | "createdAt", ExtArgs["result"]["showcaseLike"]>
 export type ShowcaseLikeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
 }
 export type ShowcaseLikeIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
 }
 export type ShowcaseLikeIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  video?: boolean | Prisma.ShowcaseVideoDefaultArgs<ExtArgs>
 }
 
 export type $ShowcaseLikePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ShowcaseLike"
   objects: {
-    video: Prisma.$ShowcaseVideoPayload<ExtArgs>
     user: Prisma.$UserPayload<ExtArgs>
+    video: Prisma.$ShowcaseVideoPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -976,8 +976,8 @@ readonly fields: ShowcaseLikeFieldRefs;
  */
 export interface Prisma__ShowcaseLikeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  video<T extends Prisma.ShowcaseVideoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShowcaseVideoDefaultArgs<ExtArgs>>): Prisma.Prisma__ShowcaseVideoClient<runtime.Types.Result.GetResult<Prisma.$ShowcaseVideoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  video<T extends Prisma.ShowcaseVideoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShowcaseVideoDefaultArgs<ExtArgs>>): Prisma.Prisma__ShowcaseVideoClient<runtime.Types.Result.GetResult<Prisma.$ShowcaseVideoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

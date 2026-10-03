@@ -175,6 +175,22 @@ export function Step1Account() {
           </div>
         </div>
 
+        // Di form register siswa, tambahkan field:
+<div>
+  <label className="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">
+    Token Sekolah (Opsional)
+  </label>
+  <input
+    name="schoolToken"
+    type="text"
+    placeholder="Contoh: SMKN1JKT-A1B2"
+    className="w-full px-4 py-3 rounded-xl border border-outline-variant/50 bg-white text-sm font-mono uppercase tracking-wider focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
+  />
+  <p className="text-[11px] text-on-surface-variant mt-1.5">
+    Punya token dari sekolah? Masukkan untuk otomatis ter-link ke BKK.
+  </p>
+</div>
+
         <div className="pt-4 space-y-3">
           <label className="flex items-start gap-2.5 cursor-pointer">
             <input

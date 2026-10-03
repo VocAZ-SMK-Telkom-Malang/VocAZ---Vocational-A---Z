@@ -57,6 +57,16 @@ export type StudentProfile = Prisma.StudentProfileModel
  */
 export type StudentEducation = Prisma.StudentEducationModel
 /**
+ * Model Company
+ * 
+ */
+export type Company = Prisma.CompanyModel
+/**
+ * Model CompanyVerification
+ * 
+ */
+export type CompanyVerification = Prisma.CompanyVerificationModel
+/**
  * Model StudentExperience
  * 
  */
@@ -92,25 +102,20 @@ export type PortfolioMedia = Prisma.PortfolioMediaModel
  */
 export type ShowcaseVideo = Prisma.ShowcaseVideoModel
 /**
- * Model Company
+ * Model CompanyMember
  * 
  */
-export type Company = Prisma.CompanyModel
+export type CompanyMember = Prisma.CompanyMemberModel
 /**
- * Model CompanyTeam
+ * Model TalentPreference
  * 
  */
-export type CompanyTeam = Prisma.CompanyTeamModel
+export type TalentPreference = Prisma.TalentPreferenceModel
 /**
  * Model CompanyTalentPreference
  * 
  */
 export type CompanyTalentPreference = Prisma.CompanyTalentPreferenceModel
-/**
- * Model CompanyVerification
- * 
- */
-export type CompanyVerification = Prisma.CompanyVerificationModel
 /**
  * Model Job
  * 
@@ -146,6 +151,11 @@ export type SavedCompany = Prisma.SavedCompanyModel
  * 
  */
 export type School = Prisma.SchoolModel
+/**
+ * Model SchoolMember
+ * 
+ */
+export type SchoolMember = Prisma.SchoolMemberModel
 /**
  * Model SchoolProgram
  * 
@@ -256,3 +266,38 @@ export type ShowcaseComment = Prisma.ShowcaseCommentModel
  * 
  */
 export type StudentFollow = Prisma.StudentFollowModel
+/**
+ * Model ScreeningQuestion
+ * 
+ */
+export type ScreeningQuestion = Prisma.ScreeningQuestionModel
+/**
+ * Model ScreeningAnswer
+ * 
+ */
+export type ScreeningAnswer = Prisma.ScreeningAnswerModel
+/**
+ * Model AiInterview
+ * 
+ */
+export type AiInterview = Prisma.AiInterviewModel
+/**
+ * Model AiInterviewAnswer
+ * 
+ */
+export type AiInterviewAnswer = Prisma.AiInterviewAnswerModel
+/**
+ * Model TalentInvitation
+ * 
+ */
+export type TalentInvitation = Prisma.TalentInvitationModel
+/**
+ * Model SavedTalent
+ * 
+ */
+export type SavedTalent = Prisma.SavedTalentModel
+/**
+ * Model CompanyInvitation
+ * 
+ */
+export type CompanyInvitation = Prisma.CompanyInvitationModel

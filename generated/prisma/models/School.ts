@@ -70,6 +70,11 @@ export type SchoolMinAggregateOutputType = {
   paymentMethod: string | null
   paymentReference: string | null
   lastPaymentAt: Date | null
+  enrollmentToken: string | null
+  tokenActive: boolean | null
+  tokenExpiresAt: Date | null
+  isVerified: boolean | null
+  verifiedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -106,6 +111,11 @@ export type SchoolMaxAggregateOutputType = {
   paymentMethod: string | null
   paymentReference: string | null
   lastPaymentAt: Date | null
+  enrollmentToken: string | null
+  tokenActive: boolean | null
+  tokenExpiresAt: Date | null
+  isVerified: boolean | null
+  verifiedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -142,6 +152,11 @@ export type SchoolCountAggregateOutputType = {
   paymentMethod: number
   paymentReference: number
   lastPaymentAt: number
+  enrollmentToken: number
+  tokenActive: number
+  tokenExpiresAt: number
+  isVerified: number
+  verifiedAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -192,6 +207,11 @@ export type SchoolMinAggregateInputType = {
   paymentMethod?: true
   paymentReference?: true
   lastPaymentAt?: true
+  enrollmentToken?: true
+  tokenActive?: true
+  tokenExpiresAt?: true
+  isVerified?: true
+  verifiedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -228,6 +248,11 @@ export type SchoolMaxAggregateInputType = {
   paymentMethod?: true
   paymentReference?: true
   lastPaymentAt?: true
+  enrollmentToken?: true
+  tokenActive?: true
+  tokenExpiresAt?: true
+  isVerified?: true
+  verifiedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -264,6 +289,11 @@ export type SchoolCountAggregateInputType = {
   paymentMethod?: true
   paymentReference?: true
   lastPaymentAt?: true
+  enrollmentToken?: true
+  tokenActive?: true
+  tokenExpiresAt?: true
+  isVerified?: true
+  verifiedAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -387,6 +417,11 @@ export type SchoolGroupByOutputType = {
   paymentMethod: string | null
   paymentReference: string | null
   lastPaymentAt: Date | null
+  enrollmentToken: string | null
+  tokenActive: boolean
+  tokenExpiresAt: Date | null
+  isVerified: boolean
+  verifiedAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: SchoolCountAggregateOutputType | null
@@ -446,14 +481,21 @@ export type SchoolWhereInput = {
   paymentMethod?: Prisma.StringNullableFilter<"School"> | string | null
   paymentReference?: Prisma.StringNullableFilter<"School"> | string | null
   lastPaymentAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
+  enrollmentToken?: Prisma.StringNullableFilter<"School"> | string | null
+  tokenActive?: Prisma.BoolFilter<"School"> | boolean
+  tokenExpiresAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
+  isVerified?: Prisma.BoolFilter<"School"> | boolean
+  verifiedAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"School"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"School"> | Date | string
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  members?: Prisma.SchoolMemberListRelationFilter
   programs?: Prisma.SchoolProgramListRelationFilter
   students?: Prisma.SchoolStudentListRelationFilter
   studentProfiles?: Prisma.StudentProfileListRelationFilter
-  industryPartners?: Prisma.IndustryPartnerListRelationFilter
   careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
+  industryPartners?: Prisma.IndustryPartnerListRelationFilter
+  users?: Prisma.UserListRelationFilter
 }
 
 export type SchoolOrderByWithRelationInput = {
@@ -488,14 +530,21 @@ export type SchoolOrderByWithRelationInput = {
   paymentMethod?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentReference?: Prisma.SortOrderInput | Prisma.SortOrder
   lastPaymentAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  enrollmentToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  tokenActive?: Prisma.SortOrder
+  tokenExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   owner?: Prisma.UserOrderByWithRelationInput
+  members?: Prisma.SchoolMemberOrderByRelationAggregateInput
   programs?: Prisma.SchoolProgramOrderByRelationAggregateInput
   students?: Prisma.SchoolStudentOrderByRelationAggregateInput
   studentProfiles?: Prisma.StudentProfileOrderByRelationAggregateInput
-  industryPartners?: Prisma.IndustryPartnerOrderByRelationAggregateInput
   careerMonitorings?: Prisma.CareerMonitoringOrderByRelationAggregateInput
+  industryPartners?: Prisma.IndustryPartnerOrderByRelationAggregateInput
+  users?: Prisma.UserOrderByRelationAggregateInput
 }
 
 export type SchoolWhereUniqueInput = Prisma.AtLeast<{
@@ -504,6 +553,7 @@ export type SchoolWhereUniqueInput = Prisma.AtLeast<{
   npsn?: string
   slug?: string
   schoolCode?: string
+  enrollmentToken?: string
   AND?: Prisma.SchoolWhereInput | Prisma.SchoolWhereInput[]
   OR?: Prisma.SchoolWhereInput[]
   NOT?: Prisma.SchoolWhereInput | Prisma.SchoolWhereInput[]
@@ -533,15 +583,21 @@ export type SchoolWhereUniqueInput = Prisma.AtLeast<{
   paymentMethod?: Prisma.StringNullableFilter<"School"> | string | null
   paymentReference?: Prisma.StringNullableFilter<"School"> | string | null
   lastPaymentAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
+  tokenActive?: Prisma.BoolFilter<"School"> | boolean
+  tokenExpiresAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
+  isVerified?: Prisma.BoolFilter<"School"> | boolean
+  verifiedAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"School"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"School"> | Date | string
   owner?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  members?: Prisma.SchoolMemberListRelationFilter
   programs?: Prisma.SchoolProgramListRelationFilter
   students?: Prisma.SchoolStudentListRelationFilter
   studentProfiles?: Prisma.StudentProfileListRelationFilter
-  industryPartners?: Prisma.IndustryPartnerListRelationFilter
   careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
-}, "id" | "ownerUserId" | "npsn" | "slug" | "schoolCode">
+  industryPartners?: Prisma.IndustryPartnerListRelationFilter
+  users?: Prisma.UserListRelationFilter
+}, "id" | "ownerUserId" | "npsn" | "slug" | "schoolCode" | "enrollmentToken">
 
 export type SchoolOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -575,6 +631,11 @@ export type SchoolOrderByWithAggregationInput = {
   paymentMethod?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentReference?: Prisma.SortOrderInput | Prisma.SortOrder
   lastPaymentAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  enrollmentToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  tokenActive?: Prisma.SortOrder
+  tokenExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.SchoolCountOrderByAggregateInput
@@ -619,6 +680,11 @@ export type SchoolScalarWhereWithAggregatesInput = {
   paymentMethod?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
   paymentReference?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
   lastPaymentAt?: Prisma.DateTimeNullableWithAggregatesFilter<"School"> | Date | string | null
+  enrollmentToken?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
+  tokenActive?: Prisma.BoolWithAggregatesFilter<"School"> | boolean
+  tokenExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"School"> | Date | string | null
+  isVerified?: Prisma.BoolWithAggregatesFilter<"School"> | boolean
+  verifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"School"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"School"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"School"> | Date | string
 }
@@ -654,14 +720,21 @@ export type SchoolCreateInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedSchoolInput
+  members?: Prisma.SchoolMemberCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileCreateNestedManyWithoutSchoolInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateInput = {
@@ -696,13 +769,20 @@ export type SchoolUncheckedCreateInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  members?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutSchoolInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUpdateInput = {
@@ -736,14 +816,21 @@ export type SchoolUpdateInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedSchoolNestedInput
+  members?: Prisma.SchoolMemberUpdateManyWithoutSchoolNestedInput
   programs?: Prisma.SchoolProgramUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUpdateManyWithoutSchoolNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateInput = {
@@ -778,13 +865,20 @@ export type SchoolUncheckedUpdateInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.SchoolMemberUncheckedUpdateManyWithoutSchoolNestedInput
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUncheckedUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUncheckedUpdateManyWithoutSchoolNestedInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateManyInput = {
@@ -819,6 +913,11 @@ export type SchoolCreateManyInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -854,6 +953,11 @@ export type SchoolUpdateManyMutationInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -890,6 +994,11 @@ export type SchoolUncheckedUpdateManyInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -931,6 +1040,11 @@ export type SchoolCountOrderByAggregateInput = {
   paymentMethod?: Prisma.SortOrder
   paymentReference?: Prisma.SortOrder
   lastPaymentAt?: Prisma.SortOrder
+  enrollmentToken?: Prisma.SortOrder
+  tokenActive?: Prisma.SortOrder
+  tokenExpiresAt?: Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -973,6 +1087,11 @@ export type SchoolMaxOrderByAggregateInput = {
   paymentMethod?: Prisma.SortOrder
   paymentReference?: Prisma.SortOrder
   lastPaymentAt?: Prisma.SortOrder
+  enrollmentToken?: Prisma.SortOrder
+  tokenActive?: Prisma.SortOrder
+  tokenExpiresAt?: Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -1009,6 +1128,11 @@ export type SchoolMinOrderByAggregateInput = {
   paymentMethod?: Prisma.SortOrder
   paymentReference?: Prisma.SortOrder
   lastPaymentAt?: Prisma.SortOrder
+  enrollmentToken?: Prisma.SortOrder
+  tokenActive?: Prisma.SortOrder
+  tokenExpiresAt?: Prisma.SortOrder
+  isVerified?: Prisma.SortOrder
+  verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -1030,6 +1154,12 @@ export type SchoolCreateNestedOneWithoutOwnerInput = {
   connect?: Prisma.SchoolWhereUniqueInput
 }
 
+export type SchoolCreateNestedOneWithoutUsersInput = {
+  create?: Prisma.XOR<Prisma.SchoolCreateWithoutUsersInput, Prisma.SchoolUncheckedCreateWithoutUsersInput>
+  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutUsersInput
+  connect?: Prisma.SchoolWhereUniqueInput
+}
+
 export type SchoolUncheckedCreateNestedOneWithoutOwnerInput = {
   create?: Prisma.XOR<Prisma.SchoolCreateWithoutOwnerInput, Prisma.SchoolUncheckedCreateWithoutOwnerInput>
   connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutOwnerInput
@@ -1044,6 +1174,16 @@ export type SchoolUpdateOneWithoutOwnerNestedInput = {
   delete?: Prisma.SchoolWhereInput | boolean
   connect?: Prisma.SchoolWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.SchoolUpdateToOneWithWhereWithoutOwnerInput, Prisma.SchoolUpdateWithoutOwnerInput>, Prisma.SchoolUncheckedUpdateWithoutOwnerInput>
+}
+
+export type SchoolUpdateOneWithoutUsersNestedInput = {
+  create?: Prisma.XOR<Prisma.SchoolCreateWithoutUsersInput, Prisma.SchoolUncheckedCreateWithoutUsersInput>
+  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutUsersInput
+  upsert?: Prisma.SchoolUpsertWithoutUsersInput
+  disconnect?: Prisma.SchoolWhereInput | boolean
+  delete?: Prisma.SchoolWhereInput | boolean
+  connect?: Prisma.SchoolWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SchoolUpdateToOneWithWhereWithoutUsersInput, Prisma.SchoolUpdateWithoutUsersInput>, Prisma.SchoolUncheckedUpdateWithoutUsersInput>
 }
 
 export type SchoolUncheckedUpdateOneWithoutOwnerNestedInput = {
@@ -1074,6 +1214,20 @@ export type SchoolUpdateOneWithoutStudentProfilesNestedInput = {
 
 export type NullableEnumSchoolLevelFieldUpdateOperationsInput = {
   set?: $Enums.SchoolLevel | null
+}
+
+export type SchoolCreateNestedOneWithoutMembersInput = {
+  create?: Prisma.XOR<Prisma.SchoolCreateWithoutMembersInput, Prisma.SchoolUncheckedCreateWithoutMembersInput>
+  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutMembersInput
+  connect?: Prisma.SchoolWhereUniqueInput
+}
+
+export type SchoolUpdateOneRequiredWithoutMembersNestedInput = {
+  create?: Prisma.XOR<Prisma.SchoolCreateWithoutMembersInput, Prisma.SchoolUncheckedCreateWithoutMembersInput>
+  connectOrCreate?: Prisma.SchoolCreateOrConnectWithoutMembersInput
+  upsert?: Prisma.SchoolUpsertWithoutMembersInput
+  connect?: Prisma.SchoolWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SchoolUpdateToOneWithWhereWithoutMembersInput, Prisma.SchoolUpdateWithoutMembersInput>, Prisma.SchoolUncheckedUpdateWithoutMembersInput>
 }
 
 export type SchoolCreateNestedOneWithoutProgramsInput = {
@@ -1163,13 +1317,20 @@ export type SchoolCreateWithoutOwnerInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  members?: Prisma.SchoolMemberCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileCreateNestedManyWithoutSchoolInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutOwnerInput = {
@@ -1203,18 +1364,124 @@ export type SchoolUncheckedCreateWithoutOwnerInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  members?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutSchoolInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutOwnerInput = {
   where: Prisma.SchoolWhereUniqueInput
   create: Prisma.XOR<Prisma.SchoolCreateWithoutOwnerInput, Prisma.SchoolUncheckedCreateWithoutOwnerInput>
+}
+
+export type SchoolCreateWithoutUsersInput = {
+  id?: string
+  name: string
+  npsn?: string | null
+  slug: string
+  level?: $Enums.SchoolLevel | null
+  accreditation?: string | null
+  email?: string | null
+  phone?: string | null
+  website?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  logoUrl?: string | null
+  logoKey?: string | null
+  description?: string | null
+  bkkName?: string | null
+  bkkContact?: string | null
+  bkkEmail?: string | null
+  bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedSchoolInput
+  members?: Prisma.SchoolMemberCreateNestedManyWithoutSchoolInput
+  programs?: Prisma.SchoolProgramCreateNestedManyWithoutSchoolInput
+  students?: Prisma.SchoolStudentCreateNestedManyWithoutSchoolInput
+  studentProfiles?: Prisma.StudentProfileCreateNestedManyWithoutSchoolInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
+}
+
+export type SchoolUncheckedCreateWithoutUsersInput = {
+  id?: string
+  ownerUserId?: string | null
+  name: string
+  npsn?: string | null
+  slug: string
+  level?: $Enums.SchoolLevel | null
+  accreditation?: string | null
+  email?: string | null
+  phone?: string | null
+  website?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  logoUrl?: string | null
+  logoKey?: string | null
+  description?: string | null
+  bkkName?: string | null
+  bkkContact?: string | null
+  bkkEmail?: string | null
+  bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  members?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutSchoolInput
+  programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
+  students?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutSchoolInput
+  studentProfiles?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutSchoolInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
+}
+
+export type SchoolCreateOrConnectWithoutUsersInput = {
+  where: Prisma.SchoolWhereUniqueInput
+  create: Prisma.XOR<Prisma.SchoolCreateWithoutUsersInput, Prisma.SchoolUncheckedCreateWithoutUsersInput>
 }
 
 export type SchoolUpsertWithoutOwnerInput = {
@@ -1259,13 +1526,20 @@ export type SchoolUpdateWithoutOwnerInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.SchoolMemberUpdateManyWithoutSchoolNestedInput
   programs?: Prisma.SchoolProgramUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUpdateManyWithoutSchoolNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutOwnerInput = {
@@ -1299,13 +1573,125 @@ export type SchoolUncheckedUpdateWithoutOwnerInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.SchoolMemberUncheckedUpdateManyWithoutSchoolNestedInput
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUncheckedUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUncheckedUpdateManyWithoutSchoolNestedInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutSchoolNestedInput
+}
+
+export type SchoolUpsertWithoutUsersInput = {
+  update: Prisma.XOR<Prisma.SchoolUpdateWithoutUsersInput, Prisma.SchoolUncheckedUpdateWithoutUsersInput>
+  create: Prisma.XOR<Prisma.SchoolCreateWithoutUsersInput, Prisma.SchoolUncheckedCreateWithoutUsersInput>
+  where?: Prisma.SchoolWhereInput
+}
+
+export type SchoolUpdateToOneWithWhereWithoutUsersInput = {
+  where?: Prisma.SchoolWhereInput
+  data: Prisma.XOR<Prisma.SchoolUpdateWithoutUsersInput, Prisma.SchoolUncheckedUpdateWithoutUsersInput>
+}
+
+export type SchoolUpdateWithoutUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  npsn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.NullableEnumSchoolLevelFieldUpdateOperationsInput | $Enums.SchoolLevel | null
+  accreditation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneWithoutOwnedSchoolNestedInput
+  members?: Prisma.SchoolMemberUpdateManyWithoutSchoolNestedInput
+  programs?: Prisma.SchoolProgramUpdateManyWithoutSchoolNestedInput
+  students?: Prisma.SchoolStudentUpdateManyWithoutSchoolNestedInput
+  studentProfiles?: Prisma.StudentProfileUpdateManyWithoutSchoolNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
+}
+
+export type SchoolUncheckedUpdateWithoutUsersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  npsn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.NullableEnumSchoolLevelFieldUpdateOperationsInput | $Enums.SchoolLevel | null
+  accreditation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.SchoolMemberUncheckedUpdateManyWithoutSchoolNestedInput
+  programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
+  students?: Prisma.SchoolStudentUncheckedUpdateManyWithoutSchoolNestedInput
+  studentProfiles?: Prisma.StudentProfileUncheckedUpdateManyWithoutSchoolNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateWithoutStudentProfilesInput = {
@@ -1339,13 +1725,20 @@ export type SchoolCreateWithoutStudentProfilesInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedSchoolInput
+  members?: Prisma.SchoolMemberCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentCreateNestedManyWithoutSchoolInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutStudentProfilesInput = {
@@ -1380,12 +1773,19 @@ export type SchoolUncheckedCreateWithoutStudentProfilesInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  members?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutSchoolInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutStudentProfilesInput = {
@@ -1435,13 +1835,20 @@ export type SchoolUpdateWithoutStudentProfilesInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedSchoolNestedInput
+  members?: Prisma.SchoolMemberUpdateManyWithoutSchoolNestedInput
   programs?: Prisma.SchoolProgramUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUpdateManyWithoutSchoolNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutStudentProfilesInput = {
@@ -1476,12 +1883,223 @@ export type SchoolUncheckedUpdateWithoutStudentProfilesInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.SchoolMemberUncheckedUpdateManyWithoutSchoolNestedInput
+  programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
+  students?: Prisma.SchoolStudentUncheckedUpdateManyWithoutSchoolNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutSchoolNestedInput
+}
+
+export type SchoolCreateWithoutMembersInput = {
+  id?: string
+  name: string
+  npsn?: string | null
+  slug: string
+  level?: $Enums.SchoolLevel | null
+  accreditation?: string | null
+  email?: string | null
+  phone?: string | null
+  website?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  logoUrl?: string | null
+  logoKey?: string | null
+  description?: string | null
+  bkkName?: string | null
+  bkkContact?: string | null
+  bkkEmail?: string | null
+  bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedSchoolInput
+  programs?: Prisma.SchoolProgramCreateNestedManyWithoutSchoolInput
+  students?: Prisma.SchoolStudentCreateNestedManyWithoutSchoolInput
+  studentProfiles?: Prisma.StudentProfileCreateNestedManyWithoutSchoolInput
+  careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserCreateNestedManyWithoutSchoolInput
+}
+
+export type SchoolUncheckedCreateWithoutMembersInput = {
+  id?: string
+  ownerUserId?: string | null
+  name: string
+  npsn?: string | null
+  slug: string
+  level?: $Enums.SchoolLevel | null
+  accreditation?: string | null
+  email?: string | null
+  phone?: string | null
+  website?: string | null
+  address?: string | null
+  city?: string | null
+  province?: string | null
+  logoUrl?: string | null
+  logoKey?: string | null
+  description?: string | null
+  bkkName?: string | null
+  bkkContact?: string | null
+  bkkEmail?: string | null
+  bkkPhone?: string | null
+  schoolCode?: string | null
+  activeStudentQuota?: number
+  adminSeatQuota?: number
+  subscriptionPlan?: string | null
+  subscriptionStatus?: string | null
+  subscriptionStartedAt?: Date | string | null
+  subscriptionExpiresAt?: Date | string | null
+  subscriptionAmount?: number | null
+  paymentMethod?: string | null
+  paymentReference?: string | null
+  lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
+  students?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutSchoolInput
+  studentProfiles?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutSchoolInput
+  careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutSchoolInput
+}
+
+export type SchoolCreateOrConnectWithoutMembersInput = {
+  where: Prisma.SchoolWhereUniqueInput
+  create: Prisma.XOR<Prisma.SchoolCreateWithoutMembersInput, Prisma.SchoolUncheckedCreateWithoutMembersInput>
+}
+
+export type SchoolUpsertWithoutMembersInput = {
+  update: Prisma.XOR<Prisma.SchoolUpdateWithoutMembersInput, Prisma.SchoolUncheckedUpdateWithoutMembersInput>
+  create: Prisma.XOR<Prisma.SchoolCreateWithoutMembersInput, Prisma.SchoolUncheckedCreateWithoutMembersInput>
+  where?: Prisma.SchoolWhereInput
+}
+
+export type SchoolUpdateToOneWithWhereWithoutMembersInput = {
+  where?: Prisma.SchoolWhereInput
+  data: Prisma.XOR<Prisma.SchoolUpdateWithoutMembersInput, Prisma.SchoolUncheckedUpdateWithoutMembersInput>
+}
+
+export type SchoolUpdateWithoutMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  npsn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.NullableEnumSchoolLevelFieldUpdateOperationsInput | $Enums.SchoolLevel | null
+  accreditation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneWithoutOwnedSchoolNestedInput
+  programs?: Prisma.SchoolProgramUpdateManyWithoutSchoolNestedInput
+  students?: Prisma.SchoolStudentUpdateManyWithoutSchoolNestedInput
+  studentProfiles?: Prisma.StudentProfileUpdateManyWithoutSchoolNestedInput
+  careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUpdateManyWithoutSchoolNestedInput
+}
+
+export type SchoolUncheckedUpdateWithoutMembersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  ownerUserId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  npsn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  level?: Prisma.NullableEnumSchoolLevelFieldUpdateOperationsInput | $Enums.SchoolLevel | null
+  accreditation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  province?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bkkPhone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  schoolCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  activeStudentQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  adminSeatQuota?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionPlan?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  subscriptionStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subscriptionAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUncheckedUpdateManyWithoutSchoolNestedInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
+  studentProfiles?: Prisma.StudentProfileUncheckedUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateWithoutProgramsInput = {
@@ -1515,13 +2133,20 @@ export type SchoolCreateWithoutProgramsInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedSchoolInput
+  members?: Prisma.SchoolMemberCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileCreateNestedManyWithoutSchoolInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutProgramsInput = {
@@ -1556,12 +2181,19 @@ export type SchoolUncheckedCreateWithoutProgramsInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  members?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutSchoolInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutProgramsInput = {
@@ -1611,13 +2243,20 @@ export type SchoolUpdateWithoutProgramsInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedSchoolNestedInput
+  members?: Prisma.SchoolMemberUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUpdateManyWithoutSchoolNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutProgramsInput = {
@@ -1652,12 +2291,19 @@ export type SchoolUncheckedUpdateWithoutProgramsInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.SchoolMemberUncheckedUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUncheckedUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUncheckedUpdateManyWithoutSchoolNestedInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateWithoutStudentsInput = {
@@ -1691,13 +2337,20 @@ export type SchoolCreateWithoutStudentsInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedSchoolInput
+  members?: Prisma.SchoolMemberCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileCreateNestedManyWithoutSchoolInput
-  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutStudentsInput = {
@@ -1732,12 +2385,19 @@ export type SchoolUncheckedCreateWithoutStudentsInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  members?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutSchoolInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutSchoolInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutStudentsInput = {
@@ -1787,13 +2447,20 @@ export type SchoolUpdateWithoutStudentsInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedSchoolNestedInput
+  members?: Prisma.SchoolMemberUpdateManyWithoutSchoolNestedInput
   programs?: Prisma.SchoolProgramUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUpdateManyWithoutSchoolNestedInput
-  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutStudentsInput = {
@@ -1828,12 +2495,19 @@ export type SchoolUncheckedUpdateWithoutStudentsInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.SchoolMemberUncheckedUpdateManyWithoutSchoolNestedInput
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUncheckedUpdateManyWithoutSchoolNestedInput
-  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutSchoolNestedInput
+  industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateWithoutIndustryPartnersInput = {
@@ -1867,13 +2541,20 @@ export type SchoolCreateWithoutIndustryPartnersInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedSchoolInput
+  members?: Prisma.SchoolMemberCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutIndustryPartnersInput = {
@@ -1908,12 +2589,19 @@ export type SchoolUncheckedCreateWithoutIndustryPartnersInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  members?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutSchoolInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutIndustryPartnersInput = {
@@ -1963,13 +2651,20 @@ export type SchoolUpdateWithoutIndustryPartnersInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedSchoolNestedInput
+  members?: Prisma.SchoolMemberUpdateManyWithoutSchoolNestedInput
   programs?: Prisma.SchoolProgramUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutIndustryPartnersInput = {
@@ -2004,12 +2699,19 @@ export type SchoolUncheckedUpdateWithoutIndustryPartnersInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.SchoolMemberUncheckedUpdateManyWithoutSchoolNestedInput
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUncheckedUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUncheckedUpdateManyWithoutSchoolNestedInput
   careerMonitorings?: Prisma.CareerMonitoringUncheckedUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolCreateWithoutCareerMonitoringsInput = {
@@ -2043,13 +2745,20 @@ export type SchoolCreateWithoutCareerMonitoringsInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  owner?: Prisma.UserCreateNestedOneWithoutSchoolInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedSchoolInput
+  members?: Prisma.SchoolMemberCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileCreateNestedManyWithoutSchoolInput
   industryPartners?: Prisma.IndustryPartnerCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolUncheckedCreateWithoutCareerMonitoringsInput = {
@@ -2084,12 +2793,19 @@ export type SchoolUncheckedCreateWithoutCareerMonitoringsInput = {
   paymentMethod?: string | null
   paymentReference?: string | null
   lastPaymentAt?: Date | string | null
+  enrollmentToken?: string | null
+  tokenActive?: boolean
+  tokenExpiresAt?: Date | string | null
+  isVerified?: boolean
+  verifiedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  members?: Prisma.SchoolMemberUncheckedCreateNestedManyWithoutSchoolInput
   programs?: Prisma.SchoolProgramUncheckedCreateNestedManyWithoutSchoolInput
   students?: Prisma.SchoolStudentUncheckedCreateNestedManyWithoutSchoolInput
   studentProfiles?: Prisma.StudentProfileUncheckedCreateNestedManyWithoutSchoolInput
   industryPartners?: Prisma.IndustryPartnerUncheckedCreateNestedManyWithoutSchoolInput
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutSchoolInput
 }
 
 export type SchoolCreateOrConnectWithoutCareerMonitoringsInput = {
@@ -2139,13 +2855,20 @@ export type SchoolUpdateWithoutCareerMonitoringsInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  owner?: Prisma.UserUpdateOneWithoutSchoolNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedSchoolNestedInput
+  members?: Prisma.SchoolMemberUpdateManyWithoutSchoolNestedInput
   programs?: Prisma.SchoolProgramUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUpdateManyWithoutSchoolNestedInput
   industryPartners?: Prisma.IndustryPartnerUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUpdateManyWithoutSchoolNestedInput
 }
 
 export type SchoolUncheckedUpdateWithoutCareerMonitoringsInput = {
@@ -2180,12 +2903,19 @@ export type SchoolUncheckedUpdateWithoutCareerMonitoringsInput = {
   paymentMethod?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentReference?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  members?: Prisma.SchoolMemberUncheckedUpdateManyWithoutSchoolNestedInput
   programs?: Prisma.SchoolProgramUncheckedUpdateManyWithoutSchoolNestedInput
   students?: Prisma.SchoolStudentUncheckedUpdateManyWithoutSchoolNestedInput
   studentProfiles?: Prisma.StudentProfileUncheckedUpdateManyWithoutSchoolNestedInput
   industryPartners?: Prisma.IndustryPartnerUncheckedUpdateManyWithoutSchoolNestedInput
+  users?: Prisma.UserUncheckedUpdateManyWithoutSchoolNestedInput
 }
 
 
@@ -2194,19 +2924,23 @@ export type SchoolUncheckedUpdateWithoutCareerMonitoringsInput = {
  */
 
 export type SchoolCountOutputType = {
+  members: number
   programs: number
   students: number
   studentProfiles: number
-  industryPartners: number
   careerMonitorings: number
+  industryPartners: number
+  users: number
 }
 
 export type SchoolCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  members?: boolean | SchoolCountOutputTypeCountMembersArgs
   programs?: boolean | SchoolCountOutputTypeCountProgramsArgs
   students?: boolean | SchoolCountOutputTypeCountStudentsArgs
   studentProfiles?: boolean | SchoolCountOutputTypeCountStudentProfilesArgs
-  industryPartners?: boolean | SchoolCountOutputTypeCountIndustryPartnersArgs
   careerMonitorings?: boolean | SchoolCountOutputTypeCountCareerMonitoringsArgs
+  industryPartners?: boolean | SchoolCountOutputTypeCountIndustryPartnersArgs
+  users?: boolean | SchoolCountOutputTypeCountUsersArgs
 }
 
 /**
@@ -2217,6 +2951,13 @@ export type SchoolCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
    * Select specific fields to fetch from the SchoolCountOutputType
    */
   select?: Prisma.SchoolCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * SchoolCountOutputType without action
+ */
+export type SchoolCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SchoolMemberWhereInput
 }
 
 /**
@@ -2243,6 +2984,13 @@ export type SchoolCountOutputTypeCountStudentProfilesArgs<ExtArgs extends runtim
 /**
  * SchoolCountOutputType without action
  */
+export type SchoolCountOutputTypeCountCareerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CareerMonitoringWhereInput
+}
+
+/**
+ * SchoolCountOutputType without action
+ */
 export type SchoolCountOutputTypeCountIndustryPartnersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.IndustryPartnerWhereInput
 }
@@ -2250,8 +2998,8 @@ export type SchoolCountOutputTypeCountIndustryPartnersArgs<ExtArgs extends runti
 /**
  * SchoolCountOutputType without action
  */
-export type SchoolCountOutputTypeCountCareerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CareerMonitoringWhereInput
+export type SchoolCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserWhereInput
 }
 
 
@@ -2287,14 +3035,21 @@ export type SchoolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   paymentMethod?: boolean
   paymentReference?: boolean
   lastPaymentAt?: boolean
+  enrollmentToken?: boolean
+  tokenActive?: boolean
+  tokenExpiresAt?: boolean
+  isVerified?: boolean
+  verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   owner?: boolean | Prisma.School$ownerArgs<ExtArgs>
+  members?: boolean | Prisma.School$membersArgs<ExtArgs>
   programs?: boolean | Prisma.School$programsArgs<ExtArgs>
   students?: boolean | Prisma.School$studentsArgs<ExtArgs>
   studentProfiles?: boolean | Prisma.School$studentProfilesArgs<ExtArgs>
-  industryPartners?: boolean | Prisma.School$industryPartnersArgs<ExtArgs>
   careerMonitorings?: boolean | Prisma.School$careerMonitoringsArgs<ExtArgs>
+  industryPartners?: boolean | Prisma.School$industryPartnersArgs<ExtArgs>
+  users?: boolean | Prisma.School$usersArgs<ExtArgs>
   _count?: boolean | Prisma.SchoolCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["school"]>
 
@@ -2330,6 +3085,11 @@ export type SchoolSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   paymentMethod?: boolean
   paymentReference?: boolean
   lastPaymentAt?: boolean
+  enrollmentToken?: boolean
+  tokenActive?: boolean
+  tokenExpiresAt?: boolean
+  isVerified?: boolean
+  verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   owner?: boolean | Prisma.School$ownerArgs<ExtArgs>
@@ -2367,6 +3127,11 @@ export type SchoolSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   paymentMethod?: boolean
   paymentReference?: boolean
   lastPaymentAt?: boolean
+  enrollmentToken?: boolean
+  tokenActive?: boolean
+  tokenExpiresAt?: boolean
+  isVerified?: boolean
+  verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   owner?: boolean | Prisma.School$ownerArgs<ExtArgs>
@@ -2404,18 +3169,25 @@ export type SchoolSelectScalar = {
   paymentMethod?: boolean
   paymentReference?: boolean
   lastPaymentAt?: boolean
+  enrollmentToken?: boolean
+  tokenActive?: boolean
+  tokenExpiresAt?: boolean
+  isVerified?: boolean
+  verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SchoolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "npsn" | "slug" | "level" | "accreditation" | "email" | "phone" | "website" | "address" | "city" | "province" | "logoUrl" | "logoKey" | "description" | "bkkName" | "bkkContact" | "bkkEmail" | "bkkPhone" | "schoolCode" | "activeStudentQuota" | "adminSeatQuota" | "subscriptionPlan" | "subscriptionStatus" | "subscriptionStartedAt" | "subscriptionExpiresAt" | "subscriptionAmount" | "paymentMethod" | "paymentReference" | "lastPaymentAt" | "createdAt" | "updatedAt", ExtArgs["result"]["school"]>
+export type SchoolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "npsn" | "slug" | "level" | "accreditation" | "email" | "phone" | "website" | "address" | "city" | "province" | "logoUrl" | "logoKey" | "description" | "bkkName" | "bkkContact" | "bkkEmail" | "bkkPhone" | "schoolCode" | "activeStudentQuota" | "adminSeatQuota" | "subscriptionPlan" | "subscriptionStatus" | "subscriptionStartedAt" | "subscriptionExpiresAt" | "subscriptionAmount" | "paymentMethod" | "paymentReference" | "lastPaymentAt" | "enrollmentToken" | "tokenActive" | "tokenExpiresAt" | "isVerified" | "verifiedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["school"]>
 export type SchoolInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.School$ownerArgs<ExtArgs>
+  members?: boolean | Prisma.School$membersArgs<ExtArgs>
   programs?: boolean | Prisma.School$programsArgs<ExtArgs>
   students?: boolean | Prisma.School$studentsArgs<ExtArgs>
   studentProfiles?: boolean | Prisma.School$studentProfilesArgs<ExtArgs>
-  industryPartners?: boolean | Prisma.School$industryPartnersArgs<ExtArgs>
   careerMonitorings?: boolean | Prisma.School$careerMonitoringsArgs<ExtArgs>
+  industryPartners?: boolean | Prisma.School$industryPartnersArgs<ExtArgs>
+  users?: boolean | Prisma.School$usersArgs<ExtArgs>
   _count?: boolean | Prisma.SchoolCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SchoolIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2429,11 +3201,13 @@ export type $SchoolPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "School"
   objects: {
     owner: Prisma.$UserPayload<ExtArgs> | null
+    members: Prisma.$SchoolMemberPayload<ExtArgs>[]
     programs: Prisma.$SchoolProgramPayload<ExtArgs>[]
     students: Prisma.$SchoolStudentPayload<ExtArgs>[]
     studentProfiles: Prisma.$StudentProfilePayload<ExtArgs>[]
-    industryPartners: Prisma.$IndustryPartnerPayload<ExtArgs>[]
     careerMonitorings: Prisma.$CareerMonitoringPayload<ExtArgs>[]
+    industryPartners: Prisma.$IndustryPartnerPayload<ExtArgs>[]
+    users: Prisma.$UserPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2467,6 +3241,11 @@ export type $SchoolPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     paymentMethod: string | null
     paymentReference: string | null
     lastPaymentAt: Date | null
+    enrollmentToken: string | null
+    tokenActive: boolean
+    tokenExpiresAt: Date | null
+    isVerified: boolean
+    verifiedAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["school"]>
@@ -2864,11 +3643,13 @@ readonly fields: SchoolFieldRefs;
 export interface Prisma__SchoolClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   owner<T extends Prisma.School$ownerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$ownerArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  members<T extends Prisma.School$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchoolMemberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   programs<T extends Prisma.School$programsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$programsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchoolProgramPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   students<T extends Prisma.School$studentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$studentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchoolStudentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   studentProfiles<T extends Prisma.School$studentProfilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$studentProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  industryPartners<T extends Prisma.School$industryPartnersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$industryPartnersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IndustryPartnerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   careerMonitorings<T extends Prisma.School$careerMonitoringsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$careerMonitoringsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CareerMonitoringPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  industryPartners<T extends Prisma.School$industryPartnersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$industryPartnersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$IndustryPartnerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  users<T extends Prisma.School$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.School$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2929,6 +3710,11 @@ export interface SchoolFieldRefs {
   readonly paymentMethod: Prisma.FieldRef<"School", 'String'>
   readonly paymentReference: Prisma.FieldRef<"School", 'String'>
   readonly lastPaymentAt: Prisma.FieldRef<"School", 'DateTime'>
+  readonly enrollmentToken: Prisma.FieldRef<"School", 'String'>
+  readonly tokenActive: Prisma.FieldRef<"School", 'Boolean'>
+  readonly tokenExpiresAt: Prisma.FieldRef<"School", 'DateTime'>
+  readonly isVerified: Prisma.FieldRef<"School", 'Boolean'>
+  readonly verifiedAt: Prisma.FieldRef<"School", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"School", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"School", 'DateTime'>
 }
@@ -3351,6 +4137,30 @@ export type School$ownerArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 /**
+ * School.members
+ */
+export type School$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SchoolMember
+   */
+  select?: Prisma.SchoolMemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SchoolMember
+   */
+  omit?: Prisma.SchoolMemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SchoolMemberInclude<ExtArgs> | null
+  where?: Prisma.SchoolMemberWhereInput
+  orderBy?: Prisma.SchoolMemberOrderByWithRelationInput | Prisma.SchoolMemberOrderByWithRelationInput[]
+  cursor?: Prisma.SchoolMemberWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SchoolMemberScalarFieldEnum | Prisma.SchoolMemberScalarFieldEnum[]
+}
+
+/**
  * School.programs
  */
 export type School$programsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3423,6 +4233,30 @@ export type School$studentProfilesArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
+ * School.careerMonitorings
+ */
+export type School$careerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the CareerMonitoring
+   */
+  select?: Prisma.CareerMonitoringSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the CareerMonitoring
+   */
+  omit?: Prisma.CareerMonitoringOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CareerMonitoringInclude<ExtArgs> | null
+  where?: Prisma.CareerMonitoringWhereInput
+  orderBy?: Prisma.CareerMonitoringOrderByWithRelationInput | Prisma.CareerMonitoringOrderByWithRelationInput[]
+  cursor?: Prisma.CareerMonitoringWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CareerMonitoringScalarFieldEnum | Prisma.CareerMonitoringScalarFieldEnum[]
+}
+
+/**
  * School.industryPartners
  */
 export type School$industryPartnersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3447,27 +4281,27 @@ export type School$industryPartnersArgs<ExtArgs extends runtime.Types.Extensions
 }
 
 /**
- * School.careerMonitorings
+ * School.users
  */
-export type School$careerMonitoringsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type School$usersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the CareerMonitoring
+   * Select specific fields to fetch from the User
    */
-  select?: Prisma.CareerMonitoringSelect<ExtArgs> | null
+  select?: Prisma.UserSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the CareerMonitoring
+   * Omit specific fields from the User
    */
-  omit?: Prisma.CareerMonitoringOmit<ExtArgs> | null
+  omit?: Prisma.UserOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.CareerMonitoringInclude<ExtArgs> | null
-  where?: Prisma.CareerMonitoringWhereInput
-  orderBy?: Prisma.CareerMonitoringOrderByWithRelationInput | Prisma.CareerMonitoringOrderByWithRelationInput[]
-  cursor?: Prisma.CareerMonitoringWhereUniqueInput
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
+  cursor?: Prisma.UserWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.CareerMonitoringScalarFieldEnum | Prisma.CareerMonitoringScalarFieldEnum[]
+  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
 }
 
 /**

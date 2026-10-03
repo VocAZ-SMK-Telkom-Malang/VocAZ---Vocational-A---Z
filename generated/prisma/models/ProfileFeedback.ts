@@ -256,8 +256,8 @@ export type ProfileFeedbackWhereInput = {
   isPublic?: Prisma.BoolFilter<"ProfileFeedback"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ProfileFeedback"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProfileFeedback"> | Date | string
-  studentProfile?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   giver?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  studentProfile?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }
 
 export type ProfileFeedbackOrderByWithRelationInput = {
@@ -271,8 +271,8 @@ export type ProfileFeedbackOrderByWithRelationInput = {
   isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  studentProfile?: Prisma.StudentProfileOrderByWithRelationInput
   giver?: Prisma.UserOrderByWithRelationInput
+  studentProfile?: Prisma.StudentProfileOrderByWithRelationInput
 }
 
 export type ProfileFeedbackWhereUniqueInput = Prisma.AtLeast<{
@@ -289,8 +289,8 @@ export type ProfileFeedbackWhereUniqueInput = Prisma.AtLeast<{
   isPublic?: Prisma.BoolFilter<"ProfileFeedback"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ProfileFeedback"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProfileFeedback"> | Date | string
-  studentProfile?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   giver?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  studentProfile?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }, "id">
 
 export type ProfileFeedbackOrderByWithAggregationInput = {
@@ -336,8 +336,8 @@ export type ProfileFeedbackCreateInput = {
   isPublic?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  studentProfile: Prisma.StudentProfileCreateNestedOneWithoutFeedbacksInput
   giver: Prisma.UserCreateNestedOneWithoutFeedbackGivenInput
+  studentProfile: Prisma.StudentProfileCreateNestedOneWithoutFeedbacksInput
 }
 
 export type ProfileFeedbackUncheckedCreateInput = {
@@ -362,8 +362,8 @@ export type ProfileFeedbackUpdateInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  studentProfile?: Prisma.StudentProfileUpdateOneRequiredWithoutFeedbacksNestedInput
   giver?: Prisma.UserUpdateOneRequiredWithoutFeedbackGivenNestedInput
+  studentProfile?: Prisma.StudentProfileUpdateOneRequiredWithoutFeedbacksNestedInput
 }
 
 export type ProfileFeedbackUncheckedUpdateInput = {
@@ -782,8 +782,8 @@ export type ProfileFeedbackSelect<ExtArgs extends runtime.Types.Extensions.Inter
   isPublic?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   giver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profileFeedback"]>
 
 export type ProfileFeedbackSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -797,8 +797,8 @@ export type ProfileFeedbackSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   isPublic?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   giver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profileFeedback"]>
 
 export type ProfileFeedbackSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -812,8 +812,8 @@ export type ProfileFeedbackSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   isPublic?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   giver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profileFeedback"]>
 
 export type ProfileFeedbackSelectScalar = {
@@ -831,23 +831,23 @@ export type ProfileFeedbackSelectScalar = {
 
 export type ProfileFeedbackOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentProfileId" | "giverUserId" | "rating" | "message" | "relationship" | "isVerified" | "isPublic" | "createdAt" | "updatedAt", ExtArgs["result"]["profileFeedback"]>
 export type ProfileFeedbackInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   giver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 export type ProfileFeedbackIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   giver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 export type ProfileFeedbackIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   giver?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  studentProfile?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 
 export type $ProfileFeedbackPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ProfileFeedback"
   objects: {
-    studentProfile: Prisma.$StudentProfilePayload<ExtArgs>
     giver: Prisma.$UserPayload<ExtArgs>
+    studentProfile: Prisma.$StudentProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1254,8 +1254,8 @@ readonly fields: ProfileFeedbackFieldRefs;
  */
 export interface Prisma__ProfileFeedbackClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  studentProfile<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   giver<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  studentProfile<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.

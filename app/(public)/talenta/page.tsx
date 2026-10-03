@@ -1,60 +1,26 @@
-// app/(public)/talenta/page.tsx
-import type { Metadata } from 'next'
-import { TalentaClient } from './talenta-client'
-import {
-  getPublicTalents,
-  getPublicTalentStats,
-  getTalentFilterOptions,
-} from '@/lib/talenta/queries'
+// app/(public)/talenta/[id]/page.tsx
+import { notFound } from 'next/navigation'
+import { getStudentProfileDetail, getViewerContext } from '@/lib/queries/student-profile-detail'
+import { StudentProfileView } from '@/components/shared/student-profile/student-profile-view'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
-  title: 'Talenta SMK — VocAZ',
-  description:
-    'Etalase talenta SMK terverifikasi BNSP & BKK. Setiap profil didukung portofolio nyata.',
-}
-
 type Props = {
-  searchParams: Promise<{
-    search?: string
-    city?: string
-    major?: string
-    status?: string
-    page?: string
-  }>
+  params: Promise<{ id: string }>
 }
 
-export default async function TalentaPage({ searchParams }: Props) {
-  const params = await searchParams
-
-  const search = params.search?.trim() || ''
-  const city = params.city || 'all'
-  const major = params.major || 'all'
-  const status =
-    (params.status as 'all' | 'open_to_work' | 'verified') || 'all'
-  const page = Number(params.page) || 1
-
-  const [result, stats, options] = await Promise.all([
-    getPublicTalents({
-      search,
-      city,
-      major,
-      status,
-      page,
-      pageSize: 9,
-    }),
-    getPublicTalentStats(),
-    getTalentFilterOptions(),
+export default async function PublicTalentPage({ params }: Props) {
+  const { id } = await params
+  const [profile, viewer] = await Promise.all([
+    getStudentProfileDetail(id),
+    getViewerContext(id),
   ])
 
+  if (!profile || !profile.isPublic) notFound()
+
   return (
-    <TalentaClient
-      talents={result.talents}
-      stats={stats}
-      options={options}
-      pagination={result.pagination}
-      initialFilters={{ search, city, major, status }}
-    />
+    <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+      <StudentProfileView profile={profile} viewer={viewer} />
+    </div>
   )
 }

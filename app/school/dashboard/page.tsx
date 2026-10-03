@@ -1,31 +1,50 @@
+// app/school/dashboard/page.tsx
 import { redirect } from 'next/navigation'
+import { getSchoolContext, getSchoolDashboardStats } from '@/lib/queries/school-dashboard'
 import { prisma } from '@/lib/prisma'
-import { getServerSession } from '@/lib/auth/session'
-import { LogoutButton } from '@/components/shared/logout-button'
+import { SchoolDashboardClient } from './dashboard-client'
 
-export default async function SchoolDashboard() {
-  const session = await getServerSession()
-  if (!session?.user) redirect('/auth/sign-in')
+export const metadata = {
+  title: 'Dashboard BKK — VocAZ',
+}
 
-  const user = await prisma.user.findUnique({
-    where: { neonAuthUserId: session.user.id },
-  })
-  if (!user) redirect('/onboarding')
+export default async function SchoolDashboardPage() {
+  const ctx = await getSchoolContext()
+  if (!ctx) redirect('/auth/sign-in')
+
+  const [stats, school, recentStudents] = await Promise.all([
+    getSchoolDashboardStats(ctx.schoolId),
+    prisma.school.findUnique({
+      where: { id: ctx.schoolId },
+      select: { name: true },
+    }),
+    prisma.schoolStudent.findMany({
+      where: { schoolId: ctx.schoolId },
+      orderBy: { createdAt: 'desc' },
+      take: 5,
+      select: {
+        id: true,
+        status: true,
+        enrollmentYear: true,
+        student: {
+          select: {
+            id: true,
+            headline: true,
+            user: {
+              select: { fullName: true, avatarUrl: true },
+            },
+            program: false,
+          },
+        },
+      },
+    }),
+  ])
 
   return (
-    <div className="min-h-screen p-8 bg-gray-50">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold">Dashboard School 🏫</h1>
-          <LogoutButton />
-        </div>
-        <p className="text-gray-600">
-          Selamat datang, <strong>{user.fullName}</strong>!
-        </p>
-        <p className="text-sm text-gray-500 mt-2">
-          Halaman ini akan dibangun di Fase 6.
-        </p>
-      </div>
-    </div>
+    <SchoolDashboardClient
+      schoolName={school?.name ?? 'Sekolah'}
+      stats={stats}
+      recentStudents={recentStudents as any}
+    />
   )
 }

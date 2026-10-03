@@ -13,6 +13,7 @@ const stakeholders = [
     title: 'Siswa & Alumni',
     desc: 'Build a profile that shows what you can actually do — then let opportunity find you.',
     cta: 'Join as Student',
+    href: '/register/student/1',
     color: 'bg-primary-fixed text-primary',
   },
   {
@@ -20,6 +21,7 @@ const stakeholders = [
     title: 'Perusahaan',
     desc: 'Skip the guesswork. Discover SMK talent with verified skills and real portfolios.',
     cta: 'Join as Company',
+    href: '/register/company/1',
     color: 'bg-tertiary-fixed text-tertiary',
   },
   {
@@ -27,6 +29,7 @@ const stakeholders = [
     title: 'SMK & BKK',
     desc: 'See exactly where your students are headed, and strengthen the industry ties that get them there.',
     cta: 'Join as School',
+    href: '/register/school/1',
     color: 'bg-[#FEF3C7] text-[#B45309]',
   },
   {
@@ -34,6 +37,7 @@ const stakeholders = [
     title: 'Lembaga Sertifikasi',
     desc: 'Turn every certificate you issue into a credential employers can actually trust.',
     cta: 'Join as Partner',
+    href: '/register/certification/1',
     color: 'bg-[#FCE7F3] text-[#9D174D]',
   },
 ]
@@ -79,7 +83,7 @@ export function StakeholderSection() {
                   </p>
                 </div>
                 <Link
-                  href="/auth/sign-up"
+                  href={item.href}
                   className="inline-flex items-center justify-between w-full bg-gradient-to-r from-primary-container to-[#E03E3E] text-white font-display text-xs font-semibold px-4 py-2.5 rounded-full shadow-[0_4px_16px_rgba(220,38,38,0.22)] hover:shadow-[0_8px_20px_rgba(220,38,38,0.30)] hover:scale-[1.02] active:scale-95 transition-all"
                 >
                   <span className="whitespace-nowrap">{item.cta}</span>

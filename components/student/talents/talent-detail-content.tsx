@@ -21,11 +21,11 @@ import {
   Languages,
 } from 'lucide-react'
 import { ShowcaseVideoPlayer } from '@/components/student/showcase/showcase-video-player'
-import { PortfolioModal } from './modals/portfolio-modal'
-import { AchievementModal } from './modals/achievement-modal'
-import { CertificateModal } from './modals/certificate-modal'
-import { EducationModal } from './modals/education-modal'
-import { ExperienceModal } from './modals/experience-modal'
+import { PortfolioModal } from '../../shared/student-profile/modals/portfolio-modal'
+import { AchievementModal } from '../../shared/student-profile/modals/achievement-modal'
+import { CertificateModal } from '../../shared/student-profile/modals/certificate-modal'
+import { EducationModal } from '../../shared/student-profile/modals/education-modal'
+import { ExperienceModal } from '../../shared/student-profile/modals/experience-modal'
 
 type ProficiencyLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert'
 

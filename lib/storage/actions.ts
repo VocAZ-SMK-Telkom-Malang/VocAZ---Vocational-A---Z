@@ -7,11 +7,12 @@ import { s3, BUCKET } from './s3'
 
 type UploadTarget =
   | 'company-logo'
+  | 'company-cover'
   | 'company-doc'
   | 'showcase-video'
   | 'showcase-thumb'
   | 'avatar'
-  | 'cover'   
+  | 'cover'
   | 'portfolio'
 
 export async function getPresignedUploadUrl(input: {
@@ -37,6 +38,7 @@ export async function getPresignedUploadUrl(input: {
 
     const allowedByTarget: Record<UploadTarget, string[]> = {
       'company-logo': ['image/png', 'image/jpeg', 'image/webp'],
+      'company-cover': ['image/png', 'image/jpeg', 'image/webp'],  // ✅ TAMBAH INI
       'company-doc': [
         'image/png',
         'image/jpeg',
@@ -51,7 +53,7 @@ export async function getPresignedUploadUrl(input: {
       ],
       'showcase-thumb': ['image/png', 'image/jpeg', 'image/webp'],
       avatar: ['image/png', 'image/jpeg', 'image/webp'],
-     cover: ['image/png', 'image/jpeg', 'image/webp'],   // ← TAMBAH INI
+      cover: ['image/png', 'image/jpeg', 'image/webp'],
       portfolio: [
         'image/png',
         'image/jpeg',

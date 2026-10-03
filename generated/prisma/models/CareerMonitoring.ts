@@ -230,10 +230,10 @@ export type CareerMonitoringWhereInput = {
   placementDate?: Prisma.DateTimeNullableFilter<"CareerMonitoring"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"CareerMonitoring"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CareerMonitoring"> | Date | string
+  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  job?: Prisma.XOR<Prisma.JobNullableScalarRelationFilter, Prisma.JobWhereInput> | null
   school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
   student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
-  job?: Prisma.XOR<Prisma.JobNullableScalarRelationFilter, Prisma.JobWhereInput> | null
-  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
 }
 
 export type CareerMonitoringOrderByWithRelationInput = {
@@ -248,10 +248,10 @@ export type CareerMonitoringOrderByWithRelationInput = {
   placementDate?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  company?: Prisma.CompanyOrderByWithRelationInput
+  job?: Prisma.JobOrderByWithRelationInput
   school?: Prisma.SchoolOrderByWithRelationInput
   student?: Prisma.StudentProfileOrderByWithRelationInput
-  job?: Prisma.JobOrderByWithRelationInput
-  company?: Prisma.CompanyOrderByWithRelationInput
 }
 
 export type CareerMonitoringWhereUniqueInput = Prisma.AtLeast<{
@@ -269,10 +269,10 @@ export type CareerMonitoringWhereUniqueInput = Prisma.AtLeast<{
   placementDate?: Prisma.DateTimeNullableFilter<"CareerMonitoring"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"CareerMonitoring"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CareerMonitoring"> | Date | string
+  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  job?: Prisma.XOR<Prisma.JobNullableScalarRelationFilter, Prisma.JobWhereInput> | null
   school?: Prisma.XOR<Prisma.SchoolScalarRelationFilter, Prisma.SchoolWhereInput>
   student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
-  job?: Prisma.XOR<Prisma.JobNullableScalarRelationFilter, Prisma.JobWhereInput> | null
-  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
 }, "id">
 
 export type CareerMonitoringOrderByWithAggregationInput = {
@@ -317,10 +317,10 @@ export type CareerMonitoringCreateInput = {
   placementDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  company?: Prisma.CompanyCreateNestedOneWithoutCareerMonitoringsInput
+  job?: Prisma.JobCreateNestedOneWithoutCareerMonitoringsInput
   school: Prisma.SchoolCreateNestedOneWithoutCareerMonitoringsInput
   student: Prisma.StudentProfileCreateNestedOneWithoutCareerMonitoringsInput
-  job?: Prisma.JobCreateNestedOneWithoutCareerMonitoringsInput
-  company?: Prisma.CompanyCreateNestedOneWithoutCareerMonitoringsInput
 }
 
 export type CareerMonitoringUncheckedCreateInput = {
@@ -345,10 +345,10 @@ export type CareerMonitoringUpdateInput = {
   placementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneWithoutCareerMonitoringsNestedInput
+  job?: Prisma.JobUpdateOneWithoutCareerMonitoringsNestedInput
   school?: Prisma.SchoolUpdateOneRequiredWithoutCareerMonitoringsNestedInput
   student?: Prisma.StudentProfileUpdateOneRequiredWithoutCareerMonitoringsNestedInput
-  job?: Prisma.JobUpdateOneWithoutCareerMonitoringsNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutCareerMonitoringsNestedInput
 }
 
 export type CareerMonitoringUncheckedUpdateInput = {
@@ -635,9 +635,9 @@ export type CareerMonitoringCreateWithoutStudentInput = {
   placementDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  school: Prisma.SchoolCreateNestedOneWithoutCareerMonitoringsInput
-  job?: Prisma.JobCreateNestedOneWithoutCareerMonitoringsInput
   company?: Prisma.CompanyCreateNestedOneWithoutCareerMonitoringsInput
+  job?: Prisma.JobCreateNestedOneWithoutCareerMonitoringsInput
+  school: Prisma.SchoolCreateNestedOneWithoutCareerMonitoringsInput
 }
 
 export type CareerMonitoringUncheckedCreateWithoutStudentInput = {
@@ -704,9 +704,9 @@ export type CareerMonitoringCreateWithoutCompanyInput = {
   placementDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  job?: Prisma.JobCreateNestedOneWithoutCareerMonitoringsInput
   school: Prisma.SchoolCreateNestedOneWithoutCareerMonitoringsInput
   student: Prisma.StudentProfileCreateNestedOneWithoutCareerMonitoringsInput
-  job?: Prisma.JobCreateNestedOneWithoutCareerMonitoringsInput
 }
 
 export type CareerMonitoringUncheckedCreateWithoutCompanyInput = {
@@ -756,9 +756,9 @@ export type CareerMonitoringCreateWithoutJobInput = {
   placementDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  company?: Prisma.CompanyCreateNestedOneWithoutCareerMonitoringsInput
   school: Prisma.SchoolCreateNestedOneWithoutCareerMonitoringsInput
   student: Prisma.StudentProfileCreateNestedOneWithoutCareerMonitoringsInput
-  company?: Prisma.CompanyCreateNestedOneWithoutCareerMonitoringsInput
 }
 
 export type CareerMonitoringUncheckedCreateWithoutJobInput = {
@@ -808,9 +808,9 @@ export type CareerMonitoringCreateWithoutSchoolInput = {
   placementDate?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  student: Prisma.StudentProfileCreateNestedOneWithoutCareerMonitoringsInput
-  job?: Prisma.JobCreateNestedOneWithoutCareerMonitoringsInput
   company?: Prisma.CompanyCreateNestedOneWithoutCareerMonitoringsInput
+  job?: Prisma.JobCreateNestedOneWithoutCareerMonitoringsInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutCareerMonitoringsInput
 }
 
 export type CareerMonitoringUncheckedCreateWithoutSchoolInput = {
@@ -873,9 +873,9 @@ export type CareerMonitoringUpdateWithoutStudentInput = {
   placementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  school?: Prisma.SchoolUpdateOneRequiredWithoutCareerMonitoringsNestedInput
-  job?: Prisma.JobUpdateOneWithoutCareerMonitoringsNestedInput
   company?: Prisma.CompanyUpdateOneWithoutCareerMonitoringsNestedInput
+  job?: Prisma.JobUpdateOneWithoutCareerMonitoringsNestedInput
+  school?: Prisma.SchoolUpdateOneRequiredWithoutCareerMonitoringsNestedInput
 }
 
 export type CareerMonitoringUncheckedUpdateWithoutStudentInput = {
@@ -925,9 +925,9 @@ export type CareerMonitoringUpdateWithoutCompanyInput = {
   placementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  job?: Prisma.JobUpdateOneWithoutCareerMonitoringsNestedInput
   school?: Prisma.SchoolUpdateOneRequiredWithoutCareerMonitoringsNestedInput
   student?: Prisma.StudentProfileUpdateOneRequiredWithoutCareerMonitoringsNestedInput
-  job?: Prisma.JobUpdateOneWithoutCareerMonitoringsNestedInput
 }
 
 export type CareerMonitoringUncheckedUpdateWithoutCompanyInput = {
@@ -977,9 +977,9 @@ export type CareerMonitoringUpdateWithoutJobInput = {
   placementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneWithoutCareerMonitoringsNestedInput
   school?: Prisma.SchoolUpdateOneRequiredWithoutCareerMonitoringsNestedInput
   student?: Prisma.StudentProfileUpdateOneRequiredWithoutCareerMonitoringsNestedInput
-  company?: Prisma.CompanyUpdateOneWithoutCareerMonitoringsNestedInput
 }
 
 export type CareerMonitoringUncheckedUpdateWithoutJobInput = {
@@ -1029,9 +1029,9 @@ export type CareerMonitoringUpdateWithoutSchoolInput = {
   placementDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  student?: Prisma.StudentProfileUpdateOneRequiredWithoutCareerMonitoringsNestedInput
-  job?: Prisma.JobUpdateOneWithoutCareerMonitoringsNestedInput
   company?: Prisma.CompanyUpdateOneWithoutCareerMonitoringsNestedInput
+  job?: Prisma.JobUpdateOneWithoutCareerMonitoringsNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutCareerMonitoringsNestedInput
 }
 
 export type CareerMonitoringUncheckedUpdateWithoutSchoolInput = {
@@ -1074,10 +1074,10 @@ export type CareerMonitoringSelect<ExtArgs extends runtime.Types.Extensions.Inte
   placementDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
+  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
-  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
 }, ExtArgs["result"]["careerMonitoring"]>
 
 export type CareerMonitoringSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1092,10 +1092,10 @@ export type CareerMonitoringSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   placementDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
+  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
-  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
 }, ExtArgs["result"]["careerMonitoring"]>
 
 export type CareerMonitoringSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1110,10 +1110,10 @@ export type CareerMonitoringSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   placementDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
+  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
-  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
 }, ExtArgs["result"]["careerMonitoring"]>
 
 export type CareerMonitoringSelectScalar = {
@@ -1132,31 +1132,31 @@ export type CareerMonitoringSelectScalar = {
 
 export type CareerMonitoringOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "schoolId" | "studentId" | "jobId" | "companyId" | "stage" | "notes" | "monitoredBy" | "placementDate" | "createdAt" | "updatedAt", ExtArgs["result"]["careerMonitoring"]>
 export type CareerMonitoringInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
+  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
-  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
 }
 export type CareerMonitoringIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
+  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
-  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
 }
 export type CareerMonitoringIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
+  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
   school?: boolean | Prisma.SchoolDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  job?: boolean | Prisma.CareerMonitoring$jobArgs<ExtArgs>
-  company?: boolean | Prisma.CareerMonitoring$companyArgs<ExtArgs>
 }
 
 export type $CareerMonitoringPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "CareerMonitoring"
   objects: {
+    company: Prisma.$CompanyPayload<ExtArgs> | null
+    job: Prisma.$JobPayload<ExtArgs> | null
     school: Prisma.$SchoolPayload<ExtArgs>
     student: Prisma.$StudentProfilePayload<ExtArgs>
-    job: Prisma.$JobPayload<ExtArgs> | null
-    company: Prisma.$CompanyPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1564,10 +1564,10 @@ readonly fields: CareerMonitoringFieldRefs;
  */
 export interface Prisma__CareerMonitoringClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  company<T extends Prisma.CareerMonitoring$companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CareerMonitoring$companyArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  job<T extends Prisma.CareerMonitoring$jobArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CareerMonitoring$jobArgs<ExtArgs>>): Prisma.Prisma__JobClient<runtime.Types.Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   school<T extends Prisma.SchoolDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SchoolDefaultArgs<ExtArgs>>): Prisma.Prisma__SchoolClient<runtime.Types.Result.GetResult<Prisma.$SchoolPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  job<T extends Prisma.CareerMonitoring$jobArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CareerMonitoring$jobArgs<ExtArgs>>): Prisma.Prisma__JobClient<runtime.Types.Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  company<T extends Prisma.CareerMonitoring$companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CareerMonitoring$companyArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2009,25 +2009,6 @@ export type CareerMonitoringDeleteManyArgs<ExtArgs extends runtime.Types.Extensi
 }
 
 /**
- * CareerMonitoring.job
- */
-export type CareerMonitoring$jobArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Job
-   */
-  select?: Prisma.JobSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Job
-   */
-  omit?: Prisma.JobOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.JobInclude<ExtArgs> | null
-  where?: Prisma.JobWhereInput
-}
-
-/**
  * CareerMonitoring.company
  */
 export type CareerMonitoring$companyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2044,6 +2025,25 @@ export type CareerMonitoring$companyArgs<ExtArgs extends runtime.Types.Extension
    */
   include?: Prisma.CompanyInclude<ExtArgs> | null
   where?: Prisma.CompanyWhereInput
+}
+
+/**
+ * CareerMonitoring.job
+ */
+export type CareerMonitoring$jobArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Job
+   */
+  select?: Prisma.JobSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Job
+   */
+  omit?: Prisma.JobOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JobInclude<ExtArgs> | null
+  where?: Prisma.JobWhereInput
 }
 
 /**

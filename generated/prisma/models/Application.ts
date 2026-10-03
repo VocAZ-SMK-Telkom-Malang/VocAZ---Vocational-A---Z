@@ -43,6 +43,7 @@ export type ApplicationMinAggregateOutputType = {
   resumeKey: string | null
   status: $Enums.ApplicationStatus | null
   matchScore: number | null
+  matchScoreUpdatedAt: Date | null
   appliedAt: Date | null
   updatedAt: Date | null
   nextStep: string | null
@@ -60,6 +61,7 @@ export type ApplicationMaxAggregateOutputType = {
   resumeKey: string | null
   status: $Enums.ApplicationStatus | null
   matchScore: number | null
+  matchScoreUpdatedAt: Date | null
   appliedAt: Date | null
   updatedAt: Date | null
   nextStep: string | null
@@ -77,6 +79,8 @@ export type ApplicationCountAggregateOutputType = {
   resumeKey: number
   status: number
   matchScore: number
+  matchScoreBreakdown: number
+  matchScoreUpdatedAt: number
   appliedAt: number
   updatedAt: number
   nextStep: number
@@ -104,6 +108,7 @@ export type ApplicationMinAggregateInputType = {
   resumeKey?: true
   status?: true
   matchScore?: true
+  matchScoreUpdatedAt?: true
   appliedAt?: true
   updatedAt?: true
   nextStep?: true
@@ -121,6 +126,7 @@ export type ApplicationMaxAggregateInputType = {
   resumeKey?: true
   status?: true
   matchScore?: true
+  matchScoreUpdatedAt?: true
   appliedAt?: true
   updatedAt?: true
   nextStep?: true
@@ -138,6 +144,8 @@ export type ApplicationCountAggregateInputType = {
   resumeKey?: true
   status?: true
   matchScore?: true
+  matchScoreBreakdown?: true
+  matchScoreUpdatedAt?: true
   appliedAt?: true
   updatedAt?: true
   nextStep?: true
@@ -242,6 +250,8 @@ export type ApplicationGroupByOutputType = {
   resumeKey: string | null
   status: $Enums.ApplicationStatus
   matchScore: number | null
+  matchScoreBreakdown: runtime.JsonValue | null
+  matchScoreUpdatedAt: Date | null
   appliedAt: Date
   updatedAt: Date
   nextStep: string | null
@@ -282,15 +292,19 @@ export type ApplicationWhereInput = {
   resumeKey?: Prisma.StringNullableFilter<"Application"> | string | null
   status?: Prisma.EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
   matchScore?: Prisma.IntNullableFilter<"Application"> | number | null
+  matchScoreBreakdown?: Prisma.JsonNullableFilter<"Application">
+  matchScoreUpdatedAt?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
   appliedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
   nextStep?: Prisma.StringNullableFilter<"Application"> | string | null
   interviewDate?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
   recruiterName?: Prisma.StringNullableFilter<"Application"> | string | null
   notes?: Prisma.StringNullableFilter<"Application"> | string | null
+  screeningAnswers?: Prisma.ScreeningAnswerListRelationFilter
+  aiInterview?: Prisma.XOR<Prisma.AiInterviewNullableScalarRelationFilter, Prisma.AiInterviewWhereInput> | null
+  history?: Prisma.ApplicationStatusHistoryListRelationFilter
   job?: Prisma.XOR<Prisma.JobScalarRelationFilter, Prisma.JobWhereInput>
   student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
-  history?: Prisma.ApplicationStatusHistoryListRelationFilter
 }
 
 export type ApplicationOrderByWithRelationInput = {
@@ -302,15 +316,19 @@ export type ApplicationOrderByWithRelationInput = {
   resumeKey?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   matchScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  matchScoreBreakdown?: Prisma.SortOrderInput | Prisma.SortOrder
+  matchScoreUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   nextStep?: Prisma.SortOrderInput | Prisma.SortOrder
   interviewDate?: Prisma.SortOrderInput | Prisma.SortOrder
   recruiterName?: Prisma.SortOrderInput | Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  screeningAnswers?: Prisma.ScreeningAnswerOrderByRelationAggregateInput
+  aiInterview?: Prisma.AiInterviewOrderByWithRelationInput
+  history?: Prisma.ApplicationStatusHistoryOrderByRelationAggregateInput
   job?: Prisma.JobOrderByWithRelationInput
   student?: Prisma.StudentProfileOrderByWithRelationInput
-  history?: Prisma.ApplicationStatusHistoryOrderByRelationAggregateInput
 }
 
 export type ApplicationWhereUniqueInput = Prisma.AtLeast<{
@@ -326,15 +344,19 @@ export type ApplicationWhereUniqueInput = Prisma.AtLeast<{
   resumeKey?: Prisma.StringNullableFilter<"Application"> | string | null
   status?: Prisma.EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
   matchScore?: Prisma.IntNullableFilter<"Application"> | number | null
+  matchScoreBreakdown?: Prisma.JsonNullableFilter<"Application">
+  matchScoreUpdatedAt?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
   appliedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
   nextStep?: Prisma.StringNullableFilter<"Application"> | string | null
   interviewDate?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
   recruiterName?: Prisma.StringNullableFilter<"Application"> | string | null
   notes?: Prisma.StringNullableFilter<"Application"> | string | null
+  screeningAnswers?: Prisma.ScreeningAnswerListRelationFilter
+  aiInterview?: Prisma.XOR<Prisma.AiInterviewNullableScalarRelationFilter, Prisma.AiInterviewWhereInput> | null
+  history?: Prisma.ApplicationStatusHistoryListRelationFilter
   job?: Prisma.XOR<Prisma.JobScalarRelationFilter, Prisma.JobWhereInput>
   student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
-  history?: Prisma.ApplicationStatusHistoryListRelationFilter
 }, "id" | "jobId_studentId">
 
 export type ApplicationOrderByWithAggregationInput = {
@@ -346,6 +368,8 @@ export type ApplicationOrderByWithAggregationInput = {
   resumeKey?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   matchScore?: Prisma.SortOrderInput | Prisma.SortOrder
+  matchScoreBreakdown?: Prisma.SortOrderInput | Prisma.SortOrder
+  matchScoreUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   nextStep?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -371,6 +395,8 @@ export type ApplicationScalarWhereWithAggregatesInput = {
   resumeKey?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
   status?: Prisma.EnumApplicationStatusWithAggregatesFilter<"Application"> | $Enums.ApplicationStatus
   matchScore?: Prisma.IntNullableWithAggregatesFilter<"Application"> | number | null
+  matchScoreBreakdown?: Prisma.JsonNullableWithAggregatesFilter<"Application">
+  matchScoreUpdatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Application"> | Date | string | null
   appliedAt?: Prisma.DateTimeWithAggregatesFilter<"Application"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Application"> | Date | string
   nextStep?: Prisma.StringNullableWithAggregatesFilter<"Application"> | string | null
@@ -386,15 +412,19 @@ export type ApplicationCreateInput = {
   resumeKey?: string | null
   status?: $Enums.ApplicationStatus
   matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
   appliedAt?: Date | string
   updatedAt?: Date | string
   nextStep?: string | null
   interviewDate?: Date | string | null
   recruiterName?: string | null
   notes?: string | null
+  screeningAnswers?: Prisma.ScreeningAnswerCreateNestedManyWithoutApplicationInput
+  aiInterview?: Prisma.AiInterviewCreateNestedOneWithoutApplicationInput
+  history?: Prisma.ApplicationStatusHistoryCreateNestedManyWithoutApplicationInput
   job: Prisma.JobCreateNestedOneWithoutApplicationsInput
   student: Prisma.StudentProfileCreateNestedOneWithoutApplicationsInput
-  history?: Prisma.ApplicationStatusHistoryCreateNestedManyWithoutApplicationInput
 }
 
 export type ApplicationUncheckedCreateInput = {
@@ -406,12 +436,16 @@ export type ApplicationUncheckedCreateInput = {
   resumeKey?: string | null
   status?: $Enums.ApplicationStatus
   matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
   appliedAt?: Date | string
   updatedAt?: Date | string
   nextStep?: string | null
   interviewDate?: Date | string | null
   recruiterName?: string | null
   notes?: string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUncheckedCreateNestedManyWithoutApplicationInput
+  aiInterview?: Prisma.AiInterviewUncheckedCreateNestedOneWithoutApplicationInput
   history?: Prisma.ApplicationStatusHistoryUncheckedCreateNestedManyWithoutApplicationInput
 }
 
@@ -422,15 +456,19 @@ export type ApplicationUpdateInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUpdateManyWithoutApplicationNestedInput
+  aiInterview?: Prisma.AiInterviewUpdateOneWithoutApplicationNestedInput
+  history?: Prisma.ApplicationStatusHistoryUpdateManyWithoutApplicationNestedInput
   job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
   student?: Prisma.StudentProfileUpdateOneRequiredWithoutApplicationsNestedInput
-  history?: Prisma.ApplicationStatusHistoryUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationUncheckedUpdateInput = {
@@ -442,12 +480,16 @@ export type ApplicationUncheckedUpdateInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUncheckedUpdateManyWithoutApplicationNestedInput
+  aiInterview?: Prisma.AiInterviewUncheckedUpdateOneWithoutApplicationNestedInput
   history?: Prisma.ApplicationStatusHistoryUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
@@ -460,6 +502,8 @@ export type ApplicationCreateManyInput = {
   resumeKey?: string | null
   status?: $Enums.ApplicationStatus
   matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
   appliedAt?: Date | string
   updatedAt?: Date | string
   nextStep?: string | null
@@ -475,6 +519,8 @@ export type ApplicationUpdateManyMutationInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -492,6 +538,8 @@ export type ApplicationUncheckedUpdateManyInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -524,6 +572,8 @@ export type ApplicationCountOrderByAggregateInput = {
   resumeKey?: Prisma.SortOrder
   status?: Prisma.SortOrder
   matchScore?: Prisma.SortOrder
+  matchScoreBreakdown?: Prisma.SortOrder
+  matchScoreUpdatedAt?: Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   nextStep?: Prisma.SortOrder
@@ -545,6 +595,7 @@ export type ApplicationMaxOrderByAggregateInput = {
   resumeKey?: Prisma.SortOrder
   status?: Prisma.SortOrder
   matchScore?: Prisma.SortOrder
+  matchScoreUpdatedAt?: Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   nextStep?: Prisma.SortOrder
@@ -562,6 +613,7 @@ export type ApplicationMinOrderByAggregateInput = {
   resumeKey?: Prisma.SortOrder
   status?: Prisma.SortOrder
   matchScore?: Prisma.SortOrder
+  matchScoreUpdatedAt?: Prisma.SortOrder
   appliedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   nextStep?: Prisma.SortOrder
@@ -681,6 +733,34 @@ export type ApplicationUpdateOneRequiredWithoutHistoryNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ApplicationUpdateToOneWithWhereWithoutHistoryInput, Prisma.ApplicationUpdateWithoutHistoryInput>, Prisma.ApplicationUncheckedUpdateWithoutHistoryInput>
 }
 
+export type ApplicationCreateNestedOneWithoutScreeningAnswersInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutScreeningAnswersInput, Prisma.ApplicationUncheckedCreateWithoutScreeningAnswersInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutScreeningAnswersInput
+  connect?: Prisma.ApplicationWhereUniqueInput
+}
+
+export type ApplicationUpdateOneRequiredWithoutScreeningAnswersNestedInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutScreeningAnswersInput, Prisma.ApplicationUncheckedCreateWithoutScreeningAnswersInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutScreeningAnswersInput
+  upsert?: Prisma.ApplicationUpsertWithoutScreeningAnswersInput
+  connect?: Prisma.ApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ApplicationUpdateToOneWithWhereWithoutScreeningAnswersInput, Prisma.ApplicationUpdateWithoutScreeningAnswersInput>, Prisma.ApplicationUncheckedUpdateWithoutScreeningAnswersInput>
+}
+
+export type ApplicationCreateNestedOneWithoutAiInterviewInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutAiInterviewInput, Prisma.ApplicationUncheckedCreateWithoutAiInterviewInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutAiInterviewInput
+  connect?: Prisma.ApplicationWhereUniqueInput
+}
+
+export type ApplicationUpdateOneRequiredWithoutAiInterviewNestedInput = {
+  create?: Prisma.XOR<Prisma.ApplicationCreateWithoutAiInterviewInput, Prisma.ApplicationUncheckedCreateWithoutAiInterviewInput>
+  connectOrCreate?: Prisma.ApplicationCreateOrConnectWithoutAiInterviewInput
+  upsert?: Prisma.ApplicationUpsertWithoutAiInterviewInput
+  connect?: Prisma.ApplicationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ApplicationUpdateToOneWithWhereWithoutAiInterviewInput, Prisma.ApplicationUpdateWithoutAiInterviewInput>, Prisma.ApplicationUncheckedUpdateWithoutAiInterviewInput>
+}
+
 export type ApplicationCreateWithoutStudentInput = {
   id?: string
   coverLetter?: string | null
@@ -688,14 +768,18 @@ export type ApplicationCreateWithoutStudentInput = {
   resumeKey?: string | null
   status?: $Enums.ApplicationStatus
   matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
   appliedAt?: Date | string
   updatedAt?: Date | string
   nextStep?: string | null
   interviewDate?: Date | string | null
   recruiterName?: string | null
   notes?: string | null
-  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  screeningAnswers?: Prisma.ScreeningAnswerCreateNestedManyWithoutApplicationInput
+  aiInterview?: Prisma.AiInterviewCreateNestedOneWithoutApplicationInput
   history?: Prisma.ApplicationStatusHistoryCreateNestedManyWithoutApplicationInput
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
 }
 
 export type ApplicationUncheckedCreateWithoutStudentInput = {
@@ -706,12 +790,16 @@ export type ApplicationUncheckedCreateWithoutStudentInput = {
   resumeKey?: string | null
   status?: $Enums.ApplicationStatus
   matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
   appliedAt?: Date | string
   updatedAt?: Date | string
   nextStep?: string | null
   interviewDate?: Date | string | null
   recruiterName?: string | null
   notes?: string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUncheckedCreateNestedManyWithoutApplicationInput
+  aiInterview?: Prisma.AiInterviewUncheckedCreateNestedOneWithoutApplicationInput
   history?: Prisma.ApplicationStatusHistoryUncheckedCreateNestedManyWithoutApplicationInput
 }
 
@@ -753,6 +841,8 @@ export type ApplicationScalarWhereInput = {
   resumeKey?: Prisma.StringNullableFilter<"Application"> | string | null
   status?: Prisma.EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
   matchScore?: Prisma.IntNullableFilter<"Application"> | number | null
+  matchScoreBreakdown?: Prisma.JsonNullableFilter<"Application">
+  matchScoreUpdatedAt?: Prisma.DateTimeNullableFilter<"Application"> | Date | string | null
   appliedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Application"> | Date | string
   nextStep?: Prisma.StringNullableFilter<"Application"> | string | null
@@ -768,14 +858,18 @@ export type ApplicationCreateWithoutJobInput = {
   resumeKey?: string | null
   status?: $Enums.ApplicationStatus
   matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
   appliedAt?: Date | string
   updatedAt?: Date | string
   nextStep?: string | null
   interviewDate?: Date | string | null
   recruiterName?: string | null
   notes?: string | null
-  student: Prisma.StudentProfileCreateNestedOneWithoutApplicationsInput
+  screeningAnswers?: Prisma.ScreeningAnswerCreateNestedManyWithoutApplicationInput
+  aiInterview?: Prisma.AiInterviewCreateNestedOneWithoutApplicationInput
   history?: Prisma.ApplicationStatusHistoryCreateNestedManyWithoutApplicationInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutApplicationsInput
 }
 
 export type ApplicationUncheckedCreateWithoutJobInput = {
@@ -786,12 +880,16 @@ export type ApplicationUncheckedCreateWithoutJobInput = {
   resumeKey?: string | null
   status?: $Enums.ApplicationStatus
   matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
   appliedAt?: Date | string
   updatedAt?: Date | string
   nextStep?: string | null
   interviewDate?: Date | string | null
   recruiterName?: string | null
   notes?: string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUncheckedCreateNestedManyWithoutApplicationInput
+  aiInterview?: Prisma.AiInterviewUncheckedCreateNestedOneWithoutApplicationInput
   history?: Prisma.ApplicationStatusHistoryUncheckedCreateNestedManyWithoutApplicationInput
 }
 
@@ -828,12 +926,16 @@ export type ApplicationCreateWithoutHistoryInput = {
   resumeKey?: string | null
   status?: $Enums.ApplicationStatus
   matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
   appliedAt?: Date | string
   updatedAt?: Date | string
   nextStep?: string | null
   interviewDate?: Date | string | null
   recruiterName?: string | null
   notes?: string | null
+  screeningAnswers?: Prisma.ScreeningAnswerCreateNestedManyWithoutApplicationInput
+  aiInterview?: Prisma.AiInterviewCreateNestedOneWithoutApplicationInput
   job: Prisma.JobCreateNestedOneWithoutApplicationsInput
   student: Prisma.StudentProfileCreateNestedOneWithoutApplicationsInput
 }
@@ -847,12 +949,16 @@ export type ApplicationUncheckedCreateWithoutHistoryInput = {
   resumeKey?: string | null
   status?: $Enums.ApplicationStatus
   matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
   appliedAt?: Date | string
   updatedAt?: Date | string
   nextStep?: string | null
   interviewDate?: Date | string | null
   recruiterName?: string | null
   notes?: string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUncheckedCreateNestedManyWithoutApplicationInput
+  aiInterview?: Prisma.AiInterviewUncheckedCreateNestedOneWithoutApplicationInput
 }
 
 export type ApplicationCreateOrConnectWithoutHistoryInput = {
@@ -878,12 +984,16 @@ export type ApplicationUpdateWithoutHistoryInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUpdateManyWithoutApplicationNestedInput
+  aiInterview?: Prisma.AiInterviewUpdateOneWithoutApplicationNestedInput
   job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
   student?: Prisma.StudentProfileUpdateOneRequiredWithoutApplicationsNestedInput
 }
@@ -897,12 +1007,216 @@ export type ApplicationUncheckedUpdateWithoutHistoryInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUncheckedUpdateManyWithoutApplicationNestedInput
+  aiInterview?: Prisma.AiInterviewUncheckedUpdateOneWithoutApplicationNestedInput
+}
+
+export type ApplicationCreateWithoutScreeningAnswersInput = {
+  id?: string
+  coverLetter?: string | null
+  resumeUrl?: string | null
+  resumeKey?: string | null
+  status?: $Enums.ApplicationStatus
+  matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
+  appliedAt?: Date | string
+  updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
+  aiInterview?: Prisma.AiInterviewCreateNestedOneWithoutApplicationInput
+  history?: Prisma.ApplicationStatusHistoryCreateNestedManyWithoutApplicationInput
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutApplicationsInput
+}
+
+export type ApplicationUncheckedCreateWithoutScreeningAnswersInput = {
+  id?: string
+  jobId: string
+  studentId: string
+  coverLetter?: string | null
+  resumeUrl?: string | null
+  resumeKey?: string | null
+  status?: $Enums.ApplicationStatus
+  matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
+  appliedAt?: Date | string
+  updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
+  aiInterview?: Prisma.AiInterviewUncheckedCreateNestedOneWithoutApplicationInput
+  history?: Prisma.ApplicationStatusHistoryUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type ApplicationCreateOrConnectWithoutScreeningAnswersInput = {
+  where: Prisma.ApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutScreeningAnswersInput, Prisma.ApplicationUncheckedCreateWithoutScreeningAnswersInput>
+}
+
+export type ApplicationUpsertWithoutScreeningAnswersInput = {
+  update: Prisma.XOR<Prisma.ApplicationUpdateWithoutScreeningAnswersInput, Prisma.ApplicationUncheckedUpdateWithoutScreeningAnswersInput>
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutScreeningAnswersInput, Prisma.ApplicationUncheckedCreateWithoutScreeningAnswersInput>
+  where?: Prisma.ApplicationWhereInput
+}
+
+export type ApplicationUpdateToOneWithWhereWithoutScreeningAnswersInput = {
+  where?: Prisma.ApplicationWhereInput
+  data: Prisma.XOR<Prisma.ApplicationUpdateWithoutScreeningAnswersInput, Prisma.ApplicationUncheckedUpdateWithoutScreeningAnswersInput>
+}
+
+export type ApplicationUpdateWithoutScreeningAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiInterview?: Prisma.AiInterviewUpdateOneWithoutApplicationNestedInput
+  history?: Prisma.ApplicationStatusHistoryUpdateManyWithoutApplicationNestedInput
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutApplicationsNestedInput
+}
+
+export type ApplicationUncheckedUpdateWithoutScreeningAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  aiInterview?: Prisma.AiInterviewUncheckedUpdateOneWithoutApplicationNestedInput
+  history?: Prisma.ApplicationStatusHistoryUncheckedUpdateManyWithoutApplicationNestedInput
+}
+
+export type ApplicationCreateWithoutAiInterviewInput = {
+  id?: string
+  coverLetter?: string | null
+  resumeUrl?: string | null
+  resumeKey?: string | null
+  status?: $Enums.ApplicationStatus
+  matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
+  appliedAt?: Date | string
+  updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
+  screeningAnswers?: Prisma.ScreeningAnswerCreateNestedManyWithoutApplicationInput
+  history?: Prisma.ApplicationStatusHistoryCreateNestedManyWithoutApplicationInput
+  job: Prisma.JobCreateNestedOneWithoutApplicationsInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutApplicationsInput
+}
+
+export type ApplicationUncheckedCreateWithoutAiInterviewInput = {
+  id?: string
+  jobId: string
+  studentId: string
+  coverLetter?: string | null
+  resumeUrl?: string | null
+  resumeKey?: string | null
+  status?: $Enums.ApplicationStatus
+  matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
+  appliedAt?: Date | string
+  updatedAt?: Date | string
+  nextStep?: string | null
+  interviewDate?: Date | string | null
+  recruiterName?: string | null
+  notes?: string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUncheckedCreateNestedManyWithoutApplicationInput
+  history?: Prisma.ApplicationStatusHistoryUncheckedCreateNestedManyWithoutApplicationInput
+}
+
+export type ApplicationCreateOrConnectWithoutAiInterviewInput = {
+  where: Prisma.ApplicationWhereUniqueInput
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutAiInterviewInput, Prisma.ApplicationUncheckedCreateWithoutAiInterviewInput>
+}
+
+export type ApplicationUpsertWithoutAiInterviewInput = {
+  update: Prisma.XOR<Prisma.ApplicationUpdateWithoutAiInterviewInput, Prisma.ApplicationUncheckedUpdateWithoutAiInterviewInput>
+  create: Prisma.XOR<Prisma.ApplicationCreateWithoutAiInterviewInput, Prisma.ApplicationUncheckedCreateWithoutAiInterviewInput>
+  where?: Prisma.ApplicationWhereInput
+}
+
+export type ApplicationUpdateToOneWithWhereWithoutAiInterviewInput = {
+  where?: Prisma.ApplicationWhereInput
+  data: Prisma.XOR<Prisma.ApplicationUpdateWithoutAiInterviewInput, Prisma.ApplicationUncheckedUpdateWithoutAiInterviewInput>
+}
+
+export type ApplicationUpdateWithoutAiInterviewInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUpdateManyWithoutApplicationNestedInput
+  history?: Prisma.ApplicationStatusHistoryUpdateManyWithoutApplicationNestedInput
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutApplicationsNestedInput
+}
+
+export type ApplicationUncheckedUpdateWithoutAiInterviewInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  jobId?: Prisma.StringFieldUpdateOperationsInput | string
+  studentId?: Prisma.StringFieldUpdateOperationsInput | string
+  coverLetter?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
+  matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUncheckedUpdateManyWithoutApplicationNestedInput
+  history?: Prisma.ApplicationStatusHistoryUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
 export type ApplicationCreateManyStudentInput = {
@@ -913,6 +1227,8 @@ export type ApplicationCreateManyStudentInput = {
   resumeKey?: string | null
   status?: $Enums.ApplicationStatus
   matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
   appliedAt?: Date | string
   updatedAt?: Date | string
   nextStep?: string | null
@@ -928,14 +1244,18 @@ export type ApplicationUpdateWithoutStudentInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
+  screeningAnswers?: Prisma.ScreeningAnswerUpdateManyWithoutApplicationNestedInput
+  aiInterview?: Prisma.AiInterviewUpdateOneWithoutApplicationNestedInput
   history?: Prisma.ApplicationStatusHistoryUpdateManyWithoutApplicationNestedInput
+  job?: Prisma.JobUpdateOneRequiredWithoutApplicationsNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutStudentInput = {
@@ -946,12 +1266,16 @@ export type ApplicationUncheckedUpdateWithoutStudentInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUncheckedUpdateManyWithoutApplicationNestedInput
+  aiInterview?: Prisma.AiInterviewUncheckedUpdateOneWithoutApplicationNestedInput
   history?: Prisma.ApplicationStatusHistoryUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
@@ -963,6 +1287,8 @@ export type ApplicationUncheckedUpdateManyWithoutStudentInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -979,6 +1305,8 @@ export type ApplicationCreateManyJobInput = {
   resumeKey?: string | null
   status?: $Enums.ApplicationStatus
   matchScore?: number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Date | string | null
   appliedAt?: Date | string
   updatedAt?: Date | string
   nextStep?: string | null
@@ -994,14 +1322,18 @@ export type ApplicationUpdateWithoutJobInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  student?: Prisma.StudentProfileUpdateOneRequiredWithoutApplicationsNestedInput
+  screeningAnswers?: Prisma.ScreeningAnswerUpdateManyWithoutApplicationNestedInput
+  aiInterview?: Prisma.AiInterviewUpdateOneWithoutApplicationNestedInput
   history?: Prisma.ApplicationStatusHistoryUpdateManyWithoutApplicationNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutApplicationsNestedInput
 }
 
 export type ApplicationUncheckedUpdateWithoutJobInput = {
@@ -1012,12 +1344,16 @@ export type ApplicationUncheckedUpdateWithoutJobInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   interviewDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   recruiterName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  screeningAnswers?: Prisma.ScreeningAnswerUncheckedUpdateManyWithoutApplicationNestedInput
+  aiInterview?: Prisma.AiInterviewUncheckedUpdateOneWithoutApplicationNestedInput
   history?: Prisma.ApplicationStatusHistoryUncheckedUpdateManyWithoutApplicationNestedInput
 }
 
@@ -1029,6 +1365,8 @@ export type ApplicationUncheckedUpdateManyWithoutJobInput = {
   resumeKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   matchScore?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  matchScoreBreakdown?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  matchScoreUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   appliedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   nextStep?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1043,10 +1381,12 @@ export type ApplicationUncheckedUpdateManyWithoutJobInput = {
  */
 
 export type ApplicationCountOutputType = {
+  screeningAnswers: number
   history: number
 }
 
 export type ApplicationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  screeningAnswers?: boolean | ApplicationCountOutputTypeCountScreeningAnswersArgs
   history?: boolean | ApplicationCountOutputTypeCountHistoryArgs
 }
 
@@ -1058,6 +1398,13 @@ export type ApplicationCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.
    * Select specific fields to fetch from the ApplicationCountOutputType
    */
   select?: Prisma.ApplicationCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ApplicationCountOutputType without action
+ */
+export type ApplicationCountOutputTypeCountScreeningAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ScreeningAnswerWhereInput
 }
 
 /**
@@ -1077,15 +1424,19 @@ export type ApplicationSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   resumeKey?: boolean
   status?: boolean
   matchScore?: boolean
+  matchScoreBreakdown?: boolean
+  matchScoreUpdatedAt?: boolean
   appliedAt?: boolean
   updatedAt?: boolean
   nextStep?: boolean
   interviewDate?: boolean
   recruiterName?: boolean
   notes?: boolean
+  screeningAnswers?: boolean | Prisma.Application$screeningAnswersArgs<ExtArgs>
+  aiInterview?: boolean | Prisma.Application$aiInterviewArgs<ExtArgs>
+  history?: boolean | Prisma.Application$historyArgs<ExtArgs>
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  history?: boolean | Prisma.Application$historyArgs<ExtArgs>
   _count?: boolean | Prisma.ApplicationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["application"]>
 
@@ -1098,6 +1449,8 @@ export type ApplicationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   resumeKey?: boolean
   status?: boolean
   matchScore?: boolean
+  matchScoreBreakdown?: boolean
+  matchScoreUpdatedAt?: boolean
   appliedAt?: boolean
   updatedAt?: boolean
   nextStep?: boolean
@@ -1117,6 +1470,8 @@ export type ApplicationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   resumeKey?: boolean
   status?: boolean
   matchScore?: boolean
+  matchScoreBreakdown?: boolean
+  matchScoreUpdatedAt?: boolean
   appliedAt?: boolean
   updatedAt?: boolean
   nextStep?: boolean
@@ -1136,6 +1491,8 @@ export type ApplicationSelectScalar = {
   resumeKey?: boolean
   status?: boolean
   matchScore?: boolean
+  matchScoreBreakdown?: boolean
+  matchScoreUpdatedAt?: boolean
   appliedAt?: boolean
   updatedAt?: boolean
   nextStep?: boolean
@@ -1144,11 +1501,13 @@ export type ApplicationSelectScalar = {
   notes?: boolean
 }
 
-export type ApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobId" | "studentId" | "coverLetter" | "resumeUrl" | "resumeKey" | "status" | "matchScore" | "appliedAt" | "updatedAt" | "nextStep" | "interviewDate" | "recruiterName" | "notes", ExtArgs["result"]["application"]>
+export type ApplicationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "jobId" | "studentId" | "coverLetter" | "resumeUrl" | "resumeKey" | "status" | "matchScore" | "matchScoreBreakdown" | "matchScoreUpdatedAt" | "appliedAt" | "updatedAt" | "nextStep" | "interviewDate" | "recruiterName" | "notes", ExtArgs["result"]["application"]>
 export type ApplicationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  screeningAnswers?: boolean | Prisma.Application$screeningAnswersArgs<ExtArgs>
+  aiInterview?: boolean | Prisma.Application$aiInterviewArgs<ExtArgs>
+  history?: boolean | Prisma.Application$historyArgs<ExtArgs>
   job?: boolean | Prisma.JobDefaultArgs<ExtArgs>
   student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
-  history?: boolean | Prisma.Application$historyArgs<ExtArgs>
   _count?: boolean | Prisma.ApplicationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ApplicationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1163,9 +1522,11 @@ export type ApplicationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type $ApplicationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Application"
   objects: {
+    screeningAnswers: Prisma.$ScreeningAnswerPayload<ExtArgs>[]
+    aiInterview: Prisma.$AiInterviewPayload<ExtArgs> | null
+    history: Prisma.$ApplicationStatusHistoryPayload<ExtArgs>[]
     job: Prisma.$JobPayload<ExtArgs>
     student: Prisma.$StudentProfilePayload<ExtArgs>
-    history: Prisma.$ApplicationStatusHistoryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1176,6 +1537,8 @@ export type $ApplicationPayload<ExtArgs extends runtime.Types.Extensions.Interna
     resumeKey: string | null
     status: $Enums.ApplicationStatus
     matchScore: number | null
+    matchScoreBreakdown: runtime.JsonValue | null
+    matchScoreUpdatedAt: Date | null
     appliedAt: Date
     updatedAt: Date
     nextStep: string | null
@@ -1576,9 +1939,11 @@ readonly fields: ApplicationFieldRefs;
  */
 export interface Prisma__ApplicationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  screeningAnswers<T extends Prisma.Application$screeningAnswersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$screeningAnswersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ScreeningAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  aiInterview<T extends Prisma.Application$aiInterviewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$aiInterviewArgs<ExtArgs>>): Prisma.Prisma__AiInterviewClient<runtime.Types.Result.GetResult<Prisma.$AiInterviewPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  history<T extends Prisma.Application$historyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$historyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationStatusHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   job<T extends Prisma.JobDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JobDefaultArgs<ExtArgs>>): Prisma.Prisma__JobClient<runtime.Types.Result.GetResult<Prisma.$JobPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  history<T extends Prisma.Application$historyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Application$historyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ApplicationStatusHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1616,6 +1981,8 @@ export interface ApplicationFieldRefs {
   readonly resumeKey: Prisma.FieldRef<"Application", 'String'>
   readonly status: Prisma.FieldRef<"Application", 'ApplicationStatus'>
   readonly matchScore: Prisma.FieldRef<"Application", 'Int'>
+  readonly matchScoreBreakdown: Prisma.FieldRef<"Application", 'Json'>
+  readonly matchScoreUpdatedAt: Prisma.FieldRef<"Application", 'DateTime'>
   readonly appliedAt: Prisma.FieldRef<"Application", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Application", 'DateTime'>
   readonly nextStep: Prisma.FieldRef<"Application", 'String'>
@@ -2020,6 +2387,49 @@ export type ApplicationDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many Applications to delete.
    */
   limit?: number
+}
+
+/**
+ * Application.screeningAnswers
+ */
+export type Application$screeningAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ScreeningAnswer
+   */
+  select?: Prisma.ScreeningAnswerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ScreeningAnswer
+   */
+  omit?: Prisma.ScreeningAnswerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ScreeningAnswerInclude<ExtArgs> | null
+  where?: Prisma.ScreeningAnswerWhereInput
+  orderBy?: Prisma.ScreeningAnswerOrderByWithRelationInput | Prisma.ScreeningAnswerOrderByWithRelationInput[]
+  cursor?: Prisma.ScreeningAnswerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ScreeningAnswerScalarFieldEnum | Prisma.ScreeningAnswerScalarFieldEnum[]
+}
+
+/**
+ * Application.aiInterview
+ */
+export type Application$aiInterviewArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AiInterview
+   */
+  select?: Prisma.AiInterviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AiInterview
+   */
+  omit?: Prisma.AiInterviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AiInterviewInclude<ExtArgs> | null
+  where?: Prisma.AiInterviewWhereInput
 }
 
 /**

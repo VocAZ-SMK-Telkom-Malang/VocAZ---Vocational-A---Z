@@ -13,10 +13,10 @@ const footerColumns = [
   {
     title: 'Untuk',
     items: [
-      { label: 'Siswa & Alumni SMK', href: '/auth/sign-up' },
-      { label: 'Perusahaan & Recruiter', href: '/auth/sign-up' },
-      { label: 'Sekolah & BKK', href: '/auth/sign-up' },
-      { label: 'Lembaga Sertifikasi', href: '/auth/sign-up' },
+      { label: 'Siswa & Alumni SMK', href: '/register/student/1' },
+      { label: 'Perusahaan & Recruiter', href: '/register/company/1' },
+      { label: 'Sekolah & BKK', href: '/register/school/1' },
+      { label: 'Lembaga Sertifikasi', href: '/register/certification/1' },
     ],
   },
   {

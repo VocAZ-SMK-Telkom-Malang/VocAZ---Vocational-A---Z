@@ -1,28 +1,43 @@
+// app/company/dashboard/page.tsx
 import { redirect } from 'next/navigation'
-import { prisma } from '@/lib/prisma'
-import { getServerSession } from '@/lib/auth/session'
-import { LogoutButton } from '@/components/shared/logout-button'
+import {
+  getCompanyContext,
+  getDashboardStats,
+  getRecruitmentTrend,
+  getActiveJobs,
+  getRecentApplicants,
+  getSmartMatchCandidates,
+  getVerificationSummary,
+} from '@/lib/queries/company-dashboard'
+import { CompanyDashboardClient } from './dashboard-client'
 
-export default async function CompanyDashboard() {
-  const session = await getServerSession()
-  if (!session?.user) redirect('/auth/sign-in')
+export const metadata = {
+  title: 'Dashboard Recruiter — VocAZ',
+}
 
-  const user = await prisma.user.findUnique({
-    where: { neonAuthUserId: session.user.id },
-  })
-  if (!user) redirect('/onboarding')
+export default async function CompanyDashboardPage() {
+  const ctx = await getCompanyContext()
+  if (!ctx) redirect('/register/company/1')
+
+  const [stats, trend, activeJobs, recentApplicants, matchCandidates, verification] =
+    await Promise.all([
+      getDashboardStats(ctx.companyId),
+      getRecruitmentTrend(ctx.companyId, 30),
+      getActiveJobs(ctx.companyId, 5),
+      getRecentApplicants(ctx.companyId, 4),
+      getSmartMatchCandidates(ctx.companyId, 3),
+      getVerificationSummary(ctx.companyId),
+    ])
 
   return (
-    <div className="min-h-screen p-8 bg-gray-50">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold">Dashboard Company 🏢</h1>
-          <LogoutButton />
-        </div>
-        <p className="text-gray-600">
-          Selamat datang, <strong>{user.fullName}</strong>!
-        </p>
-      </div>
-    </div>
+    <CompanyDashboardClient
+      ctx={ctx}
+      stats={stats}
+      trend={trend}
+      activeJobs={activeJobs}
+      recentApplicants={recentApplicants}
+      matchCandidates={matchCandidates}
+      verification={verification}
+    />
   )
 }

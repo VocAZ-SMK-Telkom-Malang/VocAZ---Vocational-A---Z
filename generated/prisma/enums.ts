@@ -9,6 +9,15 @@
 * 🟢 You can import this file directly.
 */
 
+export const SchoolMemberRole = {
+  owner: 'owner',
+  admin: 'admin',
+  member: 'member'
+} as const
+
+export type SchoolMemberRole = (typeof SchoolMemberRole)[keyof typeof SchoolMemberRole]
+
+
 export const Role = {
   student: 'student',
   company: 'company',
@@ -314,3 +323,43 @@ export const ShowcaseLikeStatus = {
 } as const
 
 export type ShowcaseLikeStatus = (typeof ShowcaseLikeStatus)[keyof typeof ShowcaseLikeStatus]
+
+
+export const ScreeningQuestionType = {
+  yes_no: 'yes_no',
+  text: 'text',
+  number: 'number',
+  multiple_choice: 'multiple_choice'
+} as const
+
+export type ScreeningQuestionType = (typeof ScreeningQuestionType)[keyof typeof ScreeningQuestionType]
+
+
+export const AiInterviewStatus = {
+  pending: 'pending',
+  completed: 'completed',
+  expired: 'expired',
+  cancelled: 'cancelled'
+} as const
+
+export type AiInterviewStatus = (typeof AiInterviewStatus)[keyof typeof AiInterviewStatus]
+
+
+export const TalentInvitationStatus = {
+  pending: 'pending',
+  accepted: 'accepted',
+  declined: 'declined',
+  expired: 'expired'
+} as const
+
+export type TalentInvitationStatus = (typeof TalentInvitationStatus)[keyof typeof TalentInvitationStatus]
+
+
+export const CompanyInvitationStatus = {
+  pending: 'pending',
+  accepted: 'accepted',
+  expired: 'expired',
+  revoked: 'revoked'
+} as const
+
+export type CompanyInvitationStatus = (typeof CompanyInvitationStatus)[keyof typeof CompanyInvitationStatus]

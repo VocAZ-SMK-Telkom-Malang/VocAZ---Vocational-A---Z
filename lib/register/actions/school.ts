@@ -4,6 +4,7 @@
 import { prisma } from '@/lib/prisma'
 import type { FinalizeSchoolInput } from '@/lib/register/types'
 import { SCHOOL_PLANS } from '@/lib/register/school-plans'
+import { ensureSchoolToken } from '@/lib/school/token'
 
 type ActionState = {
   ok: boolean
@@ -71,6 +72,9 @@ export async function finalizeSchoolRegistration(
       return { ok: false, error: 'Paket tidak valid' }
     }
 
+    // ============================================
+    // 1. Buat User
+    // ============================================
     const user = await prisma.user.create({
       data: {
         neonAuthUserId: input.neonAuthUserId,
@@ -81,6 +85,9 @@ export async function finalizeSchoolRegistration(
       },
     })
 
+    // ============================================
+    // 2. Generate slug + schoolCode unik
+    // ============================================
     const baseSlug = generateSlug(input.schoolName)
     const existingSlug = await prisma.school.findUnique({
       where: { slug: baseSlug },
@@ -100,10 +107,16 @@ export async function finalizeSchoolRegistration(
       attempts++
     }
 
+    // ============================================
+    // 3. Subscription dates
+    // ============================================
     const now = new Date()
     const expiresAt = new Date(now)
     expiresAt.setFullYear(expiresAt.getFullYear() + 1)
 
+    // ============================================
+    // 4. Buat School
+    // ============================================
     const school = await prisma.school.create({
       data: {
         ownerUserId: user.id,
@@ -135,6 +148,36 @@ export async function finalizeSchoolRegistration(
       },
     })
 
+    // ============================================
+    // 5. Generate ENROLLMENT TOKEN untuk siswa
+    // ============================================
+    let enrollmentToken: string | null = null
+    try {
+      enrollmentToken = await ensureSchoolToken(school.id)
+    } catch (err) {
+      console.error('[finalizeSchool] gagal generate enrollment token:', err)
+      // Jangan fail registrasi — token bisa di-generate nanti dari setting
+    }
+
+    // ============================================
+    // 6. Buat SchoolMember (owner)
+    // ============================================
+    try {
+      await prisma.schoolMember.create({
+        data: {
+          schoolId: school.id,
+          userId: user.id,
+          role: 'owner',
+        },
+      })
+    } catch (err) {
+      console.error('[finalizeSchool] gagal create SchoolMember:', err)
+      // Jangan fail — owner relation udah ada via ownedSchool
+    }
+
+    // ============================================
+    // 7. Audit log
+    // ============================================
     await prisma.auditLog.create({
       data: {
         actorId: user.id,
@@ -150,6 +193,9 @@ export async function finalizeSchoolRegistration(
       },
     })
 
+    // ============================================
+    // 8. Return
+    // ============================================
     return {
       ok: true,
       data: {
@@ -157,6 +203,7 @@ export async function finalizeSchoolRegistration(
         schoolId: school.id,
         schoolSlug: school.slug,
         schoolCode: school.schoolCode,
+        enrollmentToken, // ← token untuk share ke siswa
       },
     }
   } catch (err) {

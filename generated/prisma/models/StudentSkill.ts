@@ -174,8 +174,8 @@ export type StudentSkillWhereInput = {
   studentId?: Prisma.UuidFilter<"StudentSkill"> | string
   skillId?: Prisma.UuidFilter<"StudentSkill"> | string
   proficiency?: Prisma.EnumProficiencyFilter<"StudentSkill"> | $Enums.Proficiency
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   skill?: Prisma.XOR<Prisma.SkillScalarRelationFilter, Prisma.SkillWhereInput>
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }
 
 export type StudentSkillOrderByWithRelationInput = {
@@ -183,8 +183,8 @@ export type StudentSkillOrderByWithRelationInput = {
   studentId?: Prisma.SortOrder
   skillId?: Prisma.SortOrder
   proficiency?: Prisma.SortOrder
-  student?: Prisma.StudentProfileOrderByWithRelationInput
   skill?: Prisma.SkillOrderByWithRelationInput
+  student?: Prisma.StudentProfileOrderByWithRelationInput
 }
 
 export type StudentSkillWhereUniqueInput = Prisma.AtLeast<{
@@ -196,8 +196,8 @@ export type StudentSkillWhereUniqueInput = Prisma.AtLeast<{
   studentId?: Prisma.UuidFilter<"StudentSkill"> | string
   skillId?: Prisma.UuidFilter<"StudentSkill"> | string
   proficiency?: Prisma.EnumProficiencyFilter<"StudentSkill"> | $Enums.Proficiency
-  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
   skill?: Prisma.XOR<Prisma.SkillScalarRelationFilter, Prisma.SkillWhereInput>
+  student?: Prisma.XOR<Prisma.StudentProfileScalarRelationFilter, Prisma.StudentProfileWhereInput>
 }, "id" | "studentId_skillId">
 
 export type StudentSkillOrderByWithAggregationInput = {
@@ -223,8 +223,8 @@ export type StudentSkillScalarWhereWithAggregatesInput = {
 export type StudentSkillCreateInput = {
   id?: string
   proficiency?: $Enums.Proficiency
-  student: Prisma.StudentProfileCreateNestedOneWithoutSkillsInput
   skill: Prisma.SkillCreateNestedOneWithoutStudentsInput
+  student: Prisma.StudentProfileCreateNestedOneWithoutSkillsInput
 }
 
 export type StudentSkillUncheckedCreateInput = {
@@ -237,8 +237,8 @@ export type StudentSkillUncheckedCreateInput = {
 export type StudentSkillUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   proficiency?: Prisma.EnumProficiencyFieldUpdateOperationsInput | $Enums.Proficiency
-  student?: Prisma.StudentProfileUpdateOneRequiredWithoutSkillsNestedInput
   skill?: Prisma.SkillUpdateOneRequiredWithoutStudentsNestedInput
+  student?: Prisma.StudentProfileUpdateOneRequiredWithoutSkillsNestedInput
 }
 
 export type StudentSkillUncheckedUpdateInput = {
@@ -532,8 +532,8 @@ export type StudentSkillSelect<ExtArgs extends runtime.Types.Extensions.Internal
   studentId?: boolean
   skillId?: boolean
   proficiency?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentSkill"]>
 
 export type StudentSkillSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -541,8 +541,8 @@ export type StudentSkillSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   studentId?: boolean
   skillId?: boolean
   proficiency?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentSkill"]>
 
 export type StudentSkillSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -550,8 +550,8 @@ export type StudentSkillSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   studentId?: boolean
   skillId?: boolean
   proficiency?: boolean
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentSkill"]>
 
 export type StudentSkillSelectScalar = {
@@ -563,23 +563,23 @@ export type StudentSkillSelectScalar = {
 
 export type StudentSkillOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "studentId" | "skillId" | "proficiency", ExtArgs["result"]["studentSkill"]>
 export type StudentSkillInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 export type StudentSkillIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 export type StudentSkillIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
   skill?: boolean | Prisma.SkillDefaultArgs<ExtArgs>
+  student?: boolean | Prisma.StudentProfileDefaultArgs<ExtArgs>
 }
 
 export type $StudentSkillPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "StudentSkill"
   objects: {
-    student: Prisma.$StudentProfilePayload<ExtArgs>
     skill: Prisma.$SkillPayload<ExtArgs>
+    student: Prisma.$StudentProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -980,8 +980,8 @@ readonly fields: StudentSkillFieldRefs;
  */
 export interface Prisma__StudentSkillClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   skill<T extends Prisma.SkillDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SkillDefaultArgs<ExtArgs>>): Prisma.Prisma__SkillClient<runtime.Types.Result.GetResult<Prisma.$SkillPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  student<T extends Prisma.StudentProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StudentProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__StudentProfileClient<runtime.Types.Result.GetResult<Prisma.$StudentProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
