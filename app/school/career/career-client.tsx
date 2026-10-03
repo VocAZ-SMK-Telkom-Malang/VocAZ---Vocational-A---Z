@@ -1,62 +1,66 @@
 // app/school/career/career-client.tsx
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
+import type { CareerStage } from '@/generated/prisma/enums'
 import {
   Target,
   Briefcase,
   Sparkles,
   Users,
   Trophy,
-  TrendingUp,
   MapPin,
   Clock,
-  ExternalLink,
   ChevronRight,
   Award,
   Calendar,
+  type LucideIcon,
 } from 'lucide-react'
+import type {
+  CareerOpportunity,
+  CareerStats,
+  PlacementItem,
+  RecommendedStudent,
+  RecruitmentStatusItem,
+} from '@/lib/queries/school-career'
 
 type Props = {
-  stats: {
-    totalActive: number
-    seeking: number
-    inProcess: number
-    placed: number
-    placementRate: number
-  }
+  stats: CareerStats
   tab: 'opportunities' | 'recommended' | 'recruitment' | 'placement'
-  stage: string
-  opportunities: any[]
-  recommended: any[]
-  recruitment: any[]
-  placements: any[]
+  stage: CareerStage | 'all'
+  opportunities: CareerOpportunity[]
+  recommended: RecommendedStudent[]
+  recruitment: RecruitmentStatusItem[]
+  placements: PlacementItem[]
 }
 
-const STAGE_LABEL: Record<string, string> = {
+const STAGE_LABEL: Record<CareerStage, string> = {
   opportunity: 'Cari Peluang',
+  recommended: 'Direkomendasikan',
   applied: 'Sudah Lamar',
   interview: 'Interview',
-  placement: 'Sudah Kerja',
+  offered: 'Penawaran Kerja',
   placed: 'Sudah Kerja',
-  unemployed: 'Belum Bekerja',
+  not_placed: 'Belum Diterima',
 }
 
-const STAGE_STYLE: Record<string, string> = {
+const STAGE_STYLE: Record<CareerStage, string> = {
   opportunity: 'bg-blue-100 text-blue-700',
+  recommended: 'bg-cyan-100 text-cyan-700',
   applied: 'bg-amber-100 text-amber-700',
   interview: 'bg-purple-100 text-purple-700',
-  placement: 'bg-emerald-100 text-emerald-700',
+  offered: 'bg-indigo-100 text-indigo-700',
   placed: 'bg-emerald-100 text-emerald-700',
-  unemployed: 'bg-slate-100 text-slate-700',
+  not_placed: 'bg-slate-100 text-slate-700',
 }
 
 export function SchoolCareerClient({
   stats,
   tab: initialTab,
-  stage: initialStage,
+  stage,
   opportunities,
   recommended,
   recruitment,
@@ -64,7 +68,6 @@ export function SchoolCareerClient({
 }: Props) {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
-  const [stage, setStage] = useState(initialStage)
 
   const tabs = [
     {
@@ -93,17 +96,19 @@ export function SchoolCareerClient({
     },
   ]
 
-  function goToTab(nextTab: string, nextStage?: string) {
+  function goToTab(
+    nextTab: Props['tab'],
+    nextStage: CareerStage | 'all' = stage
+  ) {
     const params = new URLSearchParams()
     params.set('tab', nextTab)
-    if (nextStage && nextStage !== 'all') params.set('stage', nextStage)
+    if (nextStage !== 'all') params.set('stage', nextStage)
     startTransition(() => {
       router.push(`/school/career?${params.toString()}`)
     })
   }
 
-  function goToStage(nextStage: string) {
-    setStage(nextStage)
+  function goToStage(nextStage: CareerStage | 'all') {
     goToTab('recruitment', nextStage)
   }
 
@@ -167,6 +172,8 @@ export function SchoolCareerClient({
               key={t.id}
               type="button"
               onClick={() => goToTab(t.id)}
+              disabled={isPending}
+              aria-pressed={isActive}
               className={`
                 flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-bold transition-all whitespace-nowrap
                 ${
@@ -174,6 +181,7 @@ export function SchoolCareerClient({
                     ? 'bg-white text-primary shadow-sm'
                     : 'text-on-surface-variant hover:text-on-surface'
                 }
+                disabled:cursor-wait disabled:opacity-60
               `}
             >
               <Icon className="w-4 h-4" />
@@ -207,6 +215,7 @@ export function SchoolCareerClient({
             items={recruitment}
             stage={stage}
             onChangeStage={goToStage}
+            isPending={isPending}
           />
         )}
         {initialTab === 'placement' && <PlacementTab items={placements} />}
@@ -219,7 +228,7 @@ export function SchoolCareerClient({
 // TAB 1 — OPPORTUNITIES (Lowongan)
 // ============================================
 
-function OpportunitiesTab({ items }: { items: any[] }) {
+function OpportunitiesTab({ items }: { items: CareerOpportunity[] }) {
   if (items.length === 0) {
     return (
       <EmptyState
@@ -240,9 +249,12 @@ function OpportunitiesTab({ items }: { items: any[] }) {
         >
           <div className="flex items-start gap-3">
             {job.companyLogoUrl ? (
-              <img
+              <Image
                 src={job.companyLogoUrl}
                 alt={job.companyName}
+                width={48}
+                height={48}
+                unoptimized
                 className="w-12 h-12 rounded-xl object-cover shrink-0 border border-outline-variant/30"
               />
             ) : (
@@ -318,7 +330,7 @@ function OpportunitiesTab({ items }: { items: any[] }) {
 // TAB 2 — RECOMMENDED
 // ============================================
 
-function RecommendedTab({ items }: { items: any[] }) {
+function RecommendedTab({ items }: { items: RecommendedStudent[] }) {
   if (items.length === 0) {
     return (
       <EmptyState
@@ -338,7 +350,7 @@ function RecommendedTab({ items }: { items: any[] }) {
   )
 }
 
-function RecommendedCard({ student }: { student: any }) {
+function RecommendedCard({ student }: { student: RecommendedStudent }) {
   const initials = student.fullName
     .split(' ')
     .map((w: string) => w[0])
@@ -353,9 +365,12 @@ function RecommendedCard({ student }: { student: any }) {
     >
       <div className="flex items-start gap-3 mb-3">
         {student.avatarUrl ? (
-          <img
+          <Image
             src={student.avatarUrl}
             alt={student.fullName}
+            width={48}
+            height={48}
+            unoptimized
             className="w-12 h-12 rounded-full object-cover shrink-0 ring-1 ring-outline-variant/30"
           />
         ) : (
@@ -419,17 +434,22 @@ function RecruitmentTab({
   items,
   stage,
   onChangeStage,
+  isPending,
 }: {
-  items: any[]
-  stage: string
-  onChangeStage: (s: string) => void
+  items: RecruitmentStatusItem[]
+  stage: CareerStage | 'all'
+  onChangeStage: (s: CareerStage | 'all') => void
+  isPending: boolean
 }) {
   const stages = [
-    { value: 'all', label: 'Semua' },
-    { value: 'opportunity', label: 'Cari Peluang' },
-    { value: 'applied', label: 'Sudah Lamar' },
-    { value: 'interview', label: 'Interview' },
-    { value: 'placement', label: 'Placement' },
+    { value: 'all' as const, label: 'Semua' },
+    { value: 'opportunity' as const, label: 'Cari Peluang' },
+    { value: 'recommended' as const, label: 'Direkomendasikan' },
+    { value: 'applied' as const, label: 'Sudah Lamar' },
+    { value: 'interview' as const, label: 'Interview' },
+    { value: 'offered' as const, label: 'Penawaran Kerja' },
+    { value: 'placed' as const, label: 'Sudah Kerja' },
+    { value: 'not_placed' as const, label: 'Belum Diterima' },
   ]
 
   return (
@@ -443,6 +463,8 @@ function RecruitmentTab({
               key={s.value}
               type="button"
               onClick={() => onChangeStage(s.value)}
+              disabled={isPending}
+              aria-pressed={isActive}
               className={`
                 px-3 py-1.5 rounded-full text-xs font-bold transition-colors
                 ${
@@ -450,6 +472,7 @@ function RecruitmentTab({
                     ? 'bg-primary text-white'
                     : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container'
                 }
+                disabled:cursor-wait disabled:opacity-60
               `}
             >
               {s.label}
@@ -475,9 +498,9 @@ function RecruitmentTab({
   )
 }
 
-function RecruitmentRow({ item }: { item: any }) {
-  const stageStyle = STAGE_STYLE[item.stage] ?? STAGE_STYLE.opportunity
-  const stageLabel = STAGE_LABEL[item.stage] ?? item.stage
+function RecruitmentRow({ item }: { item: RecruitmentStatusItem }) {
+  const stageStyle = STAGE_STYLE[item.stage]
+  const stageLabel = STAGE_LABEL[item.stage]
   const initials = item.student.fullName
     .split(' ')
     .map((w: string) => w[0])
@@ -488,9 +511,12 @@ function RecruitmentRow({ item }: { item: any }) {
   return (
     <div className="flex items-center gap-3 p-4 rounded-2xl bg-surface-container-lowest border border-outline-variant/30 hover:border-primary/30 transition-colors">
       {item.student.avatarUrl ? (
-        <img
+        <Image
           src={item.student.avatarUrl}
           alt={item.student.fullName}
+          width={40}
+          height={40}
+          unoptimized
           className="w-10 h-10 rounded-full object-cover shrink-0 ring-1 ring-outline-variant/30"
         />
       ) : (
@@ -535,7 +561,7 @@ function RecruitmentRow({ item }: { item: any }) {
 // TAB 4 — PLACEMENT
 // ============================================
 
-function PlacementTab({ items }: { items: any[] }) {
+function PlacementTab({ items }: { items: PlacementItem[] }) {
   if (items.length === 0) {
     return (
       <EmptyState
@@ -555,7 +581,7 @@ function PlacementTab({ items }: { items: any[] }) {
   )
 }
 
-function PlacementCard({ item }: { item: any }) {
+function PlacementCard({ item }: { item: PlacementItem }) {
   const initials = item.student.fullName
     .split(' ')
     .map((w: string) => w[0])
@@ -567,9 +593,12 @@ function PlacementCard({ item }: { item: any }) {
     <div className="rounded-2xl border border-emerald-200 bg-emerald-50/30 p-5">
       <div className="flex items-start gap-3 mb-3">
         {item.student.avatarUrl ? (
-          <img
+          <Image
             src={item.student.avatarUrl}
             alt={item.student.fullName}
+            width={48}
+            height={48}
+            unoptimized
             className="w-12 h-12 rounded-full object-cover shrink-0 ring-2 ring-emerald-200"
           />
         ) : (
@@ -601,9 +630,12 @@ function PlacementCard({ item }: { item: any }) {
         {item.company && (
           <div className="flex items-center gap-2">
             {item.company.logoUrl ? (
-              <img
+              <Image
                 src={item.company.logoUrl}
                 alt={item.company.name}
+                width={20}
+                height={20}
+                unoptimized
                 className="w-5 h-5 rounded object-cover shrink-0"
               />
             ) : (
@@ -654,7 +686,7 @@ function CareerStatCard({
   desc,
   color,
 }: {
-  icon: any
+  icon: LucideIcon
   label: string
   value: number
   desc: string
@@ -683,7 +715,7 @@ function EmptyState({
   title,
   desc,
 }: {
-  icon: any
+  icon: LucideIcon
   title: string
   desc: string
 }) {

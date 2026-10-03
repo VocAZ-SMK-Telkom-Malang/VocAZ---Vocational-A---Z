@@ -52,8 +52,8 @@ export default async function SchoolStudentDetailPage({ params }: Props) {
       certifications={certifications.map((c) => ({
         id: c.id,
         title: c.title,
-        issuer: c.issuer ?? null,
-        issueDate: c.issueDate ? c.issueDate.toISOString() : null,
+        issuer: c.institution?.name ?? null,
+        issueDate: c.issuedDate ? c.issuedDate.toISOString() : null,
         verificationStatus: c.verificationStatus,
       }))}
     />

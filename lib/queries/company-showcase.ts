@@ -264,7 +264,7 @@ export async function getCompanyShowcaseVideos(
               category: js.skill.category,
               isRequired: js.isRequired,
             })),
-            jobProgram: job.program,
+            jobProgram: null,
             jobCity: job.city,
             jobProvince: job.province,
           },

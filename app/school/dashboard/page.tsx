@@ -26,15 +26,15 @@ export default async function SchoolDashboardPage() {
         id: true,
         status: true,
         enrollmentYear: true,
+        program: {
+          select: { id: true, name: true },
+        },
         student: {
           select: {
             id: true,
             headline: true,
             user: {
               select: { fullName: true, avatarUrl: true },
-            },
-            program: {
-              select: { id: true, name: true },
             },
           },
         },

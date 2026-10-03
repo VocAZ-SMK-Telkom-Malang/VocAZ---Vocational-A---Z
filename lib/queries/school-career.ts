@@ -1,5 +1,7 @@
 // lib/queries/school-career.ts
 import { prisma } from '@/lib/prisma'
+import type { CareerStage } from '@/generated/prisma/enums'
+import type { Prisma } from '@/generated/prisma/client'
 
 // ============================================
 // TYPES
@@ -41,7 +43,7 @@ export type RecommendedStudent = {
 
 export type RecruitmentStatusItem = {
   linkId: string
-  stage: string
+  stage: CareerStage
   student: {
     profileId: string
     fullName: string
@@ -110,8 +112,7 @@ export async function getCareerStats(schoolId: string): Promise<CareerStats> {
   const seeking = stageMap['opportunity'] ?? 0
   const inProcess =
     (stageMap['applied'] ?? 0) + (stageMap['interview'] ?? 0)
-  const placed =
-    (stageMap['placement'] ?? 0) + (stageMap['placed'] ?? 0)
+  const placed = stageMap['placed'] ?? 0
 
   const placementRate =
     totalActive > 0 ? Math.round((placed / totalActive) * 100) : 0
@@ -146,7 +147,7 @@ export async function getCareerOpportunities(
       description: true,
       city: true,
       workMode: true,
-      deadline: true,
+      expiredAt: true,
       createdAt: true,
       company: {
         select: {
@@ -185,7 +186,7 @@ export async function getCareerOpportunities(
     companyLogoUrl: j.company.logoUrl ?? null,
     city: j.city ?? null,
     workMode: j.workMode ?? null,
-    deadline: j.deadline ? j.deadline.toISOString() : null,
+    deadline: j.expiredAt ? j.expiredAt.toISOString() : null,
     applicantCount: j._count.applications,
     matchedStudents: jobMonitorCount.get(j.id) ?? 0,
     description: j.description ?? null,
@@ -255,10 +256,10 @@ export async function getRecommendedStudents(
 
 export async function getRecruitmentStatus(
   schoolId: string,
-  filterStage?: string
+  filterStage: CareerStage | 'all' = 'all'
 ): Promise<RecruitmentStatusItem[]> {
-  const where: any = { schoolId }
-  if (filterStage && filterStage !== 'all') {
+  const where: Prisma.CareerMonitoringWhereInput = { schoolId }
+  if (filterStage !== 'all') {
     where.stage = filterStage
   }
 
@@ -321,7 +322,7 @@ export async function getPlacements(
   const items = await prisma.careerMonitoring.findMany({
     where: {
       schoolId,
-      OR: [{ stage: 'placement' }, { stage: 'placed' }],
+      stage: 'placed',
     },
     orderBy: { placementDate: 'desc' },
     take: limit,

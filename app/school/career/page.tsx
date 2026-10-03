@@ -1,5 +1,6 @@
 // app/school/career/page.tsx
 import { redirect } from 'next/navigation'
+import type { CareerStage } from '@/generated/prisma/enums'
 import { getSchoolContext } from '@/lib/queries/school-dashboard'
 import {
   getCareerStats,
@@ -14,7 +15,32 @@ export const metadata = {
   title: 'Career Monitoring — VocAZ BKK',
 }
 
-type SearchParams = Promise<{ tab?: string; stage?: string }>
+type SearchParams = Promise<{
+  tab?: string | string[]
+  stage?: string | string[]
+}>
+
+const CAREER_TABS = [
+  'opportunities',
+  'recommended',
+  'recruitment',
+  'placement',
+] as const
+
+const CAREER_STAGES = [
+  'opportunity',
+  'recommended',
+  'applied',
+  'interview',
+  'offered',
+  'placed',
+  'not_placed',
+] as const satisfies readonly CareerStage[]
+
+function getCareerStage(value: string | string[] | undefined): CareerStage | 'all' {
+  if (value === 'all') return 'all'
+  return CAREER_STAGES.find((stage) => stage === value) ?? 'all'
+}
 
 export default async function SchoolCareerPage({
   searchParams,
@@ -25,8 +51,9 @@ export default async function SchoolCareerPage({
   if (!ctx) redirect('/auth/sign-in')
 
   const sp = await searchParams
-  const tab = (sp.tab as any) ?? 'opportunities'
-  const stage = sp.stage ?? 'all'
+  const tab =
+    CAREER_TABS.find((candidate) => candidate === sp.tab) ?? 'opportunities'
+  const stage = getCareerStage(sp.stage)
 
   const [stats, opportunities, recommended, recruitment, placements] =
     await Promise.all([

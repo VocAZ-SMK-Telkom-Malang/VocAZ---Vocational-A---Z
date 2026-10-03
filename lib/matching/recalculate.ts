@@ -71,7 +71,7 @@ export async function recalculateApplicationMatch(
         category: js.skill.category,
         isRequired: js.isRequired,
       })),
-      jobProgram: app.job.program,
+      jobProgram: null,
       jobCity: app.job.city,
       jobProvince: app.job.province,
     },
