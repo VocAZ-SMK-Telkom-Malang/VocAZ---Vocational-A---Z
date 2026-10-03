@@ -1,5 +1,6 @@
 // lib/queries/school-students.ts
 import { prisma } from '@/lib/prisma'
+import type { Prisma } from '@/generated/prisma/client'
 
 // ============================================
 // TYPES
@@ -58,7 +59,7 @@ export async function getSchoolStudents(
   page: number
   totalPages: number
 }> {
-  const where: Parameters<typeof prisma.schoolStudent.findMany>[0]['where'] = {
+  const where: Prisma.SchoolStudentWhereInput = {
     schoolId,
     ...(filters.status && filters.status !== 'all'
       ? { status: filters.status as 'active' | 'graduated' | 'dropped' }

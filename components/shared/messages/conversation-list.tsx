@@ -3,27 +3,8 @@
 
 import { useState, useMemo } from 'react'
 import { Search, X, Inbox } from 'lucide-react'
+import type { ConversationItem as Conversation } from '@/lib/queries/messages'
 import { ConversationItem } from './conversation-item'
-
-type Conversation = {
-  id: string
-  otherUser: {
-    id: string
-    fullName: string
-    avatarUrl: string | null
-    role: string
-    headline: string | null
-    companyName: string | null
-  }
-  lastMessage: {
-    body: string
-    createdAt: string
-    senderId: string
-    isOwn: boolean
-  } | null
-  unreadCount: number
-  lastMessageAt: string
-}
 
 type Props = {
   conversations: Conversation[]

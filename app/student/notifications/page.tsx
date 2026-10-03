@@ -10,7 +10,7 @@ export const metadata = {
   title: 'Notifikasi — VocAZ',
 }
 
-export async function getNotificationsForUser(userId: string) {
+async function getNotificationsForUser(userId: string) {
   const [notifications, unreadCount, totalCount] = await Promise.all([
     prisma.notification.findMany({
       where: { userId },

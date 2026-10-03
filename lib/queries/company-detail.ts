@@ -11,13 +11,17 @@ export type CompanyDetailDTO = {
   location: string
   size: string
   verified: boolean
+  featured: boolean
   logoUrl: string | null
   logoColor: string
   website: string | null
   email: string | null
   phone: string | null
-  foundedYear: number
+  foundedYear: number | null
   employeeRange: string
+  rating: number
+  reviewCount: number
+  activeJobsCount: number
   jobs: Array<{
     id: string
     title: string
@@ -25,6 +29,7 @@ export type CompanyDetailDTO = {
     location: string | null
     employmentType: string
     workMode: string
+    skills: string[]
     salaryMin: number | null
     salaryMax: number | null
     isSalaryVisible: boolean
@@ -49,6 +54,9 @@ export async function getCompanyDetailBySlug(
           location: true,
           employmentType: true,
           workMode: true,
+          skills: {
+            select: { skill: { select: { name: true } } },
+          },
           salaryMin: true,
           salaryMax: true,
           isSalaryVisible: true,
@@ -72,13 +80,17 @@ export async function getCompanyDetailBySlug(
     location: company.city ?? company.province ?? 'Indonesia',
     size: mapSize(company.companySize),
     verified: company.verificationStatus === 'verified',
+    featured: company.featured,
     logoUrl: company.logoUrl,
     logoColor: company.logoColor ?? '#DC2626',
     website: company.website,
     email: company.email,
     phone: company.phone,
-    foundedYear: company.foundedYear ?? 0,
+    foundedYear: company.foundedYear,
     employeeRange: company.employeeRange ?? '-',
+    rating: company.rating,
+    reviewCount: company.reviewCount,
+    activeJobsCount: company._count.jobs,
     jobs: company.jobs.map((j) => ({
       id: j.id,
       title: j.title,
@@ -86,6 +98,7 @@ export async function getCompanyDetailBySlug(
       location: j.location,
       employmentType: j.employmentType,
       workMode: j.workMode,
+      skills: j.skills.map(({ skill }) => skill.name),
       salaryMin: j.salaryMin ? Number(j.salaryMin) : null,
       salaryMax: j.salaryMax ? Number(j.salaryMax) : null,
       isSalaryVisible: j.isSalaryVisible,

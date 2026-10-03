@@ -23,6 +23,15 @@ type SearchParams = {
   page?: string
 }
 
+function getDurationFilter(
+  value: string | undefined
+): NonNullable<ShowcaseFilters['durationFilter']> {
+  if (value === 'short' || value === 'medium' || value === 'long') {
+    return value
+  }
+  return 'all'
+}
+
 export default async function CompanyShowcasePage({
   searchParams,
 }: {
@@ -38,7 +47,7 @@ export default async function CompanyShowcasePage({
     jobId: sp.jobId ?? '',
     minScore: Number(sp.minScore) || 0,
     category: sp.category ?? 'all',
-    durationFilter: sp.duration ?? 'all',
+    durationFilter: getDurationFilter(sp.duration),
     sortBy: (sp.sortBy ?? 'match') as 'match' | 'newest' | 'popular' | 'views',
     page: Number(sp.page) || 1,
     pageSize: 12,

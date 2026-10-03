@@ -91,7 +91,7 @@ export default async function CompanyDetailPage({ params }: Props) {
               </div>
             ) : (
               <div className="space-y-3">
-                {(company as any).jobs.map((job: { id: string; slug: string; title: string; location: string | null; employmentType: string; workMode: string; skills?: string[] }) => {
+                {company.jobs.map((job) => {
                   const initials = company.name
                     .split(' ')
                     .map((w: string) => w[0])
@@ -127,24 +127,24 @@ export default async function CompanyDetailPage({ params }: Props) {
                           </span>
                           <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-surface-container text-[10px] font-medium text-on-surface-variant">
                             <Clock className="w-2.5 h-2.5" />
-                            {job.type}
+                            {job.employmentType}
                           </span>
                           <span
                             className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-semibold ${
-                              job.mode === 'Remote'
+                              job.workMode === 'remote'
                                 ? 'bg-emerald-50 text-emerald-700'
-                                : job.mode === 'Hybrid'
+                                : job.workMode === 'hybrid'
                                   ? 'bg-amber-50 text-amber-700'
                                   : 'bg-blue-50 text-blue-700'
                             }`}
                           >
-                            {job.mode}
+                            {job.workMode}
                           </span>
                         </div>
 
                         {job.skills.length > 0 && (
                           <div className="flex flex-wrap gap-1 mt-2">
-                            {(job.skills ?? []).slice(0, 3).map((s: string) => (
+                            {job.skills.slice(0, 3).map((s) => (
                               <span
                                 key={s}
                                 className="px-1.5 py-0.5 rounded bg-primary/5 text-[9px] font-semibold text-primary"
