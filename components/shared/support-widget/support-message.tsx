@@ -42,14 +42,14 @@ export function SupportMessage({
       className="flex items-start gap-3"
     >
       {/* Avatar */}
-      <div className="relative w-9 h-9 rounded-full overflow-hidden bg-gradient-to-br from-primary to-primary-container shrink-0 ring-2 ring-white shadow-sm">
+      <div className="relative w-9 h-9 rounded-full overflow-hidden bg-white shrink-0 ring-2 ring-white shadow-sm p-1">
         {!imgError ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={imgSrc}
             alt={name}
             onError={handleError}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">

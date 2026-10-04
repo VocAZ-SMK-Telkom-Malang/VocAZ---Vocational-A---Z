@@ -2,7 +2,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageCircle, X } from 'lucide-react'
+import { X } from 'lucide-react'
 import Image from 'next/image'
 
 type Props = {
@@ -79,10 +79,15 @@ export function SupportBubble({ isOpen, onClick }: Props) {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <MessageCircle
-                className="w-6 h-6 sm:w-7 sm:h-7 text-white"
-                strokeWidth={2.5}
-              />
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white p-1.5">
+                <Image
+                  src="/vocaz.png"
+                  alt="VocAZ"
+                  width={96}
+                  height={36}
+                  className="h-auto w-full object-contain"
+                />
+              </span>
             </motion.div>
           )}
         </AnimatePresence>

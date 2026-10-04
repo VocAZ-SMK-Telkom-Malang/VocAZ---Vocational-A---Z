@@ -917,3 +917,34 @@ export async function getMasterDataStats() {
     schoolPrograms: schoolPrograms.length,
   }
 }
+
+// Tambahkan di lib/admin/queries.ts
+
+export type GeneralSettings = {
+  site_name: string
+  site_tagline: string | null
+  site_description: string | null
+  contact_email: string | null
+  contact_phone: string | null
+  contact_address: string | null
+  logo_url: string | null
+  favicon_url: string | null
+  social_instagram: string | null
+  social_linkedin: string | null
+  social_youtube: string | null
+}
+
+const DEFAULT_GENERAL: GeneralSettings = {
+  site_name: 'VocAZ',
+  site_tagline: 'Ekosistem Karier Vokasi Terpadu',
+  site_description:
+    'VocAZ connects vocational high school students with verified portfolios, industry credentials, and career opportunities.',
+  contact_email: 'vocaz@gmail.com',
+  contact_phone: null,
+  contact_address: null,
+  logo_url: '/vocaz.png',
+  favicon_url: '/vocaz.png',
+  social_instagram: null,
+  social_linkedin: null,
+  social_youtube: null,
+}

@@ -3,9 +3,9 @@
 export const SUPPORT_CONFIG = {
   name: 'VocAZ Help Center',
   subtitle: 'Tim Support Resmi',
-  avatarUrl: '/vocaz2.png',      // ← ganti ke logo square
-  avatarFallback: '/vocaz.png',      // ← fallback kalau square gak ada
-  initial: 'V',                       // ← fallback huruf kalau dua-duanya gagal
+  avatarUrl: '/vocaz.png',
+  avatarFallback: '/vocaz.png',
+  initial: 'V',
 
   whatsapp: '6281212128164',
   email: 'vocaz@gmail.com',

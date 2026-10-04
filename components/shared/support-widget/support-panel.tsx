@@ -54,14 +54,14 @@ export function SupportPanel() {
 
         <div className="relative flex items-center gap-3">
           {/* Avatar */}
-          <div className="relative w-11 h-11 rounded-full overflow-hidden bg-white/15 ring-2 ring-white/30 shrink-0 backdrop-blur-sm">
+          <div className="relative w-11 h-11 rounded-full overflow-hidden bg-white ring-2 ring-white/30 shrink-0 p-1.5">
             {!avatarError ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={avatarSrc}
                 alt={SUPPORT_CONFIG.name}
                 onError={handleAvatarError}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center bg-white/20">
@@ -104,14 +104,14 @@ export function SupportPanel() {
           className="flex items-start gap-3"
         >
           {/* Avatar mini */}
-          <div className="relative w-9 h-9 rounded-full overflow-hidden bg-gradient-to-br from-primary to-primary-container shrink-0 ring-2 ring-white shadow-sm">
+          <div className="relative w-9 h-9 rounded-full overflow-hidden bg-white shrink-0 ring-2 ring-white shadow-sm p-1">
             {!avatarError ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={avatarSrc}
                 alt={SUPPORT_CONFIG.name}
                 onError={handleAvatarError}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain"
               />
             ) : (
               <div className="w-full h-full flex items-center justify-center">

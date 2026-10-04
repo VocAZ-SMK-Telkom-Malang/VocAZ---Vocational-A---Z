@@ -24,7 +24,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'VocAZ — Ekosistem Karier Vokasi Terpadu',
+  title: 'VocAZ — Platform Ekosistem Smart Career SMK',
   description:
     'VocAZ connects vocational high school students with verified portfolios, industry credentials, and career opportunities — all in one trusted ecosystem.',
   icons: {

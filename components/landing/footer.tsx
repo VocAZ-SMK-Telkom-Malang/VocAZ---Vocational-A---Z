@@ -32,9 +32,9 @@ const footerColumns = [
   {
     title: 'Kontak',
     items: [
-      { label: 'halo@vocaz.id', href: '#' },
-      { label: 'Jakarta Selatan, DKI Jakarta', href: '#' },
-      { label: 'partner@vocaz.id', href: '#' },
+      { label: 'vocaz@gmail.com', href: '#' },
+      { label: 'Kota Malang, Jawa Timur', href: '#' },
+      { label: '@VocationalA-Z', href: '#' },
     ],
   },
 ]
@@ -56,15 +56,16 @@ export function LandingFooter() {
               />
             </Link>
             <p className="text-sm text-white/70 max-w-sm">
-              Smart Career & Talent Ecosystem for SMK. Menghubungkan potensi
-              vokasi Indonesia dengan panggung industri global terverifikasi.
+              Smart Career & Talent Ecosystem for SMK.
+              Menghubungkan talenta SMK dengan industri melalui kompetensi yang dapat dilihat,ditemukan, dan dipercaya.
+
             </p>
             <div className="flex items-center gap-2 pt-2">
               <div className="px-3 py-1 rounded-full bg-white/10 text-tertiary-fixed font-mono text-[11px] font-bold uppercase tracking-wider">
-                BNSP Certified Partner
+                Talenta SMK
               </div>
               <div className="px-3 py-1 rounded-full bg-white/10 text-white/70 font-mono text-[11px] font-bold uppercase tracking-wider">
-                BKK Network
+                Perusahaan & Recruiter
               </div>
             </div>
           </div>
@@ -89,10 +90,10 @@ export function LandingFooter() {
 
         <div className="pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/50">
-            © 2025 VocAZ Ecosystem. Seluruh hak cipta dilindungi undang-undang.
+            © 2026 VocAZ Ecosystem. Seluruh hak cipta dilindungi undang-undang.
           </p>
           <p className="text-xs text-tertiary-fixed-dim/80">
-            Memberdayakan Generasi Emas Vokasi Indonesia
+            Memberdayakan Generasi Emas SMK Indonesia
           </p>
         </div>
       </div>

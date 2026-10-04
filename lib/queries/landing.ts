@@ -174,3 +174,89 @@ export async function getFeaturedJobs(limit = 3) {
     }
   })
 }
+
+// Tambahkan di lib/queries/landing.ts
+
+export type FeaturedTalentCard = {
+  profileId: string
+  initials: string
+  name: string
+  headline: string
+  school: string
+  avatarUrl: string | null
+  certTitle: string | null
+  certBadgeType: string | null
+  skills: string[]
+  // Metrics
+  profileCompletion: number      // 0-100
+  isVerified: boolean
+  isOpenToWork: boolean
+}
+
+export async function getFeaturedTalentCards(
+  limit = 6
+): Promise<FeaturedTalentCard[]> {
+  const students = await prisma.studentProfile.findMany({
+    where: {
+      isPublic: true,
+      isOpenToWork: true,
+      profileCompletion: { gte: 60 },
+      user: { isActive: true },
+    },
+    orderBy: [
+      { profileCompletion: 'desc' },
+      { careerReadiness: 'desc' },
+      { createdAt: 'desc' },
+    ],
+    take: limit,
+    include: {
+      user: {
+        select: {
+          fullName: true,
+          avatarUrl: true,
+        },
+      },
+      school: {
+        select: { name: true },
+      },
+      skills: {
+        include: { skill: { select: { name: true } } },
+        take: 3,
+      },
+      certificates: {
+        where: { verificationStatus: 'verified' },
+        orderBy: { verifiedAt: 'desc' },
+        take: 1,
+        select: {
+          title: true,
+          badgeType: true,
+        },
+      },
+    },
+  })
+
+  return students.map((s) => {
+    const name = s.user.fullName ?? 'Talent'
+    const initials = name
+      .split(' ')
+      .map((w) => w[0])
+      .join('')
+      .slice(0, 2)
+      .toUpperCase()
+
+    return {
+      profileId: s.id,
+      initials,
+      name,
+      headline: s.headline ?? 'Talent SMK',
+      school: s.school?.name ?? 'SMK',
+      avatarUrl: s.user.avatarUrl,
+      certTitle: s.certificates[0]?.title ?? null,
+      certBadgeType: s.certificates[0]?.badgeType ?? null,
+      skills: s.skills.map((sk) => sk.skill.name),
+      profileCompletion: s.profileCompletion,
+      isVerified: s.certificates.length > 0,
+      isOpenToWork: s.isOpenToWork,
+    }
+  })
+}
