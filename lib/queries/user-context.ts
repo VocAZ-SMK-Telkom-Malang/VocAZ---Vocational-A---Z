@@ -39,7 +39,7 @@ export async function getCurrentUserContext() {
           name: true,
         },
       },
-      certInstitution: {
+      ownedInstitution: {
         select: {
           id: true,
           slug: true,

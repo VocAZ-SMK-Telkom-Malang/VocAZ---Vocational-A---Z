@@ -270,7 +270,7 @@ export async function getUserById(id: string) {
       },
       ownedCompany: true,
       ownedSchool: true,
-      certInstitution: true,
+      ownedInstitution: true,
     },
   })
 }

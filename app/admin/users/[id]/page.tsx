@@ -198,6 +198,20 @@ export default async function UserDetailPage({
               </dl>
             </AdminCard>
           )}
+
+          {user.ownedInstitution && (
+            <AdminCard>
+              <AdminCardHeader title="Profil Lembaga Sertifikasi" />
+              <dl className="space-y-3">
+                <InfoRow label="Nama" value={user.ownedInstitution.name} />
+                <InfoRow label="Tipe" value={user.ownedInstitution.type} />
+                <InfoRow
+                  label="Status Verifikasi"
+                  value={user.ownedInstitution.isApproved ? 'Disetujui' : 'Menunggu'}
+                />
+              </dl>
+            </AdminCard>
+          )}
         </div>
 
         {/* Actions sidebar */}
