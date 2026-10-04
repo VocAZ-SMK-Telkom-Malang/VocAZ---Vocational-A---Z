@@ -1,5 +1,6 @@
 // components/register/register-shell.tsx
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, LifeBuoy } from 'lucide-react'
 import { RegisterStepper } from './register-stepper'
 import type { Role, Step } from '@/lib/register/steps'
@@ -41,14 +42,14 @@ export function RegisterShell({
               <ArrowLeft className="w-4 h-4" />
             </Link>
             <Link href="/" className="flex items-center gap-1.5">
-              <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-white font-display font-extrabold text-xs leading-none">
-                  V
-                </span>
-              </div>
-              <span className="font-display text-base font-extrabold tracking-tight">
-                Voc<span className="text-primary">AZ</span>
-              </span>
+              <Image
+                src="/vocaz.png"
+                alt="VocAZ"
+                width={120}
+                height={32}
+                className="h-8 w-auto object-contain"
+                priority
+              />
             </Link>
           </div>
 

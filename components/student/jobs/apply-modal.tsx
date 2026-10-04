@@ -107,17 +107,31 @@ export function ApplyModal({
   // ============================================
 
   async function handleFileSelect(file: File) {
-    if (file.size > 5 * 1024 * 1024) {
-      setError('File maksimal 5MB')
-      return
-    }
-    if (file.type !== 'application/pdf') {
-      setError('File harus PDF')
-      return
-    }
+  if (file.size > 5 * 1024 * 1024) {
+    setError('File maksimal 5MB')
+    return
+  }
 
-    setError(null)
-    setUploading(true)
+  // ✅ FIX: cek extension DULU, MIME type sebagai fallback
+  const name = file.name.toLowerCase()
+  const isPdfByName = name.endsWith('.pdf')
+  const isPdfByMime = [
+    'application/pdf',
+    'application/x-pdf',
+    'application/octet-stream',  // ← INI (browser sering kirim ini)
+    'application/acrobat',
+    'applications/vnd.pdf',
+    'text/pdf',
+    'text/x-pdf',
+  ].includes(file.type)
+
+  if (!isPdfByName && !isPdfByMime) {
+    setError('File harus PDF')
+    return
+  }
+
+  setError(null)
+  setUploading(true)
 
     try {
       const result = await uploadFile(

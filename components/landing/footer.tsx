@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const footerColumns = [
   {
@@ -44,14 +45,16 @@ export function LandingFooter() {
       <div className="max-w-[1240px] mx-auto px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 mb-12">
           <div className="lg:col-span-4 space-y-4 pr-6">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-white font-display font-extrabold text-sm">V</span>
-              </div>
-              <span className="font-display text-xl font-extrabold tracking-tight">
-                Voc<span className="text-tertiary-fixed-dim">AZ</span>
-              </span>
-            </div>
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src="/vocaz.png"
+                alt="VocAZ"
+                width={120}
+                height={28}
+                className="h-7 w-auto object-contain"
+                priority
+              />
+            </Link>
             <p className="text-sm text-white/70 max-w-sm">
               Smart Career & Talent Ecosystem for SMK. Menghubungkan potensi
               vokasi Indonesia dengan panggung industri global terverifikasi.

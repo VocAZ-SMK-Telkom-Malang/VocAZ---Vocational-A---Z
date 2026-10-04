@@ -43,7 +43,7 @@ export function Step4Done() {
 
         if (
           !data.email ||
-          !data.password ||
+          (!data.googleAuth && !data.password) ||
           !data.fullName ||
           !data.institutionName ||
           !data.type
@@ -55,36 +55,37 @@ export function Step4Done() {
           return
         }
 
-        // 1. Sign-up ke Neon Auth
-        const signUpResult = await authClient.signUp.email({
-          email: data.email,
-          password: data.password,
-          name: data.fullName,
-        })
+        if (!data.googleAuth) {
+          const signUpResult = await authClient.signUp.email({
+            email: data.email,
+            password: data.password,
+            name: data.fullName,
+          })
 
-        if (signUpResult && 'error' in signUpResult && signUpResult.error) {
-          const errMsg = (signUpResult.error as any)?.message || ''
+          if (signUpResult && 'error' in signUpResult && signUpResult.error) {
+            const errMsg = (signUpResult.error as any)?.message || ''
 
-          if (errMsg.toLowerCase().includes('already exists')) {
+            if (errMsg.toLowerCase().includes('already exists')) {
+              if (!cancelled) {
+                setError(
+                  'Email sudah terdaftar. Coba masuk atau gunakan email lain.'
+                )
+                setStatus('already-registered')
+              }
+              return
+            }
+
             if (!cancelled) {
-              setError(
-                'Email sudah terdaftar. Coba masuk atau gunakan email lain.'
-              )
-              setStatus('already-registered')
+              setError(errMsg || 'Gagal membuat akun auth')
+              setStatus('error')
             }
             return
           }
-
-          if (!cancelled) {
-            setError(errMsg || 'Gagal membuat akun auth')
-            setStatus('error')
-          }
-          return
         }
 
         // 2. Ambil session
-        const sessionRes = await fetch('/api/auth/get-session')
-        const session = await sessionRes.json()
+        const sessionResult = await authClient.getSession()
+        const session = sessionResult.data
 
         if (!session?.user?.id) {
           if (!cancelled) {
@@ -121,6 +122,7 @@ export function Step4Done() {
 
         // 4. Clear sessionStorage
         sessionStorage.removeItem('certification-register')
+        sessionStorage.removeItem('vocaz.google-oauth-pending')
 
         if (!cancelled) {
           setStatus('success')

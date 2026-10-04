@@ -24,6 +24,9 @@ export type StudentProfileDetail = NonNullable<
 // ============================================
 
 export async function getStudentProfileDetail(studentProfileId: string) {
+  // ✅ FIX: guard undefined/null
+  if (!studentProfileId) return null
+
   const profile = await prisma.studentProfile.findUnique({
     where: { id: studentProfileId },
     include: {
@@ -71,7 +74,6 @@ export async function getStudentProfileDetail(studentProfileId: string) {
   if (!profile) return null
 
   return {
-    // Basic
     id: profile.id,
     userId: profile.user.id,
     fullName: profile.user.fullName ?? 'Student',
@@ -85,7 +87,6 @@ export async function getStudentProfileDetail(studentProfileId: string) {
     dateOfBirth: profile.dateOfBirth?.toISOString() ?? null,
     gender: profile.gender,
 
-    // Meta
     isOpenToWork: profile.isOpenToWork,
     isPublic: profile.isPublic,
     profileCompletion: profile.profileCompletion,
@@ -94,10 +95,8 @@ export async function getStudentProfileDetail(studentProfileId: string) {
     followingCount: profile.followingCount,
     coverImageUrl: profile.coverImageUrl,
 
-    // School
     school: profile.school,
 
-    // Relations
     educations: profile.educations.map((e) => ({
       id: e.id,
       schoolName: e.schoolName,
@@ -265,22 +264,27 @@ export async function isFollowingTalent(
 // ============================================
 
 export async function getStudentProfileStats(studentProfileId: string) {
-  const [
-    applicationsCount,
-    savedJobsCount,
-    feedbackCount,
-    avgRating,
-  ] = await Promise.all([
-    prisma.application.count({ where: { studentId: studentProfileId } }),
-    prisma.savedJob.count({ where: { studentId: studentProfileId } }),
-    prisma.profileFeedback.count({
-      where: { studentProfileId, isPublic: true },
-    }),
-    prisma.profileFeedback.aggregate({
-      where: { studentProfileId, isPublic: true },
-      _avg: { rating: true },
-    }),
-  ])
+  if (!studentProfileId) {
+    return {
+      applicationsCount: 0,
+      savedJobsCount: 0,
+      feedbackCount: 0,
+      avgRating: null,
+    }
+  }
+
+  const [applicationsCount, savedJobsCount, feedbackCount, avgRating] =
+    await Promise.all([
+      prisma.application.count({ where: { studentId: studentProfileId } }),
+      prisma.savedJob.count({ where: { studentId: studentProfileId } }),
+      prisma.profileFeedback.count({
+        where: { studentProfileId, isPublic: true },
+      }),
+      prisma.profileFeedback.aggregate({
+        where: { studentProfileId, isPublic: true },
+        _avg: { rating: true },
+      }),
+    ])
 
   return {
     applicationsCount,
@@ -297,6 +301,8 @@ export async function getStudentProfileStats(studentProfileId: string) {
 // ============================================
 
 export async function getProfileFeedbacks(studentProfileId: string) {
+  if (!studentProfileId) return []
+
   const feedbacks = await prisma.profileFeedback.findMany({
     where: { studentProfileId, isPublic: true },
     orderBy: { createdAt: 'desc' },

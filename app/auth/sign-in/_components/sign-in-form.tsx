@@ -11,6 +11,7 @@ import {
   FormAlert,
   SubmitButton,
 } from '@/components/auth/auth-shell'
+import { GoogleAuthButton } from '@/components/auth/google-auth-button'
 import { getDashboardPath } from '@/lib/auth/redirects'
 
 export function SignInForm() {
@@ -85,6 +86,18 @@ export function SignInForm() {
     >
       <form onSubmit={handleSubmit} className="space-y-5">
         {error && <FormAlert>{error}</FormAlert>}
+
+        <GoogleAuthButton />
+        <div className="relative py-1">
+          <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t border-outline-variant/40" />
+          </div>
+          <div className="relative flex justify-center">
+            <span className="bg-white px-3 text-xs text-on-surface-variant">
+              atau masuk dengan email
+            </span>
+          </div>
+        </div>
 
         <FormField
           id="email"

@@ -7,6 +7,7 @@ import type {
   ActionState,
   FinalizeCompanyInput,
 } from '@/lib/register/types'
+import { verifyRegistrationSession } from '@/lib/register/verify-auth-session'
 
 // ============================================
 // HELPER: Validasi UUID
@@ -69,6 +70,9 @@ export async function finalizeCompanyRegistration(
         ok: false,
         error: 'Session auth tidak valid. Coba login ulang.',
       }
+    }
+    if (!(await verifyRegistrationSession(input.neonAuthUserId, input.email))) {
+      return { ok: false, error: 'Sesi tidak cocok dengan email pendaftaran.' }
     }
 
     // 1. Cek email sudah terdaftar?

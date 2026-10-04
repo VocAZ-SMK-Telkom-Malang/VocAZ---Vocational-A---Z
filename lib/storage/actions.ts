@@ -14,6 +14,54 @@ type UploadTarget =
   | 'avatar'
   | 'cover'
   | 'portfolio'
+  | 'cv'                    // ✅ TAMBAH INI
+  | 'verification-doc'      // ✅ BONUS: buat sekolah/company verification
+
+// MIME types yang dianggap PDF (browser sering beda-beda)
+const PDF_MIMES = [
+  'application/pdf',
+  'application/x-pdf',
+  'application/octet-stream', // browser kadang kirim ini buat PDF
+  'application/acrobat',
+  'applications/vnd.pdf',
+  'text/pdf',
+  'text/x-pdf',
+]
+
+const IMAGE_MIMES = ['image/png', 'image/jpeg', 'image/webp']
+const VIDEO_MIMES = [
+  'video/mp4',
+  'video/webm',
+  'video/quicktime',
+  'video/x-matroska',
+]
+
+// File extension yang di-allow per target (untuk fallback)
+const ALLOWED_EXTENSIONS: Record<UploadTarget, string[]> = {
+  'company-logo': ['png', 'jpg', 'jpeg', 'webp'],
+  'company-cover': ['png', 'jpg', 'jpeg', 'webp'],
+  'company-doc': ['png', 'jpg', 'jpeg', 'webp', 'pdf'],
+  'showcase-video': ['mp4', 'webm', 'mov', 'mkv'],
+  'showcase-thumb': ['png', 'jpg', 'jpeg', 'webp'],
+  avatar: ['png', 'jpg', 'jpeg', 'webp'],
+  cover: ['png', 'jpg', 'jpeg', 'webp'],
+  portfolio: ['png', 'jpg', 'jpeg', 'webp', 'pdf', 'mp4', 'webm'],
+  cv: ['pdf'], // ✅ CV cuma PDF
+  'verification-doc': ['png', 'jpg', 'jpeg', 'webp', 'pdf'],
+}
+
+const ALLOWED_MIMES: Record<UploadTarget, string[]> = {
+  'company-logo': IMAGE_MIMES,
+  'company-cover': IMAGE_MIMES,
+  'company-doc': [...IMAGE_MIMES, ...PDF_MIMES],
+  'showcase-video': VIDEO_MIMES,
+  'showcase-thumb': IMAGE_MIMES,
+  avatar: IMAGE_MIMES,
+  cover: IMAGE_MIMES,
+  portfolio: [...IMAGE_MIMES, ...PDF_MIMES, ...VIDEO_MIMES],
+  cv: PDF_MIMES, // ✅ CV terima semua variant PDF
+  'verification-doc': [...IMAGE_MIMES, ...PDF_MIMES],
+}
 
 export async function getPresignedUploadUrl(input: {
   target: UploadTarget
@@ -36,52 +84,45 @@ export async function getPresignedUploadUrl(input: {
       return { ok: false, error: `Ukuran file maksimal ${mb}MB` }
     }
 
-    const allowedByTarget: Record<UploadTarget, string[]> = {
-      'company-logo': ['image/png', 'image/jpeg', 'image/webp'],
-      'company-cover': ['image/png', 'image/jpeg', 'image/webp'],  // ✅ TAMBAH INI
-      'company-doc': [
-        'image/png',
-        'image/jpeg',
-        'image/webp',
-        'application/pdf',
-      ],
-      'showcase-video': [
-        'video/mp4',
-        'video/webm',
-        'video/quicktime',
-        'video/x-matroska',
-      ],
-      'showcase-thumb': ['image/png', 'image/jpeg', 'image/webp'],
-      avatar: ['image/png', 'image/jpeg', 'image/webp'],
-      cover: ['image/png', 'image/jpeg', 'image/webp'],
-      portfolio: [
-        'image/png',
-        'image/jpeg',
-        'image/webp',
-        'application/pdf',
-        'video/mp4',
-        'video/webm',
-      ],
-    }
+    // Cek extension dulu
+    const ext = input.fileName.split('.').pop()?.toLowerCase() || ''
+    const allowedExts = ALLOWED_EXTENSIONS[input.target] ?? []
+    const extOk = allowedExts.length > 0 && allowedExts.includes(ext)
 
-    const allowed = allowedByTarget[input.target]
-    if (!allowed || !allowed.includes(input.contentType)) {
-      return { ok: false, error: 'Format file tidak didukung' }
+    // Cek MIME type
+    const allowedMimes = ALLOWED_MIMES[input.target] ?? []
+    const mimeOk =
+      allowedMimes.length > 0 && allowedMimes.includes(input.contentType)
+
+    // ✅ LOLOS kalau: extension valid ATAU MIME valid
+    if (!extOk && !mimeOk) {
+      return {
+        ok: false,
+        error: `Format file tidak didukung. Diizinkan: ${allowedExts.join(', ').toUpperCase()}`,
+      }
     }
 
     if (!/^[a-zA-Z0-9-]{8,40}$/.test(input.folderId)) {
       return { ok: false, error: 'Folder ID tidak valid' }
     }
 
-    const ext = input.fileName.split('.').pop()?.toLowerCase() || 'bin'
     const uuid = crypto.randomUUID()
     const timestamp = Date.now()
-    const key = `${input.target}/${input.folderId}/${timestamp}-${uuid}.${ext}`
+    const key = `${input.target}/${input.folderId}/${timestamp}-${uuid}.${ext || 'bin'}`
+
+    // Normalize content-type kalau browser kirim octet-stream
+    let finalContentType = input.contentType
+    if (
+      finalContentType === 'application/octet-stream' &&
+      ext === 'pdf'
+    ) {
+      finalContentType = 'application/pdf'
+    }
 
     const command = new PutObjectCommand({
       Bucket: BUCKET,
       Key: key,
-      ContentType: input.contentType,
+      ContentType: finalContentType,
     })
 
     const url = await getSignedUrl(s3, command, { expiresIn: 600 })

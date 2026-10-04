@@ -5,6 +5,7 @@ import { prisma } from '@/lib/prisma'
 import type { FinalizeSchoolInput } from '@/lib/register/types'
 import { SCHOOL_PLANS } from '@/lib/register/school-plans'
 import { ensureSchoolToken } from '@/lib/school/token'
+import { verifyRegistrationSession } from '@/lib/register/verify-auth-session'
 
 type ActionState = {
   ok: boolean
@@ -47,6 +48,9 @@ export async function finalizeSchoolRegistration(
         ok: false,
         error: 'Session auth tidak valid. Coba login ulang.',
       }
+    }
+    if (!(await verifyRegistrationSession(input.neonAuthUserId, input.email))) {
+      return { ok: false, error: 'Sesi tidak cocok dengan email pendaftaran.' }
     }
 
     const existing = await prisma.user.findUnique({

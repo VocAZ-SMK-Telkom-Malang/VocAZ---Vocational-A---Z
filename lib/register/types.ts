@@ -29,7 +29,7 @@ export type FinalizeCompanyInput = {
   neonAuthUserId: string
   // Step 1
   email: string
-  password: string
+  password?: string
   fullName: string
   position: string
   // Step 2
@@ -63,7 +63,7 @@ export type FinalizeStudentInput = {
   neonAuthUserId: string
   // Step 1
   email: string
-  password: string
+  password?: string
   fullName: string
   // Step 2 — Data Diri
   nisn?: string
@@ -200,7 +200,7 @@ export type FinalizeSchoolInput = {
   paymentReference: string
   // Step 3
   email: string
-  password: string
+  password?: string
   fullName: string
   position?: string
   // Step 4
@@ -226,7 +226,7 @@ export type FinalizeCertificationInput = {
   neonAuthUserId: string
   type: CertInstitutionTypeId
   email: string
-  password: string
+  password?: string
   fullName: string
   position?: string
   institutionName: string

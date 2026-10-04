@@ -64,9 +64,9 @@ export function OpportunitySection({ jobs }: Props) {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {jobs.map((job) => (
+            {jobs.map((job, idx) => (
               <div
-                key={job.id}                 // ✅ FIX: pakai id
+                key={job.id ?? `job-${idx}`}                 // ✅ FIX: pakai id
                 className="bg-white rounded-2xl p-6 shadow-[0_8px_20px_rgba(183,0,17,0.06)] hover:shadow-[0_16px_36px_rgba(183,0,17,0.12)] hover:-translate-y-1 transition-all flex flex-col justify-between"
               >
                 <div>

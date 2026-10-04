@@ -7,11 +7,14 @@ import { RegisterShell } from '@/components/register/register-shell'
 import { StepNav } from '@/components/register/step-nav'
 import { REGISTER_STEPS } from '@/lib/register/steps'
 import { Info } from 'lucide-react'
+import { GoogleAuthButton } from '@/components/auth/google-auth-button'
+import { useGoogleRegistration } from '@/components/auth/use-google-registration'
 
 export function Step1Account() {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
   const [isPending, setIsPending] = useState(false)
+  const { account: googleAccount, error: googleError } = useGoogleRegistration()
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -24,13 +27,13 @@ export function Step1Account() {
     const confirmPassword = formData.get('confirmPassword') as string
     const fullName = formData.get('fullName') as string
 
-    if (password !== confirmPassword) {
+    if (!googleAccount && password !== confirmPassword) {
       setError('Password dan konfirmasi password tidak cocok')
       setIsPending(false)
       return
     }
 
-    if (password.length < 8) {
+    if (!googleAccount && password.length < 8) {
       setError('Password minimal 8 karakter')
       setIsPending(false)
       return
@@ -42,7 +45,13 @@ export function Step1Account() {
 
     sessionStorage.setItem(
       'student-register',
-      JSON.stringify({ ...existing, email, password, fullName })
+      JSON.stringify({
+        ...existing,
+        email: googleAccount?.email || email,
+        password: googleAccount ? undefined : password,
+        fullName: fullName || googleAccount?.fullName,
+        googleAuth: Boolean(googleAccount),
+      })
     )
 
     router.push('/register/student/2')
@@ -90,6 +99,24 @@ export function Step1Account() {
       }
     >
       <form onSubmit={handleSubmit} className="space-y-6">
+        {!googleAccount && (
+          <>
+            <GoogleAuthButton
+              callbackURL="/auth/google-callback?next=%2Fregister%2Fstudent%2F1"
+              label="Daftar dengan Google"
+            />
+            <div className="flex items-center gap-4 text-xs text-on-surface-variant">
+              <span className="h-px flex-1 bg-outline-variant/40" />
+              atau gunakan email
+              <span className="h-px flex-1 bg-outline-variant/40" />
+            </div>
+          </>
+        )}
+        {googleError && (
+          <div role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+            {googleError}
+          </div>
+        )}
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
             {error}
@@ -109,10 +136,13 @@ export function Step1Account() {
               Email <span className="text-red-500">*</span>
             </label>
             <input
+              key={googleAccount?.email || 'email'}
               id="email"
               name="email"
               type="email"
               required
+              readOnly={Boolean(googleAccount)}
+              defaultValue={googleAccount?.email}
               placeholder="nama@email.com"
               className="w-full px-4 py-3 rounded-xl border border-outline-variant/50 text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
             />
@@ -129,16 +159,18 @@ export function Step1Account() {
               Nama Lengkap <span className="text-red-500">*</span>
             </label>
             <input
+              key={googleAccount?.email || 'fullName'}
               id="fullName"
               name="fullName"
               type="text"
               required
+              defaultValue={googleAccount?.fullName}
               placeholder="Nama sesuai ijazah"
               className="w-full px-4 py-3 rounded-xl border border-outline-variant/50 text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
             />
           </div>
 
-          <div>
+          {!googleAccount && <div>
             <label
               htmlFor="password"
               className="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2"
@@ -154,9 +186,9 @@ export function Step1Account() {
               placeholder="Minimal 8 karakter"
               className="w-full px-4 py-3 rounded-xl border border-outline-variant/50 text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
             />
-          </div>
+          </div>}
 
-          <div>
+          {!googleAccount && <div>
             <label
               htmlFor="confirmPassword"
               className="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2"
@@ -172,24 +204,23 @@ export function Step1Account() {
               placeholder="Ulangi password"
               className="w-full px-4 py-3 rounded-xl border border-outline-variant/50 text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
             />
-          </div>
+          </div>}
         </div>
 
-        // Di form register siswa, tambahkan field:
-<div>
-  <label className="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">
-    Token Sekolah (Opsional)
-  </label>
-  <input
-    name="schoolToken"
-    type="text"
-    placeholder="Contoh: SMKN1JKT-A1B2"
-    className="w-full px-4 py-3 rounded-xl border border-outline-variant/50 bg-white text-sm font-mono uppercase tracking-wider focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
-  />
-  <p className="text-[11px] text-on-surface-variant mt-1.5">
-    Punya token dari sekolah? Masukkan untuk otomatis ter-link ke BKK.
-  </p>
-</div>
+        <div>
+          <label className="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2">
+            Token Sekolah (Opsional)
+          </label>
+          <input
+            name="schoolToken"
+            type="text"
+            placeholder="Contoh: SMKN1JKT-A1B2"
+            className="w-full px-4 py-3 rounded-xl border border-outline-variant/50 bg-white text-sm font-mono uppercase tracking-wider focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all"
+          />
+          <p className="text-[11px] text-on-surface-variant mt-1.5">
+            Punya token dari sekolah? Masukkan untuk otomatis ter-link ke BKK.
+          </p>
+        </div>
 
         <div className="pt-4 space-y-3">
           <label className="flex items-start gap-2.5 cursor-pointer">

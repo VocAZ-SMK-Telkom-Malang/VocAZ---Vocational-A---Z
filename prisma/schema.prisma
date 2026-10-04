@@ -8,42 +8,43 @@ datasource db {
 }
 
 model User {
-  id                  String                    @id @default(uuid()) @db.Uuid
-  neonAuthUserId      String                    @unique @map("neon_auth_user_id") @db.Uuid
-  email               String                    @unique
-  role                Role
-  fullName            String?                   @map("full_name")
-  phone               String?
-  avatarUrl           String?                   @map("avatar_url")
-  avatarKey           String?                   @map("avatar_key")
-  isActive            Boolean                   @default(true) @map("is_active")
-  lastLoginAt         DateTime?                 @map("last_login_at")
-  createdAt           DateTime                  @default(now()) @map("created_at")
-  updatedAt           DateTime                  @updatedAt @map("updated_at")
-  deletedAt           DateTime?                 @map("deleted_at")
-  auditLogs           AuditLog[]
-  certInstitution     CertificationInstitution?
-  jobTitle            String?                   @map("job_title") @db.VarChar(120)
-  notificationPrefs   Json?                     @map("notification_prefs")
-  ownedCompany        Company?                  @relation("CompanyOwner")
-  companyMembers      CompanyMember[]
-  ownedSchool         School?                   @relation("SchoolOwner")
-  schoolMembers       SchoolMember[]
-  sentInvitations     TalentInvitation[]
-  reports             ContentReport[]           @relation("Reporter")
-  conversationParts   ConversationParticipant[]
-  sentMessages        Message[]                 @relation("SentMessages")
-  notifications       Notification[]
-  feedbackGiven       ProfileFeedback[]         @relation("GivenFeedback")
-  school              School?                   @relation(fields: [schoolId], references: [id])
-  showcaseComments    ShowcaseComment[]
-  showcaseLikes       ShowcaseLike[]
-  savedTalents        SavedTalent[]
-  aiInterviewsInvited AiInterview[]
-  companyInvitations  CompanyInvitation[]
-  following           StudentFollow[]           @relation("Follower")
-  studentProfile      StudentProfile?
-  schoolId            String?                   @db.Uuid
+  id                         String                    @id @default(uuid()) @db.Uuid
+  neonAuthUserId             String                    @unique @map("neon_auth_user_id") @db.Uuid
+  email                      String                    @unique
+  role                       Role
+  fullName                   String?                   @map("full_name")
+  phone                      String?
+  avatarUrl                  String?                   @map("avatar_url")
+  avatarKey                  String?                   @map("avatar_key")
+  isActive                   Boolean                   @default(true) @map("is_active")
+  lastLoginAt                DateTime?                 @map("last_login_at")
+  createdAt                  DateTime                  @default(now()) @map("created_at")
+  updatedAt                  DateTime                  @updatedAt @map("updated_at")
+  deletedAt                  DateTime?                 @map("deleted_at")
+  auditLogs                  AuditLog[]
+  certificationInstitutionId String?                   @db.Uuid
+  jobTitle                   String?                   @map("job_title") @db.VarChar(120)
+  notificationPrefs          Json?                     @map("notification_prefs")
+  ownedCompany               Company?                  @relation("CompanyOwner")
+  companyMembers             CompanyMember[]
+  ownedSchool                School?                   @relation("SchoolOwner")
+  schoolMembers              SchoolMember[]
+  sentInvitations            TalentInvitation[]
+  reports                    ContentReport[]           @relation("Reporter")
+  conversationParts          ConversationParticipant[]
+  sentMessages               Message[]                 @relation("SentMessages")
+  notifications              Notification[]
+  feedbackGiven              ProfileFeedback[]         @relation("GivenFeedback")
+  school                     School?                   @relation(fields: [schoolId], references: [id])
+  showcaseComments           ShowcaseComment[]
+  showcaseLikes              ShowcaseLike[]
+  savedTalents               SavedTalent[]
+  aiInterviewsInvited        AiInterview[]
+  companyInvitations         CompanyInvitation[]
+  ownedInstitution           CertificationInstitution? @relation("InstitutionOwner")
+  following                  StudentFollow[]           @relation("Follower")
+  studentProfile             StudentProfile?
+  schoolId                   String?                   @db.Uuid
 
   @@index([role])
   @@map("users")
@@ -518,6 +519,9 @@ model School {
   tokenActive     Boolean   @default(true) @map("token_active")
   tokenExpiresAt  DateTime? @map("token_expires_at")
 
+  inviteToken  String? @unique @map("invite_token")
+  inviteActive Boolean @default(true) @map("invite_active")
+
   // Verification
   isVerified Boolean   @default(false) @map("is_verified")
   verifiedAt DateTime? @map("verified_at")
@@ -640,10 +644,12 @@ model CertificationInstitution {
   logoUrl       String?               @map("logo_url")
   logoKey       String?               @map("logo_key")
   description   String?
+  isApproved    Boolean               @default(false) @map("is_approved")
+  approvedAt    DateTime?             @map("approved_at")
   createdAt     DateTime              @default(now()) @map("created_at")
   updatedAt     DateTime              @updatedAt @map("updated_at")
   certificates  Certificate[]
-  owner         User?                 @relation(fields: [ownerUserId], references: [id])
+  owner         User?                 @relation("InstitutionOwner", fields: [ownerUserId], references: [id])
   verifications VerificationRequest[]
 
   @@map("certification_institutions")

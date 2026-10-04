@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { GraduationCap, ShieldCheck, Sparkles } from 'lucide-react'
 
 type Props = {
@@ -66,14 +67,14 @@ export function AuthShell({ children, title, subtitle, footer, side }: Props) {
         <div className="relative z-10 flex flex-col justify-between p-12 xl:p-16 w-full">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 shrink-0 w-fit">
-            <div className="w-9 h-9 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center ring-1 ring-white/30">
-              <span className="text-white font-display font-extrabold text-sm">
-                V
-              </span>
-            </div>
-            <span className="font-display text-xl font-extrabold tracking-tight">
-              Voc<span className="text-white/70">AZ</span>
-            </span>
+            <Image
+              src="/vocaz.png"
+              alt="VocAZ"
+              width={150}
+              height={40}
+              className="h-10 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Middle content */}
@@ -142,14 +143,14 @@ export function AuthShell({ children, title, subtitle, footer, side }: Props) {
         {/* Mobile header */}
         <div className="lg:hidden flex items-center justify-between p-6 border-b border-outline-variant/30">
           <Link href="/" className="flex items-center gap-1.5">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-white font-display font-extrabold text-sm">
-                V
-              </span>
-            </div>
-            <span className="font-display text-lg font-extrabold tracking-tight">
-              Voc<span className="text-primary">AZ</span>
-            </span>
+            <Image
+              src="/vocaz.png"
+              alt="VocAZ"
+              width={120}
+              height={28}
+              className="h-7 w-auto object-contain"
+              priority
+            />
           </Link>
         </div>
 

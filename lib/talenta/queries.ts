@@ -149,6 +149,10 @@ export async function getPublicTalents(filters: TalentFilters = {}) {
 
   if (status === 'open_to_work') {
     where.isOpenToWork = true
+  } else if (status === 'verified') {
+    where.certificates = {
+      some: { verificationStatus: 'verified' },
+    }
   }
 
   if (city && city !== 'all') {

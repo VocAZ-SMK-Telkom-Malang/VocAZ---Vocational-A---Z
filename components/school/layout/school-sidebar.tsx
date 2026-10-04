@@ -2,6 +2,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
@@ -86,18 +87,20 @@ export function SchoolSidebar({
             className="flex items-center gap-2.5 min-w-0"
             onClick={onClose}
           >
-            <div className="w-9 h-9 rounded-lg bg-primary text-white flex items-center justify-center font-bold text-sm shrink-0">
-              V
-            </div>
+            <Image
+              src="/vocaz.png"
+              alt="VocAZ"
+              width={collapsed ? 32 : 100}
+              height={32}
+              className={`object-contain transition-all ${
+                collapsed ? 'h-8 w-8' : 'h-8 w-auto'
+              }`}
+              priority
+            />
             {!collapsed && (
-              <div className="min-w-0">
-                <div className="font-bold text-sm text-on-surface truncate">
-                  Voc<span className="text-primary">AZ</span>
-                </div>
-                <div className="text-[10px] text-on-surface-variant font-mono uppercase tracking-wider">
-                  BKK
-                </div>
-              </div>
+              <span className="text-[10px] text-on-surface-variant font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-surface-container shrink-0">
+                BKK
+              </span>
             )}
           </Link>
 

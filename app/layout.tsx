@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter, Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google'
 import './globals.css'
+import { SupportWidgetWrapper } from '@/components/shared/support-widget/support-widget-wrapper'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -26,6 +27,9 @@ export const metadata: Metadata = {
   title: 'VocAZ — Ekosistem Karier Vokasi Terpadu',
   description:
     'VocAZ connects vocational high school students with verified portfolios, industry credentials, and career opportunities — all in one trusted ecosystem.',
+  icons: {
+    icon: '/vocaz.png',
+  },
 }
 
 export default function RootLayout({
@@ -40,6 +44,7 @@ export default function RootLayout({
     >
       <body className="bg-surface font-body text-on-surface antialiased">
         {children}
+        <SupportWidgetWrapper />
       </body>
     </html>
   )

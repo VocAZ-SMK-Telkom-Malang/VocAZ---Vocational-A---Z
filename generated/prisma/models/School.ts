@@ -73,6 +73,8 @@ export type SchoolMinAggregateOutputType = {
   enrollmentToken: string | null
   tokenActive: boolean | null
   tokenExpiresAt: Date | null
+  inviteToken: string | null
+  inviteActive: boolean | null
   isVerified: boolean | null
   verifiedAt: Date | null
   createdAt: Date | null
@@ -114,6 +116,8 @@ export type SchoolMaxAggregateOutputType = {
   enrollmentToken: string | null
   tokenActive: boolean | null
   tokenExpiresAt: Date | null
+  inviteToken: string | null
+  inviteActive: boolean | null
   isVerified: boolean | null
   verifiedAt: Date | null
   createdAt: Date | null
@@ -155,6 +159,8 @@ export type SchoolCountAggregateOutputType = {
   enrollmentToken: number
   tokenActive: number
   tokenExpiresAt: number
+  inviteToken: number
+  inviteActive: number
   isVerified: number
   verifiedAt: number
   createdAt: number
@@ -210,6 +216,8 @@ export type SchoolMinAggregateInputType = {
   enrollmentToken?: true
   tokenActive?: true
   tokenExpiresAt?: true
+  inviteToken?: true
+  inviteActive?: true
   isVerified?: true
   verifiedAt?: true
   createdAt?: true
@@ -251,6 +259,8 @@ export type SchoolMaxAggregateInputType = {
   enrollmentToken?: true
   tokenActive?: true
   tokenExpiresAt?: true
+  inviteToken?: true
+  inviteActive?: true
   isVerified?: true
   verifiedAt?: true
   createdAt?: true
@@ -292,6 +302,8 @@ export type SchoolCountAggregateInputType = {
   enrollmentToken?: true
   tokenActive?: true
   tokenExpiresAt?: true
+  inviteToken?: true
+  inviteActive?: true
   isVerified?: true
   verifiedAt?: true
   createdAt?: true
@@ -420,6 +432,8 @@ export type SchoolGroupByOutputType = {
   enrollmentToken: string | null
   tokenActive: boolean
   tokenExpiresAt: Date | null
+  inviteToken: string | null
+  inviteActive: boolean
   isVerified: boolean
   verifiedAt: Date | null
   createdAt: Date
@@ -484,6 +498,8 @@ export type SchoolWhereInput = {
   enrollmentToken?: Prisma.StringNullableFilter<"School"> | string | null
   tokenActive?: Prisma.BoolFilter<"School"> | boolean
   tokenExpiresAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
+  inviteToken?: Prisma.StringNullableFilter<"School"> | string | null
+  inviteActive?: Prisma.BoolFilter<"School"> | boolean
   isVerified?: Prisma.BoolFilter<"School"> | boolean
   verifiedAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"School"> | Date | string
@@ -533,6 +549,8 @@ export type SchoolOrderByWithRelationInput = {
   enrollmentToken?: Prisma.SortOrderInput | Prisma.SortOrder
   tokenActive?: Prisma.SortOrder
   tokenExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  inviteToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  inviteActive?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -554,6 +572,7 @@ export type SchoolWhereUniqueInput = Prisma.AtLeast<{
   slug?: string
   schoolCode?: string
   enrollmentToken?: string
+  inviteToken?: string
   AND?: Prisma.SchoolWhereInput | Prisma.SchoolWhereInput[]
   OR?: Prisma.SchoolWhereInput[]
   NOT?: Prisma.SchoolWhereInput | Prisma.SchoolWhereInput[]
@@ -585,6 +604,7 @@ export type SchoolWhereUniqueInput = Prisma.AtLeast<{
   lastPaymentAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
   tokenActive?: Prisma.BoolFilter<"School"> | boolean
   tokenExpiresAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
+  inviteActive?: Prisma.BoolFilter<"School"> | boolean
   isVerified?: Prisma.BoolFilter<"School"> | boolean
   verifiedAt?: Prisma.DateTimeNullableFilter<"School"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"School"> | Date | string
@@ -597,7 +617,7 @@ export type SchoolWhereUniqueInput = Prisma.AtLeast<{
   careerMonitorings?: Prisma.CareerMonitoringListRelationFilter
   industryPartners?: Prisma.IndustryPartnerListRelationFilter
   users?: Prisma.UserListRelationFilter
-}, "id" | "ownerUserId" | "npsn" | "slug" | "schoolCode" | "enrollmentToken">
+}, "id" | "ownerUserId" | "npsn" | "slug" | "schoolCode" | "enrollmentToken" | "inviteToken">
 
 export type SchoolOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -634,6 +654,8 @@ export type SchoolOrderByWithAggregationInput = {
   enrollmentToken?: Prisma.SortOrderInput | Prisma.SortOrder
   tokenActive?: Prisma.SortOrder
   tokenExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  inviteToken?: Prisma.SortOrderInput | Prisma.SortOrder
+  inviteActive?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   verifiedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -683,6 +705,8 @@ export type SchoolScalarWhereWithAggregatesInput = {
   enrollmentToken?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
   tokenActive?: Prisma.BoolWithAggregatesFilter<"School"> | boolean
   tokenExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"School"> | Date | string | null
+  inviteToken?: Prisma.StringNullableWithAggregatesFilter<"School"> | string | null
+  inviteActive?: Prisma.BoolWithAggregatesFilter<"School"> | boolean
   isVerified?: Prisma.BoolWithAggregatesFilter<"School"> | boolean
   verifiedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"School"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"School"> | Date | string
@@ -723,6 +747,8 @@ export type SchoolCreateInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -772,6 +798,8 @@ export type SchoolUncheckedCreateInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -819,6 +847,8 @@ export type SchoolUpdateInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -868,6 +898,8 @@ export type SchoolUncheckedUpdateInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -916,6 +948,8 @@ export type SchoolCreateManyInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -956,6 +990,8 @@ export type SchoolUpdateManyMutationInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -997,6 +1033,8 @@ export type SchoolUncheckedUpdateManyInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1043,6 +1081,8 @@ export type SchoolCountOrderByAggregateInput = {
   enrollmentToken?: Prisma.SortOrder
   tokenActive?: Prisma.SortOrder
   tokenExpiresAt?: Prisma.SortOrder
+  inviteToken?: Prisma.SortOrder
+  inviteActive?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -1090,6 +1130,8 @@ export type SchoolMaxOrderByAggregateInput = {
   enrollmentToken?: Prisma.SortOrder
   tokenActive?: Prisma.SortOrder
   tokenExpiresAt?: Prisma.SortOrder
+  inviteToken?: Prisma.SortOrder
+  inviteActive?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -1131,6 +1173,8 @@ export type SchoolMinOrderByAggregateInput = {
   enrollmentToken?: Prisma.SortOrder
   tokenActive?: Prisma.SortOrder
   tokenExpiresAt?: Prisma.SortOrder
+  inviteToken?: Prisma.SortOrder
+  inviteActive?: Prisma.SortOrder
   isVerified?: Prisma.SortOrder
   verifiedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -1320,6 +1364,8 @@ export type SchoolCreateWithoutOwnerInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -1367,6 +1413,8 @@ export type SchoolUncheckedCreateWithoutOwnerInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -1419,6 +1467,8 @@ export type SchoolCreateWithoutUsersInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -1467,6 +1517,8 @@ export type SchoolUncheckedCreateWithoutUsersInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -1529,6 +1581,8 @@ export type SchoolUpdateWithoutOwnerInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1576,6 +1630,8 @@ export type SchoolUncheckedUpdateWithoutOwnerInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1634,6 +1690,8 @@ export type SchoolUpdateWithoutUsersInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1682,6 +1740,8 @@ export type SchoolUncheckedUpdateWithoutUsersInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1728,6 +1788,8 @@ export type SchoolCreateWithoutStudentProfilesInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -1776,6 +1838,8 @@ export type SchoolUncheckedCreateWithoutStudentProfilesInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -1838,6 +1902,8 @@ export type SchoolUpdateWithoutStudentProfilesInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1886,6 +1952,8 @@ export type SchoolUncheckedUpdateWithoutStudentProfilesInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1932,6 +2000,8 @@ export type SchoolCreateWithoutMembersInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -1980,6 +2050,8 @@ export type SchoolUncheckedCreateWithoutMembersInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -2042,6 +2114,8 @@ export type SchoolUpdateWithoutMembersInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2090,6 +2164,8 @@ export type SchoolUncheckedUpdateWithoutMembersInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2136,6 +2212,8 @@ export type SchoolCreateWithoutProgramsInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -2184,6 +2262,8 @@ export type SchoolUncheckedCreateWithoutProgramsInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -2246,6 +2326,8 @@ export type SchoolUpdateWithoutProgramsInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2294,6 +2376,8 @@ export type SchoolUncheckedUpdateWithoutProgramsInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2340,6 +2424,8 @@ export type SchoolCreateWithoutStudentsInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -2388,6 +2474,8 @@ export type SchoolUncheckedCreateWithoutStudentsInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -2450,6 +2538,8 @@ export type SchoolUpdateWithoutStudentsInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2498,6 +2588,8 @@ export type SchoolUncheckedUpdateWithoutStudentsInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2544,6 +2636,8 @@ export type SchoolCreateWithoutIndustryPartnersInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -2592,6 +2686,8 @@ export type SchoolUncheckedCreateWithoutIndustryPartnersInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -2654,6 +2750,8 @@ export type SchoolUpdateWithoutIndustryPartnersInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2702,6 +2800,8 @@ export type SchoolUncheckedUpdateWithoutIndustryPartnersInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2748,6 +2848,8 @@ export type SchoolCreateWithoutCareerMonitoringsInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -2796,6 +2898,8 @@ export type SchoolUncheckedCreateWithoutCareerMonitoringsInput = {
   enrollmentToken?: string | null
   tokenActive?: boolean
   tokenExpiresAt?: Date | string | null
+  inviteToken?: string | null
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: Date | string | null
   createdAt?: Date | string
@@ -2858,6 +2962,8 @@ export type SchoolUpdateWithoutCareerMonitoringsInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -2906,6 +3012,8 @@ export type SchoolUncheckedUpdateWithoutCareerMonitoringsInput = {
   enrollmentToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tokenActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tokenExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  inviteToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  inviteActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   verifiedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -3038,6 +3146,8 @@ export type SchoolSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   enrollmentToken?: boolean
   tokenActive?: boolean
   tokenExpiresAt?: boolean
+  inviteToken?: boolean
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
@@ -3088,6 +3198,8 @@ export type SchoolSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   enrollmentToken?: boolean
   tokenActive?: boolean
   tokenExpiresAt?: boolean
+  inviteToken?: boolean
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
@@ -3130,6 +3242,8 @@ export type SchoolSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   enrollmentToken?: boolean
   tokenActive?: boolean
   tokenExpiresAt?: boolean
+  inviteToken?: boolean
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
@@ -3172,13 +3286,15 @@ export type SchoolSelectScalar = {
   enrollmentToken?: boolean
   tokenActive?: boolean
   tokenExpiresAt?: boolean
+  inviteToken?: boolean
+  inviteActive?: boolean
   isVerified?: boolean
   verifiedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type SchoolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "npsn" | "slug" | "level" | "accreditation" | "email" | "phone" | "website" | "address" | "city" | "province" | "logoUrl" | "logoKey" | "description" | "bkkName" | "bkkContact" | "bkkEmail" | "bkkPhone" | "schoolCode" | "activeStudentQuota" | "adminSeatQuota" | "subscriptionPlan" | "subscriptionStatus" | "subscriptionStartedAt" | "subscriptionExpiresAt" | "subscriptionAmount" | "paymentMethod" | "paymentReference" | "lastPaymentAt" | "enrollmentToken" | "tokenActive" | "tokenExpiresAt" | "isVerified" | "verifiedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["school"]>
+export type SchoolOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "npsn" | "slug" | "level" | "accreditation" | "email" | "phone" | "website" | "address" | "city" | "province" | "logoUrl" | "logoKey" | "description" | "bkkName" | "bkkContact" | "bkkEmail" | "bkkPhone" | "schoolCode" | "activeStudentQuota" | "adminSeatQuota" | "subscriptionPlan" | "subscriptionStatus" | "subscriptionStartedAt" | "subscriptionExpiresAt" | "subscriptionAmount" | "paymentMethod" | "paymentReference" | "lastPaymentAt" | "enrollmentToken" | "tokenActive" | "tokenExpiresAt" | "inviteToken" | "inviteActive" | "isVerified" | "verifiedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["school"]>
 export type SchoolInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.School$ownerArgs<ExtArgs>
   members?: boolean | Prisma.School$membersArgs<ExtArgs>
@@ -3244,6 +3360,8 @@ export type $SchoolPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     enrollmentToken: string | null
     tokenActive: boolean
     tokenExpiresAt: Date | null
+    inviteToken: string | null
+    inviteActive: boolean
     isVerified: boolean
     verifiedAt: Date | null
     createdAt: Date
@@ -3713,6 +3831,8 @@ export interface SchoolFieldRefs {
   readonly enrollmentToken: Prisma.FieldRef<"School", 'String'>
   readonly tokenActive: Prisma.FieldRef<"School", 'Boolean'>
   readonly tokenExpiresAt: Prisma.FieldRef<"School", 'DateTime'>
+  readonly inviteToken: Prisma.FieldRef<"School", 'String'>
+  readonly inviteActive: Prisma.FieldRef<"School", 'Boolean'>
   readonly isVerified: Prisma.FieldRef<"School", 'Boolean'>
   readonly verifiedAt: Prisma.FieldRef<"School", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"School", 'DateTime'>

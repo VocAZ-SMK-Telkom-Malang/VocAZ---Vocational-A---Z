@@ -52,8 +52,10 @@ type UploadTarget =
   | 'showcase-video'
   | 'showcase-thumb'
   | 'avatar'
-   | 'cover'  
+  | 'cover'  
   | 'portfolio'
+  | 'cv'                 // ✅ TAMBAH
+  | 'verification-doc'   // ✅ TAMBAH
 
 export async function uploadFile(
   file: File,

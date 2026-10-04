@@ -4369,6 +4369,7 @@ export const UserScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
+  certificationInstitutionId: 'certificationInstitutionId',
   jobTitle: 'jobTitle',
   notificationPrefs: 'notificationPrefs',
   schoolId: 'schoolId'
@@ -4770,6 +4771,8 @@ export const SchoolScalarFieldEnum = {
   enrollmentToken: 'enrollmentToken',
   tokenActive: 'tokenActive',
   tokenExpiresAt: 'tokenExpiresAt',
+  inviteToken: 'inviteToken',
+  inviteActive: 'inviteActive',
   isVerified: 'isVerified',
   verifiedAt: 'verifiedAt',
   createdAt: 'createdAt',
@@ -4860,6 +4863,8 @@ export const CertificationInstitutionScalarFieldEnum = {
   logoUrl: 'logoUrl',
   logoKey: 'logoKey',
   description: 'description',
+  isApproved: 'isApproved',
+  approvedAt: 'approvedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

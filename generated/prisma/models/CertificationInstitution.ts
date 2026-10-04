@@ -38,6 +38,8 @@ export type CertificationInstitutionMinAggregateOutputType = {
   logoUrl: string | null
   logoKey: string | null
   description: string | null
+  isApproved: boolean | null
+  approvedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,6 +58,8 @@ export type CertificationInstitutionMaxAggregateOutputType = {
   logoUrl: string | null
   logoKey: string | null
   description: string | null
+  isApproved: boolean | null
+  approvedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -74,6 +78,8 @@ export type CertificationInstitutionCountAggregateOutputType = {
   logoUrl: number
   logoKey: number
   description: number
+  isApproved: number
+  approvedAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -94,6 +100,8 @@ export type CertificationInstitutionMinAggregateInputType = {
   logoUrl?: true
   logoKey?: true
   description?: true
+  isApproved?: true
+  approvedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -112,6 +120,8 @@ export type CertificationInstitutionMaxAggregateInputType = {
   logoUrl?: true
   logoKey?: true
   description?: true
+  isApproved?: true
+  approvedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -130,6 +140,8 @@ export type CertificationInstitutionCountAggregateInputType = {
   logoUrl?: true
   logoKey?: true
   description?: true
+  isApproved?: true
+  approvedAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -221,6 +233,8 @@ export type CertificationInstitutionGroupByOutputType = {
   logoUrl: string | null
   logoKey: string | null
   description: string | null
+  isApproved: boolean
+  approvedAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: CertificationInstitutionCountAggregateOutputType | null
@@ -260,6 +274,8 @@ export type CertificationInstitutionWhereInput = {
   logoUrl?: Prisma.StringNullableFilter<"CertificationInstitution"> | string | null
   logoKey?: Prisma.StringNullableFilter<"CertificationInstitution"> | string | null
   description?: Prisma.StringNullableFilter<"CertificationInstitution"> | string | null
+  isApproved?: Prisma.BoolFilter<"CertificationInstitution"> | boolean
+  approvedAt?: Prisma.DateTimeNullableFilter<"CertificationInstitution"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"CertificationInstitution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CertificationInstitution"> | Date | string
   certificates?: Prisma.CertificateListRelationFilter
@@ -281,6 +297,8 @@ export type CertificationInstitutionOrderByWithRelationInput = {
   logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   logoKey?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  isApproved?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   certificates?: Prisma.CertificateOrderByRelationAggregateInput
@@ -305,6 +323,8 @@ export type CertificationInstitutionWhereUniqueInput = Prisma.AtLeast<{
   logoUrl?: Prisma.StringNullableFilter<"CertificationInstitution"> | string | null
   logoKey?: Prisma.StringNullableFilter<"CertificationInstitution"> | string | null
   description?: Prisma.StringNullableFilter<"CertificationInstitution"> | string | null
+  isApproved?: Prisma.BoolFilter<"CertificationInstitution"> | boolean
+  approvedAt?: Prisma.DateTimeNullableFilter<"CertificationInstitution"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"CertificationInstitution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CertificationInstitution"> | Date | string
   certificates?: Prisma.CertificateListRelationFilter
@@ -326,6 +346,8 @@ export type CertificationInstitutionOrderByWithAggregationInput = {
   logoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   logoKey?: Prisma.SortOrderInput | Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  isApproved?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.CertificationInstitutionCountOrderByAggregateInput
@@ -350,6 +372,8 @@ export type CertificationInstitutionScalarWhereWithAggregatesInput = {
   logoUrl?: Prisma.StringNullableWithAggregatesFilter<"CertificationInstitution"> | string | null
   logoKey?: Prisma.StringNullableWithAggregatesFilter<"CertificationInstitution"> | string | null
   description?: Prisma.StringNullableWithAggregatesFilter<"CertificationInstitution"> | string | null
+  isApproved?: Prisma.BoolWithAggregatesFilter<"CertificationInstitution"> | boolean
+  approvedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CertificationInstitution"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CertificationInstitution"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CertificationInstitution"> | Date | string
 }
@@ -367,10 +391,12 @@ export type CertificationInstitutionCreateInput = {
   logoUrl?: string | null
   logoKey?: string | null
   description?: string | null
+  isApproved?: boolean
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   certificates?: Prisma.CertificateCreateNestedManyWithoutInstitutionInput
-  owner?: Prisma.UserCreateNestedOneWithoutCertInstitutionInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedInstitutionInput
   verifications?: Prisma.VerificationRequestCreateNestedManyWithoutInstitutionInput
 }
 
@@ -388,6 +414,8 @@ export type CertificationInstitutionUncheckedCreateInput = {
   logoUrl?: string | null
   logoKey?: string | null
   description?: string | null
+  isApproved?: boolean
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutInstitutionInput
@@ -407,10 +435,12 @@ export type CertificationInstitutionUpdateInput = {
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   certificates?: Prisma.CertificateUpdateManyWithoutInstitutionNestedInput
-  owner?: Prisma.UserUpdateOneWithoutCertInstitutionNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedInstitutionNestedInput
   verifications?: Prisma.VerificationRequestUpdateManyWithoutInstitutionNestedInput
 }
 
@@ -428,6 +458,8 @@ export type CertificationInstitutionUncheckedUpdateInput = {
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -448,6 +480,8 @@ export type CertificationInstitutionCreateManyInput = {
   logoUrl?: string | null
   logoKey?: string | null
   description?: string | null
+  isApproved?: boolean
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -465,6 +499,8 @@ export type CertificationInstitutionUpdateManyMutationInput = {
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -483,6 +519,8 @@ export type CertificationInstitutionUncheckedUpdateManyInput = {
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -506,6 +544,8 @@ export type CertificationInstitutionCountOrderByAggregateInput = {
   logoUrl?: Prisma.SortOrder
   logoKey?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  isApproved?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -524,6 +564,8 @@ export type CertificationInstitutionMaxOrderByAggregateInput = {
   logoUrl?: Prisma.SortOrder
   logoKey?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  isApproved?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -542,6 +584,8 @@ export type CertificationInstitutionMinOrderByAggregateInput = {
   logoUrl?: Prisma.SortOrder
   logoKey?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  isApproved?: Prisma.SortOrder
+  approvedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -627,6 +671,8 @@ export type CertificationInstitutionCreateWithoutOwnerInput = {
   logoUrl?: string | null
   logoKey?: string | null
   description?: string | null
+  isApproved?: boolean
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   certificates?: Prisma.CertificateCreateNestedManyWithoutInstitutionInput
@@ -646,6 +692,8 @@ export type CertificationInstitutionUncheckedCreateWithoutOwnerInput = {
   logoUrl?: string | null
   logoKey?: string | null
   description?: string | null
+  isApproved?: boolean
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutInstitutionInput
@@ -681,6 +729,8 @@ export type CertificationInstitutionUpdateWithoutOwnerInput = {
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   certificates?: Prisma.CertificateUpdateManyWithoutInstitutionNestedInput
@@ -700,6 +750,8 @@ export type CertificationInstitutionUncheckedUpdateWithoutOwnerInput = {
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -719,9 +771,11 @@ export type CertificationInstitutionCreateWithoutCertificatesInput = {
   logoUrl?: string | null
   logoKey?: string | null
   description?: string | null
+  isApproved?: boolean
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  owner?: Prisma.UserCreateNestedOneWithoutCertInstitutionInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedInstitutionInput
   verifications?: Prisma.VerificationRequestCreateNestedManyWithoutInstitutionInput
 }
 
@@ -739,6 +793,8 @@ export type CertificationInstitutionUncheckedCreateWithoutCertificatesInput = {
   logoUrl?: string | null
   logoKey?: string | null
   description?: string | null
+  isApproved?: boolean
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   verifications?: Prisma.VerificationRequestUncheckedCreateNestedManyWithoutInstitutionInput
@@ -773,9 +829,11 @@ export type CertificationInstitutionUpdateWithoutCertificatesInput = {
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  owner?: Prisma.UserUpdateOneWithoutCertInstitutionNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedInstitutionNestedInput
   verifications?: Prisma.VerificationRequestUpdateManyWithoutInstitutionNestedInput
 }
 
@@ -793,6 +851,8 @@ export type CertificationInstitutionUncheckedUpdateWithoutCertificatesInput = {
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   verifications?: Prisma.VerificationRequestUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -811,10 +871,12 @@ export type CertificationInstitutionCreateWithoutVerificationsInput = {
   logoUrl?: string | null
   logoKey?: string | null
   description?: string | null
+  isApproved?: boolean
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   certificates?: Prisma.CertificateCreateNestedManyWithoutInstitutionInput
-  owner?: Prisma.UserCreateNestedOneWithoutCertInstitutionInput
+  owner?: Prisma.UserCreateNestedOneWithoutOwnedInstitutionInput
 }
 
 export type CertificationInstitutionUncheckedCreateWithoutVerificationsInput = {
@@ -831,6 +893,8 @@ export type CertificationInstitutionUncheckedCreateWithoutVerificationsInput = {
   logoUrl?: string | null
   logoKey?: string | null
   description?: string | null
+  isApproved?: boolean
+  approvedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   certificates?: Prisma.CertificateUncheckedCreateNestedManyWithoutInstitutionInput
@@ -865,10 +929,12 @@ export type CertificationInstitutionUpdateWithoutVerificationsInput = {
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   certificates?: Prisma.CertificateUpdateManyWithoutInstitutionNestedInput
-  owner?: Prisma.UserUpdateOneWithoutCertInstitutionNestedInput
+  owner?: Prisma.UserUpdateOneWithoutOwnedInstitutionNestedInput
 }
 
 export type CertificationInstitutionUncheckedUpdateWithoutVerificationsInput = {
@@ -885,6 +951,8 @@ export type CertificationInstitutionUncheckedUpdateWithoutVerificationsInput = {
   logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   logoKey?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isApproved?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  approvedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   certificates?: Prisma.CertificateUncheckedUpdateManyWithoutInstitutionNestedInput
@@ -944,6 +1012,8 @@ export type CertificationInstitutionSelect<ExtArgs extends runtime.Types.Extensi
   logoUrl?: boolean
   logoKey?: boolean
   description?: boolean
+  isApproved?: boolean
+  approvedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   certificates?: boolean | Prisma.CertificationInstitution$certificatesArgs<ExtArgs>
@@ -966,6 +1036,8 @@ export type CertificationInstitutionSelectCreateManyAndReturn<ExtArgs extends ru
   logoUrl?: boolean
   logoKey?: boolean
   description?: boolean
+  isApproved?: boolean
+  approvedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   owner?: boolean | Prisma.CertificationInstitution$ownerArgs<ExtArgs>
@@ -985,6 +1057,8 @@ export type CertificationInstitutionSelectUpdateManyAndReturn<ExtArgs extends ru
   logoUrl?: boolean
   logoKey?: boolean
   description?: boolean
+  isApproved?: boolean
+  approvedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   owner?: boolean | Prisma.CertificationInstitution$ownerArgs<ExtArgs>
@@ -1004,11 +1078,13 @@ export type CertificationInstitutionSelectScalar = {
   logoUrl?: boolean
   logoKey?: boolean
   description?: boolean
+  isApproved?: boolean
+  approvedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type CertificationInstitutionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "slug" | "type" | "licenseNumber" | "email" | "phone" | "website" | "address" | "logoUrl" | "logoKey" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["certificationInstitution"]>
+export type CertificationInstitutionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "ownerUserId" | "name" | "slug" | "type" | "licenseNumber" | "email" | "phone" | "website" | "address" | "logoUrl" | "logoKey" | "description" | "isApproved" | "approvedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["certificationInstitution"]>
 export type CertificationInstitutionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   certificates?: boolean | Prisma.CertificationInstitution$certificatesArgs<ExtArgs>
   owner?: boolean | Prisma.CertificationInstitution$ownerArgs<ExtArgs>
@@ -1043,6 +1119,8 @@ export type $CertificationInstitutionPayload<ExtArgs extends runtime.Types.Exten
     logoUrl: string | null
     logoKey: string | null
     description: string | null
+    isApproved: boolean
+    approvedAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["certificationInstitution"]>
@@ -1484,6 +1562,8 @@ export interface CertificationInstitutionFieldRefs {
   readonly logoUrl: Prisma.FieldRef<"CertificationInstitution", 'String'>
   readonly logoKey: Prisma.FieldRef<"CertificationInstitution", 'String'>
   readonly description: Prisma.FieldRef<"CertificationInstitution", 'String'>
+  readonly isApproved: Prisma.FieldRef<"CertificationInstitution", 'Boolean'>
+  readonly approvedAt: Prisma.FieldRef<"CertificationInstitution", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"CertificationInstitution", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"CertificationInstitution", 'DateTime'>
 }

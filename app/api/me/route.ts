@@ -1,6 +1,9 @@
+// app/api/me/route.ts
 import { NextResponse } from 'next/server'
-import { headers, cookies } from 'next/headers'
+import { cookies, headers } from 'next/headers'
 import { prisma } from '@/lib/prisma'
+
+export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
@@ -18,21 +21,26 @@ export async function GET() {
     const host = headersList.get('host') || 'localhost:3000'
     const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http'
 
-    const sessionRes = await fetch(
-      `${protocol}://${host}/api/auth/get-session`,
-      {
+    // Retry logic
+    let session: any = null
+    for (let i = 0; i < 3; i++) {
+      const res = await fetch(`${protocol}://${host}/api/auth/get-session`, {
         headers: { Cookie: cookieHeader },
         cache: 'no-store',
-      }
-    )
+      })
 
-    if (!sessionRes.ok) {
-      return NextResponse.json({ ok: false, dbUser: null })
+      if (res.ok) {
+        const data = await res.json()
+        if (data?.user?.id) {
+          session = data
+          break
+        }
+      }
+
+      await new Promise((r) => setTimeout(r, 300))
     }
 
-    const session = await sessionRes.json()
-
-    if (!session?.user) {
+    if (!session?.user?.id) {
       return NextResponse.json({ ok: false, dbUser: null })
     }
 

@@ -24,7 +24,8 @@ type Status = 'loading' | 'success' | 'error' | 'already-registered'
 
 type RegisterData = {
   email: string
-  password: string
+  password?: string
+  googleAuth?: boolean
   fullName: string
   position?: string
   schoolName: string
@@ -72,7 +73,7 @@ export function Step5Done() {
         // Validate
         if (
           !data.email ||
-          !data.password ||
+          (!data.googleAuth && !data.password) ||
           !data.fullName ||
           !data.schoolName ||
           !data.plan ||
@@ -85,36 +86,45 @@ export function Step5Done() {
           return
         }
 
-        // 1. Sign-up Neon Auth
-        const signUpResult = await authClient.signUp.email({
-          email: data.email,
-          password: data.password,
-          name: data.fullName,
-        })
-
-        if (signUpResult && 'error' in signUpResult && signUpResult.error) {
-          const errMsg = (signUpResult.error as any)?.message || ''
-
-          if (errMsg.toLowerCase().includes('already exists')) {
+        if (!data.googleAuth) {
+          if (!data.password) {
             if (!cancelled) {
-              setError(
-                'Email sudah terdaftar. Coba masuk atau gunakan email lain.'
-              )
-              setStatus('already-registered')
+              setError('Password belum diisi. Silakan kembali ke langkah akun.')
+              setStatus('error')
             }
             return
           }
 
-          if (!cancelled) {
-            setError(errMsg || 'Gagal membuat akun auth')
-            setStatus('error')
+          const signUpResult = await authClient.signUp.email({
+            email: data.email,
+            password: data.password,
+            name: data.fullName,
+          })
+
+          if (signUpResult && 'error' in signUpResult && signUpResult.error) {
+            const errMsg = (signUpResult.error as any)?.message || ''
+
+            if (errMsg.toLowerCase().includes('already exists')) {
+              if (!cancelled) {
+                setError(
+                  'Email sudah terdaftar. Coba masuk atau gunakan email lain.'
+                )
+                setStatus('already-registered')
+              }
+              return
+            }
+
+            if (!cancelled) {
+              setError(errMsg || 'Gagal membuat akun auth')
+              setStatus('error')
+            }
+            return
           }
-          return
         }
 
         // 2. Ambil session
-        const sessionRes = await fetch('/api/auth/get-session')
-        const session = await sessionRes.json()
+        const sessionResult = await authClient.getSession()
+        const session = sessionResult.data
 
         if (!session?.user?.id) {
           if (!cancelled) {
@@ -158,6 +168,7 @@ export function Step5Done() {
 
         // 4. Clear sessionStorage
         sessionStorage.removeItem('school-register')
+        sessionStorage.removeItem('vocaz.google-oauth-pending')
 
         if (!cancelled) {
           setSchoolCode(finalizeResult.data?.schoolCode || null)

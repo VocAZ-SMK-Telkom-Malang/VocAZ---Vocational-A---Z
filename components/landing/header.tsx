@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import {
@@ -34,7 +35,6 @@ export function LandingHeader({ user }: Props) {
   const router = useRouter()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [lang, setLang] = useState<'ID' | 'EN'>('ID')
   const [userMenuOpen, setUserMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -44,11 +44,6 @@ export function LandingHeader({ user }: Props) {
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  useEffect(() => {
-    const saved = localStorage.getItem('vocaz.lang')
-    if (saved === 'EN' || saved === 'ID') setLang(saved)
   }, [])
 
   useEffect(() => {
@@ -66,12 +61,6 @@ export function LandingHeader({ user }: Props) {
     document.addEventListener('click', close)
     return () => document.removeEventListener('click', close)
   }, [userMenuOpen])
-
-  function toggleLang() {
-    const next = lang === 'ID' ? 'EN' : 'ID'
-    setLang(next)
-    localStorage.setItem('vocaz.lang', next)
-  }
 
   async function handleLogout() {
     await authClient.signOut()
@@ -109,14 +98,14 @@ export function LandingHeader({ user }: Props) {
             href="/"
             className="flex items-center gap-1.5 shrink-0 pl-2 sm:pl-3"
           >
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-primary-container to-[#B70011] flex items-center justify-center shadow-sm">
-              <span className="text-white font-display font-extrabold text-[10px] sm:text-xs leading-none">
-                V
-              </span>
-            </div>
-            <span className="font-display text-base sm:text-lg font-extrabold tracking-tight">
-              Voc<span className="text-primary">AZ</span>
-            </span>
+            <Image
+              src="/vocaz.png"
+              alt="VocAZ"
+              width={120}
+              height={32}
+              className="h-8 sm:h-9 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* DESKTOP NAV */}
@@ -142,31 +131,6 @@ export function LandingHeader({ user }: Props) {
 
           {/* DESKTOP ACTIONS */}
           <div className="hidden xl:flex items-center gap-2 shrink-0 pr-1">
-            <button
-              onClick={toggleLang}
-              className="inline-flex items-center p-0.5 rounded-full bg-surface-container text-[11px] font-semibold hover:bg-surface-container-high transition-colors"
-              aria-label={`Ganti bahasa ke ${lang === 'ID' ? 'English' : 'Indonesia'}`}
-            >
-              <span
-                className={`px-2 py-0.5 rounded-full transition-all ${
-                  lang === 'ID'
-                    ? 'bg-primary text-white font-bold shadow-sm'
-                    : 'text-on-surface-variant'
-                }`}
-              >
-                ID
-              </span>
-              <span
-                className={`px-2 py-0.5 rounded-full transition-all ${
-                  lang === 'EN'
-                    ? 'bg-primary text-white font-bold shadow-sm'
-                    : 'text-on-surface-variant'
-                }`}
-              >
-                EN
-              </span>
-            </button>
-
             {user ? (
               <UserMenu
                 user={user}
@@ -238,8 +202,6 @@ export function LandingHeader({ user }: Props) {
         onClose={() => setMobileOpen(false)}
         user={user}
         onLogout={handleLogout}
-        lang={lang}
-        onToggleLang={toggleLang}
         dashboardHref={dashboardHref}
       />
     </>
@@ -314,16 +276,12 @@ function MobileDrawer({
   onClose,
   user,
   onLogout,
-  lang,
-  onToggleLang,
   dashboardHref,
 }: {
   open: boolean
   onClose: () => void
   user: Props['user']
   onLogout: () => void
-  lang: 'ID' | 'EN'
-  onToggleLang: () => void
   dashboardHref: string
 }) {
   const pathname = usePathname()
@@ -350,14 +308,14 @@ function MobileDrawer({
         {/* Header */}
         <div className="h-16 px-4 border-b border-outline-variant/30 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-1.5" onClick={onClose}>
-            <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-white font-display font-extrabold text-xs leading-none">
-                V
-              </span>
-            </div>
-            <span className="font-display text-base font-extrabold tracking-tight">
-              Voc<span className="text-primary">AZ</span>
-            </span>
+            <Image
+              src="/vocaz.png"
+              alt="VocAZ"
+              width={120}
+              height={32}
+              className="h-7 w-auto object-contain"
+              priority
+            />
           </Link>
           <button
             onClick={onClose}
@@ -408,35 +366,6 @@ function MobileDrawer({
 
         {/* Footer */}
         <div className="p-4 border-t border-outline-variant/30 space-y-3">
-          <button
-            onClick={onToggleLang}
-            className="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-surface-container-low transition-colors"
-          >
-            <span className="text-xs font-semibold text-on-surface-variant uppercase tracking-wider">
-              Bahasa
-            </span>
-            <span className="inline-flex items-center p-0.5 rounded-full bg-surface-container text-xs font-semibold">
-              <span
-                className={`px-2 py-0.5 rounded-full transition-all ${
-                  lang === 'ID'
-                    ? 'bg-primary text-white font-bold'
-                    : 'text-on-surface-variant'
-                }`}
-              >
-                ID
-              </span>
-              <span
-                className={`px-2 py-0.5 rounded-full transition-all ${
-                  lang === 'EN'
-                    ? 'bg-primary text-white font-bold'
-                    : 'text-on-surface-variant'
-                }`}
-              >
-                EN
-              </span>
-            </span>
-          </button>
-
           {user ? (
             <>
               <Link

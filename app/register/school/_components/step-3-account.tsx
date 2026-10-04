@@ -7,11 +7,14 @@ import { RegisterShell } from '@/components/register/register-shell'
 import { StepNav } from '@/components/register/step-nav'
 import { REGISTER_STEPS } from '@/lib/register/steps'
 import { Info } from 'lucide-react'
+import { GoogleAuthButton } from '@/components/auth/google-auth-button'
+import { useGoogleRegistration } from '@/components/auth/use-google-registration'
 
 export function Step3Account() {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
   const [isPending, setIsPending] = useState(false)
+  const { account: googleAccount, error: googleError } = useGoogleRegistration()
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -25,13 +28,13 @@ export function Step3Account() {
     const fullName = formData.get('fullName') as string
     const position = formData.get('position') as string
 
-    if (password !== confirmPassword) {
+    if (!googleAccount && password !== confirmPassword) {
       setError('Password dan konfirmasi password tidak cocok')
       setIsPending(false)
       return
     }
 
-    if (password.length < 8) {
+    if (!googleAccount && password.length < 8) {
       setError('Password minimal 8 karakter')
       setIsPending(false)
       return
@@ -43,7 +46,14 @@ export function Step3Account() {
 
     sessionStorage.setItem(
       'school-register',
-      JSON.stringify({ ...existing, email, password, fullName, position })
+      JSON.stringify({
+        ...existing,
+        email: googleAccount?.email || email,
+        password: googleAccount ? undefined : password,
+        fullName: fullName || googleAccount?.fullName,
+        position,
+        googleAuth: Boolean(googleAccount),
+      })
     )
 
     router.push('/register/school/4')
@@ -60,6 +70,24 @@ export function Step3Account() {
       sidebar={<InfoCard />}
     >
       <form onSubmit={handleSubmit} className="space-y-6">
+        {!googleAccount && (
+          <>
+            <GoogleAuthButton
+              callbackURL="/auth/google-callback?next=%2Fregister%2Fschool%2F3"
+              label="Daftar dengan Google"
+            />
+            <div className="flex items-center gap-4 text-xs text-on-surface-variant">
+              <span className="h-px flex-1 bg-outline-variant/40" />
+              atau gunakan email
+              <span className="h-px flex-1 bg-outline-variant/40" />
+            </div>
+          </>
+        )}
+        {googleError && (
+          <div role="alert" className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+            {googleError}
+          </div>
+        )}
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
             {error}
@@ -80,10 +108,13 @@ export function Step3Account() {
               Email Sekolah <span className="text-red-500">*</span>
             </label>
             <input
+              key={googleAccount?.email || 'email'}
               id="email"
               name="email"
               type="email"
               required
+              readOnly={Boolean(googleAccount)}
+              defaultValue={googleAccount?.email}
               placeholder="bkk@smkn4solo.sch.id"
               className="w-full px-4 py-3 rounded-xl border border-outline-variant/50 text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
             />
@@ -92,7 +123,7 @@ export function Step3Account() {
             </p>
           </div>
 
-          <div>
+          {!googleAccount && <div>
             <label
               htmlFor="password"
               className="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2"
@@ -108,9 +139,9 @@ export function Step3Account() {
               placeholder="Minimal 8 karakter"
               className="w-full px-4 py-3 rounded-xl border border-outline-variant/50 text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
             />
-          </div>
+          </div>}
 
-          <div>
+          {!googleAccount && <div>
             <label
               htmlFor="confirmPassword"
               className="block text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-2"
@@ -126,7 +157,7 @@ export function Step3Account() {
               placeholder="Ulangi password"
               className="w-full px-4 py-3 rounded-xl border border-outline-variant/50 text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
             />
-          </div>
+          </div>}
         </div>
 
         {/* Section 2: PIC */}
@@ -143,10 +174,12 @@ export function Step3Account() {
               Nama Lengkap <span className="text-red-500">*</span>
             </label>
             <input
+              key={googleAccount?.email || 'fullName'}
               id="fullName"
               name="fullName"
               type="text"
               required
+              defaultValue={googleAccount?.fullName}
               placeholder="Nama lengkap PIC"
               className="w-full px-4 py-3 rounded-xl border border-outline-variant/50 text-sm focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
             />

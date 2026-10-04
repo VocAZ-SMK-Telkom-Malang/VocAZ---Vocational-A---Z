@@ -4,6 +4,7 @@
 import { prisma } from '@/lib/prisma'
 import type { ActionState, FinalizeStudentInput } from '@/lib/register/types'
 import { validateToken } from '@/lib/school/token'
+import { verifyRegistrationSession } from '@/lib/register/verify-auth-session'
 
 // ============================================
 // HELPER
@@ -30,6 +31,9 @@ export async function finalizeStudentRegistration(
         ok: false,
         error: 'Session auth tidak valid. Coba login ulang.',
       }
+    }
+    if (!(await verifyRegistrationSession(input.neonAuthUserId, input.email))) {
+      return { ok: false, error: 'Sesi tidak cocok dengan email pendaftaran.' }
     }
 
     // 1. Cek email

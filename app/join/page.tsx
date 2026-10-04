@@ -1,9 +1,11 @@
 // app/join/page.tsx
 import Link from 'next/link'
+import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import { getServerSession } from '@/lib/auth/session'
 import { prisma } from '@/lib/prisma'
 import { getDashboardPath } from '@/lib/auth/redirects'
+import { GoogleAuthButton } from '@/components/auth/google-auth-button'
 import {
   GraduationCap,
   Building2,
@@ -123,14 +125,14 @@ export default async function JoinPage() {
               <ArrowLeft className="w-4 h-4" />
             </Link>
             <Link href="/" className="flex items-center gap-1.5">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-container to-[#B70011] flex items-center justify-center shadow-sm">
-                <span className="text-white font-display font-extrabold text-sm leading-none">
-                  V
-                </span>
-              </div>
-              <span className="font-display text-lg font-extrabold tracking-tight">
-                Voc<span className="text-primary">AZ</span>
-              </span>
+              <Image
+                src="/vocaz.png"
+                alt="VocAZ"
+                width={120}
+                height={32}
+                className="h-8 w-auto object-contain"
+                priority
+              />
             </Link>
           </div>
 
@@ -165,6 +167,20 @@ export default async function JoinPage() {
           <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
             Pilih peran kamu di bawah ini untuk memulai pendaftaran akun dan mengakses fitur yang disesuaikan khusus untuk kebutuhanmu.
           </p>
+          <div className="max-w-sm mx-auto mt-7">
+            <GoogleAuthButton
+              callbackURL="/auth/google-callback?next=%2Fjoin"
+              label="Daftar dengan Google"
+            />
+            <p className="mt-2 text-xs text-on-surface-variant">
+              Email dan nama akan diambil dari akun Google kamu.
+            </p>
+          </div>
+          <div className="flex items-center gap-4 max-w-sm mx-auto mt-6 text-xs text-on-surface-variant">
+            <span className="h-px flex-1 bg-outline-variant/40" />
+            atau daftar dengan email
+            <span className="h-px flex-1 bg-outline-variant/40" />
+          </div>
         </div>
 
         {/* Cards Grid */}

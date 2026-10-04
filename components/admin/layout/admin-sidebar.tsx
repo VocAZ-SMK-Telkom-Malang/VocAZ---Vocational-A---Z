@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
@@ -62,27 +63,23 @@ export function AdminSidebar({
             collapsed ? 'justify-center px-2' : 'justify-between px-4'
           }`}
         >
-          {!collapsed ? (
-            <Link href="/admin/dashboard" className="flex items-center gap-2 min-w-0">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shrink-0">
-                <span className="text-white font-display font-extrabold text-sm">V</span>
-              </div>
-              <div className="min-w-0">
-                <span className="font-display text-base font-extrabold tracking-tight block truncate">
-                  Voc<span className="text-tertiary-fixed-dim">AZ</span>
-                </span>
-                <p className="text-[10px] text-white/50 font-mono uppercase tracking-wider truncate">
-                  Super Admin
-                </p>
-              </div>
-            </Link>
-          ) : (
-            <Link href="/admin/dashboard">
-              <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-white font-display font-extrabold text-sm">V</span>
-              </div>
-            </Link>
-          )}
+          <Link href="/admin/dashboard" className="flex items-center gap-2 min-w-0">
+            <Image
+              src="/vocaz.png"
+              alt="VocAZ"
+              width={collapsed ? 32 : 100}
+              height={32}
+              className={`object-contain transition-all ${
+                collapsed ? 'h-8 w-8' : 'h-8 w-auto'
+              }`}
+              priority
+            />
+            {!collapsed && (
+              <span className="text-[10px] text-white/60 font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-white/10 shrink-0">
+                Admin
+              </span>
+            )}
+          </Link>
 
           {/* Mobile close */}
           <button

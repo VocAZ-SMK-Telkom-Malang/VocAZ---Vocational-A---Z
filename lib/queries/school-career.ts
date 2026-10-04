@@ -1,21 +1,5 @@
 // lib/queries/school-career.ts
 import { prisma } from '@/lib/prisma'
-import type { CareerStage } from '@/generated/prisma/enums'
-import type { Prisma } from '@/generated/prisma/client'
-
-// ============================================
-// TYPES
-// ============================================
-
-export type CareerStudent = {
-  profileId: string
-  fullName: string
-  avatarUrl: string | null
-  headline: string | null
-  programName: string | null
-  enrollmentYear: number | null
-  status: string
-}
 
 export type CareerOpportunity = {
   jobId: string
@@ -43,7 +27,7 @@ export type RecommendedStudent = {
 
 export type RecruitmentStatusItem = {
   linkId: string
-  stage: CareerStage
+  stage: string
   student: {
     profileId: string
     fullName: string
@@ -88,58 +72,43 @@ export type CareerStats = {
   placementRate: number
 }
 
-// ============================================
-// 1. STATS
-// ============================================
-
 export async function getCareerStats(schoolId: string): Promise<CareerStats> {
   const [totalActive, monitoring] = await Promise.all([
     prisma.schoolStudent.count({
       where: { schoolId, status: 'active' },
     }),
-    prisma.careerMonitoring.groupBy({
-      by: ['stage'],
+    prisma.careerMonitoring.findMany({
       where: { schoolId },
-      _count: true,
+      select: { stage: true },
     }),
   ])
 
   const stageMap: Record<string, number> = {}
   monitoring.forEach((m) => {
-    stageMap[m.stage] = m._count
+    stageMap[m.stage] = (stageMap[m.stage] ?? 0) + 1
   })
 
-  const seeking = stageMap['opportunity'] ?? 0
+  const seeking =
+    (stageMap['opportunity'] ?? 0) + (stageMap['recommended'] ?? 0)
   const inProcess =
-    (stageMap['applied'] ?? 0) + (stageMap['interview'] ?? 0)
+    (stageMap['applied'] ?? 0) +
+    (stageMap['interview'] ?? 0) +
+    (stageMap['offered'] ?? 0)
   const placed = stageMap['placed'] ?? 0
 
   const placementRate =
     totalActive > 0 ? Math.round((placed / totalActive) * 100) : 0
 
-  return {
-    totalActive,
-    seeking,
-    inProcess,
-    placed,
-    placementRate,
-  }
+  return { totalActive, seeking, inProcess, placed, placementRate }
 }
-
-// ============================================
-// 2. LOWONGAN (Jobs from Industry Partners + Public)
-// ============================================
 
 export async function getCareerOpportunities(
   schoolId: string,
   limit = 20
 ): Promise<CareerOpportunity[]> {
-  // Ambil job aktif dari semua company (bisa difilter partner only)
   const jobs = await prisma.job.findMany({
-    where: {
-      status: 'active',
-    },
-    orderBy: { createdAt: 'desc' },
+    where: { status: 'active', deletedAt: null },
+    orderBy: { publishedAt: 'desc' },
     take: limit,
     select: {
       id: true,
@@ -148,23 +117,13 @@ export async function getCareerOpportunities(
       city: true,
       workMode: true,
       expiredAt: true,
-      createdAt: true,
+      applicants: true,
       company: {
-        select: {
-          id: true,
-          name: true,
-          logoUrl: true,
-        },
-      },
-      _count: {
-        select: {
-          applications: true,
-        },
+        select: { id: true, name: true, logoUrl: true },
       },
     },
   })
 
-  // Ambil monitoring untuk hitung matchedStudents
   const monitoring = await prisma.careerMonitoring.findMany({
     where: { schoolId },
     select: { jobId: true },
@@ -172,10 +131,7 @@ export async function getCareerOpportunities(
   const jobMonitorCount = new Map<string, number>()
   monitoring.forEach((m) => {
     if (m.jobId) {
-      jobMonitorCount.set(
-        m.jobId,
-        (jobMonitorCount.get(m.jobId) ?? 0) + 1
-      )
+      jobMonitorCount.set(m.jobId, (jobMonitorCount.get(m.jobId) ?? 0) + 1)
     }
   })
 
@@ -187,21 +143,16 @@ export async function getCareerOpportunities(
     city: j.city ?? null,
     workMode: j.workMode ?? null,
     deadline: j.expiredAt ? j.expiredAt.toISOString() : null,
-    applicantCount: j._count.applications,
+    applicantCount: j.applicants,
     matchedStudents: jobMonitorCount.get(j.id) ?? 0,
     description: j.description ?? null,
   }))
 }
 
-// ============================================
-// 3. RECOMMENDED STUDENTS
-// ============================================
-
 export async function getRecommendedStudents(
   schoolId: string,
   limit = 20
 ): Promise<RecommendedStudent[]> {
-  // Ambil siswa aktif yang open to work
   const students = await prisma.schoolStudent.findMany({
     where: {
       schoolId,
@@ -215,15 +166,10 @@ export async function getRecommendedStudents(
       student: {
         include: {
           user: {
-            select: {
-              fullName: true,
-              avatarUrl: true,
-            },
+            select: { fullName: true, avatarUrl: true },
           },
           skills: {
-            include: {
-              skill: { select: { name: true } },
-            },
+            include: { skill: { select: { name: true } } },
             take: 5,
           },
         },
@@ -232,7 +178,6 @@ export async function getRecommendedStudents(
   })
 
   return students.map((s) => {
-    // Simple score: profileCompletion + careerReadiness average
     const score = Math.round(
       (s.student.profileCompletion + s.student.careerReadiness) / 2
     )
@@ -250,16 +195,12 @@ export async function getRecommendedStudents(
   })
 }
 
-// ============================================
-// 4. RECRUITMENT STATUS (Monitoring)
-// ============================================
-
 export async function getRecruitmentStatus(
   schoolId: string,
-  filterStage: CareerStage | 'all' = 'all'
+  filterStage?: string
 ): Promise<RecruitmentStatusItem[]> {
-  const where: Prisma.CareerMonitoringWhereInput = { schoolId }
-  if (filterStage !== 'all') {
+  const where: any = { schoolId }
+  if (filterStage && filterStage !== 'all') {
     where.stage = filterStage
   }
 
@@ -270,15 +211,11 @@ export async function getRecruitmentStatus(
     include: {
       student: {
         include: {
-          user: {
-            select: { fullName: true, avatarUrl: true },
-          },
+          user: { select: { fullName: true, avatarUrl: true } },
         },
       },
       job: {
-        include: {
-          company: { select: { name: true } },
-        },
+        include: { company: { select: { name: true } } },
       },
       company: { select: { name: true } },
     },
@@ -311,32 +248,21 @@ export async function getRecruitmentStatus(
   }))
 }
 
-// ============================================
-// 5. PLACEMENTS
-// ============================================
-
 export async function getPlacements(
   schoolId: string,
   limit = 50
 ): Promise<PlacementItem[]> {
   const items = await prisma.careerMonitoring.findMany({
-    where: {
-      schoolId,
-      stage: 'placed',
-    },
+    where: { schoolId, stage: 'placed' },
     orderBy: { placementDate: 'desc' },
     take: limit,
     include: {
       student: {
         include: {
-          user: {
-            select: { fullName: true, avatarUrl: true },
-          },
+          user: { select: { fullName: true, avatarUrl: true } },
         },
       },
-      company: {
-        select: { id: true, name: true, logoUrl: true },
-      },
+      company: { select: { id: true, name: true, logoUrl: true } },
       job: { select: { id: true, title: true } },
     },
   })
@@ -356,15 +282,8 @@ export async function getPlacements(
           logoUrl: m.company.logoUrl ?? null,
         }
       : null,
-    job: m.job
-      ? {
-          id: m.job.id,
-          title: m.job.title,
-        }
-      : null,
-    placementDate: m.placementDate
-      ? m.placementDate.toISOString()
-      : null,
+    job: m.job ? { id: m.job.id, title: m.job.title } : null,
+    placementDate: m.placementDate ? m.placementDate.toISOString() : null,
     notes: m.notes ?? null,
   }))
-}
+}   
